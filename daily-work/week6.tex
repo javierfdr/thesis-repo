@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{letterpaper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\RequirePackage{amsmath}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{color}
+
+
+\title{Daily Thesis-work Report}
+\author{Javier Fern\'andez}
+%\date{17 de Febrero de 2009} % delete this line to display the current date
+
+\begin{document}
+
+\maketitle
+%\newpage
+%\tableofcontents
+%\listoffigures
+%\listoftables
+%\newpage
+
+\section{General topics addressed}
+\begin{itemize}
+\item Final phase implementation
+\end{itemize}
+
+\section{Spline implementation}
+Using Curve API taking from \url{http://sourceforge.net/projects/curves/}\\
+Given two base points and a path (including these two) a cardinal spline
+is built using the CardinalSpline functionality of the library, and 
+included as attribute of a EVCardinalSpline object.\\
+The cardinal spline is computed and returned specifying the number of points 
+to be obtained
+
+\section{Worm Tessellation}
+
+The FlowBasicRasterizer was deleted, adding a tesselation package. This package
+contains a TriangleRasterizer class that performs the process of triangle
+rasterization and shape rasterization (maybe shape will be changed). This 
+hasn't been programmed yet.\\
+
+Looking for Delaunay triangulation implementations. There are not many:
+trying this one: \url{http://www.leebyron.com/else/mesh/}. The library
+is called \emph{Mesh} and implements Voronoi and Delaunay triangulation.
+Delaunay triangulation minimizes the minimum angle of all the angles of the 
+triangles in the triangulation, they tend to avoid skinny triangles.
+\url{http://en.wikipedia.org/wiki/Delaunay_triangulation}\\
+
+\textbf{Update: }The mesh library didn't work well. Actually I have my doubts
+that the Delaunay triangulation would work for what I want. It seems that
+Delaunay doesn't work properly with convex polygons (shapes). A worm shape
+is definitely concave ( a line between two points is not always inside the
+figure).\\
+\textbf{Possible solution: }Look for a polygon triangulation library/algorithm\\
+
+This C code could be adapted: \url{http://www.flipcode.com/archives/Efficient_Polygon_Triangulation.shtml}\\
+Link for different implementation ideas \url{http://www.vterrain.org/Implementation/Libs/triangulate.html}\\
+
+\textbf{Possible library: }Poly2Tri seems to be available in Java: Library
+to triangulate polygons. \url{http://code.google.com/p/poly2tri/source/checkout}
+\textbf{Issues: } Couldn't get it to work properly..Didn't want to compile
+
+\textbf{Attempt: }Reading to implement a tesselation algorithm: Put
+an eye on \emph{Siedel} algorithm
+
+\textbf{Trying Ear-snipping method from Endrov.newer.FlipCodeTessellate}:
+about Ear Clipping triangulation \url{https://docs.google.com/viewer?url=http://www.geometrictools.com/Documentation/TriangulationByEarClipping.pdf}
+
+\subsection{Final Solution}
+Given clockwise generated points of the worm polygon a triangle tesselation
+is created using the Ear-snipping method already implemented on
+\emph{Endrov}, and the triangles are individually rasterized to obtain a list
+of the points contained in the area of the worm.\\
+
+The implementation of triangle rasterization had change due to some fundamental
+implementation errors on border cases. Check \emph{week1.tex/pdf}
+
+
+\end{document}
+

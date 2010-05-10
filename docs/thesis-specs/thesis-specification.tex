@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{letterpaper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\RequirePackage{amsmath}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Master Thesis Project Specification\\
+\textbf{Image processing to detect worms}}
+\author{Javier Fern\'andez}
+%\date{17 de Febrero de 2009} % delete this line to display the current date
+\maketitle
+
+
+
+\section{Background}
+Images of biological samples are no longer just overview pictures; 
+they are measurements. To turn images into manageable data the computer 
+has to be able to make sense of them. This involves processing the raw 
+images to gather and organize data that would allow to analyze and 
+manipulate the information accurately and faster.\\
+
+ The purpose of this project is to detect C.elegans worms (larva) in 
+liquid media. It would be implemented as part of the 
+image analysis and data processing software \emph{Endrov}. 
+The project can be extended to allow tracking 
+(using microscope XY stage) of worms moving on plates if time allows.
+
+\section{Task description}
+The general objective is to obtain an algorithm that receives images of
+worms in a liquid culture as input and outputs fitted shapes of worms.
+This will involve two main stages: the implementation stage and the fine-tune
+and benchmarking stage.\\
+
+\subsection{Implementation stage}
+In this stage will be studied the previous attempts and approaches
+on the different algorithms that have to be implemented in order to fulfil
+the project main objective of fitting the worms shape from an initial
+microscope image.\\
+
+The implementation would be done as a filter for \emph{Endrov}, an 
+image analysis and data processing software developed at Karolinska
+Institute. This open source project provides a wide suite of tools that
+allows to manipulate biological data with agility, making more efficient
+the study of samples.\\
+
+The main activities that the project involve are the following:
+\begin{itemize}
+\item Rasterizing and maybe tesselating general polygons.
+\item Finding a suitable thresholding algorithm. This will allow to obtain a 
+binary image from the initial sample, dividing the images into
+object pixels and background pixels. This will facilitate the manipulation 
+and filtering of the data.
+\item Finding a good shape descriptor. This involves researching on different
+past attempts on shape fitting, and designing a shape descriptor that fits
+the current problem. There are many published studies on shape fitting 
+for many different problems, but just few focused on worms.
+\item Doing the math required to use a normal continuous optimization algorithm
+which does not require differentials.
+\item Optimizing code, both data structures and constant time factor.
+\end{itemize}
+
+\subsection{Benchmarking and fine tuning}
+This stage goal is to analyze and test the accuracy of the implemented
+approach. The main activities are:
+
+\begin{itemize}
+\item Benchmarking algorithm with expert annotated images.
+\item Fine tuning the code to suit better the specification and improve
+  unnacurate results.
+\end{itemize}
+
+\section{Procedure}
+
+\subsection{Technical fields addresed}
+\begin{itemize}
+\item Numerical Optimization (use off-the shelf algorithm)
+\item Image processing (thresholding, distance transsformation, skeletonization)
+\item Computer Graphics (rendering)
+\item Code Optimization
+\item Algorithms, data structures
+\item Interpolation (maybe splines)
+\end{itemize}
+
+\subsection{Programming language and environment}
+\begin{itemize}
+\item Java on Eclipse. (Linux environment)
+\item Working with a large source code with GIT version control (\emph{Endrov}) 
+\end{itemize}
+
+\subsection{Documentation}
+\begin{itemize}
+\item Weekly report highlighting problems addressed, new solutions and 
+  problems found, references contribution and links.
+\end{itemize}
+
+\section{Time Schedule}
+\begin{itemize}
+\item Finding a good thresholding algorithm, 2w
+\item Rasterizer and polygon ROI, 2w
+\item Implement shape descriptor, 4w
+\item Implement optimizer (use a library if possible), 3w
+\item Misc helper image processing fuctions, 1w
+\item Fine-tune and benchmark algorithm. Some way of guessing initial shape, 5w
+\item Report writing and occasional meetings, 3w. (The project is being
+  written in parallel with every task. There are 3 weeks more for completing
+  the report and refining).
+\end{itemize}
+
+\subsection{Delimitations}
+\begin{itemize}
+\item The implementations tasks are straight forward. The minimum objective
+is the full implementation.
+\item The benchmarking and fine tuning step can fail entirely.
+\end{itemize}
+
+ Minimum objective is an attempt and if it does not work, 
+ documentation of what the problems were and suggestions for further work.
+
+
+\end{document}

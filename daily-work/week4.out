@@ -1,0 +1,14 @@
+\BOOKMARK [1][-]{section.1}{General topics addressed}{}
+\BOOKMARK [1][-]{section.2}{On distance transformation}{}
+\BOOKMARK [1][-]{section.3}{Fast Distance transform in two scans using 3x3}{}
+\BOOKMARK [2][-]{subsection.3.1}{Implementation of Manhattan and Chessboard distance transformation}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Euclidean distance transformation: discrete and two scans}{section.3}
+\BOOKMARK [1][-]{section.4}{Skeletonization}{}
+\BOOKMARK [2][-]{subsection.4.1}{A skeletonization algorithm bby maxima tracking euclidean dt}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Apex and base points}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.2}{UpHill}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Downhill and Uphill problems}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.4}{Thining \(reduction\)}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.5}{Refine base points}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.6}{A fast algorithm for thinning digital patterns}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.7}{Detection of base-points}{subsection.4.1}

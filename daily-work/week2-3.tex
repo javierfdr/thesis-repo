@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{letterpaper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\RequirePackage{amsmath}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{color}
+
+
+\title{Daily Thesis-work Report}
+\author{Javier Fern\'andez}
+%\date{17 de Febrero de 2009} % delete this line to display the current date
+
+\begin{document}
+
+\maketitle
+%\newpage
+%\tableofcontents
+%\listoffigures
+%\listoftables
+%\newpage
+
+\section{General topics addressed}
+\begin{itemize}
+\item Researching on worm parameterization: the idea is to find a
+  general representation for the worms that can be easily moved,
+  scaled and bent. (I believe that's the shape descriptor)
+\end{itemize}
+
+\section{Main per-topic Issues}
+\subsection{Shape descriptions theory}
+Interesting short briefing of shape descriptors. Lists some common simple 
+descriptors: Area, perimeter, compactness-circularity, Eccentricity, Elongation,
+rectangularity. \textbf{(elongation and rectangularity are interesting)}.\\
+Centered more on region-based descriptors than on boundaries-based ones.
+\\
+\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/MORSE/region-props-and-moments.pdf}
+
+\subsection{Curve fitting}
+Curve fitting is the process of constructing a curve, or mathematical function, that has the best fit to a series of data points, possibly subject to constraints.\\
+It adds some nice suggestions:
+\begin{itemize}
+  \begin{itemize}
+  \item $y = ax^3 + bx^2 + cx + d$ In polynoms to fit curve the degree of 
+    the polynom $(n)$ sets the number of\emph{ constraints} being fitted.
+    Each constraint can be: a point, an angle, a curvature.
+    \item \textbf{Runge's phenomenon}: high order polynomials can be highly oscillatory
+  \end{itemize}
+\item Spline and B\'ezier Curves. Tend to avoid Runge's phenomen, unlike
+  polynomial interpolation.
+\item \textbf{Fitting}
+  \begin{itemize}
+  \item Algebraic analysis: "fitting" usually means trying to find the curve that minimizes the vertical (i.e. y-axis) displacement of a point from the curve (e.g. ordinary least squares).
+  \item Graphical and images apps: fitting seeks to provide the best visual fit; which usually means trying to minimize the orthogonal distance to the curve (e.g. total least squares), or to otherwise include both axes of displacement of a point from the curve.  
+  \end{itemize}
+\end{itemize}
+
+\url{http://en.wikipedia.org/wiki/Curve_fitting}
+
+\subsection{Contour based shape descriptors}
+Great link for reading an overview of contour-based shape representation and
+description.\\
+\url{http://www.engineering.uiowa.edu/~dip/LECTURE/Shape2.html}\\
+
+\begin{itemize}
+\item \textbf{B-Spline: }Seems to be fastly executed. With a n=3 creates
+  a very accurate triangulated countourn\\
+
+Interactive splines: \urlh{ttp://www.ibiblio.org/e-notes/Splines/Intro.htm}
+\textbf{Cardinal Splines: }They pass smoothly by every point selected.
+
+\end{itemize}
+
+\subsection{Triangle mesh in figures, easily bent and deformed}
+In hd as: \emph{As-rigid-as-possible.pdf}
+Web link: \url{http://portal.acm.org/citation.cfm?id=1073204.1073323}\\
+
+Shape manipulation techniques fall roughly into two categories.
+One is to deform the space in which the target shape is embedded;
+the other is to \emph{deform the shape while taking its structure into
+account}.\\
+
+Our goal
+is to introduce internal model rigidity into shape manipulation.
+However, instead of using physically based models, we use
+simple geometric approach similar to a technique used in [Alexa
+et al. 2000]. \\
+
+\textbf{The Process}
+\begin{itemize}
+\item Silhouette tracing with marching squares algorithm
+\item Generates a triangulated mesh inside the boundary. Better manipulation
+  results achieved using near-equilateral triangles of similar sizes 
+  across the region. They use [Markosian 1999], that starts with a standard
+  constrained Delaunay triangulation, iteratively refining the mesh.
+\item Resize managing rotation and scale.
+\end{itemize}
+
+\subsection{Delaunay Triangulation (mesh creation)}
+A Delaunay triangulation for a set $P$ of points in the plane is 
+a triangulation   $DT(P)$ such that no point in $P$ is inside the 
+circumcircle of any triangle  in $DT(P)$. Delaunay triangulations maximize 
+the minimum angle of all the angles of the triangles in the triangulation; 
+they tend to avoid skinny triangles.\\
+
+For manipulating delaunay triangles
+\url{http://www.cs.cornell.edu/home/chew/Delaunay05.html}
+
+\subsection{State of the art in shape matching}
+Describes several state-of-the-art techinques in shape matching.\\
+\url{http://books.google.com/books?hl=en&lr=&id=2SPuMz-BG-4C&oi=fnd&pg=PA87&dq=shape+matching&ots=Q1qi7dVkhI&sig=erssczZ6x2A73Uw_h77X4NDYu9U#v=onepage&q=shape%20matching&f=false}\\
+
+Interesting briefing on contourn matching techniques:
+\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/GDALYAHU/gdalyahu.html}
+
+\subsection{Marching Squares}
+Contour detection process. Very simple process, can be hard to determine one 
+worm over another.
+\url{http://en.wikipedia.org/wiki/Marching_squares}
+\url{http://users.polytech.unice.fr/~lingrand/MarchingCubes/algo.html}
+
+\subsection{2D Shape deformations}
+Look in HD: \emph{2D Shape deformation.pdf}
+
+
+\subsection{Free form deformation}
+Checkout free form \emph{.pdf} on HD.\\
+Also: 
+\url{http://www.docstoc.com/docs/7613261/Accelerating-Accurate-B-spline-Free-form-Deformation-of-Polygonal}
+
+
+
+\subsection{Strategies for automated analysis of C.Elegans}
+Check the Homonymus .pdf stored in HD.\\
+
+All automated vision programmes for worms follow a
+similar processing strategy which usually involves extrac-
+tion of the worm from the background (segmentation)
+followed by reduction of the worm to a skeleton \\
+
+
+\subsection{A trainable method for parametric shape descriptors}
+Not much nice things. Method for finding parametric shape descriptors, tested un C.Elegans.
+Does not give anything interesting for the moment. Maybe it will help to completing 
+the paremeterisation.
+
+\subsection{Chamfer matching}
+Interesting distance transform method. Computationally unexpensive, not hard to implement.
+Requires a well defined set of templates. It will be useful then if the variations over the shape 
+descriptor are enoughly well performed by the optimization algorithm. 
+
+\subsection{Skeleton matching}
+\textbf{About parameterization: } The skeleton can be considered mathematically as a function.
+It can also be represented as polyline (a string of connected straight lines) and the angles
+between the segments measured. 
+
+\subsection{Graph matching for object recognition and recovery}
+The object recognition is realized through shape matching, by matching the skeleton graph of
+the input contour from a deformable contour method (DCM).
+Skeleton is used as shape descriptor due to its significant features on the desired representational
+properties, such as invariance to object geometric transformations (translation, rotation and scaling)
+and reversibility to the original shape.\\
+To the shape description is also given widht and length of each part, and location
+of convex-parts.
+
+\subsubsection*{Skeleton structure notation}
+The skeleton representation is based on the location of the \textbf{Centers of maximal
+disks (CMD)}. A skeleton graph is generated and the segments are recognized and splitted.
+The different nodes are identified as: \emph{ending node}, \emph{bifurcation node} and
+\emph{normal nodes}. A segment with two \emph{bifurcation nodes} is as \emph{primary} segment,
+otherwise is normal.\\
+
+
+\subsection{ A computational model for C. elegans locomotory behavior: On Parameterization}
+Check at Uppsala
+
+
+\subsection{Genetic contour matching}
+From genetic contour matching paper in HD.\\
+
+
+Keywords:\textbf{ Object detection; Chamfermetric; Edge transform; Distance transform; Contour model; Contour matching; Genetic algorithms;
+Optimization}\\
+
+   Object recognition can be formulated as an optimization problem. The objective function measures for instance the
+evidential support for any particular projection of the parameterized object contour model onto the input image. A genetic
+algorithm can be used to find a set of parameters which provide an optimal interpretation of the image in terms of the
+model. Preliminary test results demonstrate the feasibility of the proposed approach.\\
+
+The contour matching present involves 3 stages:
+
+\begin{itemize}
+\item Binary representation of the input image is created
+  by thresholding.
+\item The binary image is transformed into a grey-level image
+  in which all pixels have a value that corresponds to the 
+  distance to the nearest edge (object contour) pixel
+\item A G.A. minimizes an average of the values of the pixels
+  in the distance image that coincide with the projection
+  of an instatiation of a parameterized 2d contour model.
+\end{itemize}\\
+
+The objective function used in this study
+is based on the observation that a good match is one
+where every element of the projected model contour
+is spatially near an image contour.\\
+
+Interesting things in defining the shape descriptor and 
+how to define an error difference to minimize.
+Is presented for star-shapped objects, which the worms
+contour are not.
+
+
+
+
+\end{document}

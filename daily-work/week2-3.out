@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{General topics addressed}{}
+\BOOKMARK [1][-]{section.2}{Main per-topic Issues}{}
+\BOOKMARK [2][-]{subsection.2.1}{Shape descriptions theory}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Curve fitting}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Contour based shape descriptors}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Triangle mesh in figures, easily bent and deformed}{section.2}
+\BOOKMARK [2][-]{subsection.2.5}{Delaunay Triangulation \(mesh creation\)}{section.2}
+\BOOKMARK [2][-]{subsection.2.6}{State of the art in shape matching}{section.2}
+\BOOKMARK [2][-]{subsection.2.7}{Marching Squares}{section.2}
+\BOOKMARK [2][-]{subsection.2.8}{2D Shape deformations}{section.2}
+\BOOKMARK [2][-]{subsection.2.9}{Free form deformation}{section.2}
+\BOOKMARK [2][-]{subsection.2.10}{Strategies for automated analysis of C.Elegans}{section.2}
+\BOOKMARK [2][-]{subsection.2.11}{A trainable method for parametric shape descriptors}{section.2}
+\BOOKMARK [2][-]{subsection.2.12}{Chamfer matching}{section.2}
+\BOOKMARK [2][-]{subsection.2.13}{Skeleton matching}{section.2}
+\BOOKMARK [2][-]{subsection.2.14}{Graph matching for object recognition and recovery}{section.2}
+\BOOKMARK [2][-]{subsection.2.15}{ A computational model for C. elegans locomotory behavior: On Parameterization}{section.2}
+\BOOKMARK [2][-]{subsection.2.16}{Genetic contour matching}{section.2}

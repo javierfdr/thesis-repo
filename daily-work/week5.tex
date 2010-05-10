@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{letterpaper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\RequirePackage{amsmath}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{color}
+
+
+\title{Daily Thesis-work Report}
+\author{Javier Fern\'andez}
+%\date{17 de Febrero de 2009} % delete this line to display the current date
+
+\begin{document}
+
+\maketitle
+%\newpage
+%\tableofcontents
+%\listoffigures
+%\listoftables
+%\newpage
+
+\section{General topics addressed}
+
+\begin{itemize}
+\item Combinatorial optimization in image analysis paper review
+\item Splines: fast and accurate implementation
+\item Curve fitting / Spline fitting techiques
+\end{itemize}
+
+\section{Combinatorial Optimization in image analysis}
+Rally nice explanation on topics like \textbf{local search, simulated annealing, genetic algorithms}\\
+
+
+\subsection*{GA and SA}
+
+Big reference to \emph{An integrated genetic algorithm} which envolves several adds to make it
+more powerful than a simple genetic algorithm. Is mentioned the importance in having
+a rich pool of solutions in a simple genetic algorithm, they rely on it. The convergence of the
+GA improved considerably after the incorporation of a knowledge based mutation operator and 
+meta-level genetic operators (took the same time to generate a new generation that one iteration
+of SA). As usual local search is 15 times faster, finds acceptable solutions but the minimun
+of the cost function is higher so the quality of solutions is lower.\\
+
+
+\subsection*{Image Segmentation}
+Image segmentation is a clustering procedure applied to a matrix representation of the
+image. It typically partitions the spatial domain of an image into mutually exclusive
+subsets, called regions. Each region is uniform and homogeneous with respect to some
+property such as tone or texture, and its property value differs in some significant way
+from the property value of each neigbouring region. The segmentation of an image into
+meaningful parts is a key step in nearly every image analysis problem. It is crucial to the
+successful identification of the depicted targets, and to the accuracy of target analysis such
+as shape and area.
+
+\subsection*{Target Recognition}
+Model-based target recognition involves the detection and classification of instantiations
+of predetermined patterns or target models in an image. This involves the estimation of the
+parameters of a model -to- image transformation that results in the observed image
+
+\subsection*{Contour Matching}
+Optimization of a \textrm{distance matching} function that measures the distance of the
+image shape to a set of predefined shapes or template contour.\\
+
+Algorithms involved SA, GA and Markov Random filed polar model.
+
+\subsubsection*{GA Approach}
+Generating a pool of random templates all around the image to avoid local minima.
+In this scheme the size and shape of the model contour adapt to the local image evidence.
+
+
+\subsection{Important concluding remarks}
+\begin{itemize}
+\item Of all modern optimization techniques, simulated annealing is most frequently applied to
+solve large combinatorial problems in image analysis. It produces good quality solutions,
+but converges rather slowly
+
+\item Genetic algorithms produce good quality solutions when the population size fully repre-
+sents the diversity of the underlying search space. They converge faster when the local
+search (mutation) procedure is constrained by a priori knowledge of the image structure
+(Bhandarkar et al., 1994).
+
+\item Local search generally yields the fastest rate of convergence, but also produces the lowest
+quality solutions because the algorithms easily get trapped in local minima
+
+\item Mean field annealing is considerably more efficient than simulated annealing, and produces
+nearly the same quality of the final solution 
+
+\end{itemize}
+
+\subsection{Finding contour in 1-worm WormCluster}
+The contour was found selecting one contour pixel and following the 
+1-distance-pixel contour recursively until no more are found.\\
+To find efficiently the initial pixel a base pixel is selected. If this
+is contour is the initial pixel, if not then the 8-neighborhood is checked.
+If no one of this is contour then the one with fewest distance value is selected
+and the directional pixels are analized. This has to ensure to find a contour
+pixel given the worms cilindrical and not that wide shape.
+
+\subsubsection{Many worms Cluster}
+The actual implementation is located in the \emph{Thickening} class and is 
+aimed to rebuild the shape iteratively. This is starting from the 
+skeleton points and with the highest distance value and iteratively add
+the new neighbors that belong to the shape to the list. The pixels are
+accepted as part of the shape if they have the same current distance value
+when analized. \\
+
+Not very impressive results. The shape is quite covered, but there are 
+great cut-outs.
+
+
+\subsection{Worm cluster Path  guessing}
+
+Different ideas were tried, until the definitive implementation was obtained. These are:
+\begin{itemize}
+\item \textbf{Idea: } Follow the first directional neighbor. Modified as: follow the best(distance transformation) directional neighbor.\\
+  \textbf{Result: }Taking wrong paths constantly. The best directional just tends to mantain the last taken direction is able to change
+  from direction drastically, thus taking wrong decisions on crossroads or intersection squares.
+
+\item \textbf{Idea: } Add to the directional neighbors the 4 diagonal directions in order to make it follow the must common diagonal direction.
+  Modified as: chose the pixel which tend to be the best pixel in the next $m$ steps
+  \textbf{Result: } The cross-neighbor representation of the skeleton makes too hard to guess if picking some giving cross point will tend 
+  to follow the diagonal direction stablished. This is: can not (or is hard) to make it follow the direction
+
+\item \textbf{Idea: }Keep the last n steps following the skeleton. This is built only using cardinal or cross coordinates, thus the directions
+  are these 4. Follow the neighbor(among cross neighbors) that goes in the higher direction value.\\
+  \textbf{Result: } Very good for obvious wrong turn-arounds like the cross-shape worms cluster. Not accurate for many worms cluster with different
+  positions.
+
+\item \textbf{Idea: }Keep the last n steps following the skeleton. The best neighbor heuristic is constructed as following:
+$$best(neighbors(p)) = MAX_{nn \in neighbors(p)}(directions[nn]+(dt[nn]*cv))$$ where $cv$ is the compensation value for the distance
+transformation. The current value is fixed as 2 for $nn=15$ and has to be generalized. It actually tries to give importance to the distance
+transformation that tend to have a difference no higher than 3.\\
+The idea behind this is to make the followed to reach the center of the intersection squares or crossroads to take the next decision, in order to
+avoid taking surrounding paths. This is necessary because in some cases, the accumulated sum of two given values in the last n steps is too close, which
+will point to a diagonal direction growing, and thus not giving enough information to decide direction.
+\emph{e.g} when the worm is sort of straight line going in some diagonal direction
+
+\textbf{Result: }Very good result. In the sample basic image every worm was guessed correctly
+\end{itemize}
+
+
+\subsection{Splines}
+Great link for many Java applets. Gotta check if the source code for
+cardinal spline is usable. It seems to work really well.
+\url{http://www.netgraphics.sk/cardinal-spline}\\
+
+Seems to implement cardinal splines: \url{http://prefuse.org/doc/api/prefuse/util/GraphicsLib.html}. it's called \textbf{Prefuse} and information visualization
+toolkit. Seems interesting and useful. BSD license by the way.
+
+
+\end{document}
+
