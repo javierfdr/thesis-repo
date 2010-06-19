@@ -1,0 +1,28 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
+\BOOKMARK [1][-]{section.1.1}{Background}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{Thesis motivation and purpose}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{The problem}{chapter.1}
+\BOOKMARK [1][-]{section.1.4}{Objectives}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.4.1}{General Objectives}{section.1.4}
+\BOOKMARK [2][-]{subsection.1.4.2}{Specific Objectives}{section.1.4}
+\BOOKMARK [0][-]{chapter.2}{Theoretical Framework}{}
+\BOOKMARK [1][-]{section.2.1}{Endrov}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Thresholding}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{Distance Transform}{chapter.2}
+\BOOKMARK [1][-]{section.2.4}{Skeletonization}{chapter.2}
+\BOOKMARK [1][-]{section.2.5}{Image Segmentation}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.5.1}{Clustering}{section.2.5}
+\BOOKMARK [1][-]{section.2.6}{Shape Matching}{chapter.2}
+\BOOKMARK [1][-]{section.2.7}{Cardinal Splines}{chapter.2}
+\BOOKMARK [1][-]{section.2.8}{Triangle mesh and rasterization}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{Methodology}{}
+\BOOKMARK [1][-]{section.3.1}{Development Methodology}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Solution Design Methodology}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{Description}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.2}{Thresholding}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.3}{Distance transformation}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.4}{Worm Skeletonization}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.5}{Worm Segmentation}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.6}{Worm Shape Descriptor}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.7}{Triangle mesh and rasterization}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.8}{Profile-driven shape fitting}{section.3.2}
