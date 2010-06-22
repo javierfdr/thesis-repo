@@ -1,0 +1,35 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Thesis motivation and purpose}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}The problem}{1}{section.1.3}
+\contentsline {section}{\numberline {1.4}Objectives}{1}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}General Objectives}{1}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Specific Objectives}{1}{subsection.1.4.2}
+\contentsline {chapter}{\numberline {2}Theoretical Framework}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Endrov}{2}{section.2.1}
+\contentsline {section}{\numberline {2.2}Thresholding}{2}{section.2.2}
+\contentsline {section}{\numberline {2.3}Distance Transform}{3}{section.2.3}
+\contentsline {section}{\numberline {2.4}Skeletonization}{6}{section.2.4}
+\contentsline {section}{\numberline {2.5}Image Segmentation}{6}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Clustering}{6}{subsection.2.5.1}
+\contentsline {section}{\numberline {2.6}Shape Matching}{6}{section.2.6}
+\contentsline {section}{\numberline {2.7}Cardinal Splines}{8}{section.2.7}
+\contentsline {section}{\numberline {2.8}Triangle mesh and rasterization}{8}{section.2.8}
+\contentsline {chapter}{\numberline {3}Methodology}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Development Methodology}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Solution Design Methodology}{9}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Description}{9}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Thresholding}{9}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Implementation}{10}{subsubsection.3.2.2.1}
+\contentsline {subsection}{\numberline {3.2.3}Distance transformation}{11}{subsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Implementation}{11}{subsubsection.3.2.3.1}
+\contentsline {subsection}{\numberline {3.2.4}Worm Skeletonization}{13}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Worm Segmentation}{13}{subsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.5.1}Clustering}{13}{subsubsection.3.2.5.1}
+\contentsline {subsubsection}{\numberline {3.2.5.2}Path guessing}{13}{subsubsection.3.2.5.2}
+\contentsline {subsection}{\numberline {3.2.6}Worm Shape Descriptor}{13}{subsection.3.2.6}
+\contentsline {subsubsection}{\numberline {3.2.6.1}Worm Profile Generation}{13}{subsubsection.3.2.6.1}
+\contentsline {subsection}{\numberline {3.2.7}Triangle mesh and rasterization}{13}{subsection.3.2.7}
+\contentsline {subsection}{\numberline {3.2.8}Profile-driven shape fitting}{13}{subsection.3.2.8}
+\contentsline {subsubsection}{\numberline {3.2.8.1}Worm Cluster shape fitting}{13}{subsubsection.3.2.8.1}
+\contentsline {subsubsection}{\numberline {3.2.8.2}Isolated Worms shape fitting}{13}{subsubsection.3.2.8.2}

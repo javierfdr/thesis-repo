@@ -1,0 +1,75 @@
+\begin{thebibliography}{10}
+
+\bibitem{ridgedt}
+Carlo Arcelli and Gabriella~Sanniti di~Baja.
+\newblock Ridge points in euclidean distance maps.
+\newblock {\em Pattern Recognition Letters}, 13:237--243, 1992.
+
+\bibitem{dtresearch}
+Gunilla Borgefors.
+\newblock Distance transformation in digital images.
+\newblock {\em Computer Vision, Graphics and Image Processing}, 34:344--371,
+  1986.
+
+\bibitem{dtresearch2}
+Pedro~F. Felzenszwalb and Daniel~P. Huttenlocher.
+\newblock Distance transforms of sampled functions.
+\newblock {\em Cornell Computing and Information Science Technical Report},
+  2004.
+
+\bibitem{snakes}
+Andrew~Witkin Michael~Kass and Demetri Terzopoulos.
+\newblock Snakes: Active contour models.
+\newblock {\em International Journal of Computer Vision}, pages 321--333, 1988.
+
+\bibitem{thres}
+Mehmet Sezgin and Bulent Sankur.
+\newblock Survey over image thresholding techniques and quantitative
+  performance evaluation.
+\newblock {\em Journal of Electronic Imaging}, 13:146--165, 2004.
+
+\bibitem{shapiro}
+Linda~G. Shapiro and George~C. Stockman.
+\newblock {\em Computer Vision}.
+\newblock Prentice Hall, 2002.
+
+\bibitem{eucskeleton}
+Frank~Y. Shih and Christopher C.PU.
+\newblock A skeletonization algorithm by maxima tracking on euclidean distance
+  transform.
+\newblock {\em Pattern Recognition}, 28:331, 1994.
+
+\bibitem{deformable}
+Thomas~Vetter Thomas~Albrecht, Marcel~Luthi.
+\newblock Deformable models.
+\newblock gravis.cs.unibas.ch/publications/CH_Deformable_Models09.pdf.
+
+\bibitem{matching2}
+Remco~C. Veltkamp.
+\newblock Shape matching: Similarity measures and algorithms.
+\newblock Dept. Computing Science, Utrecht University.
+
+\bibitem{matchingbook}
+Remco~C. Veltkamp and Michiel Hagedoorn.
+\newblock State-of-the-art in shape matching.
+\newblock {\em Principles of visual information retrieval.-(Advances in pattern
+  recognition)}, 2:87--112, 2001.
+
+\bibitem{web:thresholding}
+Wikipedia.
+\newblock Thresholding(image processing).
+\newblock \url{http://en.wikipedia.org/wiki/Thresholding_(image_processing)},
+  June 2010.
+
+\bibitem{fastdt}
+Frank Y.Shih* and Yi-Ta Wu.
+\newblock Fast euclidean distance transformation in two scans using a 3 x 3
+  neihborhood.
+\newblock {\em Computer Vision and Image Understanding}, 93:195--205, 2002.
+
+\bibitem{thinning}
+T.Y. Zhang and C.Y. Suen.
+\newblock A fast parallel algorithm for thinning digital patterns.
+\newblock {\em Image Processing and Computer Vision}, 27:235--239, 1984.
+
+\end{thebibliography}
