@@ -6,16 +6,15 @@
 \label{sec:endrov}
 
 
-
 \section{Thresholding}
 \label{sec:thresholding}
 
 Thresholding is a process of image segmentation that can be used to create
-binary images from grayscale images.A binary image is a type of discrete image in
+binary images from gray-scale images. A binary image is a type of discrete image in
  which the value of a pixel is either $1$ or $0$ depending on whether the pixel belongs
 to the foreground or to the background.
 
-As stated on \cite{web:thresholding} during the thresholding process, individual 
+As stated on \cite{web:thresholding}, during the thresholding process individual 
 pixels in an image are marked as ``object'' pixels if 
 their value is greater than some threshold value (assuming an object to be brighter than the 
 background) and as ``background'' pixels otherwise. This convention is known as \emph{threshold above}. 
@@ -27,7 +26,7 @@ created by coloring each pixel white or black, depending on a pixel's label.\\
 
 In image processing applications where the study is focused on particular objects contained
 in an image, thresholding becomes an effective and simple tool to separate these objects from
-the background. Commongly, the gray levels belonging to the object are substantially
+the background. Commonly, the gray levels belonging to the object are substantially
 different from the gray levels of the background pixels. In \cite[p.146]{thres} many thresholding
 applications on image processing are mentioned such as: document image analysis, where the goal
 is to extract printed characters, logos, graphical content, or musical scores; map processing
@@ -47,9 +46,9 @@ histogram are analyzed
 \item Clustering-based methods: gray-level samples are clustered in two parts as
 background and foreground, or modeled as a mixture of two Gaussians.
 \item Entropy-based methods: algorithms that use the entropy of the foreground 
-and background regions, the cross-entropy between the original and binarized image, 
+and background regions, the cross-entropy between the original and the binary image, 
 etc.
-\item Object attribute-based methods:Ssearch a measure of similarity between the 
+\item Object attribute-based methods:search a measure of similarity between the 
 gray-level and the binarized images, such as fuzzy shape similarity, 
 edge coincidence, etc.
 \item Spatial methods: use higher-order probability distribution and/or 
@@ -58,15 +57,15 @@ correlation between pixels
 to the local image characteristics.
 \end{itemize}
 
-Below, in Fig.\ref{fig:thres1}, two images are shown that correspond to a grayscale image
+Below, in fig.\ref{fig:thres1}, two images are shown that correspond to a gray-scale image
 and binary image obtained by thresholding.
 
-\begin{figure}
+\begin{figure}[h t b p ! H]
   \centering
-  \subfloat[Grayscale Image]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
+  \subfloat[Gray-scale Image]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
 \qquad
-  \subfloat[After Threshold effect image]{\label{fig:thres1}\includegraphics[width=0.45\textwidth]{thres/winter_thres}}
-  \caption{Grayscale Image before and after a thresholding effect is applied. Images taken from \cite{web:thresholding}}
+  \subfloat[Binary image obtained through thresholding]{\label{fig:thres1}\includegraphics[width=0.45\textwidth]{thres/winter_thres}}
+  \caption{Gray-scale Image before and after a thresholding effect is applied. Images taken from \cite{web:thresholding}}
   \label{fig:thres1}
 \end{figure}
 
@@ -78,23 +77,24 @@ that is obtained by converting a digital binary image, consisting in object
 and non-object pixels, to another image in which each pixel has a value
 corresponding to the distance to the nearest non-object pixel. The object 
 pixels can be considered as foreground and the non-object pixels as
-background. The obtained image is then a sort of grayscale representation
+background. The obtained image is then a sort of gray-scale representation
 of the foreground pixels in the binary image.\\
 The pixel mapping depends mainly on the distance metric, which is the 
 measurement method of distance between image pixels. Different metrics have been 
 studied  to find distance maps such as 
 \emph{City Block or Manhattan},
-\emph{Chessboard}, \emph{Euclidean}, \emph{Chamfer 3-4}, \emph{Octogonal}, among
+\emph{Chessboard}, \emph{Euclidean}, \emph{Chamfer 3-4}, \emph{Octagonal}, among
 others.\cite[p.363]{dtresearch}. There exist a great amount of
 distance metric of other kinds, that are useful for different purposes.
-These are commongly derived from the previous.
-Below are shown the images obtained by applying different distance metrics.
+These are commonly derived from the previous.
+Below, Fig.\ref{fig:dtexamples} shows the images obtained by applying different distance metrics.
 
 \begin{figure}[h t b p ! H]
  \centering
    \includegraphics[scale=0.4]{dt/dtref}
  \caption{The distances from a point for the six DTs.
  The lighter the color the larger the distance \cite[p.365]{dtresearch}}
+ \label{fig:dtexamples}
 \end{figure}
 
 As stated on \cite{dtresearch2} 
@@ -107,24 +107,67 @@ where the label of every pixel indicates the height of the region. This allows
 the detection of ridges and peaks which is a straightforward way to find the
 skeleton of an object.\cite[237]{ridgedt}. The nature of distance transforms
 in which the objects are represented as contour layers of different depth
-makes them also a useful tool to edge analysis and to improve efficiency of 
+makes them also a useful tool for edge analysis and to improve efficiency of 
 morphology algorithms such as \emph{Thinning} and \emph{Thickening}.\\
 
 \section{Skeletonization}
 \label{sec:skeletonization}
 
+A skeleton is a compact and simple representation of an object that consists in a thin
+version of it that is equidistant to its boundaries and preserves many of
+the topological and geometrical characteristics of the original image, as explained in
+\cite{wikipedia:skeleton,ssm,augmented}. Usually the skeleton is defined as the centers
+of maximal discs contained in the original image, \cite{ssm,augmented}.
+Regardless of the definition that is adopted, if the skeleton points are attributed with their distances
+to the original boundary of the object, the skeleton can be used to exactly 
+reconstruct the original shape. Figure \ref{fig:genskeleton} shows a skeleton calculated
+from a horse shape and the original binary image.\\
+
+\begin{figure}[h t b p ! H]
+  \centering
+  \subfloat[Binary Image]{\includegraphics[scale=0.8]{skeleton/horsebinary}}
+\qquad
+  \subfloat[Skeleton obtained using the ssm of the distance transform\cite{ssm}]{\includegraphics[scale=0.8]{skeleton/horseskeleton}}
+  \caption{Horse binary shape and skeleton obtained using the ssm of the distance transform. Images taken from \cite{ssm}}
+  \label{fig:genskeleton}
+\end{figure}
+
+
+Depending on the way they are produced, skeletons can be categorized in different types.
+Telea et al describe three types in \cite{augmented}, such as: \emph{Morphological Thinning},
+\emph{Geometric Methods} and \emph{Distance transform}. The \emph{Morphological Thinning} methods itereratively peel off (or reduce) the boundary layer by layer, identifying
+points whose removal does not affect the object's topology. These are usually 
+straightforward and usually require intricate heuristics to ensure the skeletal
+connectivity, as mentioned in \cite{augmented}. Two fast parallel approaches that
+ensure connectivity using the \emph{Morphological thinning} method are described
+in \cite{onepass} and \cite{thinning}.\\
+The \emph{Geometric Methods} compute the Voronoi diagram of a discrete polyline-like
+sampling of the boundary. A Voronoi diagram is the boundary's medial axis. ``Such 
+methods produce an accurate connected skeleton, but are fairly complex to implement,
+require a robust boundary discretization, and are computationally expensive''
+\cite[p.251]{augmented}. The third defined method computes \emph{the distance transform}
+(see Sec. \ref{sec:dt}) of the objects boundary. The common approach consists in
+finding the ridge points and connecting them \cite{maxima,euclideancentre,ridgeineuc}.
+ Usually they can ensure the accurate localization of skeleton points 
+but neither connectivity or completeness.\\
+
+Skeletons are important for object representation and recognition in diferent areas,
+such as:   computer vision, image analysis, and digital image processing, 
+including optical character recognition, fingerprint recognition, visual inspection,
+ pattern recognition, binary image compression, and protein folding, as mentioned
+on \cite{skprotein}.
+
 
 \section{Image Segmentation}
 \label{sec:segmentation}
 
-\subsection{Clustering}
-\label{sec:clustering}
 
 \section{Shape Matching}
 \label{sec:shapefitting}
 
 Shape matching is a central problem in visual information systems,
-computer vision, pattern recognition, and robotics \cite{matchingbook}.It consist in identifying the area or contour of an specifical
+computer vision, pattern recognition, and robotics \cite{matchingbook}. 
+It consists in identifying the area or contour of a specifical
  shape or class of shapes in an image, and plays a fundamental
 role in content extraction from images and content-based image
 retrieval. In \cite{matching2} Veltkamp explains that shape 
@@ -136,7 +179,11 @@ shape matching represent a shape as a geometrical object.
 This can be both a set of points, curves, surfaces, solids,etc.
 and a geometrical pattern modulo some transformation group,
 in particular similarity transformations (translations, rotations 
-and scalings), as it is stated on \cite{matching2}.\\
+and scalings), as it is stated on \cite{matching2}. Usually a
+geometrical pattern of a shape called shape descriptor
+is used to represent the class of the matching object. There are
+different types of shape descritors depending on the information
+they supply and the nature of the problem (see Sec.\ref{sec:shapedesc}) \\
 
 There are different studied ways to approach the shape matching 
 problem. Since the approach followed in this thesis work
@@ -146,7 +193,7 @@ Geometry studies algorithms that can be declared in terms of
 geometry.\\
 
 In \cite{matchingbook} Veltkamp and Hagedoorn mention different 
-approaches of shape matching such as: tree prunning, the
+approaches of shape matching such as: tree pruning, the
 generalized Hough transform or pose clustering, geometric hashing,
 the alignment method, statistics, deformable templates, relaxation
 labeling, Fourier descriptors, wavelet transform, curvature
@@ -168,8 +215,8 @@ the global image transforms. In order to perform a proper
 matching, the objects in the image have to be completely and
 clearly segmented. Some of these methods are: \emph{moments}, where an
 object is described as a set of moments, \emph{modal matching},
-where the boundary is used insted of the area and is described 
-with Fourier descriptors and \emph{curvature scale space}, where a a
+where the boundary is used instead of the area and is described 
+with Fourier descriptors and \emph{curvature scale space}, where a
 scale space and parameterized representation of the contour of the 
 objects is used.\\
 
@@ -204,7 +251,7 @@ The \emph{snakes} model is defined as a controlled continuity spline that is bou
 to internal and external image forces, called energies. The external energy models how well
 the deformed model matches the data. The internal energy models
 the objects resistance to be pushed by the external force into directions not coherent
-with the prior knowledge, as it is stated on \cite{deformable}.The internal energy  imposes the 
+with the prior knowledge, as it is stated on \cite{deformable}.The internal energy  imposes 
 a ``piecewise smoothness constraint'',\cite{snakes}. This means that a contour is
 pushed to an image feature by the external force while the contour itself exhibits resistance
 to be deformed into a non-smooth curve. \\
@@ -217,9 +264,80 @@ $$E(M) = E_{ext}(M,D) + E_{int}(M)$$
 where $E_{ext}$ is the external energy function and $E_{int}$ the 
 internal energy function.As it is explained on \cite{deformable} the image forces push the snake toward
 salient image features like line, edges and subjective contours, while the external constraint forces
-are responsible for putting the snake near the desired local minimun.
-The optimization algorithm will consist then in minimizing this objective
+are responsible for putting the snake near the desired local minimum.
+The optimization algorithm consists then in minimizing the objective
 function until the best solution is found.
+
+
+\section{Shape descriptor}
+\label{sec:shapedesc}
+
+A shape descriptor is a structured abstraction of a class
+of shapes that describes them in geometrical terms.
+Shape descriptors can be constructed as either fixed or variable
+geometrical shape. If the descriptor is of the variable type 
+then depending on the different values assigned to its
+parameters, different shapes are generated
+but that still belong to the same type or class of shapes.
+As stated on \cite{wormparam}
+shape models have been used widely to achieve robust interpretation of complex
+images. They allow image evidence to be organised into plausible interpretations
+which can then be verified.\\
+
+In \cite{shapenonrigid} Latecki et al divide shape descriptors into three
+main categories:
+\begin{itemize}
+\item \textbf{Contour based descriptors: }The contour of a given object is 
+mapped to some representation from which a shape descriptor is derived
+\item \textbf{Image based descriptors: }The computation of a shape descriptor
+is based on summing up pixel vales in a digital image containing the silhouette
+of a given object; the shape descriptor is a vector of a certain number of
+parameters derived this way
+\item \textbf{Skeleton based descriptors: }After a skeleton is computed, it is
+mapped to a tree structure that forms the shape descriptor; the shape similarity
+is computed by some tree-matching algorithm 
+\end{itemize}
+
+Considering that basically shape descriptors are ``attempts to quantify shape in 
+ways that agree with human intuition''\cite[p.1]{desclecture} any kind of 
+geometrical interpretation that covers the contents or properties that want 
+to be described on a shape, can be used as a shape descriptor.
+In \cite{desclecture} region-based shape descriptors are covered which are such
+that attemp to describe a shape based on the geometrical and numerical properties
+of the region of the shape. First some simple descriptors are mentioned such as:
+area, perimeter, (Non-)Compactness or (Non-)Circularity, Eccentricity, Elongation,
+Rectangularity and Orientation. Any combination of this properties of a shape are
+useful to describe them in a basic and general way.
+Other more complex properties are mentioned to improve the accuracy of the 
+descriptor: \emph{convex hull}, \emph{extremal points}, \emph{profiles},
+\emph{ moments} and \emph{profile moments}. \emph{Convex hull or bays} 
+describes the shape by measuring the number or size of concavities in the 
+shape. \emph{Extremal points} is based on finding the points that
+are at the extreme of the shape. This can be a simple representation as the 
+\emph{bounding box} or a more powerful as it is finding the eight extremal
+points defined by: top left, top right, left top, left bottom, bottom right,
+bottom left,right top and right bottom. \emph{Profiles} shape descriptor 
+is based on the number of pixels that the shape has in a given direction:
+ either vertical, horizontal or diagonal. \emph{Moments} refer to the
+ calculation of \emph{moment} statistical property and 
+\emph{profile moment} a combination of the last two.\\
+\cite{web:wikishape} classifies shape descriptors by their
+invariance with respect to the transformations allowed in the associated
+shape definition. The main classes are descriptors invariant with respect 
+to congruency and invariance with respect to isometry. The congruency class
+comprehends same shape descriptors for congruent shapes (shapes obtained from
+translation, rotation or mirroring). The intrinsic shape descriptor refer
+to those that do not change with different isometric embeddings of the shape,
+and thus can be applied accurately to deformable objects.
+
+Depending on the properties that are controlled and measured the descriptor
+may allow or not to reconstruct a shape of the class. In \cite{wormparam} 
+a trainable method of shape representation is described which can
+automatically capture the invariant properties of a class of shapes and 
+provide a compact parametric description of variability. The method was
+applied on worms, obtaining a shape descriptor that reconstruct different
+bending worm shapes by modifying the values of the parameters.\\
+
 
 \section{Cardinal Splines}
 \label{sec:splines}

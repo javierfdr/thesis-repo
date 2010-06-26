@@ -1,15 +1,21 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Grayscale Image before and after a thresholding effect is applied. Images taken from \cite {web:thresholding}}}{4}{figure.2.1}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Grayscale Image}}}{4}{subfigure.1.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {After Threshold effect image}}}{4}{subfigure.1.2}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Gray-scale Image before and after a thresholding effect is applied. Images taken from \cite {web:thresholding}}}{4}{figure.2.1}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Gray-scale Image}}}{4}{subfigure.1.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Binary image obtained through thresholding}}}{4}{subfigure.1.2}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces The distances from a point for the six DTs. The lighter the color the larger the distance \cite [p.365]{dtresearch}}}{5}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Horse binary shape and skeleton obtained using the ssm of the distance transform. Images taken from \cite {ssm}}}{6}{figure.2.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Binary Image}}}{6}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Skeleton obtained using the ssm of the distance transform\cite {ssm}}}}{6}{subfigure.3.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Worms in liquid media original image and binary image obtained through Percentile Thresholding with a percentile value of 0.074}}{10}{figure.3.1}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original image}}}{10}{subfigure.1.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Percentil Threshold. Value=0.074}}}{10}{subfigure.1.2}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Binary Image and Three Distance Transformation metrics from a single worm image}}{12}{figure.3.2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Binary Image}}}{12}{subfigure.2.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Manhattan metric}}}{12}{subfigure.2.2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Chessboard metric}}}{12}{subfigure.2.3}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Euclidean metric}}}{12}{subfigure.2.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Graphical description of the solution methodology for the shape detection of C.elegans worms in digital images}}{15}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Worms in liquid media original image and binary image obtained through Percentile Thresholding with a percentile value of 0.074}}{18}{figure.3.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Original image}}}{18}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Percentile Threshold. Value=0.074}}}{18}{subfigure.2.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Binary Image and Three Distance Transformation metrics from a single worm image}}{20}{figure.3.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Binary Image}}}{20}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Manhattan metric}}}{20}{subfigure.3.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Chessboard metric}}}{20}{subfigure.3.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Euclidean metric}}}{20}{subfigure.3.4}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Skeleton obtained through iterative thinning over a worm binary image}}{22}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Three different directional neighborhoods}}{25}{figure.3.5}

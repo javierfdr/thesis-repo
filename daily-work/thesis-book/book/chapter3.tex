@@ -5,13 +5,165 @@
 \section{Development Methodology}
 \label{sec:devmet}
 
-\section{Solution Design Methodology}
+\section{Solution Methodology Design}
 \label{sec:solmet}
 
-\subsection{Description}
+This sections presents the solution methodology which consists on the different
+steps in image processing that must be performed in order to successfuly fit the shape of 
+\emph{C.Elegans} worms present in digital images. First a general description
+of the solution is presented where the shape fitting approach is explained, indicating
+the different processes involved in the solution design. Then for each process 
+a reasoning of its requirement and usefulness is given, as well as 
+the corresponding 
+implementation approach.
 
-similarity measures of Vetkamp has a nice explanation 
-of how to approach shape matching.
+\subsection{Previous reasoning}
+\label{sec:reasoning}
+
+As stated in \cite{binaryshape} and also covered in
+\cite{deformable,matching2,matchingbook} shape 
+matching is usually accomplished adopting a shape
+descriptor and then placing a constructed shape sufficiently 
+close to the image shape and adjusting the values of 
+the parameters of the descriptor until a match is found.
+A shape descriptor is a representation of a 
+specifical class of objects that is defined in geometrical
+terms. It is comprised of a number of parameters, where 
+different values for each parameter give different 
+shapes of a given class of objects.
+This approach is appropriate when the objects
+that are to be matched can be categorized in a certain 
+class and thus can be represented or described in terms
+of geometry, \emph{i.e.} a shape descriptor.\\
+
+The problem of study aims the detection of worms,
+particularly those belonging to the \emph{C.elegans} species. Given
+the vermiform (worm shape) property of these individuals,
+the objects to detect can be defined as part of a 
+\emph{worm} class,
+that would refer geometrically to long, thin and cylindrical 
+shapes, in 
+general terms. Following this idea, a shape descriptor could be
+designed that comprehends a cylindrical, long and connected
+shape, with two endpoints and different thickness along a medial
+axis. Then the problem would be reduced to find every pair of
+endpoints belonging to each worm in the image, place an approximated
+shape (built through the shape descriptor) near to the matching worm,
+and adjust the values of the parameters of the shape descriptor until
+a acceptable match is found.\\
+
+To design a methodology for the solution of the problem the following
+points must be taken into consideration: the nature of the input
+images, the positional identification of worms in the global image,
+the gathering and lost of information and the efficacy and efficiency
+of each of the involved processes (and their respective algorithms).
+For this study the input images consist of a number of worms that
+are put together in liquid media. The image can contain some noise such as
+shadows, water bubbles or little remains that do not belong to the worms, so
+these last, as objects of study, must be separated from the rest of 
+the information in the image. The position of each individual
+worm in the image is variable and can be distinguished into two 
+groups: \emph{worm clusters} and \emph{isolated worms}. A 
+\emph{worm cluster} corresponds to a group of worms in which 
+each worm is connected to any other directly or indirectly
+through overlapping. It can also be described as a group of worms in which a 
+path can be traced from every worm to another without passing over 
+background pixels. On the other hand, an \emph{isolated worm} is such
+that is surrounded by background pixels and that does not overlap
+with any other worm. The image can be segmented by separating the different 
+\emph{worm clusters} and \emph{isolated worms}, so each segment
+can be processed individually. The contour of \emph{isolated worms} can be
+traced automatically following the pixels that are closest to background pixels.
+These can also be used to generate a profile that will set the general values
+for the shape descriptor that best represents the shape of the worms in the image.
+The worms that are clustered can be matched through an energy minimization
+process, based on the manipulation of the shape descriptor and its distance
+to the matching image, in order to obtain the best possible match.
+
+\subsection{Methodology description}
+\label{met:description}
+
+Following the previous reasoning, a methodology was designed taking into account
+the main components of the matching process, as reasoned before, such as: 
+determination of the objects 
+of study, objects segmentation, worm shape descriptor and matching based on 
+energy minimization.
+Below it is described the solution methodology, pointing out the sequential steps
+that are follow to match and fit the shape of every worm in the input image.
+In Fig. \ref{fig:methsol} a graphical description of the solution methodology is
+presented.\\
+
+\begin{figure}[h t b p ! H]
+ \centering
+   \includegraphics[scale=0.75]{diagrams/design-methodology.png}
+ \caption{Graphical description of the solution methodology for the shape detection
+ of C.elegans worms in digital images}
+\label{fig:methsol}
+\end{figure}
+
+Given the input image the first step is to separate the pixels belonging to the object
+of study from the rest of the image pixels. A thresholding algorithm is then used to
+obtain a binary image that separates worm pixels from background pixels. Usually some
+noise is obtained after the thresholding process, but it is ignored in further processing.
+This corresponds to an initial segmentation of the input. Once had a binary image, a
+distance map can be obtained in which each pixel represents the distance to the 
+nearest background pixel, as explained on \cite{dtresearch}. The distance transformation
+allows to identify the contour pixels in the binary image, which makes it a fundamental
+tool for the automatic generation of a shape descriptor, contour tracing on isolated worms 
+and optimization of the skeletonization algorithm, among others. Having the image 
+separated in object pixels and background pixels the image can be segmented to separate
+the worms. \\
+
+The image worms have been distinguished into two groups: \emph{isolated worms}
+and \emph{worms clusters} (see Sec.\ref{sec:reasoning}). A way to differentiate the image worms
+is to count the number of endpoints of every object (as defined after the binary transform).
+An object with exactly two endpoints would correspond to an \emph{isolated worm} while
+more that two points indicates the presence of overlapping worms, thus a \emph{worm cluster}.
+At the same time a path from one endpoint of a worm to another is needed to match
+the shape, due to the need of placing the matcher shape near to the matching shape, which
+is a usual approach for shape matching, as it was covered on Sec. \ref{sec:shapefitting} and
+Sec. \ref{sec:reasoning}. Having said this, a process of skeletonization would provide a simple
+way to recognize endpoints as well as an approximated connected medial path between the
+endpoints of the image objects. After this process, the image will be segmented into 
+many different subareas of the images corresponding to both clusters and \emph{isolated
+worms}. Each type of worm group is processed in a different way in order to match
+the shape.\\
+
+\subsubsection*{Isolated Worms}
+The \emph{isolated worms} shape contour can be traced easily by selecting a border pixel
+(indicated in the distance map) and following the neighboring contour pixels until the
+initial pixel is reached back again. Then the whole shape can be rasterized by 
+triangulating it through the \emph{ear clipping triangulation method} and then rasterizing
+each triangle separately. This provides all the pixels belonging to the shape, 
+\emph{i.e.} a match.
+The nearly perfect match that can be obtained from the \emph{isolated worms} makes 
+possible to calculate a worm profile from the currently analized worms in order to
+generate an accurate shape descriptor, this is explained thoroughly in 
+Sec. \ref{sec:metshapedescriptor}.
+
+\subsubsection*{Worm Cluster}
+To match the shape of the worms present in a \emph{worm cluster} the methodology consists
+in determining the number of worms in the cluster (follows from the number of
+endpoints) and finding the best match between pairs of endpoints. Given a pair of 
+endpoints the path between them is calculated and then a matcher worm shape is generated
+from the shape descriptor, selecting a given number of control points in the path.
+Then an energy minimization process is performed that varies the angles between the 
+straight lines that connect the control points (generating different shape representations),
+until the best match is found. Then the contour of the shape descriptor is slightly 
+modified by finding the closest contour segments (or a lower value in the distance map)
+to the contour points, in order to adapt the generical shape silhouette to 
+the matching object. 
+
+This process can be repeated between every pair of endpoints and then choose the 
+best matches. On the other hand a path guessing algorithm
+can be used to find the most likely path between endpoints, \emph{i.e.} the path from
+one point to another in the cluster skeleton that most likely belongs to a worm 
+(see. \ref{pathguessing}), in order to avoid the cost of trying every pair of endpoints.\\
+
+In the following sections, each of the subprocesses involved in the solution
+methodology are explained, covering their need and usefulness as
+well as the followed implementation approach.
+  
 
 \subsection{Thresholding}
 \label{sec:metthres}
@@ -38,17 +190,17 @@ of \emph{C.Elegans} worms is hard to determine theoretically which would be the 
 thresholding method to obtain an accurate binary image, from the study data-set. In order 
 to select a thresholding method a series of experiments where performed tweaking the parameters
 for the different mentioned methods, as it is explained on Sec.\ref{exp:thres}.
-The selected method was \emph{Percentile Threshold 2D} with a percentile value oscilating from
+The selected method was \emph{Percentile Threshold 2D} with a percentile value oscillating from
 $0.072$ to $0.09$ on the different test images.\\
 
 Figure \ref{fig:wormthres} shows a binary image obtained after applying
 the \emph{Percentile Threshold 2D} method with a percentile value of $0.074$
 
-\begin{figure}
+\begin{figure}[h t b p ! H]
   \centering
   \subfloat[Original image]{\includegraphics[width=0.45\textwidth]{original.png}}
 \qquad
-  \subfloat[Percentil Threshold. Value=0.074]{\includegraphics[width=0.45\textwidth]{thres/worms}}
+  \subfloat[Percentile Threshold. Value=0.074]{\includegraphics[width=0.45\textwidth]{thres/worms}}
 \caption{Worms in liquid media original image and binary image obtained through
 Percentile Thresholding with a percentile value of 0.074}
   \label{fig:wormthres}
@@ -61,10 +213,10 @@ In this shape fitting approach for \emph{C.Elegans} worms the distance transform
 of the given image is used thoroughly for contour detection and different kinds of image 
 segmentation procedures. Specifically the distance map allows to detect and follow
 the exact contour of isolated worms (Sec. \ref{sec:metiso}), 
-is useful in the shape profile generation (Sec. \ref{sec:metwormprof}), and essential in the heuristical
+is useful in the shape profile generation (Sec. \ref{sec:metwormprof}), and essential in the heuristic
 guessing of the more likely worm-paths on \emph{worm clusters} (Sec. \ref{sec:metcluster}).
 It also improves the performance of the iterative thinning algorithm designed by 
-\emph{Zhang and Suen} \cite{thinning} as it is described on Sec.\ref{sec:metsk}
+\emph{Zhang and Suen} \cite{thinning} as it is described on Sec. \ref{sec:metsk}
 
 \subsubsection{Implementation}
 \label{sec:dtimp}
@@ -90,15 +242,16 @@ generate a distance map using \emph{Euclidean} distances.
 The two-scans algorithm was implemented using the three different distance metrics
 mentioned before. This allows a wider analysis on the behavior and accuracy of the shape 
 fitting process from one metric to another.``The city block or chessboard distance
-measures are sensitive to the rotations of an object, but the Eculidean distance
+measures are sensitive to the rotations of an object, but the Euclidean distance
 measure is rotation invariant. However, its square root operation is costly...''
-\cite[p.332]{eucskeleton}. Given the strait shape of worms and the different levels
+\cite[p.332]{eucskeleton}. Given the straight-like shape of worms and the different levels
 of accuracy of the distance metrics it is hard to tell at first sight which would be 
-the most adequate to use.
-The figure \ref{fig:distance} shows the binary image three and the distance maps obtained 
+the most adequate to use, so it had to be determined experimentally, as it is explained
+on \ref{exp:dt}.
+The figure \ref{fig:distance} shows the binary image and three distance maps obtained 
 from a single worm image.
 
-\begin{figure}
+\begin{figure}[h t b p ! H]
   \centering
   \subfloat[Binary Image]{\label{fig:manh}\includegraphics[width=0.45\textwidth]{dt/binary}}
 \qquad
@@ -115,26 +268,435 @@ from a single worm image.
 \subsection{Worm Skeletonization}
 \label{sec:metsk}
 
-\subsection{Worm Segmentation}
-\label{sec:metcluster}
+The skeletonization of the image corresponds to the process of obtaining a 
+connected and thin (1-pixel width) medial axis that represents the worms in the 
+image. This is a key process on the shape matching
+approach followed in this work, as first mentioned on Sec. \ref{met:description}.
+It allows to identify the amount of worms in the input image, to separate them 
+distinguishing between \emph{isolated worms} and \emph{worm clusters}, and to
+obtain an approximated path between endpoints 
+of worms (that tends to the medial axis), which is the main element of the 
+matching optimization process (see Sec.\ref{sec:metsegmentation}). The skeleton
+image would be then fundamental to determine the area of the image in which
+the worms are located and give estimated paths along which the different
+worms would be disposed. \\
 
-\subsubsection{Clustering}
-\label{sec:metcluster}
-\subsubsection{Path guessing}
+\subsubsection{Implementation}
+\label{sec:skeletonimp}
+
+For the purpose of this work the skeletonization algorithm to be selected must
+ensure the connectivity of the skeleton points, \emph{i.e.} every skeleton point
+must be connected to at least another skeleton point belonging to the same
+skeleton. Also the skeleton connection must not be thicker than 1-pixel, this means that
+when tracing a sequential path in the skeleton and being situated in a given skeleton 
+point there must be only one neighbor skeleton point that can be selected to continue
+the path direction, while remaining on the track of the skeleton of the same worm.\\
+
+Provided that a distance map have been already calculated when the skeletonization 
+process is carried out, an efficient approach would be to use a distance transform
+based technique. Different methods consisting in finding ridge points on the distance
+maps and then connect them have been covered in \cite{maxima,euclideancentre,ridgeineuc}.
+The approach in \cite{maxima} was followed as a first attempt to calculate a thin
+skeleton with a low time cost. This algorithm defines the ridge points as such pixels
+that have the greatest numerical value among its 3x3 neighborhood (bitmap image) in the 
+distance map. After finding the ridge points a \emph{up-hill} reconnection is performed, 
+followed by a \emph{down-hill} connection for missing points. The study covered in \cite{maxima}
+states that this approach allows to find succesfully a connected 1-pixel-thin skeleton,
+which was actually the case for \emph{isolated worms} or those who do not
+overlap with other worms. Nevertheless for \emph{worm clusters} the obtained skeletons
+were usually disconnected, thicker than 1-pixel and not accurate. Although the approach
+seemed appropriate in theory, the costful reconnecting operations and the unnacurate
+skeletons obtained for \emph{worm clusters} gave rise to the need for a different
+approach.\\
+
+Given the long, thin and cylindrical shape of the worms in general, a thinning algorithm
+approach that reduces the different layers by removing pixels that should not 
+belong to the skeleton was then taken into account. In \cite{thinning} an iterative and 
+parrallel thinning algorithm is presented, that consist in two subiterations per main 
+iteration aimed at deleting the south-east boundary points and north-west boundary points 
+respectively. The study is aimed at parallel computers so the different operations
+in each pixel can be performed at the same time, improving the performance. In order
+to avoid the requirement of using a parrallel computer without losing the time perfomance 
+improvement, the distance map was used to discard unnecesary pixel checking (those
+belonging to inner layers). Thus in each iteration only the pixels belonging to the
+currently selected shape layer are taking into account. The layers are defined by the
+distance map value of its pixels. The first layer corresponds to a distance value
+of one ($1$), the next to a distance value of two ($2$) and so on.\\
+
+Below in algorithm \ref{thinninalg} is presented a pseudo-code 
+version of the thinning algorithm covered in \cite{thinning} that follows 
+the distance transformation layers approach.
+
+\begin{algorithm}                     
+\caption{Calculate shape skeleton}         
+\label{thinninalg}                    
+\begin{algorithmic}                   
+\STATE $shapePts \leftarrow getBinaryObjectPixels()$
+\STATE $dtImage \leftarrow getImageDistanceMap()$
+\STATE $contourIndex \leftarrow 1$
+\STATE $makeThinner = True$
+
+\WHILE{$makeThinner$}
+
+\STATE \COMMENT{remove south-east boundary points and the north-west 
+corner point}
+\FOR{$pixel$ in $shapePts$}
+\IF{$dtImage(pixel) > contourIndex$}
+\STATE \COMMENT{skip iteration}
+\ELSE
+\STATE $pixelRemove \leftarrow southEastCondition(pixel)$
+\IF{$pixelRemove$}
+\STATE $shapePts.remove(pixel)$
+\STATE $makeThinner \leftarrow True$
+\ENDIF
+
+\ENDIF
+\ENDFOR
+
+\STATE \COMMENT{remove the north-west boundary points and the
+		south-east corner points}
+\FOR{$pixel$ in $shapePts$}
+\IF{$dtImage(pixel) > contourIndex$}
+\STATE \COMMENT{skip iteration}
+\ELSE
+\STATE $pixelRemove \leftarrow northWestCondition(pixel)$
+\IF{$pixelRemove$}
+\STATE $shapePts.remove(pixel)$
+\STATE $makeThinner \leftarrow True$
+\ENDIF
+\ENDIF
+\ENDFOR
+\ENDWHILE
+\STATE 
+\RETURN{$shapePts$}
+
+\end{algorithmic}
+\end{algorithm}
+
+The algorithm deals well with overlaping worms by constructing a path that is very close
+from the shapes medial axis, and results in a totally connected 1-pixel width skeleton.
+In fig. \ref{fig:skeleton} the skeleton of a sample image is shown. Every worm in the 
+image that was previously identified in the binary image obtention process 
+(see \ref{sec:metthres}) is succesfully \emph{skeletonized}.
+
+\begin{figure}[h t b p ! H]
+ \centering
+   \includegraphics[scale=0.75]{skeleton/skeleton.png}
+ \caption{Skeleton obtained through iterative thinning over a worm binary image}
+\label{fig:skeleton}
+\end{figure} 
+
+
+\subsection{Worm Segmentation}
+\label{sec:metsegmentation}
+
+%why segmentation. What would be obtained
+Since the approach of the study aims to match the shape of the different worms
+individually, it is necessary to locate them in the image, and then separate them 
+as much as possible, \emph{i.e.} to segment the image (see Sec. \ref{sec:segmentation}). 
+This allows to improve the efficiency and accuracy of the 
+shape fitting process, while reducing the matching area and thus the amount of 
+different combinations that must be taken into account. After the process of 
+\emph{skeletonization} a set of paths are obtained 
+between endpoints of worms (the objects of study), in some cases overlaping. 
+By identifying worms endpoints and then tracing the paths that connects them together,
+the different groups of paths can be separated, thus segmenting the image.
+As explained in Sec. \ref{sec:metsk} and Sec. \ref{sec:reasoning}, the different groups
+of paths can be distinguished, in correspondance to the objects they represent,
+by \emph{isolated worms} and \emph{worms clusters}. Then the shape fitting process
+of the whole image would consist in matching and fitting the worms present in each of
+the obtained subimages separately.\\
+
+Another process of segmentation that is perfomed is the identification of single
+worms paths, in both \emph{isolated} and \emph{cluster} worms. For \emph{isolated worms}
+the path that determines its medial axis is used, first to find the surrounding contour to
+fit its shape (see Sec. \ref{sec:metiso}), and second to generate a profile that 
+would define a general representation of the worms in the image through a shape
+descriptor, as it is explained in Sec. \ref{sec:metwormprof}.
+On the other hand, for \emph{worm clusters}, paths must be found between endpoints that
+permit the construction of a general shape, in order to determine if a worm can be matched
+between those two endpoints through the matching optimization process. These paths can
+be simply found by tracing all the possible ``roads'' between endpoints, or by
+a more sophisticated path guessing algorithm that will be described below in the
+implementation section.
+
+
+
+\subsubsection{Implementation}
+\label{segmentimp}
+
+
+\subsubsection*{Worm Endpoints}
+\label{sec:wend}
+The skeleton calculation returns an image 
+containing 1-pixel-width groups of curves or paths, which means that each pixel 
+is neighbor of either two other pixels or one. The pixels that are connected with 
+two other pixels (two neighbors) are \emph{body-pixels}, which are such that belong 
+to the path and are not endpoints. On the other hand those that are connected with 
+only one other pixel are endpoints, thus each one could belong to the extreme of a
+worm. It is important to consider that since the thinning algorithm used to obtain
+the skeleton (covered in Sec. \ref{sec:skeletonimp}) consists in removing the shape
+layers until finding pixels that are not surrounded, the endpoints found in the
+skeleton will not necessarily correspond to worm endpoints.\\
+
+In order to find the pixels that are actually worm endpoints a skeleton expanding process
+is performed that aims to stretch the skeleton path up to a contour point that 
+would come to be the worm endpoint. The skeleton expanding algorithm uses the definition
+of \emph{directional neighborhood} stated in \cite[p.334]{maxima}, where given 
+a pixel $P$ in the bitmap, a \emph{directional neighborhood} $D$ of $P$ is 
+conformed by those pixels that belong to the \emph{8-neighborhood} of $P$ and that
+are located within $\pm$ $45^{\circ}$ slope changes from the current medial axis 
+orientation of $P$. Below in fig. \ref{fig:directional} three examples of directional
+neighbors are presented. The algorithm consist in following the best directional path
+starting in every endpoint and expanding the skeleton until a contour pixel is found.
+ 
+\begin{figure}[h t b p ! H]
+ \centering
+   \includegraphics[scale=1]{skeleton/directional}
+ \caption{Three different directional neighborhoods}
+ \label{fig:directional}
+\end{figure}
+
+The expanding algorithm can be summarized in the following steps:
+\begin{itemize}
+\item Select an endpoint
+\item Find the previous skeleton point and calculate the directional neighborhood
+\item Select the directional neighbor with the lowest distance transformation pixel,
+  and mark it as skeleton pixel.
+\item If the neighbor is not a contour point repeat the process.
+\end{itemize}
+
+A filtering process is done to remove incorrect object pixels, that consists in
+removing subskeletons that have a size (number of pixels) lower than a small 
+threshold. This allows to remove some slightly noisy regions and incorrect endpoints.
+Once the skeleton is succesfully expanded, the endpoints of the skeleton are considered
+worm endpoints. 
+It must also be considered that some worm endpoints cannot be detected following this 
+process, particularly in crowded images where there is a big chance that the
+overlaps ``hide'' the endpoints. This is considered when selecting paths between 
+endpoints, as explained in Sec. \ref{sec:pathguessing}.
+
+
+
+\subsubsection*{Group segmentation}
+
+Having detected every worm endpoint the image can be segmented by determining
+the endpoints that are bound together through a skeleton path, \emph{i.e.} finding 
+the different \emph{isolated worms} and \emph{worm clusters}.
+As it was previously explained, the overlaping worms in the image are bound together
+as one object in the binary image obtention process, so then in the skeletonization
+process the endpoints belonging to \emph{worm clusters} are bound together as well,
+through a skeleton path.
+Based on the previous reasoning an algorithm was designed that detects the endpoints 
+that are bound together through the path that links them, separating then the 
+linked paths in different groups. Those paths that link together exactly two
+endpoints represent \emph{isolated worms} while a different number of endpoints
+correspond to \emph{worm clusters}.
+Below in algorithm \ref{groupsegment} a pseudocode for this group segmentation 
+method is presented. The algorithm consist basically following every different
+possible path starting on an endpoint until all the endpoints of a group have been 
+reached. 
+
+\begin{algorithm}                     
+\caption{Calculate shape skeleton}         
+\label{groupsegment}                    
+\begin{algorithmic}                   
+
+\STATE $endPtList \leftarrow$ list of endpoints
+\STATE $clusterIndex \leftarrow$ 0
+\FOR{$endpoint$ in $endPtList$}
+\IF{$endpoint.wasVisited()$}
+\STATE \COMMENT{skip iteration}
+\ELSE
+\STATE $clusterIndex +=1$
+\STATE $followPath(endpoint,clusterIndex)$
+\ENDIF
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}                     
+\caption{Follow Path algorithm ( $followPath(currentPoint,clusterCount)$ )}         
+\begin{algorithmic}                   
+
+\REQUIRE $currentPoint$
+\REQUIRE $clusterCounter$
+
+\IF{not $currentPoint.isSkeletonPoint()$}
+\RETURN 
+\ELSE
+\STATE $addToCluster(endpoint,clusterIndex)$
+\ENDIF
+
+\STATE \COMMENT{continue tracing path}
+\IF{$currentPoint.isEndPoint()$}
+\STATE $markEndPointAsVisited(currentPoint)$
+\ENDIF
+\STATE $neighbors \leftarrow getNeighborhood()$
+\FOR{$n$ in $neighbors$}
+\STATE $followPath(endPoint,clusterCounter)$
+\ENDFOR
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsubsection*{Path guessing}
+\label{sec:pathguessing}
+
+The \emph{worm clusters} found through segmentation are defined by a set of endpoints
+that are all connected through \emph{skeleton} paths, however the pair of endpoints
+belonging to each worm in the image and an accurate skeleton path that
+connects them is still uknown. The optimization algorithm, covered in \ref{sec:metfit},
+performs a shape manipulation process to match the worms in the image given two endpoints
+and the path that connects them. When the right skeleton paths are unknown the algorithm
+tries every possible combination returning the best match as possible, with the 
+consequent overhead in performance time . In order to improve the time efficiency of the 
+algorithm as well as the accuracy of the matching (particularly avoiding incorrect
+endpoints bounding), a path guessing algorithm was designed that performs a heuristical
+guessing of the most-likely path between endpoints.\\
+
+The algorithm is based in the idea of avoiding paths that continue unnatural conformations
+of the worms shape. This means that given $S$ last steps in the skeleton tracing, the
+next step $S+1$ will tend to follow the direction that was being followed, thus
+avoiding unnatural bendings or abrupt changes in the shape. An important issue when 
+following the most common direction in the last $S$ steps is that in some cases
+the path tracing will tend to avoid \emph{path bifurcations}. 
+A \emph{path bifurcation} occurs when there is more than one neighbor pixel that can be 
+followed next, thus dividing the path in two or more different paths.\\
+
+In order to make the path tracing tend to reach path bifurcations and then decide the best
+path to take, a heuristic function was designed that consists in the value of the neighbor pixel
+in distance transformation multiplied by a variable factor.
+Then the selection of the next pixel to follow its based in two main values:
+the amount of time that the neighbor direction has been taken in the last $S$ steps and
+the distance map value of the pixel. This can be expresed as below:
+
+$$Next(p) = \max_{n \in neighbors(p)} (dirValue(direction(p,n),S) + dt(n)*hfactor)$$
+
+where $p$ is the current path pixel, $dirValue$ returns the amount of times that the 
+direction of the neighbor pixel $p$ have been taken in the last $S$ steps, $dt$ is the 
+distance map and $hfactor$ is a heuristic factor that controls the influence of the
+distance map.
+
+In order to cover the issue mentioned in Sec.\ref{sec:wend}, that some endpoints could
+be hiden because of the overlapping, the number of pixels that have been added
+to a tracing path are counted, so when it is not possible to reach any other endpoint,
+an extra endpoint is created after $wormLength$ steps. 
+The $wormLength$ is an estimated value that is calculated
+as the mean of the length of the \emph{isolated worms} in the image. This process
+attempts to identify worms that otherwise would be discarded because of the absence
+of endpoints. Below, algorithm \ref{guess} presents a pseudocode for the path
+guessing approach.
+
+\begin{algorithm}                     
+\caption{Pseudo-code algorithm for path guessing between endpoints}         
+\label{guess}                    
+\begin{algorithmic}                   
+
+\STATE $endPtList \leftarrow$ list of endpoints
+\STATE $wc \leftarrow$ paths and endpoint in worm cluster 
+\STATE $length \leftarrow$ worm estimated length multiplied by a scaling factor
+\FOR{$endPoint$ in $endPtList$}
+\IF{$alreadyReached(endPoint)$}
+\STATE \COMMENT{skip iteration}
+\ENDIF
+\STATE{$markAsReached(endPoint)$}
+
+\STATE $path \leftarrow$ empty list
+\STATE $reachedEndPoint \leftarrow False$
+\STATE $currentPixel \leftarrow endPoint$
+\WHILE{$not(reachedPoint)$ and $size(path)<length$}
+\STATE $currentPixel \leftarrow getBestNeighbor(currentPixel)$
+\STATE $updateDirectionsArray(direction(currentPixel))$
+\STATE $path.add(currentPixel)$
+\IF{$isEndPoint(currentPixel)$}
+\STATE $reachedEndPoint \leftarrow True$
+\ENDIF
+\ENDWHILE 
+
+\IF{$not(reachedEndPoint)$}
+\IF{number Of Reachable Endpoints $= 0$}
+\STATE $createEndPoint(currentPixel)$
+\STATE $path.add(currentPixel)$
+\ELSE
+\STATE \COMMENT{Select a path to reachable endpoint}
+\ENDIF
+\ENDIF
+\ENDFOR
+
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{Worm Shape Descriptor}
 \label{sec:metshapedescriptor}
 
-\subsubsection{Worm Profile Generation}
+As first mentioned on Sec. \ref{met:description} the selected methodology approach 
+to match \emph{C.Elegans} worms is based on the manipulation of 
+worm shapes generated from a shape descriptor.
+Worm shapes can be described in geometrical terms as long, thin and cylindrical 
+objects. Given that the process of skeletonization and image segmentation allow
+to obtain \emph{thin} paths between pairs of endpoints that correspond to worm 
+extreme points, a shape descriptor would permit to construct a shape around this
+medial axis that would work as a starting point for the optimization algorithm. \\
+
+A shape descriptor was then designed based on the idea of generating a representative
+worm shape around the medial axis. The descriptor consists in two 
+elements: control points and shape profile (worm profile). The control points are
+a set of $N$ equidistant points along the worm medial axis, both endpoints included.
+Each control point has associated a \emph{thickness} value that represents the
+radius of a circle with the control point as center. Then by selecting two points
+in opposite directions of the thickness circle for every control point, and joining
+these points together through a smooth curve, a contour line is obtained that traces
+the silhouette of a worm shape, as shown in fig. \ref{fig:descriptor}. 
+The set of \emph{thickness} values that are associated to each control point
+is called shape profile (worm profile for this study).
+
+%%FIGURA
+
+In order to obtain a contour that accurately represents the worm shape along the 
+medial axis, the choice of the opposite points in the \emph{thickness} circles 
+must take into account the \emph{skeleton} bendings.
+Since the shape is constructed following the \emph{thickness} of control points,
+the bendings in the generated shape occur at each of these ones, and can then be 
+calculated as the angle between the straight lines that connect the control points.
+The bisection of any angle provides a straight line that divides it
+into two equal portions, measuring the bending variation at each control point.
+Then selecting the two points at a respective \emph{thickness} distance, from every control
+point, following the bisection line in opposite directions provides a set of points
+that joined together with a smooth curve will give a worm shape contour.\\
+
+Generating a smooth curve around the control points improves the accuracy of the shape
+description, in comparison with an approach consisting in tracing straight lines
+between the contour points. At the same time it allows to obtain a good representation
+of the shape with a considerably smaller number of control points. The smooth curve
+is obtained by calculating the cardinal spline (covered in Sec. \ref{splines}) given the
+contour points. A cardinal spline is a function that describes a smooth curve that
+passes over all the points of a set, given a starting and ending point. In this case
+the starting and ending points are the same, so the described contour is closed.\\
+
+The worm profile for a set of control points can be both manually set or automatically
+calculated from the \emph{isolated worms} as explained in the section below.
+
+\subsubsection{Automatic Profile generation}
 \label{sec:metwormprof}
+
+The shape of \emph{isolated worms} identified in the image can be accurately matched
+by following the contour points in their respective distance map, as explained 
+in Sec. \ref{sec:metiso}. Given a set of matched shapes for \emph{isolated worms}, and
+the initially detected skeleton, a worm profile (as described previously) can be 
+generated by measuring the \emph{thickness} of every control point and finding the mean
+among these.
 
 \subsection{Triangle mesh and rasterization}
 \label{sec:metrast}
 
+
 \subsection{Profile-driven shape fitting}
 \label{sec:metfit}
 
-Check b-splines snakes.. Talks about avoding internal energy
+Check b-splines snakes.. Talks about avoiding 
+internal energy
 
 \subsubsection{Worm Cluster shape fitting}
 \subsubsection{Isolated Worms shape fitting}

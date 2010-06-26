@@ -5,11 +5,27 @@ Carlo Arcelli and Gabriella~Sanniti di~Baja.
 \newblock Ridge points in euclidean distance maps.
 \newblock {\em Pattern Recognition Letters}, 13:237--243, 1992.
 
+\bibitem{euclideancentre}
+Carlo Arcelli and Gabriella~Sanniti di~Baja.
+\newblock Euclidean skeleton via centre-of-maximal-disc extraction.
+\newblock {\em Image and Vision Computing}, 11:163--173, 1993.
+
+\bibitem{ridgeineuc}
+Carlo Arcelly and Gabriella~Sanniti di~Baja.
+\newblock Ridge points in euclidean distance maps.
+\newblock {\em Pattern Recognition Letters}, 13:237--243, 1992.
+
 \bibitem{dtresearch}
 Gunilla Borgefors.
 \newblock Distance transformation in digital images.
 \newblock {\em Computer Vision, Graphics and Image Processing}, 34:344--371,
   1986.
+
+\bibitem{onepass}
+Roland~T. Chin and Hong-Khoon Wan.
+\newblock A one-pass thinning algorithm and its parallel implementation.
+\newblock {\em Computer Vision, Graphics and Image Processing}, 40:30--40,
+  1987.
 
 \bibitem{dtresearch2}
 Pedro~F. Felzenszwalb and Daniel~P. Huttenlocher.
@@ -17,10 +33,38 @@ Pedro~F. Felzenszwalb and Daniel~P. Huttenlocher.
 \newblock {\em Cornell Computing and Information Science Technical Report},
   2004.
 
+\bibitem{shapenonrigid}
+Rolf~Lakamper Longin Jan~Latecki and Ulrich Eckhardt.
+\newblock Shape descriptors for non-rigid shapes with a single closed contour.
+\newblock {\em Computer Vision}, 1:424--429, 2000.
+
+\bibitem{ssm}
+Xiang~Bai Longin Jan~Latecki, Quan-nan~Li.
+\newblock Skeletonization using ssm of the distance transform.
+\newblock Technical report, Temple University, Philadelphia, USA, HuaZhong
+  University of Science, and Technology, Wuhan, China, 2007.
+
 \bibitem{snakes}
 Andrew~Witkin Michael~Kass and Demetri Terzopoulos.
 \newblock Snakes: Active contour models.
 \newblock {\em International Journal of Computer Vision}, pages 321--333, 1988.
+
+\bibitem{desclecture}
+Bryan~S. Morse.
+\newblock Shape description (regions).
+\newblock
+  http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL\_COPIES/MORSE/region-props-%
+and-moments.pdf.
+
+\bibitem{binaryshape}
+P.E.Trahanias.
+\newblock Binary shape recognition using the morphological skeleton transform.
+\newblock {\em Pattern Recognition}, 25:1277--1288, 1992.
+
+\bibitem{skprotein}
+Matthew~Baker Sasakthi~Abeysinghe, Tao~Ju and Wah Chiu.
+\newblock Shape modeling and matching identifying 3d protein structures.
+\newblock {\em Computer-Aided Design}, 40:708--720, 2008.
 
 \bibitem{thres}
 Mehmet Sezgin and Bulent Sankur.
@@ -39,10 +83,26 @@ Frank~Y. Shih and Christopher C.PU.
   transform.
 \newblock {\em Pattern Recognition}, 28:331, 1994.
 
+\bibitem{maxima}
+Frank~Y. Shih and Christopher~C. Pu.
+\newblock A skeletonization algorithm by maxima tracking on euclidean distance
+  transform.
+\newblock {\em Pattern Recognition}, 28:331--341, 1995.
+
+\bibitem{augmented}
+Alexandru Telea and Jarke~J. van Wijk.
+\newblock Shape descriptors for non-rigid shapes with a single closed contour.
+\newblock In {\em EUROGRAPHICS - IEEE TCVG Symposium on Visualization}, 2002.
+
+\bibitem{wormparam}
+C.J.Taylor T.F.Cootes, D.H.Cooper and J.Graham.
+\newblock A trainable method of parametric shape description.
+\newblock {\em Computer Vision}, 5:237--252, 2009.
+
 \bibitem{deformable}
-Thomas~Vetter Thomas~Albrecht, Marcel~Luthi.
+Marcel~Luthi Thomas~Albrecht and Thomas Vetter.
 \newblock Deformable models.
-\newblock gravis.cs.unibas.ch/publications/CH_Deformable_Models09.pdf.
+\newblock gravis.cs.unibas.ch/publications/CH\_Deformable\_Models09.pdf.
 
 \bibitem{matching2}
 Remco~C. Veltkamp.
@@ -54,6 +114,16 @@ Remco~C. Veltkamp and Michiel Hagedoorn.
 \newblock State-of-the-art in shape matching.
 \newblock {\em Principles of visual information retrieval.-(Advances in pattern
   recognition)}, 2:87--112, 2001.
+
+\bibitem{web:wikishape}
+Wikipedia.
+\newblock Shape analysis.
+\newblock http://en.wikipedia.org/wiki/Shape\_analysis.
+
+\bibitem{wikipedia:skeleton}
+Wikipedia.
+\newblock Topological skeleton.
+\newblock http://en.wikipedia.org/wiki/Topological\_skeleton\#cite\_note-8.
 
 \bibitem{web:thresholding}
 Wikipedia.
