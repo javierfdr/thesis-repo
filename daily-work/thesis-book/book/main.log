@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.2.4)  26 JUN 2010 20:24
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.2.4)  27 JUN 2010 13:36
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -285,7 +285,7 @@ LaTeX Warning: Label `fig:manh' multiply defined.
 
 LaTeX Warning: Label `sub@fig:manh' multiply defined.
 
-))
+) (./chapter4.aux) (./chapter5.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
@@ -303,7 +303,8 @@ LaTeX Font Info:    ... okay on input line 98.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
 LaTeX Font Info:    ... okay on input line 98.
 Package hyperref Info: Link coloring OFF on input line 98.
- (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2006/12/27 v2.28 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
@@ -409,15 +410,15 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 44.
 
-<./images/thres/winter_o.png, id=225, 508.90125pt x 406.51875pt>
+<./images/thres/winter_o.png, id=237, 508.90125pt x 406.51875pt>
 File: ./images/thres/winter_o.png Graphic file (type png)
 
 <use ./images/thres/winter_o.png>
-<./images/thres/winter_thres.png, id=226, 509.905pt x 406.51875pt>
+<./images/thres/winter_thres.png, id=238, 509.905pt x 406.51875pt>
 File: ./images/thres/winter_thres.png Graphic file (type png)
 
 <use ./images/thres/winter_thres.png> [3]
-<./images/dt/dtref.png, id=236, 633.36626pt x 1024.82875pt>
+<./images/dt/dtref.png, id=248, 633.36626pt x 1024.82875pt>
 File: ./images/dt/dtref.png Graphic file (type png)
 
 <use ./images/dt/dtref.png>
@@ -431,11 +432,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 116--125
 
  []
 
-<./images/skeleton/horsebinary.png, id=261, 190.7125pt x 96.36pt>
+<./images/skeleton/horsebinary.png, id=273, 190.7125pt x 96.36pt>
 File: ./images/skeleton/horsebinary.png Graphic file (type png)
 
 <use ./images/skeleton/horsebinary.png>
-<./images/skeleton/horseskeleton.png, id=262, 190.7125pt x 96.36pt>
+<./images/skeleton/horseskeleton.png, id=274, 190.7125pt x 96.36pt>
 File: ./images/skeleton/horseskeleton.png Graphic file (type png)
 
 <use ./images/skeleton/horseskeleton.png>
@@ -504,7 +505,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--95
 
  []
 
-[13] <./images/diagrams/design-methodology.png, id=355, 614.295pt x 794.97pt>
+[13] <./images/diagrams/design-methodology.png, id=367, 614.295pt x 794.97pt>
 File: ./images/diagrams/design-methodology.png Graphic file (type png)
 
 <use ./images/diagrams/design-methodology.png>
@@ -545,11 +546,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 185--195
 
  []
 
-<./images/original.png, id=380, 501.875pt x 502.87875pt>
+<./images/original.png, id=392, 501.875pt x 502.87875pt>
 File: ./images/original.png Graphic file (type png)
 
 <use ./images/original.png>
-<./images/thres/worms.png, id=381, 501.875pt x 502.87875pt>
+<./images/thres/worms.png, id=393, 501.875pt x 502.87875pt>
 File: ./images/thres/worms.png Graphic file (type png)
 
 <use ./images/thres/worms.png>
@@ -566,19 +567,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 224--233
 LaTeX Warning: Reference `exp:dt' on page 18 undefined on input line 250.
 
 [18 <./images/original.png (PNG copy)> <./images/thres/worms.png (PNG copy)>]
-<./images/dt/binary.png, id=407, 778.91pt x 551.05875pt>
+<./images/dt/binary.png, id=419, 778.91pt x 551.05875pt>
 File: ./images/dt/binary.png Graphic file (type png)
 
 <use ./images/dt/binary.png>
-<./images/dt/manhattandt.png, id=408, 501.875pt x 355.3275pt>
+<./images/dt/manhattandt.png, id=420, 501.875pt x 355.3275pt>
 File: ./images/dt/manhattandt.png Graphic file (type png)
 
 <use ./images/dt/manhattandt.png>
-<./images/dt/chessboarddt.png, id=409, 501.875pt x 355.3275pt>
+<./images/dt/chessboarddt.png, id=421, 501.875pt x 355.3275pt>
 File: ./images/dt/chessboarddt.png Graphic file (type png)
 
 <use ./images/dt/chessboarddt.png>
-<./images/dt/euclideandt.png, id=410, 501.875pt x 355.3275pt>
+<./images/dt/euclideandt.png, id=422, 501.875pt x 355.3275pt>
 File: ./images/dt/euclideandt.png Graphic file (type png)
 
 <use ./images/dt/euclideandt.png>
@@ -606,7 +607,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 312--325
 [21]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 331.
- <./images/skeleton/skeleton.png, id=443, 414.54875pt x 498.86375pt>
+ <./images/skeleton/skeleton.png, id=455, 414.54875pt x 498.86375pt>
 File: ./images/skeleton/skeleton.png Graphic file (type png)
 
 <use ./images/skeleton/skeleton.png>
@@ -619,7 +620,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 431--441
 
  []
 
-[24] <./images/skeleton/directional.png, id=499, 363.3575pt x 170.6375pt>
+[24] <./images/skeleton/directional.png, id=511, 363.3575pt x 170.6375pt>
 File: ./images/skeleton/directional.png Graphic file (type png)
 
 <use ./images/skeleton/directional.png> [25 <./images/skeleton/directional.png>
@@ -638,25 +639,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 634--642
 
  []
 
+[28] [29] <./images/descriptor/descriptor.png, id=599, 548.0475pt x 313.17pt>
+File: ./images/descriptor/descriptor.png Graphic file (type png)
 
-LaTeX Warning: Reference `fig:descriptor' on page 28 undefined on input line 65
-1.
-
-[28] [29]
-Underfull \hbox (badness 10000) in paragraph at lines 657--668
+<use ./images/descriptor/descriptor.png>
+Underfull \hbox (badness 10000) in paragraph at lines 662--673
 
  []
 
 
-LaTeX Warning: Reference `splines' on page 30 undefined on input line 673.
+LaTeX Warning: Reference `splines' on page 30 undefined on input line 678.
 
-) [30] [31] (./main.bbl
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--682
+
+ []
+
+[30 <./images/descriptor/descriptor.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 689--695
+
+ []
+
+[31]) [32]
+\openout2 = `chapter4.aux'.
+
+ (./chapter4.tex
+Chapter 4.
+) [33
+
+
+
+
+]
+\openout2 = `chapter5.aux'.
+
+ (./chapter5.tex
+Chapter 5.
+) [34
+
+
+
+
+] (./main.bbl
 Overfull \hbox (195.71335pt too wide) in paragraph at lines 53--58
 []\OT1/cmr/m/n/12 Bryan S. Morse.  Shape de-scrip-tion (re-gions).  http://home
 pages.inf.ed.ac.uk/rbf/CVonline/LOCAL[]COPIES/MORSE/region-
  []
 
-[32
+[35
 
 
 ]
@@ -677,7 +707,8 @@ Underfull \hbox (badness 1509) in paragraph at lines 129--133
 /m/n/12 http : / / en . wikipedia . org / wiki /
  []
 
-[33]) [34] (./main.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux))
+[36]) [37] (./main.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux)
+(./chapter4.aux) (./chapter5.aux))
 
 LaTeX Warning: There were undefined references.
 
@@ -686,10 +717,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4979 strings out of 95086
- 69402 string characters out of 1183256
- 131441 words of memory out of 1500000
- 7802 multiletter control sequences out of 10000+50000
+ 5012 strings out of 95086
+ 69893 string characters out of 1183256
+ 130441 words of memory out of 1500000
+ 7812 multiletter control sequences out of 10000+50000
  13886 words of font info for 53 fonts, out of 1200000 for 2000
  28 hyphenation exceptions out of 8191
  43i,10n,50p,273b,805s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -703,9 +734,9 @@ b></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf
 -texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1
 /bluesky/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmtt12.
 pfb>
-Output written on main.pdf (39 pages, 1582853 bytes).
+Output written on main.pdf (42 pages, 1638428 bytes).
 PDF statistics:
- 697 PDF objects out of 1000 (max. 8388607)
- 216 named destinations out of 1000 (max. 131072)
- 319 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 728 PDF objects out of 1000 (max. 8388607)
+ 222 named destinations out of 1000 (max. 131072)
+ 340 words of extra memory for PDF output out of 10000 (max. 10000000)
 

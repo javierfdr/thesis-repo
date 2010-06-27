@@ -29,8 +29,10 @@
 \contentsline {subsection}{\numberline {3.2.6}Worm Segmentation}{24}{subsection.3.2.6}
 \contentsline {subsubsection}{\numberline {3.2.6.1}Implementation}{24}{subsubsection.3.2.6.1}
 \contentsline {subsection}{\numberline {3.2.7}Worm Shape Descriptor}{28}{subsection.3.2.7}
-\contentsline {subsubsection}{\numberline {3.2.7.1}Automatic Profile generation}{30}{subsubsection.3.2.7.1}
-\contentsline {subsection}{\numberline {3.2.8}Triangle mesh and rasterization}{30}{subsection.3.2.8}
-\contentsline {subsection}{\numberline {3.2.9}Profile-driven shape fitting}{30}{subsection.3.2.9}
-\contentsline {subsubsection}{\numberline {3.2.9.1}Worm Cluster shape fitting}{31}{subsubsection.3.2.9.1}
-\contentsline {subsubsection}{\numberline {3.2.9.2}Isolated Worms shape fitting}{31}{subsubsection.3.2.9.2}
+\contentsline {subsubsection}{\numberline {3.2.7.1}Automatic Profile generation}{31}{subsubsection.3.2.7.1}
+\contentsline {subsection}{\numberline {3.2.8}Triangle mesh and rasterization}{32}{subsection.3.2.8}
+\contentsline {subsection}{\numberline {3.2.9}Profile-driven shape fitting}{32}{subsection.3.2.9}
+\contentsline {subsubsection}{\numberline {3.2.9.1}Worm Cluster shape fitting}{32}{subsubsection.3.2.9.1}
+\contentsline {subsubsection}{\numberline {3.2.9.2}Isolated Worms shape fitting}{32}{subsubsection.3.2.9.2}
+\contentsline {chapter}{\numberline {4}Experiments and Results}{33}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusions}{34}{chapter.5}
