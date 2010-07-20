@@ -1,0 +1,24 @@
+data = read.table("line2.dat",header=T)
+max_y <- max(data)
+plot_colors <- c("blue3","red2","darkolivegreen3")
+
+#png(filename="linePlot.png", height=500, width=500, 
+# bg="white")
+pdf(file="figure.pdf", height=5, width=7)
+
+plot(data$best,type="o", pch=23, col=plot_colors[1],ylim=c(0,max_y), axes= FALSE, ann=FALSE)
+axis(1, at=1:9, lab=c("w1","w2","w3","w4","w5","w6","w7","w8","w9"))
+
+#Separation of vertical labels
+axis(2, las=1)
+
+box()
+
+lines(data$next1, type="o", pch=23,col=plot_colors[2])
+lines(data$next2, type="o", pch=23,col=plot_colors[3])
+title(xlab= "Worm Endpoints", col.lab=rgb(0.0,0.0,0.3))
+title(ylab= "Energy Function Value", col.lab=rgb(0.0,0.0,0.1))
+
+legend(1, max_y, names(data), cex=0.8, col=plot_colors, 
+   pch=23, lty=1);
+dev.off()

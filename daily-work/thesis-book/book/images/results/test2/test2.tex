@@ -1,0 +1,47 @@
+
+
+\begin{table}[h]\begin{tabular}{|>{\columncolor[gray]{0.9}} p{3cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|c|}
+    \hline
+    \rowcolor[gray]{.9}
+    Path finding & Isolated Worms matching & Cluster Worms matching 
+    & Total Matching 
+    & Time (s) \\ 
+    \hline  
+    Every Path (me) & 8/8 (100\%) & 7/25 (28\%) & 15/33 (45\%) & 35.58 \\ 
+    \hline
+    P.Guessing (me) & 8/8 (100\%) & 10/25 (40\%) & 18/33 (54\%) & 47.25s\\
+    \hline
+    Every Path & 3 & 3 & 3 & 4 \\
+    \hline
+    P.Guessing & 3 & 3 & 3 & 4 \\
+    \hline
+  \end{tabular}
+  \label{tab1}
+  \caption{Results of automatic worm shape matching on test image}
+\end{table}
+
+\begin{figure}[h t b p ! H]
+  \centering
+  \subfloat[Original Image]{\label{ori2}\includegraphics[scale=0.3]{results/test2/original2}}
+\qquad
+  \subfloat[Binary Image]{\label{bin2}\includegraphics[scale=0.3]{results/test2/binary2}}
+\qquad
+  \subfloat[Distance map]{\label{dtshape2}\includegraphics[scale=0.3]{results/test2/dt2}}
+\qquad
+  \subfloat[Shape skeleton]{\label{skeleton2}\includegraphics[scale=0.3]{results/test2/skeleton-frame}}
+\qquad
+  \subfloat[Segmentation in Clusters]{\label{clust2}\includegraphics[scale=0.3]{results/test2/cluster2}}
+\qquad
+  \subfloat[Isolated Worm Profiling]{\label{prof2}\includegraphics[scale=0.3]{results/test2/wprof2}}
+  \caption{Sequence of image processing steps before shape matching on test image 2}
+\end{figure}
+
+
+\begin{figure}[h t b p ! H]
+  \centering
+  \subfloat[Skeleton with missing endpoints]{\label{ori2}\includegraphics[scale=0.4]{results/test2/skeleton-zoom2}}
+\qquad
+  \subfloat[Skeleton after addition of missing endpoints]{\label{bin2}\includegraphics[scale=0.4]{results/test2/skeleton-zoomEnd2}}
+\end{figure}
+
+
