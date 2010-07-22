@@ -163,6 +163,8 @@ one point to another in the cluster skeleton that most likely belongs to a worm
 In the following sections, each of the subprocesses involved in the solution
 methodology are explained, covering their need and usefulness as
 well as the followed implementation approach.
+
+% ADD THE MANUAL MODIFICATION OF THE RESULTS
   
 
 \subsection{Thresholding}
@@ -182,6 +184,7 @@ an initial segmentation of the processed image, being as well a key element to o
 a distance transformation, as it is explained in Sec. \ref{sec:metdt}.
 
 \subsubsection{Implementation}
+\label{sec:thresimp}
 There are four thresholding filters for 2D images implemented on \emph{Endrov}, these are: 
 \emph{Fukunaga},\emph{Max entropy}, \emph{Otsu} and \emph{Percentile}, that cover the 
 histogram and entropy-based thresholding methods categories as defined in Sec.\ref{sec:thresholding}.
@@ -191,7 +194,7 @@ thresholding method to obtain an accurate binary image, from the study data-set.
 to select a thresholding method a series of experiments where performed tweaking the parameters
 for the different mentioned methods, as it is explained on Sec.\ref{exp:thres}.
 The selected method was \emph{Percentile Threshold 2D} with a percentile value oscillating from
-$0.072$ to $0.09$ on the different test images.\\
+$0.072$ to $0.11$ on the different test images.\\
 
 Figure \ref{fig:wormthres} shows a binary image obtained after applying
 the \emph{Percentile Threshold 2D} method with a percentile value of $0.074$
@@ -477,6 +480,7 @@ overlaps ``hide'' the endpoints. This is considered when selecting paths between
 endpoints, as explained in Sec. \ref{sec:pathguessing}.
 
 
+% ADD THE MANUAL ADDITION OF ENDPOINTS
 
 \subsubsection*{Group segmentation}
 
@@ -731,3 +735,8 @@ The implementation is being modified, so this part will be completed later
 \subsubsection{Worm Cluster shape fitting}
 \subsubsection{Isolated Worms shape fitting}
 \label{sec:metiso}
+
+\subsection{Manual Manipulation}
+\subsubsection{Endpoint operations}
+\label{sec:endpointop}
+\subsubsection{Matching fixing}

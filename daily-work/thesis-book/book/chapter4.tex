@@ -2,6 +2,219 @@
 \chapter{Experiments and Results}
 \label{chap:experiments}
 
-%\section{Thresholding}
-%\label{exp:thres}
+%Introduce Chapter: 3 experiments (test set size = 3) to test the whole
+%shape matching methodology. Its separated in three main processes: initial
+%processing, automatic shape matching and manual fixing. The results are 
+%presented and discussed.
+
+In this chapter the different experiments carried out to test the perfomance
+of the shape matching solution are 
+presented, explaining the reason for their choice and the test objectives.
+Then the results are presented and discussed, pointing out the advantages and drawbacks of the suggested
+shape matching model, that are infered from the first ones.
+
+\section{Experiments}
+\label{sec:experiments}
+
+In order to test the implemented solution, three digital images of worms in liquid
+media where selected from the image database of the Department of Bioscience and Nutrition
+of the \emph{Karolinska Institute}. Each image corresponds to a different difficulty level, 
+following the criteria of number of worms and degree of overlap. Thus the greater the number 
+of worms in the image and the greater the number of worms that are connected by overlapping,
+the greater the difficulty level. The overlapping degree is determined by the number
+of worms that belong to the different \emph{worm clusters} (first defined in Sec. \ref{sec:reasoning})
+and the number of \emph{worm clusters} in the image.
+The selected images are named \emph{test image 1}, \emph{test image 2} and \emph{test image 3}
+and they are disposed in an increasing difficulty level order, from the easiest to the hardest. 
+Below in Table \ref{tab:testset} the characteristics of the test set are presented.
+
+
+\begin{table}[h]
+  \caption{Test set images characteristics}
+\begin{center}
+\begin{tabular}[h]{|>{\columncolor[gray]{0.9}} p{2cm} |p{3cm} | p{2.8cm} | p{3cm}| p{2.8cm} |}
+    \hline
+    \rowcolor[gray]{.9}
+    Test Image& Number of Isolated Worms & Number of Worm Clusters & Number of Worms per Clusters  & Total Number of Worms\\
+    \hline
+    Test 1 & 11/19 (57.8\%) & 3 & 8/19 (42.1\%) & 19 \\
+    \hline
+    Test 2 & 13/38 (34.2\%)& 5 & 25/38 (65.7\%) & 38 \\
+    \hline
+    Test 3 & 8/33 (24.2\%) & 3 & 25/33 (75.7\%)& 33 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \label{tab:testset}
+\end{table}
+
+
+For each test image a series of experiments were carried out to test the performance of
+the different processes that are involved in the solution methodology. The entire 
+shape fitting process was divided into three stages that represent the 
+main fitting steps. These are: \emph{initial processing}, \emph{automatic shape matching} and
+\emph{matching manual fixing}.\\
+
+The \emph{initial processing} involves all the image processing steps that are performed 
+before the shape matching optimization process, as explained in Sec.\ref{sec:solmet},
+such as: thresholding, distance transformation, skeletonization, 
+clustering, endpoint detection and worm profiling. Among these, the distance transformation
+and skeletonization follow already implemented and tested algorithms (covered in Sec.\ref{sec:metdt}
+and Sec.\ref{sec:metsk}) and produce straight forward results, so there is no need to make further analysis
+about them.
+The clustering process follows the skeletonization process and is straight forward as well.
+On the other hand the thresholding, endpoint detection and worm profiling processess vary 
+from image to image, so different experiments are carried out in order to test these subprocesses
+for the test set.\\
+
+The \emph{automatic shape matching} stage consists in experiments dealing with the automatic
+optimization process to match \emph{worm clusters} and contour following technique to match 
+\emph{isolated worms} that produce a first fitting guess for the worms in the image. These 
+experiments attempt to measure the efficacy and time efficiency of different variations of the
+matching algorithm, in order to conclude about properties of the algorithm and the feasibility 
+of the automatic solution.\\
+The third stage,\emph{matching manual fixing}, attempts to measure the type and amount of 
+manual modification operations that must be performed by the user in order to fix the 
+matchings that were wrongly assigned by the automatic process. The experiment is also 
+aimed to determine how much can the efficacy of the automatic solution be improved, in
+order to get a better matching. Once the best possible matching is found through manual fixing,
+a distribution of the matching energies is presented, that aimes to study the sensitivy of the
+matching algorithm. This consist on a graph showing the best three conformations, in terms of the objective
+function, starting from every endpoint, comparing how far are the top two conformations from
+the right one.\\
+
+For the first stage of \emph{initial processing} the results for the three test images are presented
+at the same time, while for the stages of \emph{automatic shape matching} and \emph{matching manual fixing}
+the result for the two stages are presented together for every individual test, since they are 
+extremely related.
+
+
+\section{Results}
+\label{sec:results}
+
+In this section the results obtained for the test set are presented and dicussed, discriminating between
+the, previously defined, three main stages: \emph{initial processing}, \emph{automatic shape matching} and
+\emph{matching manual fixing}. In the section \emph{initial processing} the results for the three different 
+images in the test set are presented. On the other hand the section \emph{Shape fitting} presents the different
+results for the stages \emph{automatic shape matching} and \emph{matching manual fixing} for every test image
+individually.
+
+\subsection{Initial Processing}
+\label{sec:initproc}
+
+This section presents the results for the experiments carried out over the test set for the 
+processes: thresholding and endpoint finding. It is also present a brief discussion about
+the result for the worm profiling process.
+
+\subsubsection*{Thresholding}
+
+As explained in Sec.\ref{sec:thresimp} \emph{Endrov} has implementations for the 
+thresholding filters \emph{Fukunaga},\emph{Max entropy}, \emph{Otsu} and \emph{Percentile}.
+The process to determine that a binary image represents sufficiently well the original 
+image was done by visual appreciation. In order to select an appropriate thresholding
+filter, the four previously mentioned were tried on every test image, tweaking the
+input parameters until the best possible binary image was obtained from every one.
+It resulted that among the four methods, the \emph{Percentile} filter generated the
+best binary images for the three tests. The next closer method was \emph{Fukunaga}
+that produced acceptable solutions after the combination of binary images
+generated from different number of classes, however the results were not as good as
+the ones obtained with \emph{Percentile}, requiring more processing as well.\\
+
+Following this experiment the \emph{Percentile} method was selected by being considered
+sufficiently good to generate a binary representation for the worms in the image 
+and easy to manipulate. Below in table \ref{tab:threshold} the best percentile 
+values for every test image are presented.
+
+
+\begin{table}[h]
+  \caption{Best percentile value for Percentile Thresholding for test image}
+\begin{center}
+\begin{tabular}[h]{|>{\columncolor[gray]{0.9}} c |c|c|c|}
+    \rowcolor[gray]{.9}
+    \hline
+    Test & Test Image 1 & Test Image 2 & Test Image 3\\
+    \hline
+    Percentile Value & 0.074 & 0.1 & 0.11\\
+    \hline
+  \end{tabular}
+\end{center}
+  \label{tab:threshold}
+\end{table}
+
+The resultant best percentile values oscillate between $0.074$ and $0.11$, and are 
+simple to determine using \emph{Endrov}.   
+
+\subsubsection*{Endpoint detection}
+
+Once the process of skeletonization is performed the worm endpoints are detected
+in the image by finding the extremes skeleton points. Starting from these the 
+skeleton is expanded following the directional neighbor process explained in
+Sec.\ref{sec:wend} until contour points are found. These contour points will
+correspond to worms endpoints.\\
+As explained, worm endpoints are detected by first identifying extremes in the worm
+skeleton. However when the extreme of a given worm in an image overlaps with 
+another worm shape, the binary image will consider this worms as part of the 
+same shape and in consequence the shape skeleton will generate a continuous 
+path and not an extreme skeleton point, thus the endpoint will not be detected.\\
+Since the solution methodology is centered on finding paths between endpoints and 
+then determining the most likely worm paths, having missing endpoints would
+affect greatly the matching accuracy, as it is shown later in the subsections 
+\emph{automatic shape matching} of every test image results.\\
+
+Since the worm endpoints are simple to determine visually, a manual process
+of adding and removing pixel operations can be performed fastly in order to
+add the missing endpoints and disconnect them from the rest of skeleton, as
+explained in Sec.\ref{sec:endpointop}.
+The removing operation is required because by definition a worm endpoint 
+belongs to a extreme of the skeleton and then only one directional 
+path should be able to start from it, \emph{i.e.}a worm endpoint has only
+one \emph{cardinal neighbor} belonging to the skeleton.
+As described in Sec.\ref{sec:endpointop},
+the process consists basically on selecting a skeleton pixel that is not marked as
+endpoint and then selecting the wrong skeleton neighbor pixel to disconect the path 
+from the wrong part of the skeleton. \\
+
+Below, Table \ref{tab:endtable} presents the number of endpoints identified
+automatically for ever test image and the number of operations that must be
+performed to fix the missing endpoints. An operation corresponds to the combination
+of an add/remove pixel operation.
+
+
+\begin{table}[h]
+  \caption{Worm endpoints detection and fixing for the test set}
+\begin{center}
+\begin{tabular}[h]{|>{\columncolor[gray]{0.9}} p{2cm} |p{1.9cm}|p{2cm}|p{2.2cm}|}
+    \rowcolor[gray]{.9}
+    \hline
+    Test Image & Total Endpoints & Detected Endpoints & Add/Remove Operations\\
+    \hline
+    Image 1 & 38 & 38 (100\%) & 0 \\
+    \hline 
+    Image 2 & 76 & 57 (75\%) & 19 \\
+    \hline 
+    Image 3 & 66 & 53 (80\%) & 13 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \label{tab:endtable}
+\end{table}
+
+From the table above, it can be infered that a high number of worms belonging
+to \emph{worm clusters} increases the chances to have endpoints overlapping, 
+as well as it does a higher number of worms in total in the same space.
+Considering the high amount of worms that belong to worm clusters 
+for images one and two ($65\%$ and $75\%$ respectively) and the few
+amount of clusters for each one (which increases the overlapping) the amount
+of missing endpoints can be considered faily low, and is feasible in time 
+to fix them manually.
+
+\subsubsection*{Worm Profiling}
+
+In order to generate an accurate worm profile of the worms present in the image
+it is necessary to have \emph{isolated worms} in the processing image. The percentage 
+of \emph{isolated worms} for every image were $57.8\%$, $34.2\%$ and $24.2\%$ respectively,
+oscillating between $8$ and $13$ worms, as shown in Table \ref{tab:testset}. 
+For all of this images the generated worm profiles were sufficiently accurate to
+conduct the optimization shape matching process, whose results are presented in 
+the subsections named \emph{automatic shape matching} of every test image results.
 
