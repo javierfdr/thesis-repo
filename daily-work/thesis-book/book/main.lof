@@ -21,4 +21,20 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Three different directional neighborhoods}}{25}{figure.3.5}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Construction of a worm shape based on shape descriptor}}{30}{figure.3.6}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Best automatic shape matching on test image 1}}{40}{figure.4.1}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Best Match}}}{40}{subfigure.1.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Best Match over original image}}}{40}{subfigure.1.2}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Best automatic shape matching and Manual match fixing on test image 3}}{42}{figure.4.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Best Automatic Match}}}{42}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Best Automatic Match over original image}}}{42}{subfigure.2.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Manual Fixed Match}}}{42}{subfigure.2.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Manual Fixed Match over original image}}}{42}{subfigure.2.4}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Best automatic shape matching and Manual match fixing on test image 3}}{44}{figure.4.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Best Automatic Match}}}{44}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Best Automatic Match over original image}}}{44}{subfigure.3.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Manual Fixed Match}}}{44}{subfigure.3.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Manual Fixed Match over original image}}}{44}{subfigure.3.4}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Energy value for the best three conformations by endpoint on test image 1. The selected endpoints correspond to worms in worm clusters that have more than two possible conformations}}{45}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Energy value for the best three conformations by endpoint on test image 2. The selected endpoints correspond to worms in worm clusters that have more than two possible conformations}}{46}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Energy value for the best three conformations by endpoint on test image 3. The selected endpoints correspond to worms in worm clusters that have more than two possible conformations}}{47}{figure.4.6}
 \addvspace {10\p@ }

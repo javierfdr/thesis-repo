@@ -34,5 +34,15 @@
 \contentsline {subsection}{\numberline {3.2.9}Profile-driven shape fitting}{32}{subsection.3.2.9}
 \contentsline {subsubsection}{\numberline {3.2.9.1}Worm Cluster shape fitting}{32}{subsubsection.3.2.9.1}
 \contentsline {subsubsection}{\numberline {3.2.9.2}Isolated Worms shape fitting}{32}{subsubsection.3.2.9.2}
+\contentsline {subsection}{\numberline {3.2.10}Manual Manipulation}{32}{subsection.3.2.10}
+\contentsline {subsubsection}{\numberline {3.2.10.1}Endpoint operations}{32}{subsubsection.3.2.10.1}
+\contentsline {subsubsection}{\numberline {3.2.10.2}Matching fixing}{32}{subsubsection.3.2.10.2}
 \contentsline {chapter}{\numberline {4}Experiments and Results}{33}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusions}{34}{chapter.5}
+\contentsline {section}{\numberline {4.1}Experiments}{33}{section.4.1}
+\contentsline {section}{\numberline {4.2}Results}{35}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Initial Processing}{35}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Shape Matching}{38}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Matching Energy}{43}{subsection.4.2.3}
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{49}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{49}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{51}{section.5.2}

@@ -27,5 +27,13 @@
 \BOOKMARK [2][-]{subsection.3.2.7}{Worm Shape Descriptor}{section.3.2}
 \BOOKMARK [2][-]{subsection.3.2.8}{Triangle mesh and rasterization}{section.3.2}
 \BOOKMARK [2][-]{subsection.3.2.9}{Profile-driven shape fitting}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.10}{Manual Manipulation}{section.3.2}
 \BOOKMARK [0][-]{chapter.4}{Experiments and Results}{}
-\BOOKMARK [0][-]{chapter.5}{Conclusions}{}
+\BOOKMARK [1][-]{section.4.1}{Experiments}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Results}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.2.1}{Initial Processing}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.2}{Shape Matching}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.3}{Matching Energy}{section.4.2}
+\BOOKMARK [0][-]{chapter.5}{Conclusions and Future Work}{}
+\BOOKMARK [1][-]{section.5.1}{Conclusions}{chapter.5}
+\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}

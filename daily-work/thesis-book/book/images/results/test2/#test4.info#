@@ -8,7 +8,7 @@ int[] includeList= {1039,735,500,478,479,472,619};
 	ArrayList<Vector2i> delete = new ArrayList<Vector2i>();
 
 	
-	extra.add(new Vector2i(429,261));
+		extra.add(new Vector2i(429,261));
 		extra.add(new Vector2i(441,310));
 		extra.add(new Vector2i(403,275));
 		extra.add(new Vector2i(284,273));
