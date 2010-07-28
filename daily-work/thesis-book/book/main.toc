@@ -1,48 +1,45 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Thesis motivation and purpose}{1}{section.1.2}
-\contentsline {section}{\numberline {1.3}The problem}{1}{section.1.3}
-\contentsline {section}{\numberline {1.4}Objectives}{1}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}General Objectives}{1}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Specific Objectives}{1}{subsection.1.4.2}
-\contentsline {chapter}{\numberline {2}Theoretical Framework}{2}{chapter.2}
-\contentsline {section}{\numberline {2.1}Endrov}{2}{section.2.1}
-\contentsline {section}{\numberline {2.2}Thresholding}{2}{section.2.2}
-\contentsline {section}{\numberline {2.3}Distance Transform}{3}{section.2.3}
-\contentsline {section}{\numberline {2.4}Skeletonization}{6}{section.2.4}
-\contentsline {section}{\numberline {2.5}Image Segmentation}{7}{section.2.5}
-\contentsline {section}{\numberline {2.6}Shape Matching}{7}{section.2.6}
-\contentsline {section}{\numberline {2.7}Shape descriptor}{9}{section.2.7}
-\contentsline {section}{\numberline {2.8}Cardinal Splines}{11}{section.2.8}
-\contentsline {section}{\numberline {2.9}Triangle mesh and rasterization}{11}{section.2.9}
-\contentsline {chapter}{\numberline {3}Methodology}{12}{chapter.3}
-\contentsline {section}{\numberline {3.1}Development Methodology}{12}{section.3.1}
-\contentsline {section}{\numberline {3.2}Solution Methodology Design}{12}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Previous reasoning}{12}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Methodology description}{14}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Thresholding}{17}{subsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3.2.3.1}Implementation}{17}{subsubsection.3.2.3.1}
-\contentsline {subsection}{\numberline {3.2.4}Distance transformation}{17}{subsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.4.1}Implementation}{18}{subsubsection.3.2.4.1}
-\contentsline {subsection}{\numberline {3.2.5}Worm Skeletonization}{19}{subsection.3.2.5}
-\contentsline {subsubsection}{\numberline {3.2.5.1}Implementation}{19}{subsubsection.3.2.5.1}
-\contentsline {subsection}{\numberline {3.2.6}Worm Segmentation}{24}{subsection.3.2.6}
-\contentsline {subsubsection}{\numberline {3.2.6.1}Implementation}{24}{subsubsection.3.2.6.1}
-\contentsline {subsection}{\numberline {3.2.7}Worm Shape Descriptor}{28}{subsection.3.2.7}
-\contentsline {subsubsection}{\numberline {3.2.7.1}Automatic Profile generation}{31}{subsubsection.3.2.7.1}
-\contentsline {subsection}{\numberline {3.2.8}Triangle mesh and rasterization}{32}{subsection.3.2.8}
-\contentsline {subsection}{\numberline {3.2.9}Profile-driven shape fitting}{32}{subsection.3.2.9}
-\contentsline {subsubsection}{\numberline {3.2.9.1}Worm Cluster shape fitting}{32}{subsubsection.3.2.9.1}
-\contentsline {subsubsection}{\numberline {3.2.9.2}Isolated Worms shape fitting}{32}{subsubsection.3.2.9.2}
-\contentsline {subsection}{\numberline {3.2.10}Manual Manipulation}{32}{subsection.3.2.10}
-\contentsline {subsubsection}{\numberline {3.2.10.1}Endpoint operations}{32}{subsubsection.3.2.10.1}
-\contentsline {subsubsection}{\numberline {3.2.10.2}Matching fixing}{32}{subsubsection.3.2.10.2}
-\contentsline {chapter}{\numberline {4}Experiments and Results}{33}{chapter.4}
-\contentsline {section}{\numberline {4.1}Experiments}{33}{section.4.1}
-\contentsline {section}{\numberline {4.2}Results}{35}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Initial Processing}{35}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Shape Matching}{38}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Matching Energy}{43}{subsection.4.2.3}
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{51}{section.5.2}
+\contentsline {section}{\numberline {1.1}Purpose and Motivation}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Earlier Work}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Structure of Thesis}{3}{section.1.3}
+\contentsline {chapter}{\numberline {2}Theoretical Framework}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Endrov}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}Thresholding}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Distance Transform}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}Skeletonization}{8}{section.2.4}
+\contentsline {section}{\numberline {2.5}Image Segmentation}{9}{section.2.5}
+\contentsline {section}{\numberline {2.6}Shape Matching}{9}{section.2.6}
+\contentsline {section}{\numberline {2.7}Shape descriptor}{11}{section.2.7}
+\contentsline {section}{\numberline {2.8}Cardinal Splines}{13}{section.2.8}
+\contentsline {section}{\numberline {2.9}Triangle mesh and rasterization}{13}{section.2.9}
+\contentsline {chapter}{\numberline {3}Methodology}{14}{chapter.3}
+\contentsline {section}{\numberline {3.1}Development Methodology}{14}{section.3.1}
+\contentsline {section}{\numberline {3.2}Solution Methodology Design}{14}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Previous reasoning}{14}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Methodology description}{16}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Thresholding}{19}{subsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Implementation}{19}{subsubsection.3.2.3.1}
+\contentsline {subsection}{\numberline {3.2.4}Distance transformation}{19}{subsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Implementation}{20}{subsubsection.3.2.4.1}
+\contentsline {subsection}{\numberline {3.2.5}Worm Skeletonization}{21}{subsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.5.1}Implementation}{21}{subsubsection.3.2.5.1}
+\contentsline {subsection}{\numberline {3.2.6}Worm Segmentation}{26}{subsection.3.2.6}
+\contentsline {subsubsection}{\numberline {3.2.6.1}Implementation}{26}{subsubsection.3.2.6.1}
+\contentsline {subsection}{\numberline {3.2.7}Worm Shape Descriptor}{30}{subsection.3.2.7}
+\contentsline {subsubsection}{\numberline {3.2.7.1}Automatic Profile generation}{33}{subsubsection.3.2.7.1}
+\contentsline {subsection}{\numberline {3.2.8}Triangle mesh and rasterization}{34}{subsection.3.2.8}
+\contentsline {subsection}{\numberline {3.2.9}Profile-driven shape fitting}{34}{subsection.3.2.9}
+\contentsline {subsubsection}{\numberline {3.2.9.1}Worm Cluster shape fitting}{34}{subsubsection.3.2.9.1}
+\contentsline {subsubsection}{\numberline {3.2.9.2}Isolated Worms shape fitting}{34}{subsubsection.3.2.9.2}
+\contentsline {subsection}{\numberline {3.2.10}Manual Manipulation}{34}{subsection.3.2.10}
+\contentsline {subsubsection}{\numberline {3.2.10.1}Endpoint operations}{34}{subsubsection.3.2.10.1}
+\contentsline {subsubsection}{\numberline {3.2.10.2}Matching fixing}{34}{subsubsection.3.2.10.2}
+\contentsline {chapter}{\numberline {4}Experiments and Results}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}Experiments}{35}{section.4.1}
+\contentsline {section}{\numberline {4.2}Results}{37}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Initial Processing}{37}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Shape Matching}{40}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Matching Energy}{45}{subsection.4.2.3}
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{51}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{51}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{53}{section.5.2}
