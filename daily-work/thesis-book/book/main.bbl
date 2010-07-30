@@ -21,6 +21,11 @@ Gunilla Borgefors.
 \newblock {\em Computer Vision, Graphics and Image Processing}, 34:344--371,
   1986.
 
+\bibitem{automated}
+Steven~D. Buckingham and David~B. Sattelle.
+\newblock Strategies for automated anlysis of c.elegans locomotion.
+\newblock {\em Invert Neurosci}, 8:121--131, 2008.
+
 \bibitem{onepass}
 Roland~T. Chin and Hong-Khoon Wan.
 \newblock A one-pass thinning algorithm and its parallel implementation.
@@ -32,6 +37,12 @@ Pedro~F. Felzenszwalb and Daniel~P. Huttenlocher.
 \newblock Distance transforms of sampled functions.
 \newblock {\em Cornell Computing and Information Science Technical Report},
   2004.
+
+\bibitem{huang}
+Schafer~WR Huang K-M, Cosman~P.
+\newblock Automated detection and analysis of foraging behavior in
+  caenorhabditis elegans.
+\newblock {\em J Neurosci Methods}, 2008.
 
 \bibitem{shapenonrigid}
 Rolf~Lakamper Longin Jan~Latecki and Ulrich Eckhardt.

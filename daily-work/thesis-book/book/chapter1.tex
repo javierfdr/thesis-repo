@@ -21,9 +21,8 @@ variety of microscopy-based high-throughput screening techniques.\\
  
 Before quantification, the worms have to be identified; this should be 
 automatic since there are too many worms to feasibly do this manually.
-As mentioned in 
-\cite{automated} despite the utility of \emph{C.elegans} models for genetic 
-manipulations the deployment in high throughput screens has been limited by 
+Despite the utility of \emph{C.elegans} models for genetic 
+manipulations, the deployment in high throughput screens has been limited by 
 labour-intesive manual assays used to score phenotypes, thus making arise
 an \emph{urgent need} for more rapid and more consistent methods.
 Hereby, a computer
@@ -33,7 +32,7 @@ improving the time-cost and accuracy with respect to manual identification,
 and converting the images into manageable data.\\
 
 The focus of this work is to design and implement an image processing
-strategy to detect C.elegans worms shapes on digital images.
+methodology to detect C.elegans worms shapes on digital images.
 It is easy for a human to find the worm conformation,
 to some extent also the rotation and direction; in this project we will only 
 try to find the conformation. We wish to know if is possible to detect and fit
@@ -50,7 +49,7 @@ carried out.
 \begin{itemize}
 \item General Objective
   \begin{itemize}
-  \item To design and implement an image processing strategy to detect
+  \item To design and implement an image processing methodology to detect
     and fit the shape of worms in digital images.    
   \end{itemize}
 \end{itemize}
@@ -75,14 +74,14 @@ carried out.
 
 \emph{C.elegans} has been deployed fastly in genetic screens and chemical
 screens, as mentioned in \cite{automated}. In the previously mentioned paper,
-the strategies for automated analysis of \emph{C.elegans} locomotion, are
+the strategies for automated analysis of \emph{C.elegans} locomotion are
 divided in three groups according to their methodological approach:
-Tracking overall behaviour, Detection and measurement of distinct behaviours,
+Tracking overall behaviour, Detection and measurement of distinct behaviours and
 measuring the complete behavioural repertoire using large parameters sets.
 All of this strategies are based in an initial processing step that aimes 
 the detection of the worm shapes in the images, that has become similar
 from one strategy to another. The detection usually involves extraction
-of the worm from the bacgkround (segmentation), reduction of the worm to a
+of the worm from the bacgkround (segmentation), reduction to
 skeleton and parameterization of worm outlines.\\
 
 Reduction to skeleton and parameterization have become a standard method. 

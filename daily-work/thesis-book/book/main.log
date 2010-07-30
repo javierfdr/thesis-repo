@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.7.6)  28 JUL 2010 02:34
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.7.6)  30 JUL 2010 02:37
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -467,15 +467,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--21
  []
 
 
-LaTeX Warning: Citation `automated' on page 1 undefined on input line 25.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 22--34
+Underfull \hbox (badness 10000) in paragraph at lines 22--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--41
+Underfull \hbox (badness 10000) in paragraph at lines 34--40
 
  []
 
@@ -484,31 +481,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--41
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 51.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 50.
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--87
+Underfull \hbox (badness 10000) in paragraph at lines 75--86
 
  []
 
 [2]
-
-LaTeX Warning: Citation `automated' on page 3 undefined on input line 96.
-
-
-LaTeX Warning: Citation `huang' on page 3 undefined on input line 99.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--101
+Underfull \hbox (badness 10000) in paragraph at lines 87--100
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--108
+Underfull \hbox (badness 10000) in paragraph at lines 101--107
 
  []
 
@@ -527,15 +517,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--35
 
 
 
-] <./images/thres/winter_o.png, id=307, 508.90125pt x 406.51875pt>
+] <./images/thres/winter_o.png, id=310, 508.90125pt x 406.51875pt>
 File: ./images/thres/winter_o.png Graphic file (type png)
 
 <use ./images/thres/winter_o.png>
-<./images/thres/winter_thres.png, id=308, 509.905pt x 406.51875pt>
+<./images/thres/winter_thres.png, id=311, 509.905pt x 406.51875pt>
 File: ./images/thres/winter_thres.png Graphic file (type png)
 
 <use ./images/thres/winter_thres.png> [5]
-<./images/dt/dtref.png, id=317, 633.36626pt x 1024.82875pt>
+<./images/dt/dtref.png, id=320, 633.36626pt x 1024.82875pt>
 File: ./images/dt/dtref.png Graphic file (type png)
 
 <use ./images/dt/dtref.png>
@@ -550,11 +540,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--121
 
 [6 <./images/thres/winter_o.png (PNG copy)> <./images/thres/winter_thres.png (P
 NG copy)>] [7 <./images/dt/dtref.png>]
-<./images/skeleton/horsebinary.png, id=343, 190.7125pt x 96.36pt>
+<./images/skeleton/horsebinary.png, id=346, 190.7125pt x 96.36pt>
 File: ./images/skeleton/horsebinary.png Graphic file (type png)
 
 <use ./images/skeleton/horsebinary.png>
-<./images/skeleton/horseskeleton.png, id=344, 190.7125pt x 96.36pt>
+<./images/skeleton/horseskeleton.png, id=347, 190.7125pt x 96.36pt>
 File: ./images/skeleton/horseskeleton.png Graphic file (type png)
 
 <use ./images/skeleton/horseskeleton.png>
@@ -623,7 +613,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--95
 
  []
 
-[15] <./images/diagrams/design-methodology.png, id=436, 614.295pt x 794.97pt>
+[15] <./images/diagrams/design-methodology.png, id=440, 614.295pt x 794.97pt>
 File: ./images/diagrams/design-methodology.png Graphic file (type png)
 
 <use ./images/diagrams/design-methodology.png>
@@ -664,11 +654,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--198
 
  []
 
-<./images/original.png, id=460, 501.875pt x 502.87875pt>
+<./images/original.png, id=464, 501.875pt x 502.87875pt>
 File: ./images/original.png Graphic file (type png)
 
 <use ./images/original.png>
-<./images/thres/worms.png, id=461, 501.875pt x 502.87875pt>
+<./images/thres/worms.png, id=465, 501.875pt x 502.87875pt>
 File: ./images/thres/worms.png Graphic file (type png)
 
 <use ./images/thres/worms.png>
@@ -685,19 +675,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--236
 LaTeX Warning: Reference `exp:dt' on page 20 undefined on input line 253.
 
 [20 <./images/original.png (PNG copy)> <./images/thres/worms.png (PNG copy)>]
-<./images/dt/binary.png, id=488, 778.91pt x 551.05875pt>
+<./images/dt/binary.png, id=492, 778.91pt x 551.05875pt>
 File: ./images/dt/binary.png Graphic file (type png)
 
 <use ./images/dt/binary.png>
-<./images/dt/manhattandt.png, id=489, 501.875pt x 355.3275pt>
+<./images/dt/manhattandt.png, id=493, 501.875pt x 355.3275pt>
 File: ./images/dt/manhattandt.png Graphic file (type png)
 
 <use ./images/dt/manhattandt.png>
-<./images/dt/chessboarddt.png, id=490, 501.875pt x 355.3275pt>
+<./images/dt/chessboarddt.png, id=494, 501.875pt x 355.3275pt>
 File: ./images/dt/chessboarddt.png Graphic file (type png)
 
 <use ./images/dt/chessboarddt.png>
-<./images/dt/euclideandt.png, id=491, 501.875pt x 355.3275pt>
+<./images/dt/euclideandt.png, id=495, 501.875pt x 355.3275pt>
 File: ./images/dt/euclideandt.png Graphic file (type png)
 
 <use ./images/dt/euclideandt.png>
@@ -725,7 +715,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 315--328
 [23]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 334.
- <./images/skeleton/skeleton.png, id=523, 414.54875pt x 498.86375pt>
+ <./images/skeleton/skeleton.png, id=527, 414.54875pt x 498.86375pt>
 File: ./images/skeleton/skeleton.png Graphic file (type png)
 
 <use ./images/skeleton/skeleton.png>
@@ -738,7 +728,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 434--444
 
  []
 
-[26] <./images/skeleton/directional.png, id=580, 363.3575pt x 170.6375pt>
+[26] <./images/skeleton/directional.png, id=584, 363.3575pt x 170.6375pt>
 File: ./images/skeleton/directional.png Graphic file (type png)
 
 <use ./images/skeleton/directional.png> [27 <./images/skeleton/directional.png>
@@ -757,7 +747,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 638--646
 
  []
 
-[30] [31] <./images/descriptor/descriptor.png, id=668, 548.0475pt x 313.17pt>
+[30] [31] <./images/descriptor/descriptor.png, id=672, 548.0475pt x 313.17pt>
 File: ./images/descriptor/descriptor.png Graphic file (type png)
 
 <use ./images/descriptor/descriptor.png>
@@ -871,11 +861,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 279--287
 
  []
 
-<./images/results/test1/complete-frame1.png, id=730, 501.875pt x 481.8pt>
+<./images/results/test1/complete-frame1.png, id=734, 501.875pt x 481.8pt>
 File: ./images/results/test1/complete-frame1.png Graphic file (type png)
 
 <use ./images/results/test1/complete-frame1.png>
-<./images/results/test1/complete-framebg1.png, id=731, 501.875pt x 481.8pt>
+<./images/results/test1/complete-framebg1.png, id=735, 501.875pt x 481.8pt>
 File: ./images/results/test1/complete-framebg1.png Graphic file (type png)
 
 <use ./images/results/test1/complete-framebg1.png>
@@ -887,19 +877,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [41] [42 <./images/results/test1/complete-frame1.png (PNG copy)> <./images/resu
 lts/test1/complete-framebg1.png (PNG copy)>]
-<./images/results/test2/guessing-nobgframe.png, id=746, 401.5pt x 481.8pt>
+<./images/results/test2/guessing-nobgframe.png, id=750, 401.5pt x 481.8pt>
 File: ./images/results/test2/guessing-nobgframe.png Graphic file (type png)
 
 <use ./images/results/test2/guessing-nobgframe.png>
-<./images/results/test2/guessing-bgframe.png, id=747, 401.5pt x 481.8pt>
+<./images/results/test2/guessing-bgframe.png, id=751, 401.5pt x 481.8pt>
 File: ./images/results/test2/guessing-bgframe.png Graphic file (type png)
 
 <use ./images/results/test2/guessing-bgframe.png>
-<./images/results/test2/frame2-allnobg.png, id=748, 401.5pt x 481.8pt>
+<./images/results/test2/frame2-allnobg.png, id=752, 401.5pt x 481.8pt>
 File: ./images/results/test2/frame2-allnobg.png Graphic file (type png)
 
 <use ./images/results/test2/frame2-allnobg.png>
-<./images/results/test2/frame2-all.png, id=749, 401.5pt x 481.8pt>
+<./images/results/test2/frame2-all.png, id=753, 401.5pt x 481.8pt>
 File: ./images/results/test2/frame2-all.png Graphic file (type png)
 
 <use ./images/results/test2/frame2-all.png>
@@ -913,26 +903,26 @@ LaTeX Warning: Text page 44 contains only floats.
 [44 <./images/results/test2/guessing-nobgframe.png (PNG copy)> <./images/result
 s/test2/guessing-bgframe.png (PNG copy)> <./images/results/test2/frame2-allnobg
 .png (PNG copy)> <./images/results/test2/frame2-all.png (PNG copy)>]
-<./images/results/test3/guess-nobg.png, id=767, 501.875pt x 501.875pt>
+<./images/results/test3/guess-nobg.png, id=771, 501.875pt x 501.875pt>
 File: ./images/results/test3/guess-nobg.png Graphic file (type png)
 
 <use ./images/results/test3/guess-nobg.png>
-<./images/results/test3/guess-bg.png, id=768, 501.875pt x 501.875pt>
+<./images/results/test3/guess-bg.png, id=772, 501.875pt x 501.875pt>
 File: ./images/results/test3/guess-bg.png Graphic file (type png)
 
 <use ./images/results/test3/guess-bg.png>
-<./images/results/test3/all-nobg.png, id=769, 501.875pt x 501.875pt>
+<./images/results/test3/all-nobg.png, id=773, 501.875pt x 501.875pt>
 File: ./images/results/test3/all-nobg.png Graphic file (type png)
 
 <use ./images/results/test3/all-nobg.png>
-<./images/results/test3/all-bg.png, id=770, 501.875pt x 501.875pt>
+<./images/results/test3/all-bg.png, id=774, 501.875pt x 501.875pt>
 File: ./images/results/test3/all-bg.png Graphic file (type png)
 
 <use ./images/results/test3/all-bg.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[45] <./images/results/test1/energy-graph.pdf, id=778, 505.89pt x 361.35pt>
+[45] <./images/results/test1/energy-graph.pdf, id=782, 505.89pt x 361.35pt>
 File: ./images/results/test1/energy-graph.pdf Graphic file (type pdf)
 
 <use ./images/results/test1/energy-graph.pdf> [46 <./images/results/test3/guess
@@ -944,7 +934,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 494--505
  []
 
 [47 <./images/results/test1/energy-graph.pdf>]
-<./images/results/test2/energy-graph.pdf, id=797, 505.89pt x 361.35pt>
+<./images/results/test2/energy-graph.pdf, id=801, 505.89pt x 361.35pt>
 File: ./images/results/test2/energy-graph.pdf Graphic file (type pdf)
 
 <use ./images/results/test2/energy-graph.pdf>
@@ -953,7 +943,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 521--536
  []
 
 [48 <./images/results/test2/energy-graph.pdf>]
-<./images/results/test3/energy-graph.pdf, id=809, 505.89pt x 361.35pt>
+<./images/results/test3/energy-graph.pdf, id=813, 505.89pt x 361.35pt>
 File: ./images/results/test3/energy-graph.pdf Graphic file (type pdf)
 
 <use ./images/results/test3/energy-graph.pdf>
@@ -981,34 +971,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--75
 
  []
 
-[52] [53]) [54] [55] (./main.bbl
-Overfull \hbox (195.71335pt too wide) in paragraph at lines 53--58
+[52] [53]) [54] [55] (./main.bbl [56
+
+
+]
+Overfull \hbox (195.71335pt too wide) in paragraph at lines 64--69
 []\OT1/cmr/m/n/12 Bryan S. Morse.  Shape de-scrip-tion (re-gions).  http://home
 pages.inf.ed.ac.uk/rbf/CVonline/LOCAL[]COPIES/MORSE/region-
  []
 
-[56
 
-
-]
-Underfull \hbox (badness 4805) in paragraph at lines 103--106
+Underfull \hbox (badness 4805) in paragraph at lines 114--117
 []\OT1/cmr/m/n/12 Marcel Luthi Thomas Al-brecht and Thomas Vet-ter.  De-formabl
 e mod-els.
  []
 
 
-Overfull \hbox (38.4463pt too wide) in paragraph at lines 124--127
+Overfull \hbox (38.4463pt too wide) in paragraph at lines 135--138
 []\OT1/cmr/m/n/12 Wikipedia.  Topo-log-i-cal skele-ton.  http://en.wikipedia.or
 g/wiki/Topological[]skeleton#cite[]note-
  []
 
-
-Underfull \hbox (badness 1509) in paragraph at lines 129--133
+[57]
+Underfull \hbox (badness 1509) in paragraph at lines 140--144
 []\OT1/cmr/m/n/12 Wikipedia.  Thresh-old-ing(image pro-cess-ing).  []$\OT1/cmtt
 /m/n/12 http : / / en . wikipedia . org / wiki /
  []
 
-[57]) [58] (./main.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux)
+) [58] (./main.aux (./chapter1.aux) (./chapter2.aux) (./chapter3.aux)
 (./chapter4.aux) (./chapter5.aux))
 
 LaTeX Warning: There were undefined references.
@@ -1018,8 +1008,8 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5691 strings out of 95086
- 79341 string characters out of 1183256
+ 5693 strings out of 95086
+ 79365 string characters out of 1183256
  144002 words of memory out of 1500000
  8392 multiletter control sequences out of 10000+50000
  13886 words of font info for 53 fonts, out of 1200000 for 2000
@@ -1035,9 +1025,9 @@ b></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf
 -texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1
 /bluesky/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmtt12.
 pfb>
-Output written on main.pdf (64 pages, 2904070 bytes).
+Output written on main.pdf (64 pages, 2905016 bytes).
 PDF statistics:
- 973 PDF objects out of 1000 (max. 8388607)
- 292 named destinations out of 1000 (max. 131072)
+ 977 PDF objects out of 1000 (max. 8388607)
+ 294 named destinations out of 1000 (max. 131072)
  445 words of extra memory for PDF output out of 10000 (max. 10000000)
 
