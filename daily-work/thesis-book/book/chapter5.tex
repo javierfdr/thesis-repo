@@ -16,7 +16,7 @@ to turn the microscope worm images into manageable computer data and
 improve considerably the time cost and matching accuracy with respect
 to manual identification.\\
 The methodology design and implementation are efficient enough to provide
-a complete identification of worms in short time, using a personal computer.\\
+a complete identification of worms in short time using a personal computer.\\
 The solution is said to be semi-automatic because of the need of manual
 tweaking in two steps of the process: endpoint identification and
 final matching. Once the endpoints are completely identified, the automatic
@@ -25,10 +25,9 @@ the total in the worst case), that can be even be optimal in \emph{easy}
 images. The final matching process allows the user to re-arrange the 
 automatic solution, providing an optimal match for the image.\\
 The \emph{Initial Processing} step is fastly executed, less than
-$1\%$ of the total execution time.On the other hand The \emph{Shape Matching}
+$1\%$ of the total execution time. On the other hand The \emph{Shape Matching}
 step is the most time consuming process, taking the $99\%$ of the total
-time, excluding the time taken for manual processes, that relies on the user,
-though is normally low.
+time excluding the time taken for manual adjustments (though normally fast).
 
 \subsection*{Isolated Worms and Worm Cluster matching}
 
@@ -37,13 +36,12 @@ an automatic process, without the need of manual addition of endpoints
 or match fixing. An accurate image worm profile can be successfully 
 calculated from the \emph{isolated worms}.\\
 The identification of worms in \emph{worm clusters} represented the most 
-challenging process of the worm fitting methodology. A high amount
-of worms leads to multiple overlapping and then to the creation of worm 
-clusters, increasing the possibility of having missing endpoints. The missing
-endpoints makes impossible to identify the corresponding worms in the image,
-so the manual addition is required.\\
+challenging process of the worm fitting methodology. A high density
+of worms leads to multiple overlaps and clusters where endpoints can fail
+to be detected. Worms will not be identified correctly if endpoints are
+missing so manual adjustments are required.\\
 The shape of \emph{isolated worms} can be traced accurately in all the cases.
-For worm in clusters the shape is initially matched through the perturbation
+For worms in clusters the shape is initially matched through the perturbation
 of a descriptor that is built from a worm profile. Once the optimal shape
 is found the contours of the generated shape are expanded or contracted
 to fit the individual shapes. This process is performed successfully, and in
@@ -53,10 +51,10 @@ to the worm shape in the image.
 \subsection*{Path Guessing}
 
 The path guessing heuristic improves considerably the matching accuracy
-of the automatic process. Since worm clusters provide a high amount of 
-possible paths to follow between pair of endpoints, the path guessing
+of the automatic process. Since worm clusters provide a large amount of 
+candidate paths between pairs of endpoints, the path guessing
 becomes a useful tool to determine the more likely worm paths departing
-from every endpoint. Nonetheless, given the highly deform-able nature
+from every endpoint. Nonetheless, given the highly deformable nature
 of worm shapes, the path guessing heuristic fails in occasions to determine
 the correct path for endpoints.
 
@@ -65,11 +63,11 @@ The optimization process manages to reduce considerably the difference
 between a descriptor based shape
 and the matched worm shape, by the perturbation process performed over
 the angles between control points. \\
-The best-in-neighborhood local search approach for the optimization algorithm,
-results then to be an effective and fast way to obtain an accurate matching
+The best-in-neighborhood local search approach for the optimization algorithm
+is then an effective and fast way to obtain an accurate matching
 shape by deformation. The efficacy of local search for this approach resides
 in the fact that the original shape is constructed over a sub-path of the
-skeleton image. Since the skeleton is an approximated medial axis path, then
+skeleton image. Since the skeleton is an approximated medial axis path, 
 the initial shape tends to be near (in shape distance terms) to the shape 
 in the image.\\
 
@@ -81,8 +79,8 @@ leading to a correct match. However the top two conformations tend to be
 very close to each other, which leads to matching errors, thus making
 the objective function not sensitive enough to provide an automatic perfect
 match in difficult images. A more sophisticated energy formulation that
-takes more advantage of the information in the image, could
-then allow to make better differences between conformations, and possibly
+takes more advantage of the information in the image could
+differentiate better between conformations and possibly
 lead to perfect automatic matches for difficult images.
 
 
@@ -100,7 +98,11 @@ does not selected the best possible set of assignments in all the cases.
 An implementation of a non-bipartite graph assignment algorithm, where
 the departure and arrival set are conformed by all the endpoints of a worm
 cluster, would allow to obtain the best possible assignation, leading
-probably to a higher matching percentage for the automatic algorithm.
+probably to a higher matching percentage for the automatic algorithm.\\
+
+It is however not clear if a different algorithm will improve precision.
+Solutions for other problems not found by greedy algorithms tend to be
+non-intuitive and physically infeasible [personal communication, Johan Henriksson].
 
 
 \subsection*{Energy Formulation}
@@ -127,9 +129,9 @@ efficiency of the automatic solution, and reduce the time spent in
 manual endpoint addition. A suggested way of finding missing endpoints is
 to use the path guessing algorithm to trace the more likely worm paths 
 from endpoints, after a number of pixels have been covered (\emph{e.g} the
-estimated worm length calculated for profiling).Once this point is reached
+estimated worm length calculated for profiling). Once this point is reached
 a neighborhood analysis can be performed to look for pre-existing 
-worm endpoints and then place a new one at this point in case of no endpoint 
+worm endpoints and then place a new one at this point in case no endpoint 
 is found. This approach has the possible drawback that the path guessing
 algorithm not always follows a correct path so incorrect endpoints would
 be added. A way of reducing the misplacing of endpoints would be to execute

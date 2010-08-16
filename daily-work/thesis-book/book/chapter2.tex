@@ -27,7 +27,7 @@ In image processing applications where the study is focused on particular object
 in an image, thresholding becomes an simple tool to separate these objects from
 the background, but not always accurate. Commonly, the gray levels belonging to the object are substantially
 different from the gray levels of the background pixels. In \cite[p.146]{thres} many thresholding
-applications on image processing are mentioned such as: document image analysis, where the goal
+applications in image processing are mentioned such as: document image analysis, where the goal
 is to extract printed characters, logos, graphical content, or musical scores; map processing
 where lines, legends and characters are to be found; scene processing, where a target is to
 be detected; and quality inspection of materials, where defective parts must be delineated,
@@ -53,7 +53,7 @@ correlation between pixels
 to the local image characteristics.
 \end{itemize}
 
-Below, in fig.\ref{fig:thres1}, two images are shown that correspond to a gray-scale image
+In fig.\ref{fig:thres1}, two images are shown that correspond to a gray-scale image
 and binary image obtained by thresholding.
 
 \begin{figure}[h t b p ! H]
@@ -77,13 +77,13 @@ background. The obtained image is then a sort of gray-scale representation
 of the foreground pixels in the binary image.\\
 The pixel mapping depends mainly on the distance metric, which is the 
 measurement method of distance between image pixels. Different metrics have been 
-studied  to find distance maps such as 
+studied to find distance maps such as 
 \emph{City Block or Manhattan},
 \emph{Chessboard}, \emph{Euclidean}, \emph{Chamfer 3-4}, \emph{Octagonal}, among
 others.\cite[p.363]{dtresearch}. There exist a great amount of
-distance metric of other kinds, that are useful for different purposes.
+distance metric of other kinds that are useful for different purposes.
 These are commonly derived from the previous.
-Below, Fig.\ref{fig:dtexamples} shows the images obtained by applying different distance metrics.
+Fig.\ref{fig:dtexamples} shows the images obtained by applying different distance metrics.
 
 \begin{figure}[h t b p ! H]
  \centering
@@ -131,7 +131,7 @@ from a horse shape and the original binary image.\\
 
 Depending on the way they are produced, skeletons can be categorized in different types.
 Telea et al describe three types in \cite{augmented}, such as: \emph{Morphological Thinning},
-\emph{Geometric Methods} and \emph{Distance transform}. The \emph{Morphological Thinning} methods itereratively peel off (or reduce) the boundary layer by layer, identifying
+\emph{Geometric Methods} and \emph{Distance transform}. The \emph{Morphological Thinning} methods iteratively peel off (or reduce) the boundary, layer by layer, identifying
 points whose removal does not affect the object's topology. These are usually 
 straightforward and usually require intricate heuristics to ensure the skeletal
 connectivity, as mentioned in \cite{augmented}. Two fast parallel approaches that
@@ -148,10 +148,9 @@ finding the ridge points and connecting them \cite{maxima,euclideancentre,ridgei
 but neither connectivity nor completeness.\\
 
 Skeletons are important for object representation and recognition in different areas,
-such as:   computer vision, image analysis, and digital image processing, 
+such as: computer vision, image analysis, and digital image processing, 
 including optical character recognition, fingerprint recognition, visual inspection,
- pattern recognition, binary image compression, and protein folding, as mentioned
-on \cite{skprotein}.
+pattern recognition, binary image compression, and protein folding \cite{skprotein}.
 
 
 \section{Image Segmentation}
@@ -162,9 +161,9 @@ on \cite{skprotein}.
 \label{sec:shapefitting}
 
 Shape matching is a central problem in visual information systems,
-computer vision, pattern recognition, and robotics \cite{matchingbook}. 
-It consists in identifying the area or contour of a specific
- shape or class of shapes in an image, and plays a fundamental
+computer vision, pattern recognition and robotics \cite{matchingbook}. 
+It consists of identifying the area or contour of a specific
+shape or class of shapes in an image, and plays a fundamental
 role in content extraction from images and content-based image
 retrieval. In \cite{matching2} Veltkamp explains that shape 
 matching deals with transforming a shape and measuring the 
@@ -172,7 +171,7 @@ resemblance with another one, using some similarity measure, that
 normally correspond to the notion of distance between shapes.\\
 The concept of shape is abstract, but most approaches in 
 shape matching represent a shape as a geometrical object.
-This can be both a set of points, curves, surfaces, solids,etc.
+This can be both a set of points, curves, surfaces, solids etc.
 and a geometrical pattern modulo some transformation group,
 in particular similarity transformations (translations, rotations 
 and scalings), as is stated in \cite{matching2}. Usually a
@@ -243,25 +242,25 @@ forces and influenced by image forces that pull it toward
 features such as lines and edges. The \emph{snakes} are said to
 be active contour models because they lock onto nearby edges,
 localizing them accurately.\\
-The \emph{snakes} model is defined as a controlled continuity spline that is bound
-to internal and external image forces, called energies. The external energy models how well
+The \emph{snakes} model is defined as a controlled continuous spline that is bound
+by internal and external image forces, called energies. The external energy models how well
 the deformed model matches the data. The internal energy models
 the objects resistance to be pushed by the external force into directions not coherent
-with the prior knowledge, as is stated in \cite{deformable}. The internal energy  imposes 
-a ``piecewise smoothness constraint'',\cite{snakes}. This means that a contour is
+with the prior knowledge \cite{deformable}. In this case, the internal energy  imposes 
+a ``piecewise smoothness constraint'' \cite{snakes}. This means that a contour is
 pushed to an image feature by the external force while the contour itself exhibits resistance
-to be deformed into a non-smooth curve. \\
+to be deformed into a non-smooth curve. As is explained in \cite{deformable} the image forces push the snake toward
+salient image features like line, edges and subjective contours, while the external constraint forces
+are responsible for putting the snake near the desired local minimum.\\
 
-Given these definitions, let $M$ be the model and $D$ a data set
-the energy $E$ can be defined as:
+Given these definitions, let $M$ be the model and $D$ a data set, 
+the total energy $E$ can be defined as:
 
 $$E(M) = E_{ext}(M,D) + E_{int}(M)$$
 
 where $E_{ext}$ is the external energy function and $E_{int}$ the 
-internal energy function. As is explained in \cite{deformable} the image forces push the snake toward
-salient image features like line, edges and subjective contours, while the external constraint forces
-are responsible for putting the snake near the desired local minimum.
-Having this, the optimization algorithm consists in minimizing the objective
+internal energy function. 
+Having this, the optimization algorithm consists of minimizing the objective
 function until the best solution is found.
 
 
@@ -270,18 +269,15 @@ function until the best solution is found.
 
 A shape descriptor is a structured abstraction of a class
 of shapes that describes them in geometrical terms.
-Shape descriptors can be constructed as either fixed or variable
-geometrical shape. If the descriptor is of the variable type 
-then depending on the different values assigned to its
-parameters, different shapes are generated
-but still belong to the same type or class of shapes.
-As stated in \cite{wormparam}
-shape models have been used widely to achieve robust interpretation of complex
-images. They allow image evidence to be organized into plausible interpretations
+Shape descriptors can have either fixed or variable
+geometrical shape. Variable descriptors depend on the different values assigned to its
+parameters, different shapes are generated but still belong to the same type or class of shapes.
+Shape models have been used widely to achieve robust interpretation of complex
+images \cite{wormparam}. They allow image evidence to be organized into plausible interpretations
 which can then be verified.\\
 
-In \cite{shapenonrigid} Latecki et al divide shape descriptors into three
-main categories:
+Latecki et al divide shape descriptors into three
+main categories: \cite{shapenonrigid}
 \begin{itemize}
 \item \textbf{Contour based descriptors: }The contour of a given object is 
 mapped to some representation from which a shape descriptor is derived
@@ -295,12 +291,12 @@ is computed by some tree-matching algorithm
 \end{itemize}
 
 Considering that basically shape descriptors are ``attempts to quantify shape in 
-ways that agree with human intuition''\cite[p.1]{desclecture} any kind of 
+ways that agree with human intuition''\cite[p.1]{desclecture}, any kind of 
 geometrical interpretation that covers the contents or properties that want 
 to be described on a shape, can be used as a shape descriptor.
 In \cite{desclecture} region-based shape descriptors are covered which are such
 that attempt to describe a shape based on the geometrical and numerical properties
-of the region of the shape. First some simple descriptors are mentioned such as:
+of the region of the shape. Some simple descriptors are mentioned such as:
 area, perimeter, (Non-)Compactness or (Non-)Circularity, Eccentricity, Elongation,
 Rectangularity and Orientation. Any combination of this properties of a shape are
 useful to describe them in a basic and general way.
@@ -315,8 +311,8 @@ points defined by: top left, top right, left top, left bottom, bottom right,
 bottom left,right top and right bottom. \emph{Profiles} shape descriptor 
 is based on the number of pixels that the shape has in a given direction:
  either vertical, horizontal or diagonal. \emph{Moments} refer to the
- calculation of \emph{moment} statistical property and 
-\emph{profile moment}, a combination of the last two.\\
+ calculation of \emph{moment} statistical properties and 
+\emph{profile moments}, or a combination of the last two.\\
 \cite{web:wikishape} classifies shape descriptors by their
 invariance with respect to the transformations allowed in the associated
 shape definition. The main classes are descriptors invariant with respect 
@@ -328,7 +324,7 @@ to those that do not change with different isometric embeddings of the shape,
 and thus can be applied accurately to deformable objects.
 
 Depending on the properties that are controlled and measured, the descriptor
-may allow or not to reconstruct a shape of the class. In \cite{wormparam} 
+may or may not allow to reconstruct a shape of the class. In \cite{wormparam} 
 a trainable method of shape representation is described which can
 automatically capture the invariant properties of a class of shapes and 
 provide a compact parametric description of variability. The method was
