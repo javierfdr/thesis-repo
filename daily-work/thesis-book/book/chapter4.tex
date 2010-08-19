@@ -116,8 +116,6 @@ that produced acceptable solutions after the combination of binary images
 generated from different number of classes, however the results were not as good as
 the ones obtained with \emph{Percentile} and also required more processing.
 
-
-
 \begin{table}[h]
   \caption{Best percentile values for Percentile Thresholding of test images}
 \begin{center}
@@ -159,16 +157,16 @@ to cover all the endpoints for the worms in the image.
     \hline
   \end{tabular}
 \end{center}
-  \label{tab:endtable}
+  \label{table:endtable}
 \end{table}
 
-Table \ref{tab:endtable} presents the number of endpoints identified
+Table \ref{table:endtable} presents the number of endpoints identified
 automatically for every test image and the number of endpoints that must be added manually.
 It shows that a large number of worms belonging
 to \emph{worm clusters} increases the probability to have endpoints overlapping, 
 as does a high density of worms.
 Considering the large number of worms that belong to worm clusters 
-for images two and three ($75\%$ and $65\%$ respectively) and the low
+for images two and three (as show in  Table \ref{tab:testset}) and the low
 number of clusters for each one (which increases the overlapping), the amount
 of missing endpoints can be considered fairly low and it is feasible to add them manually.
 
@@ -179,7 +177,7 @@ it is necessary to have \emph{isolated worms} in the processed image. The percen
 of \emph{isolated worms} for every image were $57.8\%$, $24.2\%$ and $34.2\%$ 
 respectively,
 oscillating between $8$ and $13$ worms, as shown in Table \ref{tab:testset}. 
-For all images the generated worm profiles were sufficiently accurate to
+For all images, the generated worm profiles were sufficiently accurate to
 conduct the optimization shape matching process, whose results are presented in 
 the subsections named \emph{Automatic Shape Matching} for every test image result.
 
@@ -217,11 +215,11 @@ selected endpoint and end in a wrong one.
 \subsubsection*{Automatic Shape Matching (Test Image 1)}
 
 Since for the test image 1 all the endpoints are found automatically, as shown in 
-Table \ref{tab:endtable}, the results presented here show the matching efficiency and
+Table \ref{table:auto1}, the results presented here show the matching efficiency and
 runtime just for the variations Every Path and Path Guessing, that include all the
 worm endpoints. Table \ref{table:auto1} presents the obtained results.
 
-\begin{table}[h]
+\begin{table}[h!]
   \caption{Results of automatic worm shape matching on test image 1}
   \begin{center}
   \begin{tabular}{|>{\columncolor[gray]{0.9}} p{3cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|c|}
@@ -241,10 +239,9 @@ worm endpoints. Table \ref{table:auto1} presents the obtained results.
 \end{table}
 
 It can be observed that in both variations of the algorithm the 
-\emph{isolated worms} were all matched. For the worms that belong 
-to clusters, the Every Path variation matched correctly $6/8$ corresponding
-to the $75\%$ of the clustered worms, for a total matching of $17/19$. On 
-the other hand the Path Guessing variation managed to match automatically 
+\emph{isolated worms} were all matched. For the Every Path variation 
+three quarters of the worms in clusters were matched correctly.
+On the other hand the Path Guessing variation managed to match automatically 
 all the worms in the image. The execution time is slightly higher for the
 Path Guessing Variation, as expected because of the extra calculations that
 must be performed to calculate the best paths departing from each endpoint.\\
@@ -293,21 +290,18 @@ The results for automatic matching on test image 2 are shown in table \ref{tab:t
 It can be observed that for every variation the Isolated Worms were matched
 totally. For the two variations that have missing endpoints just around
 the half of the total worms could be matched. Though the execution time is
-lower, which is expected given the decrease of feasible paths, not having an
+slower, which is expected given the decrease of feasible paths, not having an
 endpoint of a worm makes impossible to find a shape that matches it correctly.
-For the variations that include endpoints the results are better showing 
-$69.7\%$ and $87.8\%$ percentage of total matching for Every Path and 
-Path Guessing respectively. \\
+For the variations that include endpoints the results are considerably better.
 It can be observed that the Path Guessing variation
-increases the matching accuracy considerable, in both missing and not missing
-endpoints set of variations. The execution time also increases considerably
+increases the matching accuracy, in both missing and not missing
+endpoints set of variations. The execution time also increases
 when all endpoints are added, as expected. 
-The Path Guessing variation presents just a slight execution time increase with
-respect to the Every Path, while increasing the matching percentage 
-considerably.\\
+For the Path Guessing variation the matching percentage increases considerably,
+although is slightly slower than Every Path.
 In the best case the automatic matching solution manages to fit the shape
-for all the isolated worms and $84\%$ of the clustered worms, for 
-a total matching of $87.7\%$ in $45$ seconds.
+for all the isolated worms and a high percentage of the clustered worms in
+less than a minute.
 
 \subsubsection*{Matching Manual Adjustment (Test Image 2)}
 
@@ -339,7 +333,7 @@ Finally all of the worms in the image could be fitted.
 The results for automatic matching on test image
 3 are presented in table \ref{tab:tab3}. The four variations for the algorithm are shown.
 
-\begin{table}[h]\begin{tabular}{|>{\columncolor[gray]{0.9}} p{3cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|c|}
+\begin{table}[h!]\begin{tabular}{|>{\columncolor[gray]{0.9}} p{3cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|c|}
     \hline
     \rowcolor[gray]{.9}
     Path finding & Isolated Worms matching & Cluster Worms matching 
@@ -362,12 +356,11 @@ The results for automatic matching on test image
 The isolated worms were always matched successfully.
 Every Path and Path Guessing with missing points, 
 the total matching is around the half of the total. 
-With missing endpoints adjusted, the level of accuracy increases considerably,
-reaching $68.4\%$ and $76.3\%$ for Every Path and Path Guessing, respectively.\\
+With missing endpoints adjusted, the level of accuracy increases considerably.
 Calculation is slower with more endpoints.
 The Path Guessing variations is always better than Every Path, and is slightly slower.\\
 The best variation was the Path Guessing with no missing endpoints, managing
-to match all the \emph{isolated worms} and a total of $76.3\%$ of the 
+to match all the \emph{isolated worms} and a total of three quarters of the 
 whole image.
 
 \subsubsection*{Matching Manual Adjustment (Test Image 3)}
@@ -403,23 +396,23 @@ area covered by the matching shape, so all the possible energy values are
 contained in the interval $[0,1]$ and the optimized shapes tend to take values
 from one to three decimals close to $0$.
 
+\captionsetup[subfloat]{farskip=-0.8cm,captionskip=-0.2cm}
 
 %Distance between images could be reduced to make graphs larger
 \begin{figure}[htp]
   \begin{center}
-    \subfloat[Image 1]{\label{fig:energy1b}\includegraphics[scale=0.5]{results/test1/energy-graph}} \\
-    \subfloat[Image 2]{\label{fig:energy2b}\includegraphics[scale=0.5]{results/test2/energy-graph}} \\
-    \subfloat[Image 3]{\label{fig:energy3b}\includegraphics[scale=0.5]{results/test3/energy-graph}}
+    \subfloat[Image 1]{\label{fig:energy1b}\includegraphics[scale=0.58]{results/test1/energy-graph}}\\
+    \subfloat[Image 2]{\label{fig:energy2b}\includegraphics[scale=0.58]{results/test2/energy-graph}}\\
+    \subfloat[Image 3]{\label{fig:energy3b}\includegraphics[scale=0.58]{results/test3/energy-graph}}
   \end{center}
   \caption{Energy value for the best three conformations by endpoint ID on test
 images. The right conformation is red. The selected endpoints correspond to worms in worm clusters that
 have more than two possible conformations.}
   \label{fig:energy123}
 \end{figure}
-
+\showcaptionsetup{subfloat}
 
 \subsubsection*{Test Image 1}
-
 
 For most endpoints the correct conformation has the lowest energy value.
 In two cases a wrong conformation had a lower energy value than the correct
@@ -446,7 +439,7 @@ algorithm.\\
 
 \subsubsection*{Test Image 3}
 
-Among the 22 endpoints, 9
+Among the 22 endpoints, for 9
 of them the second best conformation resulted to have a better energy value
 than the correct conformation. This is consistent with the results presented
 in Table \ref{tab:tab3} where for the best variation (Path Guessing), the

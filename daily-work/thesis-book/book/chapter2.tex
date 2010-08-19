@@ -5,6 +5,32 @@
 \section{Endrov}
 \label{sec:endrov}
 
+\emph{Endrov} is an open source plugin architecture aimed for image analysis and data processing.
+Being based on \emph{Java}, it is portable and can both be run locally and as an applet, as mentioned
+in \cite{web:endrov}. It grew out of the need for an advanced open source software 
+that can cope complex spatio-temporal image data, mainly obtained from microscopes in 
+biological research. \emph{Endrov} aimes to improve the features of the standard 
+open source image anaylisis program, \emph{ImageJ}, by providing a more modern design.\\
+The main issues with ImageJ are that it does not support metadata, there is no real support of 5D, 
+the plugin architecture is messy, views cannot easily be extended and the batch 
+process is difficult, as pointed out in \cite{web:endrovhome}.
+Other problems that inspired the creation of \emph{Endrov} were: the lack of a standardize
+image format and the difficulty to store complex data in the existing open formats.
+The development groupt created the OST format in order
+to handle the large imagesets. OST is now a tree based object file format and it can store any 
+type of data, but is optimized for images. 
+Reading and writing single image panes is fast (independent of imageset size) 
+and there is no need to read everything into memory, \cite{web:endrovhome}.\\
+
+Endrov is both a library and an imaging program. The design has made strong emphasis on 
+separating GUI code from data types, filters and other data processing plugins. 
+The idea is that the program can be used for most daily use or prototyping, and for 
+bigger batch processing or integration, \cite{web:endrov}.\\
+
+\emph{Endrov} was developed at the \emph{TBU Group, Karolinska Institute} and was officially released 
+on 17 June 2009, under BSD license.
+
+
 
 \section{Thresholding}
 \label{sec:thresholding}
@@ -143,7 +169,7 @@ methods produce an accurate connected skeleton, but are fairly complex to implem
 require a robust boundary discretization, and are computationally expensive''
 \cite[p.251]{augmented}. The third defined method computes \emph{the distance transform}
 (see Sec. \ref{sec:dt}) of the objects boundary. The common approach consists in
-finding the ridge points and connecting them \cite{maxima,euclideancentre,ridgeineuc}.
+finding the ridge points and connecting them \cite{maxima,euclideancentre,ridgedt}.
  Usually they can ensure the accurate localization of skeleton points 
 but neither connectivity nor completeness.\\
 
@@ -151,10 +177,6 @@ Skeletons are important for object representation and recognition in different a
 such as: computer vision, image analysis, and digital image processing, 
 including optical character recognition, fingerprint recognition, visual inspection,
 pattern recognition, binary image compression, and protein folding \cite{skprotein}.
-
-
-\section{Image Segmentation}
-\label{sec:segmentation}
 
 
 \section{Shape Matching}
@@ -331,11 +353,33 @@ provide a compact parametric description of variability. The method was
 applied on worms, obtaining a shape descriptor that reconstruct different
 bending worm shapes by modifying the values of the parameters.\\
 
-
-\section{Cardinal Splines}
+\section{Splines}
 \label{sec:splines}
 
-\section{Triangle mesh and rasterization}
-\label{sec:triangle}
+The term spline, as it is used in this work, refers to a piecewise polynomial curve. Splines
+are wide used in computer science subfields because of the simplicity of their constructions,
+their easy and accuracy of evaluation, and their capacity to approximate complex shapes
+through curve fitting and interactive curve design, as mentioned in \cite{web:splines}.
+The continous signal representation is particularly apposite for 
+problems such as: edge detection, surface fitting and multiresolution
+techniques. It is useful for many other problems in computer
+vision such as: optical flow, surface reconstructoin, the recovery
+of lightness and color, shape from shading and stereo matching,
+\cite[821]{splinespap}.
 
-
+Special types of splines receive different names, depending of different conditions.\\
+A commongly used type of spline in object recognition is the Hermite spline.This is
+is a third-degreee spline, expressed using Hermite polynomials to represent each of the 
+individual polynomial pieces. 
+Several methods have been invented to fit such splines to given data points such
+as \emph{Cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow to
+construct smooth curves that go through every point in a given data set. Thus, \emph{e.g.} 
+given a series of points belonging to the contour of an object, a smooth shape can be 
+calculated that models the shape of the defined object.  
+Such as B-splines, Hermit splines have a number of advantages for image processing, as
+mentioned in \cite{splinespap}.
+First, they are usually smooth and well behaved, therefore the do not tend to oscillate
+as higher order polynomials do. Second, the juxtaposition of local polynomial approximations
+may produce strong discontinuities in the connecting regions, B-spline
+surfaces, by contrast, are continous everywhere. 
+Finally, they can be evaluated efficiently.

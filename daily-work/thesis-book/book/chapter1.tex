@@ -3,7 +3,7 @@
 \chapter{Introduction}
 \pagenumbering{arabic}
 
-\section{Purpose and Motivation}
+\section{Motivation and Purpose}
 \label{sec:motivation}
 
 C. elegans is a widely used model organism. It has the advantage of all worms 
@@ -28,7 +28,7 @@ improving the time-cost and accuracy with respect to manual identification,
 and converting the images into manageable data.\\
 
 The focus of this work is to design and implement an image processing
-methodology to detect C.elegans worms shapes on digital images.
+methodology to detect C.elegans worms shapes on microscope images.
 It is easy for a human to find the worm conformation,
 to some extent also the rotation and direction; in this project we will only 
 try to find the conformation. We wish to know if is possible to detect and fit
@@ -39,8 +39,9 @@ grown in liquid culture which causes the microscope image background to be
 very clear, but worms overlap frequently. Ordinary bright-field images are 
 used for the morphology. The implementation is to be adjusted to \emph{Endrov},
 an open-source plugin architecture aimed for image analysis and data processing,
-developed and used at \emph{Karolinska Institute}, where this thesis is 
-carried out.
+developed and used at the 
+\emph{Department of Bioscience and Nutrition, Karolinska Institutet}. 
+where this thesis is carried out.
 
 \begin{itemize}
 \item General Objective
@@ -56,11 +57,11 @@ carried out.
     receives images of worms in liquid culture as input, and ouputs
     fitted shapes of these worms.
     \begin{itemize}
-    \item To review the background on shape matching and object recognition and
-      propose a general matching approach.
-    \item To review the background on image segmentation techniques.
+    \item To review the background on image segmentation techniques.    
     \item To design a shape descriptor and a rasterization method to
       represent worms in numerical terms.
+    \item To review the background on shape matching and object recognition and
+      propose a matching approach.    
     \end{itemize}
   \item To implement the designed algorithm as a plugin for \emph{Endrov}
   \end{itemize}
@@ -112,3 +113,26 @@ and normally involves image sets and not individual images, as explained.
 Though some automated worm tracking programs are able to identify and track
 individual worms and group of worms, few of them attempt to overcome the 
 problem of worm interaction and none solves it successfully.
+
+\section{Structure of Thesis}
+This document is divided in the following way:
+\begin{itemize}
+\item \textbf{Chapter 1: Introduction}\\
+  The motivation and purpose of the thesis is discussed. Then, earlier work
+  on worms detection is presented, pointing out different approaches, achievements
+  and current problems.
+\item \textbf{Chapter 2: Theoretical Framework}\\
+  The theory related to the problem and the solution is explained. Each topic is described,
+  and the different studied approaches are addressed.
+\item \textbf{Chapter 3: Methodology}\\
+  The proposed solution is reasoned and presented as a methodology. Then, each step 
+  involving the methodology is explained thoroughly, comprising a description of the 
+  approach and some implementation details.
+\item \textbf{Chapter 4: Experiments and Results}\\
+  A series of experiments to test the performance of the solution are presented. 
+  The purpose and characteristics of each experiments are described. Then, the results
+  of carrying out the experiments are shown and discussed.
+\item \textbf{Chapter 5: Conclusions and Future Work}\\
+  The conclusions obtained from the discussion of the results are presented. Future
+  work suggestions are made in order to improve the proposed solution.
+\end{itemize}
