@@ -1,0 +1,117 @@
+\documentclass[12pt,letterpaper,oneside]{book}
+
+\RequirePackage{amsmath}
+
+%compile just these 'include' tags
+\includeonly{chapter1,chapter2,chapter3,chapter4,chapter5} 
+
+\title{Presentation}
+
+\begin{document}
+\section*{Introduction}
+
+\begin{itemize}
+\item C.elegans: how are them, why are they being used.
+\item Problem: too many to fit them manually -> automated solution
+\item Endrov: Particularly at the karolinska institute they will
+  like it. Endrov intents to be next standard
+\end{itemize}
+
+\subsection*{Objectives}
+\begin{itemize}
+\item General Objective
+\item Specific Objectives
+\end{itemize}
+
+\section*{Background}
+\begin{itemize}
+\item Tracking
+\item Not tracking
+\item Cluster problems. Trackers attempt to solve it through
+  large data sets. Not trackers with sets of one image. High
+  percentage, never total.
+\item Segm-Sk-Parameterization
+\item Optimization varies
+\end{itemize}
+
+\section*{Methodology}
+
+\subsection*{Reasoning}
+%reasoning Big Image
+\begin{itemize}
+\item Image must be segmented in order to separate the individual
+  worms as much as possible. The image can be divided into object
+  pixels and background pixels.
+\item The endpoints of the worms must be detected/identified. A skeleton
+  is calculated that traces a thin path between endpoints.
+\item We separate the worms into two classes: isolated worms, and 
+  worm clusters.
+\item The shape of the isolated worms can be identified easily.
+\item On the other hand, worm clusters require a matching process
+  in order to fit the clustered worms.
+  \begin{itemize}
+  \item This requires a shape descriptor. 
+  \item Worm Shape Rasterization
+  \item And match optimization method
+    \item The optimization method will consist in constructing a generic
+      shape given a profile and a worm path, and deforming that shape
+      until a best match is found.
+  \end{itemize}
+\item Incorrect matched can be fixed manually
+
+\end{itemize}
+
+\subsection*{Individual Explanation}
+
+\begin{itemize}
+\item First a thresholding algorithm calculates a binary image dividing
+  in object and background pixels. The object pixels are those belonging
+  to a worm shape.
+  Noise is removed as much as possible.
+\item A distance map is calculated that allow us to obtain the shortest
+  distance to the background. Is used as a tool
+  to trace contour, automatic generation of shape
+  descriptors and skeletonzation among others.
+\item The skeleton is calculated. This is a connected thin path that tends
+to represent the medial axis. Endpoints can be calculated as the extreme 
+of the worms. 
+\item Division isolated and cluster worms.
+\item Isolated: easily traceable. Finding the 
+closest contour pixel and following it.
+\item Cluster: Construct a generic worm shape around
+a medial axis and deform it until the more likely
+worm shape is found.\\ 
+For that we need a shape descriptor, a rasterization
+method and distance measure between the matching 
+model and the image.
+\end{itemize}
+
+\begin{itemize}
+\item Shape descriptor: A profile can be calculated
+from isolated worms.\\
+A series of even distance control points are
+calculated from the skeleton path. Given the profile
+the contour points are calculated by finding the 
+intersection between the bisectors and the 
+thickness circle. A cardinal spline is used to 
+trace the contour.
+\item Rasterization is done with ear clipping and
+triangle rasterization.
+\item Optimization
+  \begin{itemize}
+  \item Deformation
+  \item Energy formulation.
+  \item Conformations between every logical 
+    pair of endpoints
+  \item Assignment algorithm
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item Manual Manipulation: Wrong conformations
+  can be fixed
+\item Endpoints as well.
+\end{itemize}
+
+\end{document}
+
