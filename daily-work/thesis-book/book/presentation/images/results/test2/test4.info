@@ -1,0 +1,45 @@
+//int[] removeList = {636,990,693,476,693,495,466,638};
+//int[] includeList= {466,987,638,465,465,488,460,466};
+
+int[] removeList = {1042,466,740,460,519,507,603,638,485,705,533,618};
+int[] includeList= {1039,735,500,478,479,472,619};
+
+	ArrayList<Vector2i> extra = new ArrayList<Vector2i>();
+	ArrayList<Vector2i> delete = new ArrayList<Vector2i>();
+
+	
+	extra.add(new Vector2i(429,261));
+		extra.add(new Vector2i(441,310));
+		extra.add(new Vector2i(403,275));
+		extra.add(new Vector2i(284,273));
+		extra.add(new Vector2i(242,329));
+		extra.add(new Vector2i(157,440));
+		extra.add(new Vector2i(211,341));
+		extra.add(new Vector2i(209,301));
+		//extra.add(new Vector2i(213,303));
+		extra.add(new Vector2i(220,296));
+		
+		
+		//extra.add(new Vector2i(226,268));
+		extra.add(new Vector2i(226,269));
+		
+		extra.add(new Vector2i(227,288));
+		extra.add(new Vector2i(263,237));
+		extra.add(new Vector2i(234,457));
+		
+	
+		delete.add(new Vector2i(226,268));
+		
+		delete.add(new Vector2i(233,456));
+		delete.add(new Vector2i(233,457));
+		delete.add(new Vector2i(156,440));
+		delete.add(new Vector2i(210,301));
+		//delete.add(new Vector2i(213,302));
+		delete.add(new Vector2i(264,237));
+		delete.add(new Vector2i(283,273));
+		delete.add(new Vector2i(404,275));
+		delete.add(new Vector2i(430,262));
+		delete.add(new Vector2i(442,310));
+		delete.add(new Vector2i(212,341));
+
+

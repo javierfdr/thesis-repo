@@ -1,4 +1,6 @@
 \documentclass{beamer}
+
+
 \usetheme{default}
 \usetheme{Antibes}
 \usecolortheme{dolphin}
@@ -7,6 +9,8 @@
 \beamertemplatetransparentcovereddynamicmedium
 \beamertemplateshadingbackground{blue!4}{black!8}
 
+ 
+\graphicspath{{./images/}} %images path
 \title[Image Processing to Detect Worms]{Image Processing to Detect Worms}
 \author[Javier Fern\'andez]{Javier Fern\'andez}
 \institute[Uppsala University]{Uppsala University. Uppsala, Sweden}
@@ -81,6 +85,27 @@
 
 \end{frame}
 
+\section{Methodology}
+\subsection{Solution Methodology Flowchart}
+\begin{frame}{}
 
+\begin{figure}[h t b p ! H]
+ \centering
+   \includegraphics[scale=0.46]{diagrams/design.pdf}
+\end{figure}
+\end{frame}
+
+\subsection{Thresholding}
+\begin{frame}{Thresholding}
+
+\begin{columns}[c]
+\column{1.5in}
+\includegraphics[scale=0.27]{original}
+\column{1.5in}
+\includegraphics[scale=0.27]{thres/worms}
+
+\end{columns}
+
+\end{frame}
 
 \end{document}

@@ -1,0 +1,13 @@
+data = read.table("line.dat",header=T,sep="\t")
+max_y <- max(data)
+plot_colors <- c(376,"red","green")
+png(filename="linePlot.png", height=500, width=500, 
+ bg="white")
+plot(data$best,type="o",col=plot_colors[1],ylim=c(0,max_y))
+axis(1, at=1:6, lab=c("w1","w2","w3","w4","w5","w6"))
+
+#Separation of vertical labels
+axis(2, las=1, at=2*0:max_y)
+
+box()
+

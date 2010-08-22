@@ -1,0 +1,87 @@
+
+		extra.add(new Vector2i(257,351));
+		extra.add(new Vector2i(288,328));
+		extra.add(new Vector2i(298,315));
+		extra.add(new Vector2i(350,270));
+		extra.add(new Vector2i(415,236));
+		extra.add(new Vector2i(484,224));
+		extra.add(new Vector2i(496,224));
+		extra.add(new Vector2i(67,114));
+		extra.add(new Vector2i(326,90));
+		extra.add(new Vector2i(268,195));
+		extra.add(new Vector2i(328,155));
+		extra.add(new Vector2i(284,117));
+		extra.add(new Vector2i(359,176));
+		extra.add(new Vector2i(310,130));
+		extra.add(new Vector2i(330,108));
+		extra.add(new Vector2i(68,301));
+		extra.add(new Vector2i(443,205));
+		extra.add(new Vector2i(337,137));
+		extra.add(new Vector2i(356,266));
+		//extra.add(new Vector2i());
+		
+		extraSk.add(new Vector2i(330,109));
+		extraSk.add(new Vector2i(286,328));
+		extraSk.add(new Vector2i(287,328));
+		extraSk.add(new Vector2i(492,224));
+		extraSk.add(new Vector2i(493,224));
+		extraSk.add(new Vector2i(494,224));
+		extraSk.add(new Vector2i(495,224));
+		for(int i=210;i>=208;i--){
+			extraSk.add(new Vector2i(437,i));
+		}
+		for(int i=437;i<=440;i++){
+		extraSk.add(new Vector2i(i,208));
+	}
+		for(int i=208;i>=205;i--){
+		extraSk.add(new Vector2i(441,i));
+	}		
+		extraSk.add(new Vector2i(442,205));
+		for(int i=341;i>=337;i--){
+		extraSk.add(new Vector2i(i,137));
+	}
+
+
+		extraSk.add(new Vector2i(354,270));
+		extraSk.add(new Vector2i(355,270));
+		for(int i=269;i>=267;i--){
+			extraSk.add(new Vector2i(355,i));
+		}
+		extraSk.add(new Vector2i(356,267));
+		extraSk.add(new Vector2i(353,270));
+		
+		
+				//extraSk.add(new Vector2i());
+
+		delete.add(new Vector2i(257,350));
+		delete.add(new Vector2i(298,314));
+		delete.add(new Vector2i(351,270));
+		delete.add(new Vector2i(415,235));
+		delete.add(new Vector2i(485,224));
+		delete.add(new Vector2i(67,113));
+		delete.add(new Vector2i(325,90));
+		delete.add(new Vector2i(267,195));
+		delete.add(new Vector2i(329,155));
+		delete.add(new Vector2i(285,116));
+		delete.add(new Vector2i(359,177));
+		delete.add(new Vector2i(358,177));
+		delete.add(new Vector2i(309,130));
+		delete.add(new Vector2i(54,312));
+		delete.add(new Vector2i(69,301));
+		delete.add(new Vector2i(233,209));
+		delete.add(new Vector2i(196,228));
+		delete.add(new Vector2i(166,203));
+		delete.add(new Vector2i(417,199));
+													
+		
+		delete.add(new Vector2i(363,300));
+		delete.add(new Vector2i(363,299));
+		delete.add(new Vector2i(362,299));
+		delete.add(new Vector2i(362,301));
+		delete.add(new Vector2i(361,301));
+		delete.add(new Vector2i(361,300));
+		delete.add(new Vector2i(350,284));
+		
+	int[] removeList = {433,557,549,491,447,666,514,425,602,465,748,696,470,714,752};
+		int[] includeList = {561,566,434,551,428,426,522,497,439,423,711,437,442,422};
+		
