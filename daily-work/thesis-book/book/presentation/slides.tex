@@ -1,15 +1,12 @@
 \documentclass{beamer}
 
-
+% -----------General Settings ------------
 \usetheme{default}
 \usetheme{Antibes}
 \usecolortheme{dolphin}
 \setbeamercolor{normal text}{bg=blue!3}
-%\beamertemplatetransparentcoveredhigh
 \beamertemplatetransparentcovereddynamicmedium
 \beamertemplateshadingbackground{blue!4}{black!8}
-
- 
 \graphicspath{{./images/}} %images path
 \title[Image Processing to Detect Worms]{Image Processing to Detect Worms}
 \author[Javier Fern\'andez]{Javier Fern\'andez}
@@ -17,6 +14,8 @@
 
 \begin{document}
 \maketitle
+
+%----------- Introduction ----------------
 
 \section{Introduction}
 \subsection{C.elegans}
@@ -63,6 +62,8 @@
 
 \end{frame}
 
+% -----------------------------------------
+
 \subsection{Objectives}
 \begin{frame}{Objectives}
 
@@ -85,6 +86,8 @@
 
 \end{frame}
 
+%-----------------------------------------
+
 \section{Methodology}
 \subsection{Solution Methodology Flowchart}
 \begin{frame}{}
@@ -94,6 +97,9 @@
    \includegraphics[scale=0.46]{diagrams/design.pdf}
 \end{figure}
 \end{frame}
+
+
+% -------- Original and Thresholding -----------
 
 \subsection{Thresholding}
 \begin{frame}{Thresholding}
@@ -107,5 +113,70 @@
 \end{columns}
 
 \end{frame}
+
+% -------- Distance Transformation  -----------
+
+\subsection{Distance Transformation}
+\begin{frame}{Distance Transformation: Manhattan Distance}
+
+\begin{columns}[c]
+\column{2.4in}
+\begin{itemize}
+\item Improve skeletonization algorithm \pause
+\item Trace contour of isolated worms \pause
+\item Automatic calculation of worm profile \pause
+\item Path guessing algorithm
+\end{itemize}
+\column{2in}
+\includegraphics[scale=0.27]{results/test1/dt-shape1}
+
+\end{columns}
+
+\end{frame}
+
+
+% -------- Skeletonization  -----------
+
+\subsection{Skeletonization}
+\begin{frame}{Worm Skeletonization}
+
+\begin{columns}[c]
+\column{2.4in}
+\begin{itemize}
+\item Thinning Algorithm $+$ Distance Map \pause
+\item 1 pixel thick paths that tend to the medial axes \pause
+\item Skeleton endpoint expansion and Worm Endpoint detection \pause
+\item Segmentation in groups
+\end{itemize}
+\column{2in}
+\includegraphics[scale=0.3]{skeleton1}
+
+\end{columns}
+
+\end{frame}
+
+
+% -------- Shape Matching  -----------
+
+\subsection{Shape Fitting}
+\begin{frame}{Isolated Worms}
+
+\begin{columns}[c]
+\column{2.4in}
+\begin{itemize}
+\item Contour can be traced easily.The shape is rasterized 
+and thus fitted \pause
+\item Worm Profiling 
+\end{itemize}
+\column{2.2in}
+\includegraphics[scale=0.5]{iso}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------
+
+
+
 
 \end{document}
