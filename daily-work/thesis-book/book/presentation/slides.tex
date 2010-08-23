@@ -23,30 +23,21 @@
 \begin{frame}{Caenorhabditis elegans (C.elegans)}
 
 \begin{itemize}
-  \item itemized item 1 \pause 
-  \item itemized item 2 \pause
-  \item itemized item 3
+\item Widely used organism
+\item Model system for biological process such as: inmunity,
+  behavior and metabolism
+\item High-throughput screening (HTS) of C.elegans is used to identify
+  promising drugs and regulators.
 \end{itemize}
 
 \end{frame}
 
-\subsection{Motivation}
-\begin{frame}{The problem: Motivation}
-
+\subsection{The problem}
+\begin{frame}{The Problem: Motivation and Purpose}
 \begin{itemize}
-  \item itemized item 1 
-  \item itemized item 2 
-  \item itemized item 3
-\end{itemize}
-
-\end{frame}
-\subsection{Purpose}
-\begin{frame}{The problem: Purpose}
-
-\begin{itemize}
-  \item itemized item 1 
-  \item itemized item 2 
-  \item itemized item 3
+\item The deployment in HTS has been limited to long and intensive manual assays.
+\item Many scientific questions require measurements on individual worms.
+\item Worms identification should be automatic
 \end{itemize}
 
 \end{frame}
@@ -55,9 +46,12 @@
 \begin{frame}{Background on Worm Detection}
 
 \begin{itemize}
-  \item itemized item 1 
-  \item itemized item 2 
-  \item itemized item 3
+  \item Methods base on worm locomotion. Exploit motion cues and 
+    cannot be used in still images of high-throughput screens. \pause
+  \item Few methods attempt to overcome worm interaction and none
+    solves it successfully. \pause
+  \item Most methods use an initial strategy involving: Segmentation,
+    Skeletonization and Shape Parameterization.
 \end{itemize}
 
 \end{frame}
@@ -66,22 +60,35 @@
 
 \subsection{Objectives}
 \begin{frame}{Objectives}
+\vskip10pt
 
 \large \textbf{General Objective}\\
 \vskip7pt
 
 \begin{itemize}
-  \item itemized item 1 \pause 
+  \item To design and implement an image processing methodology 
+to detect and fit the shape of worms in digital images
 \end{itemize}
 
-\vskip7pt
+\end{frame}
+
+\begin{frame}{Objectives}
 \pause \large \textbf{Specific Objectives}\\
 \vskip7pt
 
 \begin{itemize}
-  \item itemized item 1 \pause 
-  \item itemized item 2 \pause
-  \item itemized item 3
+  \item To design an algorithm based on image processing techniques that 
+receives images of worms in liquid culture as input, and outputs fitted
+ shapes of these worms.\pause
+ \begin{itemize}
+ \item To review the background on image segmentation techniques. \pause
+ \item To design a shape descriptor and a rasterization method to 
+   represent worms in numerical terms.\pause
+ \item To review the background on shape matching and object recognition and
+propose a matching approach.
+ \end{itemize}
+\pause 
+\item To implement the designed algorithm as a plugin for Endrov
 \end{itemize}
 
 \end{frame}
@@ -89,6 +96,13 @@
 %-----------------------------------------
 
 \section{Methodology}
+\begin{frame}{}
+\begin{center}
+\LARGE METHODOLOGY
+\end{center}
+\end{frame}
+
+
 \subsection{Solution Methodology Flowchart}
 \begin{frame}{}
 
@@ -251,6 +265,12 @@ and thus fitted \pause
 %---------------- Results ---------------
 
 \section{Results}
+\begin{frame}{}
+\begin{center}
+\LARGE RESULTS
+\end{center}
+\end{frame}
+
 \subsection{Test Set}
 \begin{frame}{Test Set: test Image 1}
 
@@ -327,6 +347,8 @@ and thus fitted \pause
 \end{center}
 \end{frame}
 
+
+
 % ------ Matching Results ------
 
 \subsection{Matching Results}
@@ -338,12 +360,43 @@ and thus fitted \pause
     \item Two different path sets: With and without Path Guessing 
     \item Missing endpoints 
     \end{itemize}
+  \item Manual Adjustment
+    \begin{itemize}
+    \item The incorrectly assigned conformations are fixed following
+      a manual process
+    \end{itemize}
+    
   \end{itemize}
+  
 
 \end{frame}
 
 \begin{frame}{Matching Results: Test Image 1}
 
+\large \textbf{Automated Matching}
+\begin{scriptsize}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[h]{|c|c|c|c|c|}
+    \hline
+    \rowcolor{gray!35}
+    Path finding & Iso. Matching & Cluster Matching 
+    & Total
+    & Time (s) \\
+    Every Path & 11/11 (100\%) & 6/8 (75\%) & 17/19 (\alert{89.5\%})& 6.47 \\
+    \hline
+    P.Guessing & 11/11 (100\%) & 8/8 (100\%) & 19/19 (\alert{100\%}) & 7.53 \\     
+    \hline  
+  \end{tabular}
+\end{center}
+\end{table}
+\end{scriptsize} 
+\end{frame}
+
+
+\begin{frame}{Matching Results: Test Image 2}
+
+\large \textbf{Automated Matching}
 \begin{scriptsize}
 \begin{table}[h]
 \begin{center}
@@ -353,19 +406,179 @@ and thus fitted \pause
     Path finding & Iso. Matching & Cluster Matching 
     & Total
     & Time (s) \\ 
-    \hline  
-    Every Path - me & 8/8 (100\%) & 7/25 (28\%) & 15/33 (45.4\%) & 21.8 \\ 
+    Every Path - me & 8/8 (100\%) & 7/25 (28\%) & 15/33 (\alert{45.4\%}) & 21.8  \\ 
     \hline
-    P.Guessing - me & 8/8 (100\%) & 10/25 (40\%) & 18/33 (54.5\%) & 23.7\\
+    P.Guessing - me & 8/8 (100\%) & 10/25 (40\%) & 18/33 (\alert{54.5\%}) & 23.7 \pause \\
     \hline
-    Every Path + me & 8/8 (100\%)& 15/23 (65.2\%) & 23/33 (69.7\%)& 42.3 \\
+    Every Path + me & 8/8 (100\%)& 15/23 (65.2\%) & 23/33 (\alert{69.7\%})& 42.3 \\
     \hline
-    P.Guessing + me & 8/8 (100\%)& 21/25 (84\%) & 29/33 \alert{(87.8\%)} & 45 \\
+    P.Guessing + me & 8/8 (100\%)& 21/25 (84\%) & 29/33 (\alert{87.8\%}) & 45 \\
     \hline
   \end{tabular}
 \end{center}
 \end{table}
-\end{scriptsize}
+\end{scriptsize}\pause
+
+\large \textbf{Manual Adjustment}\\ \vskip10pt
+  After 4 operations the final matching percentage increases from 87.8\%
+  to 100\%
+\end{frame}
+
+\begin{frame}{Matching Results: Test Image 3}
+
+\large \textbf{Automated Matching}
+\begin{scriptsize}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[h]{|c|c|c|c|c|}
+    \hline
+    \rowcolor{gray!35}
+    Path finding & Iso. Matching & Cluster Matching 
+    & Total
+    & Time (s) \\ 
+   Every Path - me & 13/13 (100\%) & 5/25 (20\%) & 18/38 (\alert{47.3\%}) & 26.4 \\ 
+    \hline
+    P.Guessing - me & 13/13 (100\%) & 7/25 (28\%) & 20/38 (\alert{52.6\%}) & 28.7 \pause\\
+    \hline
+    Every Path + me & 13/13 (100\%)& 13/25 (52\%) & 26/38 (\alert{68.4\%})& 36.2 \\
+    \hline
+    P.Guessing + me & 13/13 (100\%)& 16/25 (64\%) & 29/38 (\alert{76.3\%}) & 39.8 \\  
+    \hline  
+    \end{tabular}
+\end{center}
+\end{table}
+\end{scriptsize} \pause
+
+\large \textbf{Manual Adjustment}\\ \vskip10pt
+  After 9 operations the final matching percentage increases from 76.3\% 
+  to 100\%
+
+\end{frame}
+
+\subsection{Global Results: Best Matches}
+\begin{frame}{Global Results: Best Matches}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[h]{|c|c|c|}
+    \hline
+    \rowcolor{gray!35}
+    Test Image & Automated Matching & After Manual Adjustment\\
+    Image 1 & 100\% & 100\% \\
+    Image 2 & 87.8\% & 100\% \\
+    Image 3 & 76.3\% & 100\% \\
+    \hline
+    \end{tabular}
+\end{center}
+\end{table}
+\end{frame}
+
+\begin{frame}{Best automated and fixed matched on Test Image 2}
+\begin{columns}[c]
+\column{2.3in}
+\includegraphics[scale=0.4]{results/test2/guessing-nobgframe}
+\column{2.3in}
+\includegraphics[scale=0.4]{results/test2/frame2-allnobg}
+\end{columns}
+
+\end{frame}
+
+\subsection{Matching Energy}
+\begin{frame}{Distribution of Matching Energy}
+Energy values for the best three conformations starting from a set of
+endpoints
+\begin{figure}[htp]
+    \includegraphics[scale=0.5]{results/test2/energy-graph}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{Distribution of Matching Energy}
+\begin{itemize}
+\item In the 75\% of the cases the best conformation results to be have
+the lowest energy value \pause
+\item The energy difference between the best and second best conformation in the other 
+  25\% of the cases is very low. \pause
+\item The correct conformation is always one of the top two
+\end{itemize}
+ \vskip6pt
+
+\pause A more sophisticated objective function could tackle these differences, thus providing
+better matching results.
+\end{frame}
+
+\section{Conclusions}
+\begin{frame}{Conclusions}
+
+\textbf{Solution Methodology}
+  \begin{itemize}
+  \item Feasible semi-automatic solution to detect
+    and fit worm shapes \pause
+  \item Time cost and matching accuracy is improved
+    with respect to manual identification \pause
+  \item An optimal match can be obtained through
+    manual adjustments \pause
+  \item The shape matching step is the most
+    time consuming process \pause
+  \item The methodology could be successfully
+    implemented for Endrov
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Conclusions}
+\textbf{Isolated Worms}
+  \begin{itemize}
+  \item Isolated worms are totally identified in
+    each case \pause
+  \item An accurate worm profile can be calculated
+    \end{itemize}
+    
+\pause \textbf{Worm Clusters}
+\begin{itemize}
+  \item The totality of endpoints must be detected.
+    Manual adjustments are usually required \pause
+  \item The shapes of the assigned conformations 
+    represent accurately the worms in the image
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Conclusions}
+\textbf{Optimization}
+  \begin{itemize}
+  \item Path guessing algorithm improves 
+    the matching accuracy considerably \pause
+  \item The implemented local search is fast and 
+    effective \pause
+  \item The energy formulation is sensitive enough
+    to provide correct conformations in the majority
+    of the cases
+  \end{itemize}
+
+\end{frame}
+
+\section{Future Work}
+\begin{frame}{Future Work}
+
+  \begin{itemize}
+  \item Energy Formulation: A more
+    sophisticated formulation \pause
+  \item Endpoint Detection: Automated detection 
+    of endpoints \pause
+  \item Worm Trackers: Couple with worm
+    trackers to provide optimal matches
+    for individual images \pause
+  \item Conformation Assignment: Improve the
+    model (e.g. Non Bipartite Assignment
+  \end{itemize}
+\end{frame}
+
+\section{Future Work}
+\begin{frame}
+\begin{center}
+\LARGE Thanks for your attention
+\end{center}
 
 \end{frame}
 

@@ -12,10 +12,62 @@
 
 \begin{itemize}
 \item C.elegans: how are them, why are they being used.
+
+High-throughput screening (HTS) is a method for scientific experimentation especially
+ used in drug discovery and relevant to the fields of biology and chemistry. Using robotics,
+ data processing and control software, liquid handling devices, and sensitive detectors, 
+High-Throughput
+ Screening or HTS allows a researcher to quickly conduct millions of biochemical, genetic or
+ pharmacological tests. 
+
+The roundworm, C.elegans, is a widely used organism. It has become
+an effective model system for biological processes such as 
+inmunity, behavior and metabolism.
+
+HTS of C.elegans are now being used to test tens of thousands of chemical or genetic
+perturbations to identify promising drug compounds and regulators
+of disease
+
 \item Problem: too many to fit them manually -> automated solution
+Many scientific questions
+require measurements on individual worms. Before quantification the
+worm must be identified. This should be automatically since there are too many
+worms to feasibly do this manually.
+
+The deployment in high-throughput screens has been lim-
+ited by labour-intesive manual assays used to score phenotypes, thus making arise an urgent
+need for more rapid and more consistent methods.
+
+
 \item Endrov: Particularly at the karolinska institute they will
   like it. Endrov intents to be next standard
 \end{itemize}
+
+
+%BACKGROUND
+
+However, these methods exploit motion
+cues to disambiguate touching worms and cannot be used
+in still images of high-throughput screens.
+
+The detection usually involves extraction of
+the worm from the bacgkround (segmentation), reduction to skeleton and parameterization
+of worm outlines.
+
+ The numerical description of a worm shape or worm parameterization determines the range
+of possible shapes a worm may adopt. Diverse representations have been used from one ap-
+proach to another, being the most common: reproduction of an abstract shape normalized
+for position, orientation, scale or any geometrical parameter and parameterization of the
+worm skeleton.
+
+  Endrov is an open source plugin architecture aimed for image analysis and data process-
+ing. Endrov aimes to improve the features of the standard open source image anaylisis
+program, ImageJ, by providing a more modern design.
+
+
+  Endrov was developed at the TBU Group, Karolinska Institute and was officially released
+on 17 June 2009, under BSD license.
+
 
 \subsection*{Objectives}
 \begin{itemize}
@@ -71,7 +123,7 @@
 \item A distance map is calculated that allow us to obtain the shortest
   distance to the background. Is used as a tool
   to trace contour, automatic generation of shape
-  descriptors and skeletonzation among others.
+  descriptors and skeletonzation, path guessing algorithm.
 \item The skeleton is calculated. This is a connected thin path that tends
 to represent the medial axis. Endpoints can be calculated as the extreme 
 of the worms. 
@@ -112,6 +164,8 @@ triangle rasterization.
   can be fixed
 \item Endpoints as well.
 \end{itemize}
+
+
 
 \end{document}
 
