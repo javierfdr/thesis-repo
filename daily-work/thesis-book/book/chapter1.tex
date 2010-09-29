@@ -1,4 +1,4 @@
-\cleardoublepage
+%\cleardoublepage
 \thispagestyle{empty}
 \chapter{Introduction}
 \pagenumbering{arabic}
@@ -19,16 +19,16 @@ Before quantification, the worms have to be identified; this should be
 automatic since there are too many worms to feasibly do this manually.
 Despite the utility of \emph{C.elegans} models for genetic 
 manipulations, the deployment in high-throughput screens has been limited by 
-labour-intesive manual assays used to score phenotypes, thus making arise
+labor-intensive manual assays used to score phenotypes, thus making arise
 an \emph{urgent need} for more rapid and more consistent methods.
 Hereby, a computer
-program that indentifies C.elegans individuals in digital images would 
+program that identifies C.elegans individuals in digital images would 
 provide an automated solution for the recognition task, thus vastly 
 improving the time-cost and accuracy with respect to manual identification, 
 and converting the images into manageable data.\\
 
 The focus of this work is to design and implement an image processing
-methodology to detect C.elegans worms shapes on microscope images.
+methodology to detect C.elegans worms shapes in microscope images.
 It is easy for a human to find the worm conformation,
 to some extent also the rotation and direction; in this project we will only 
 try to find the conformation. We wish to know if is possible to detect and fit
@@ -37,7 +37,7 @@ the conformations of worms automatically in a time less than that required manua
 In this project we consider larval worms in microtiter plates. The larvae are 
 grown in liquid culture which causes the microscope image background to be 
 very clear, but worms overlap frequently. Ordinary bright-field images are 
-used for the morphology. The implementation is to be adjusted to \emph{Endrov},
+used for the morphology. The implementation is adjusted to \emph{Endrov},
 an open-source plugin architecture aimed for image analysis and data processing,
 developed and used at the 
 \emph{Department of Bioscience and Nutrition, Karolinska Institutet}. 
@@ -54,7 +54,7 @@ where this thesis is carried out.
 \item Specific Objectives
   \begin{itemize}
   \item To design an algorithm based on image processing techniques that
-    receives images of worms in liquid culture as input, and ouputs
+    receives images of worms in liquid culture as input, and outputs
     fitted shapes of these worms.
     \begin{itemize}
     \item To review the background on image segmentation techniques.    
@@ -69,16 +69,16 @@ where this thesis is carried out.
 
 \section{Earlier Work}
 
-\emph{C.elegans} has been deployed fastly in genetic screens and chemical
+\emph{C.elegans} has been deployed quickly in genetic screens and chemical
 screens, as mentioned in \cite{automated}. In the previously mentioned paper,
 the strategies for automated analysis of \emph{C.elegans} locomotion are
 divided in three groups according to their methodological approach:
-Tracking overall behaviour, Detection and measurement of distinct behaviours and
-measuring the complete behavioural repertoire using large parameters sets.
-All of this strategies are based in an initial processing step that aimes 
+Tracking overall behavior, Detection and measurement of distinct behaviors and
+measuring the complete behavioral repertoire using large parameters sets.
+All of this strategies are based in an initial processing step that aims 
 the detection of the worm shapes in the images, that has become similar
 from one strategy to another. The detection usually involves extraction
-of the worm from the bacgkround (segmentation), reduction to
+of the worm from the background (segmentation), reduction to
 skeleton and parameterization of worm outlines.\\
 
 Reduction to skeleton and parameterization have become a standard method. 
@@ -89,7 +89,7 @@ parameters for this process are highly variable. The segmentation methods
 that are usually used 
 on worm images are thresholding, morphological closing, 
 hole filling, and their combinations.
-Is stated in \cite{automated} that among those programs that track 
+It is stated in \cite{automated} that among those programs that track 
 multiple worms, few attempt to resolve the problem that arise when 
 worms interact or when individual worms coil up on themselves, that can
 affect severely the individual worm identification. \cite{huang} indicates
@@ -98,13 +98,13 @@ that programs and algorithms are being developed to address this problem.\\
 The  numerical description of a worm shape or worm parameterization 
 determines the range of possible shapes a worm may adopt. Diverse 
 representations have been used from one approach to another, being the 
-most common: reproduction of an abstract shape normalised for position, 
+most common: reproduction of an abstract shape normalized for position, 
 orientation, scale or any geometrical parameter and parameterization of the 
 worm skeleton.\\
 
 There are many studies in computer vision dealing with the automated
 analysis of \emph{C.elegans} and nematodes in general. These studies are
-commongly based on worm locomotion, so the process of identification and 
+commonly based on worm locomotion, so the process of identification and 
 tracking is performed by the simultaneous analysis of a set of images, rather
 than just one. There is a standard general strategy followed for an initial
 worm identification step consisting in segmentation, skeleton reduction and
@@ -115,7 +115,7 @@ individual worms and group of worms, few of them attempt to overcome the
 problem of worm interaction and none solves it successfully.
 
 \section{Structure of Thesis}
-This document is divided in the following way:
+This document is divided the following way:
 \begin{itemize}
 \item \textbf{Chapter 1: Introduction}\\
   The motivation and purpose of the thesis is discussed. Then, earlier work

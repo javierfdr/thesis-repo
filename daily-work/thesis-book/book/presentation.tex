@@ -20,11 +20,21 @@ High-Throughput
  Screening or HTS allows a researcher to quickly conduct millions of biochemical, genetic or
  pharmacological tests. 
 
-The roundworm, C.elegans, is a widely used organism. It has become
+The roundworm, C.elegans, is a widely used organism. It has many cells with
+human equivalents, its simple, transparent and cheap, compared to higher organisms.
+Thus, It has become
 an effective model system for biological processes such as 
 inmunity, behavior and metabolism.
 
-HTS of C.elegans are now being used to test tens of thousands of chemical or genetic
+It has many cells with human equivalents
+
+Thus small
+deviations from wild-type can be detected and experiments are cheap compared to higher
+organisms. It has many cells with human equivalents making it possible to study
+many pathways conserved in humans, and related conditions
+
+
+HTS of C.elegans is now being used to test tens of thousands of chemical or genetic
 perturbations to identify promising drug compounds and regulators
 of disease
 
@@ -45,6 +55,10 @@ need for more rapid and more consistent methods.
 
 
 %BACKGROUND
+
+There are many methods base on worm locomotion, normally defined as Worm Trackers.
+They study the movement of worms, and their identification approach is based
+in the simultaneous analysis of large image datasets.
 
 However, these methods exploit motion
 cues to disambiguate touching worms and cannot be used
@@ -165,7 +179,16 @@ triangle rasterization.
 \item Endpoints as well.
 \end{itemize}
 
+%---------- QUESTIONS ------------
 
+\subsection{Questions}
+\textbf{Endpoints. Why different solutions were not tried?}\\
+Along the project development many solutions to tackle this problem were tried.
+However, the results were not satisfying. Few extra endpoints could be added,
+but other false endpoints were generated, thus causing impossible conformations
+to be selected. 
+So in order to test the energy formulation and optimization approach in general
+it was considered better to admit just feasible endpoints.
 
 \end{document}
 

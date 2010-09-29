@@ -1,4 +1,4 @@
-\documentclass[12pt,letterpaper,oneside]{book}
+\documentclass[12pt,letterpaper,twoside,openright]{report}
 %\usepackage{geometry} 
 \RequirePackage{amsmath}
 %\usepackage{listings}
@@ -13,6 +13,9 @@
 \usepackage[table]{xcolor}
 \usepackage{caption}
 
+% to include pdf cover page
+\usepackage{pdfpages}
+
 \numberwithin{algorithm}{section}
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
@@ -22,17 +25,20 @@
 }
 
 %Margins:
-\hoffset=-0.41in %1.5cm left margin: 1in - 0.41in
-\marginparwidth = 3cm %3.0cm margin notes as left margin
-\oddsidemargin = 1.6cm
-\marginparsep = 0.1cm
-\textwidth = 16.5cm %to make right margin 2cm and not margin notes
-\voffset=-0.22in %2cm upper margin: 1in - 0.22in
-\topmargin = 0.5cm %after upper margin before chapter 2cm+topmargin(3cm)
-\headheight = 12pt
-\footskip = 0.5cm
-\headsep = 25pt
-\textheight = 21.11cm %
+
+%% Commented to accept double sided 
+
+%\hoffset=-0.41in %1.5cm left margin: 1in - 0.41in
+%\marginparwidth = 3cm %3.0cm margin notes as left margin
+%\oddsidemargin = 1.6cm
+%\marginparsep = 0.1cm
+%\textwidth = 16.5cm %to make right margin 2cm and not margin notes
+%\voffset=-0.22in %2cm upper margin: 1in - 0.22in
+%\topmargin = 0.5cm %after upper margin before chapter 2cm+topmargin(3cm)
+%\headheight = 12pt
+%\footskip = 0.5cm
+%\headsep = 25pt
+%\textheight = 21.11cm %
 
 %Equation numeration
 \usepackage{amsmath}
@@ -98,9 +104,18 @@
 \author{Javier Fern\'andez}
 
 \begin{document}
+%\maketitle
+\includepdf[pages=1]{cover/cover}
+\thispagestyle{empty}
+\cleardoublepage
+\includepdf[pages=1]{cover/abstract}
+\thispagestyle{empty}
+\cleardoublepage
+
+%\include{abstract}
+
 \pagenumbering{roman}
-\maketitle
-\setcounter{page}{2}
+\setcounter{page}{1}
 \tableofcontents
 \listoffigures
 \listoftables

@@ -94,6 +94,24 @@ nearly the same quality of the final solution
 
 \end{itemize}
 
+\subsection{Worm Clustering}
+The worms are segmentated in cluster of worms. Each cluster is found starting in the base points (found after thinning)
+ and reaching each other of the base point. The final result is a totally connected skeleton that involves 1 or more
+worms\\
+
+Since the skeleton obtained using the thinning algorithm does not have its extreme in the actual worm extreme then 
+the skeleton is expanded to match more likely base-extreme points.
+This is done this way:
+\begin{itemize}
+\item Step 1: Get a base point.
+\item Step 2: Find the previous skeleton point and calculate the maximal
+  directional pixel based on the distance transformation array.
+\item repeat Step 2 until a border pixel or a background pixel is found.
+  If the pixel is border then is the base, otherwise the previous one is 
+  set as base point
+\end{itemize}
+
+
 \subsection{Finding contour in 1-worm WormCluster}
 The contour was found selecting one contour pixel and following the 
 1-distance-pixel contour recursively until no more are found.\\
@@ -110,9 +128,6 @@ skeleton points and with the highest distance value and iteratively add
 the new neighbors that belong to the shape to the list. The pixels are
 accepted as part of the shape if they have the same current distance value
 when analized. \\
-
-Not very impressive results. The shape is quite covered, but there are 
-great cut-outs.
 
 
 \subsection{Worm cluster Path  guessing}

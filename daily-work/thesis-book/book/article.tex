@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\title{\LaTeX}
+\date{}
+\begin{document}
+  \maketitle 
+  \begin{abstract}
+
+   % What is C.elegans and why is it so important.
+   % The problem: manual assays are to intensive, need
+   % for automated solutions.
+   % What do we provide: a image processing methodology that
+   % provides semi-automatic solution, for Endrov (open source
+   % image analysis software)
+   % Few methods attempt to resolve cluttering. Individual
+   % images are not usually addressed (large datasets).
+   % Automated solutions fit 85 percent of the image. We 
+   % fit 100% 
+
+
+The nematode C.elegans is a widely used model organism. It has many cells with
+human equivalents, making it possible to study pathways conserved in humans
+and related conditions. Being small and transparent it also lends itself well to
+a variety of high-throughput screening techniques.
+Worm identification should be as automated
+as possible since is too labor-intense and time-consuming to do it manually.\\
+
+Here we present an image processing methodology to detect 
+C.elegans in high-throughput microscope images. 
+The provided semi-automatic solution makes it possible to effectively identify individual 
+worms in worm clusters. In general terms the process is as follows: 
+A given image is segmented, thus 
+separating groups of worms from the background. Individual worms are detected
+automatically, following a worm-shape matching process. For worm clusters, the 
+matching process
+is based on finding feasible worm shapes by minimizing the distance between
+the cluster and generic worm shapes, that are deformed to fit it.
+Wrong and missing conformations can be quickly fixed manually. \\
+
+The provided methodology is a novel approach 
+to successfully detect individual C.elegans worms in high-throughput microscope images.
+Results show that this semi-automatic solution makes it possible to fit the shape of
+100\% of worms in the image, unlike previous automated methods that usually reach less 
+than 90\% in average, for similar test sets.
+The detection process is usually achieved in less than a minute for difficult images. 
+For easier images the total match can often be calculated in a fully automatic way.
+Time cost and matching accuracy are considerably improved 
+with respect to manual identification
+
+The solution was implemented and adjusted to \emph{Endrov}, an open source
+plugin architecture for image analysis, and is to be used at 
+\emph{Department of Bioscience and Nutrition, Karolinska Institute, Sweden}. 
+  \end{abstract}
+\end{document}
+
+%
+%is based on finding feasible worm shapes by minimization of distance between the 
+%any feasible worm shape in the cluster
+%and a corresponding generic shape, that is deformed to fit it. 

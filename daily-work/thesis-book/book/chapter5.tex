@@ -1,3 +1,5 @@
+%avoid page number on blank pages when cleared
+\thispagestyle{empty}
 \cleardoublepage
 \chapter{Conclusions and Future Work}
 
@@ -24,7 +26,7 @@ solution provides a high matching percentage (more than three quarters of
 the total in the worst case), that can be even be optimal in \emph{easy} 
 images. The final matching process allows the user to re-arrange the 
 automatic solution, providing an optimal match for the image.\\
-The \emph{Initial Processing} step is fastly executed, less than
+The \emph{Initial Processing} step is quickly executed, less than
 $1\%$ of the total execution time. On the other hand The \emph{Shape Matching}
 step is the most time consuming process, taking the $99\%$ of the total
 time excluding the time taken for manual adjustments (though normally fast).
@@ -89,21 +91,6 @@ lead to perfect automatic matches for difficult images.
 Below a set of suggestions are given to improve the presented solution
 methodology and to solve new problems based in this formulation.
 
-\subsection*{Non-bipartite assignment}
-In this work an improved greedy algorithm is used to find the best
-possible set of matching shapes assignments between endpoints in order
-to provide one and only one shape for endpoint and to cover the greatest
-amount of endpoints as possible, thus maximizing the match. This algorithm
-does not selected the best possible set of assignments in all the cases. 
-An implementation of a non-bipartite graph assignment algorithm, where
-the departure and arrival set are conformed by all the endpoints of a worm
-cluster, would allow to obtain the best possible assignation, leading
-probably to a higher matching percentage for the automatic algorithm.\\
-
-It is however not clear if a different algorithm will improve precision.
-Solutions for other problems not found by greedy algorithms tend to be
-non-intuitive and physically infeasible [personal communication, Johan Henriksson].
-
 
 \subsection*{Energy Formulation}
 A more sophisticated energy formulation, defining the distance between 
@@ -139,10 +126,27 @@ the matching algorithm with the missing endpoints, and then execute the
 endpoint finding algorithm covering skeleton path portions that were not 
 matched previously.
 
+\subsection*{Non-bipartite assignment}
+In this work an improved greedy algorithm is used to find the best
+possible set of matching shapes assignments between endpoints in order
+to provide one and only one shape for endpoint and to cover the greatest
+amount of endpoints as possible, thus maximizing the match. This algorithm
+does not selected the best possible set of assignments in all the cases. 
+An implementation of a non-bipartite graph assignment algorithm, where
+the departure and arrival set are conformed by all the endpoints of a worm
+cluster, would allow to obtain the best possible assignation, leading
+probably to a higher matching percentage for the automatic algorithm.\\
+
+It is however not clear if a different algorithm will improve precision.
+Solutions for other problems not found by greedy algorithms tend to be
+non-intuitive and physically infeasible.
+
+
 \subsection*{Worm Movement Tracking}
 Once the worms in an image are completely matched, information about their
 position and size is obtained, and other extra information like rotation
-and head-tail positions could be calculated. Then, since the position of 
-a given worm in consecutive images will tend to be close to its position in
-the previous one, an algorithm that tracks the movement of worms could be 
-designed. 
+and head-tail positions could be calculated. This kind of information from a
+total match could be valuable for \emph{worm trackers} and other approaches 
+based on large image datasets
+(such as those reviewed in \cite{automated}) to untangle worm clusters and 
+improve the matching accuracy.

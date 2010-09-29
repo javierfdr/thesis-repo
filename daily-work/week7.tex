@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{letterpaper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+\RequirePackage{amsmath}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\title{Daily Thesis-work Report}
+\author{Javier Fern\'andez}
+%\date{17 de Febrero de 2009} % delete this line to display the current date
+
+\begin{document}
+
+\maketitle
+%\newpage
+%\tableofcontents
+%\listoffigures
+%\listoftables
+%\newpage
+
+\section{Note}
+Nice description and reference on \emph{C.Elegans} usefulness on
+\emph{Strategies for automated anlysis of C.Elegans}
+
+\section{On Energy formulation}
+\subsection*{Johan considerations}
+\begin{algorithm}                      
+\caption{Formulation of the optimization algorithm}         
+\label{alg1}                          
+\begin{algorithmic}                   
+\REQUIRE $wc \gets $ WormClusterSkeleton
+\STATE $path \gets$ initialGuess($wc$)
+\WHILE{not($convergence$)}
+\STATE $path \gets$ perturbateCP($path$)
+\STATE $energy \gets$ energyFormulation($angles$,$maskRender$)
+\IF{$energy < prevEnergy$}
+\STATE keepNewCP()
+\ELSE
+\STATE takePreviousCP()
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{week10-snakes.ppt: Snakes or active contours}
+\begin{itemize}
+\item Seek perimeter of region
+\item Perimeter is constrained by factors
+\item Smoothnes or bending energy
+\item Fit to image gradient
+\item Fit to fixed points in image
+\item Define all factors mathematically and use
+  optimization to find the best perimeter
+\item Variational search needs starting point
+\end{itemize}
+
+\subsection{Snakes: Active contour models}
+A snake is an energy-minimizing     spline guided by external 
+constraint forces and influenced by image forces that pull it toward 
+features such as lines and edges. Snakes are active contour models: they lock
+ onto nearby edges, localizing them accurately. Scale-space continuation can
+ be used to enlarge the capture region surrounding a feature. Snakes provide 
+a unified account of a number of visual problems, including detection of 
+edges, lines, and subjective contours; motion tracking; and stereo matching.\\
+
+We seek to design energy functions whose local minima comprise the set of 
+alternative solutions available to higher-level processes.
+By ading suitable energy terms to the minimization, it is possible for a user
+to push the model out of a local minimum toward the desired solution. The result
+is an active model that falls into the desired solution when placed near it.\\
+
+ME: energy minimizing models have tipically been regarded as autonomous, but
+they have developed interactive techniques for guiding them.( Look second
+paragraph second column page 1)\\
+
+They provide an interact guide to push a contour model to fit the desired
+shape: High level mechanisms can interact with the contour model by pushing it
+toward an appropriate local minimum. Optimization and relaxatoin have 
+been used previously in edge and line detection, but without the interactive
+guiding used here.\\
+
+Because of the way the contours slither while minimizing their energy, we 
+call them snakes.\\
+
+\textbf{The energies}: Our basic snake model is a controlled continuity
+spline under the influence of image forces and external constraint forces.
+The internal spline forces serve to impose a piecewise smoothness constraint.
+The image forces push the snake toward salient image features like lines,edges,
+and subjective contours. The external constraint forces are responsible for 
+putting the snake near the desired local minimum.
+
+
+\subsection{Deformable models}
+good introduction about deformable models to fit shapes\\
+
+   All algorithms for matching a deformation model to a given data set are defined as an energy minimization problem. Some
+measure of how well the deformed model matches the data has to be minimized. We call this \textbf{the external energy} that pushes
+the model to match the data set as good as possible. At the same time the \textbf{internal energy}, representing the prior knowledge,
+has to be kept as low as possible. \textbf{The internal energy} models the object’s resistance to be pushed by the \textbf{external} force into
+directions not coherent with the prior knowledge. \\
+
+forces. For instance, in the case of Snakes, this means that a contour is pushed to an image feature by the external force while
+the contour itself exhibits resistance to be deformed into a non-smooth curve. In the case of the 3DMM, the internal forces
+become strong when the object is deformed such that it does not belong to the correct object class. 
+\textbf{Important to notice: } After these considerations it seems that it is
+not necessary to consider internal energy or something similar because the
+control point generated shape will never separate from the correct object
+class: is done with that purpose.\\
+
+Let $M$ be the model and $D$ a data set the energy $E$ can be 
+defined as:
+$$E(M) = E_{ext}(M,D) + E_{int}(M)$$
+
+\subsubsection*{External Energy}
+The external energy measures how well the snake matches the 
+boundaries in the image. Using an edge image $I$ with low
+values on the edged of the images (distance transformation 
+for example) the external energy is given as:
+
+$$E_{ext}(M,D) = E_{ext}(v,I) = \int_0^1 I(v(s))ds$$
+
+                                                                   Therefore, the external energy is minimized if the curve 
+comes to lie completely on a boundary of an image.
+
+\section{Formulation Ideas}
+
+\subsection*{Permutation}
+\begin{itemize}
+\item The best permutation possible seems to be angles between segments
+\item The control point would be repositioned according to the new angle.
+  The new angle could be either the same segments or the mirror. This is
+  because the same angle can have to different middle control point positions
+  depending on the bending orientation.
+\item The different positions of the middle control point seems to be those
+  along the bisection line
+\item Another possibility is move in surrounding circles (the radio that
+  connects the control points, but its real complicated)
+\end{itemize}
+
+\subsection*{Energy formulation}
+
+
+\begin{itemize}
+\item The external energy would be measured masking the thresholding image
+  and the generated shape.This is: the external energy are the amount of
+  points in the generated shape that are not object pixels.
+\item The internal energy is supposed to help keeping the shape \emph{class}
+  or predefined structure. Then, it shouldn't be necessary to define it 
+  in this formulation
+\item Somehow the angles between segments could be an important thing to
+  take into account on the energy formulation
+\end{itemize}
+
+\subsection*{Shape Deformation}
+Taking the angles approach the neighborhood of a given control points skeleton
+with fixed extreme points could be calculated through the variation of those
+angles. Here some research ideas about \textbf{polyline}, 
+\textbf{polyline bending} and others.
+
+\begin{itemize}
+\item 
+\end{itemize}
+
+
+\end{document}
+
+

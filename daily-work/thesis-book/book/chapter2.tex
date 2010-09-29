@@ -1,3 +1,5 @@
+%avoid page number on blank pages when cleared
+\thispagestyle{empty}
 \cleardoublepage
 \chapter{Theoretical Framework}
 \label{sec:dev}
@@ -9,17 +11,17 @@
 Being based on \emph{Java}, it is portable and can both be run locally and as an applet, as mentioned
 in \cite{web:endrov}. It grew out of the need for an advanced open source software 
 that can cope complex spatio-temporal image data, mainly obtained from microscopes in 
-biological research. \emph{Endrov} aimes to improve the features of the standard 
-open source image anaylisis program, \emph{ImageJ}, by providing a more modern design.\\
+biological research. \emph{Endrov} aims to improve the features of the standard 
+open source image analysis program, \emph{ImageJ}, by providing a more modern design.\\
 The main issues with ImageJ are that it does not support metadata, there is no real support of 5D, 
 the plugin architecture is messy, views cannot easily be extended and the batch 
 process is difficult, as pointed out in \cite{web:endrovhome}.
 Other problems that inspired the creation of \emph{Endrov} were: the lack of a standardize
 image format and the difficulty to store complex data in the existing open formats.
-The development groupt created the OST format in order
-to handle the large imagesets. OST is now a tree based object file format and it can store any 
+The development group created the OST format in order
+to handle the large image sets. OST is now a tree based object file format and it can store any 
 type of data, but is optimized for images. 
-Reading and writing single image panes is fast (independent of imageset size) 
+Reading and writing single image panes is fast (independent of images et size) 
 and there is no need to read everything into memory, \cite{web:endrovhome}.\\
 
 Endrov is both a library and an imaging program. The design has made strong emphasis on 
@@ -159,7 +161,7 @@ Depending on the way they are produced, skeletons can be categorized in differen
 Telea et al describe three types in \cite{augmented}, such as: \emph{Morphological Thinning},
 \emph{Geometric Methods} and \emph{Distance transform}. The \emph{Morphological Thinning} methods iteratively peel off (or reduce) the boundary, layer by layer, identifying
 points whose removal does not affect the object's topology. These are usually 
-straightforward and usually require intricate heuristics to ensure the skeletal
+straightforward and normally require intricate heuristics to ensure the skeletal
 connectivity, as mentioned in \cite{augmented}. Two fast parallel approaches that
 ensure connectivity using the \emph{Morphological thinning} method are described
 in \cite{onepass} and \cite{thinning}.\\
@@ -222,7 +224,7 @@ The \emph{global image transform} group refers to the techniques that
 domain to color variation in the frequency domain''. 
 These approaches do not represent the shape explicitly for 
 matching, instead they represent color or intensity transitions 
-in the image. This makes impossible to measure the difference of 
+in the image. This makes it impossible to measure the difference of 
 two images in terms of shape as well as match a shape with a 
 specific part of an image.\\
 On the other hand the \emph{global object methods} work with a complete
@@ -292,7 +294,7 @@ function until the best solution is found.
 A shape descriptor is a structured abstraction of a class
 of shapes that describes them in geometrical terms.
 Shape descriptors can have either fixed or variable
-geometrical shape. Variable descriptors depend on the different values assigned to its
+geometrical shapes. Variable descriptors depend on the different values assigned to its
 parameters, different shapes are generated but still belong to the same type or class of shapes.
 Shape models have been used widely to achieve robust interpretation of complex
 images \cite{wormparam}. They allow image evidence to be organized into plausible interpretations
@@ -304,7 +306,7 @@ main categories: \cite{shapenonrigid}
 \item \textbf{Contour based descriptors: }The contour of a given object is 
 mapped to some representation from which a shape descriptor is derived
 \item \textbf{Image based descriptors: }The computation of a shape descriptor
-is based on summing up pixel vales in a digital image containing the silhouette
+is based on summing up pixel values in a digital image containing the silhouette
 of a given object; the shape descriptor is a vector of a certain number of
 parameters derived this way
 \item \textbf{Skeleton based descriptors: }After a skeleton is computed, it is
@@ -320,7 +322,7 @@ In \cite{desclecture} region-based shape descriptors are covered which are such
 that attempt to describe a shape based on the geometrical and numerical properties
 of the region of the shape. Some simple descriptors are mentioned such as:
 area, perimeter, (Non-)Compactness or (Non-)Circularity, Eccentricity, Elongation,
-Rectangularity and Orientation. Any combination of this properties of a shape are
+Rectangularity and Orientation. Any combination of these properties of a shape are
 useful to describe them in a basic and general way.
 Other more complex properties are mentioned to improve the accuracy of the 
 descriptor: \emph{convex hull}, \emph{extremal points}, \emph{profiles},
@@ -330,7 +332,7 @@ shape. \emph{Extremal points} is based on finding the points that
 are at the extreme of the shape. This can be a simple representation as the 
 \emph{bounding box} or a more powerful one as it is finding the eight extremal
 points defined by: top left, top right, left top, left bottom, bottom right,
-bottom left,right top and right bottom. \emph{Profiles} shape descriptor 
+bottom left,right top and right bottom. The \emph{Profiles} shape descriptor 
 is based on the number of pixels that the shape has in a given direction:
  either vertical, horizontal or diagonal. \emph{Moments} refer to the
  calculation of \emph{moment} statistical properties and 
@@ -338,11 +340,11 @@ is based on the number of pixels that the shape has in a given direction:
 \cite{web:wikishape} classifies shape descriptors by their
 invariance with respect to the transformations allowed in the associated
 shape definition. The main classes are descriptors invariant with respect 
-to congruency and invariance with respect to isometry. The congruency class
-comprehends indentical shape descriptors for congruent shapes 
+to congruence and invariance with respect to isometry. The congruence class
+comprehends identical shape descriptors for congruent shapes 
 (shapes obtained from
 translation, rotation or mirroring). The intrinsic shape descriptor refer
-to those that do not change with different isometric embeddings of the shape,
+to those that do not change with different isometric embedding of the shape,
 and thus can be applied accurately to deformable objects.
 
 Depending on the properties that are controlled and measured, the descriptor
@@ -360,16 +362,16 @@ The term spline, as it is used in this work, refers to a piecewise polynomial cu
 are wide used in computer science subfields because of the simplicity of their constructions,
 their easy and accuracy of evaluation, and their capacity to approximate complex shapes
 through curve fitting and interactive curve design, as mentioned in \cite{web:splines}.
-The continous signal representation is particularly apposite for 
-problems such as: edge detection, surface fitting and multiresolution
+The continuous signal representation is particularly apposite for 
+problems such as: edge detection, surface fitting and multi-resolution
 techniques. It is useful for many other problems in computer
-vision such as: optical flow, surface reconstructoin, the recovery
+vision such as: optical flow, surface reconstruction, the recovery
 of lightness and color, shape from shading and stereo matching,
 \cite[821]{splinespap}.
 
 Special types of splines receive different names, depending of different conditions.\\
-A commongly used type of spline in object recognition is the Hermite spline.This is
-is a third-degreee spline, expressed using Hermite polynomials to represent each of the 
+A commonly used type of spline in object recognition is the Hermite spline.This is
+is a third-degree spline, expressed using Hermite polynomials to represent each of the 
 individual polynomial pieces. 
 Several methods have been invented to fit such splines to given data points such
 as \emph{Cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow to
@@ -381,5 +383,5 @@ mentioned in \cite{splinespap}.
 First, they are usually smooth and well behaved, therefore the do not tend to oscillate
 as higher order polynomials do. Second, the juxtaposition of local polynomial approximations
 may produce strong discontinuities in the connecting regions, B-spline
-surfaces, by contrast, are continous everywhere. 
+surfaces, by contrast, are continuous everywhere. 
 Finally, they can be evaluated efficiently.

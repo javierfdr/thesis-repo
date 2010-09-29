@@ -82,6 +82,44 @@ of the points contained in the area of the worm.\\
 The implementation of triangle rasterization had change due to some fundamental
 implementation errors on border cases. Check \emph{week1.tex/pdf}
 
+\section{Worm Profile}
+
+Worm profile building ideas:
+\begin{itemize}
+\item Repeat the process for every isolated worm passed as a parameter
+\item Find apex-base points
+\item \textcolor{red}{From the apex points find the perpendicular of the rect th
+at connects that current point and the previous one} Changed to skeleton points
+
+\textbf{Option 1: the good one}
+\item \textcolor{red}{The perpendicular cuts the distance transformation in two 1-pixel points
+  The thickness is the half length of the line starting in one point and ending
+  in the other one} Now the angle between the two segments is being calculated, and a line of half-angle is built to find the two higher cuts. The half-angle is found in the following way:
+\begin{itemize}
+\item Find angle from $\sigma = acos(\frac{a.b}{|a||b|})$
+\item Rotate the first vector half-angle and get the parameters
+  to calculate the line
+\item about vectors \url{http://www.vb-helper.com/howto_find_angles.html}
+\end{itemize}
+\item Find an average value for every control point, and allow output of different amount of control points.
+
+\textbf{Option 2:}
+\begin{itemize}
+\item The distance transformation gives the distance between the selected
+pixel and the closest contour pixel. This distance is manhattan. This could
+provide the radius of the circle.
+\item Someway of finding the two points.
+\end{itemize}
+
+
+\item Building object:
+  \begin{itemize}
+  \item Set of control points - thickness
+  \item Build a close-contour spline following thickness extreme-points
+  \end{itemize}
+\end{itemize}
+
+
 
 \end{document}
 

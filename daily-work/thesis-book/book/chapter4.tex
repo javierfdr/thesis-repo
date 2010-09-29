@@ -1,3 +1,5 @@
+%avoid page number on blank pages when cleared
+\thispagestyle{empty}
 \cleardoublepage
 \chapter{Experiments and Results}
 \label{chap:experiments}
@@ -70,7 +72,7 @@ The \emph{Automatic Shape Matching} stage consists of experiments dealing with t
 optimization process to match \emph{worm clusters} and contour-following technique to match 
 \emph{isolated worms} that produce the initial fitting of the worms. These 
 experiments attempt to measure the efficacy and time efficiency of different variations of the
-matching algorithm, in order to conclude about properties of the algorithm and the feasibility 
+matching algorithm, in order to make a conclusion about properties of the algorithm and the feasibility 
 of the automatic solution.\\
 The third stage, \emph{Matching Manual Fixing}, attempts to measure the type and number of 
 manual adjustments that must be performed by the user in order to correct the 
@@ -111,7 +113,7 @@ input parameters until the best possible binary image was obtained from every on
 From visual inspection, the \emph{Percentile} filter generated the
 best binary images for the three tests. 
 The best percentile values for every test image are shown in table \ref{tab:threshold}.
-The next closer method was \emph{Fukunaga}
+The second closest method was \emph{Fukunaga}
 that produced acceptable solutions after the combination of binary images
 generated from different number of classes, however the results were not as good as
 the ones obtained with \emph{Percentile} and also required more processing.
@@ -255,9 +257,9 @@ The best matching for test image 1, corresponding to the Path Guessing variation
 
 \begin{figure}[h!]
   \centering
-  \subfloat[Best Match]{\label{best1}\includegraphics[scale=0.42]{results/test1/complete-frame1}}
+  \subfloat[Best Match]{\label{best1}\includegraphics[scale=0.34]{results/test1/complete-frame1}}
 \qquad
-  \subfloat[Best Match over original image]{\label{bestbg1}\includegraphics[scale=0.42]{results/test1/complete-framebg1}}
+  \subfloat[Best Match over original image]{\label{bestbg1}\includegraphics[scale=0.34]{results/test1/complete-framebg1}}
   \caption{Best automatic shape matching on test image 1}
   \label{fig:best1}
 \end{figure}
@@ -308,17 +310,18 @@ less than a minute.
 Path Guessing with no missing endpoints gave the best result,
 with just $4$ worms wrongly matched among $33$. Fig.\ref{fig:best2} shows the matchings.
 
-\begin{figure}[h!]
+\begin{figure}[h]
   \centering
-  \subfloat[Best Automatic Match]{\label{best1}\includegraphics[scale=0.5]{results/test2/guessing-nobgframe}}
+  \subfloat[Best Automatic Match]{\label{test2:best2}\includegraphics[scale=0.45]{results/test2/guessing-nobgframe}}
 \qquad
-  \subfloat[Best Automatic Match over original image]{\label{bestbg1}\includegraphics[scale=0.5]{results/test2/guessing-bgframe}}
+  \subfloat[Best Automatic Match over original image]{\label{bestbg1}\includegraphics[scale=0.45]{results/test2/guessing-bgframe}}
 \qquad
-  \subfloat[Manually Adjusted Match]{\label{bestbg1}\includegraphics[scale=0.5]{results/test2/frame2-allnobg}}
+  \subfloat[Manually Adjusted Match]{\label{test2:bestbg2}\includegraphics[scale=0.45]{results/test2/frame2-allnobg}}
 \qquad
-  \subfloat[Manually Adjusted Match over original image]{\label{bestbg1}\includegraphics[scale=0.5]{results/test2/frame2-all}}
+  \subfloat[Manually Adjusted Match over original image]{\label{bestbg1}\includegraphics[scale=0.45]{results/test2/frame2-all}}
 
-\caption{Best automatic shape matching and Manual match fixing on test image 3}
+\caption{Best automatic shape matching and Manual match fixing on test image 2. Colored shapes and outlines in images
+    \ref{test2:best2} and \ref{test2:bestbg2} indicate incorrectly detected worms}
 \label{fig:best2}
 \end{figure}
 
@@ -370,14 +373,16 @@ Fig.\ref{fig:best3} presents four images for this algorithm.
 
 \begin{figure}[h!]
   \centering
-  \subfloat[Best Automatic Match]{\label{best1}\includegraphics[scale=0.42]{results/test3/guess-nobg}}
+  \subfloat[Best Automatic Match]{\label{test3:best3}\includegraphics[scale=0.35]{results/test3/guess-nobg}}
 \qquad
-  \subfloat[Best Automatic Match over original image]{\label{bestbg1}\includegraphics[scale=0.42]{results/test3/guess-bg}}
+  \subfloat[Best Automatic Match over original image]{\label{bestbg1}\includegraphics[scale=0.35]{results/test3/guess-bg}}
 \qquad
-  \subfloat[Manually Adjusted Match]{\label{bestbg1}\includegraphics[scale=0.42]{results/test3/all-nobg}}
+  \subfloat[Manually Adjusted Match]{\label{test3:bestbg3}\includegraphics[scale=0.35]{results/test3/all-nobg}}
+  \label{best3:c}
 \qquad
-  \subfloat[Manually Adjusted Match over original image]{\label{bestbg1}\includegraphics[scale=0.42]{results/test3/all-bg}}
-  \caption{Best automatic shape matching and Manual match fixing on test image 3}
+  \subfloat[Manually Adjusted Match over original image]{\label{bestbg1}\includegraphics[scale=0.35]{results/test3/all-bg}}
+  \caption{Best automatic shape matching and Manual match fixing on test image 3. Colored shapes and outlines in images
+    \ref{test3:best3} and \ref{test3:bestbg3} indicate incorrectly detected worms}
   \label{fig:best3}
 \end{figure}
 
@@ -401,9 +406,9 @@ from one to three decimals close to $0$.
 %Distance between images could be reduced to make graphs larger
 \begin{figure}[htp]
   \begin{center}
-    \subfloat[Image 1]{\label{fig:energy1b}\includegraphics[scale=0.58]{results/test1/energy-graph}}\\
-    \subfloat[Image 2]{\label{fig:energy2b}\includegraphics[scale=0.58]{results/test2/energy-graph}}\\
-    \subfloat[Image 3]{\label{fig:energy3b}\includegraphics[scale=0.58]{results/test3/energy-graph}}
+    \subfloat[Image 1]{\label{fig:energy1b}\includegraphics[scale=0.54]{results/test1/energy-graph}}\\
+    \subfloat[Image 2]{\label{fig:energy2b}\includegraphics[scale=0.54]{results/test2/energy-graph}}\\
+    \subfloat[Image 3]{\label{fig:energy3b}\includegraphics[scale=0.54]{results/test3/energy-graph}}
   \end{center}
   \caption{Energy value for the best three conformations by endpoint ID on test
 images. The right conformation is red. The selected endpoints correspond to worms in worm clusters that
