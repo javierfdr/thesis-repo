@@ -19,29 +19,27 @@ Before quantification, the worms have to be identified; this should be
 automatic since there are too many worms to feasibly do this manually.
 Despite the utility of \emph{C.elegans} models for genetic 
 manipulations, the deployment in high-throughput screens has been limited by 
-labor-intensive manual assays used to score phenotypes, thus making arise
-an \emph{urgent need} for more rapid and more consistent methods.
+labor-intensive manual assays used to score phenotypes. This urges the need for more rapid and more 
+consistent methods.
 Hereby, a computer
 program that identifies C.elegans individuals in digital images would 
 provide an automated solution for the recognition task, thus vastly 
-improving the time-cost and accuracy with respect to manual identification, 
+improving the time-cost and accuracy with respect to manual identification 
 and converting the images into manageable data.\\
 
 The focus of this work is to design and implement an image processing
 methodology to detect C.elegans worms shapes in microscope images.
-It is easy for a human to find the worm conformation,
-to some extent also the rotation and direction; in this project we will only 
-try to find the conformation. We wish to know if is possible to detect and fit
-the conformations of worms automatically in a time less than that required manually.\\
+It is easy for a human to find the worm conformation, rotation and direction. In this project we will only 
+try to find the conformation. We will investigate if is possible to detect and fit the conformations of worms 
+in an automated way and if this can be achieved faster than manual identification.\\
 
 In this project we consider larval worms in microtiter plates. The larvae are 
-grown in liquid culture which causes the microscope image background to be 
-very clear, but worms overlap frequently. Ordinary bright-field images are 
+grown in liquid culture, which causes the microscope image background to be 
+very clear. However, worms overlap frequently. Ordinary bright-field images are 
 used for the morphology. The implementation is adjusted to \emph{Endrov},
-an open-source plugin architecture aimed for image analysis and data processing,
-developed and used at the 
-\emph{Department of Bioscience and Nutrition, Karolinska Institutet}. 
-where this thesis is carried out.
+an open-source plug-in architecture aimed for image analysis and data processing, developed and used at the 
+\emph{Department of Bioscience and Nutrition, Karolinska Institute},
+where this project is carried out.
 
 \begin{itemize}
 \item General Objective
@@ -63,7 +61,7 @@ where this thesis is carried out.
     \item To review the background on shape matching and object recognition and
       propose a matching approach.    
     \end{itemize}
-  \item To implement the designed algorithm as a plugin for \emph{Endrov}
+  \item To implement the designed algorithm as a plug-in for \emph{Endrov}
   \end{itemize}
 \end{itemize}
 
@@ -73,17 +71,13 @@ where this thesis is carried out.
 screens, as mentioned in \cite{automated}. In the previously mentioned paper,
 the strategies for automated analysis of \emph{C.elegans} locomotion are
 divided in three groups according to their methodological approach:
-Tracking overall behavior, Detection and measurement of distinct behaviors and
+Tracking overall behavior, detection and measurement of distinct behaviors and
 measuring the complete behavioral repertoire using large parameters sets.
-All of this strategies are based in an initial processing step that aims 
-the detection of the worm shapes in the images, that has become similar
-from one strategy to another. The detection usually involves extraction
-of the worm from the background (segmentation), reduction to
-skeleton and parameterization of worm outlines.\\
+All of these strategies are based on an initial processing step that performs the detection of the worm shapes in the images. This usually involves the extraction of the worms from the background (segmentation), reduction to a skeleton and parameterization of worm outlines.
 
-Reduction to skeleton and parameterization have become a standard method. 
-However,since the image properties as lighting, noise and clutters 
-(such as worm tracks and eggs), can vary strongly from one image to another and 
+Reduction to skeleton and subsequent parameterization have become a standard method. 
+However, since the image properties such as lighting, noise and clutters 
+(e.g. worm tracks and eggs), can vary strongly from one image to another and 
 the segmentation depends directly on the visual context, the  
 parameters for this process are highly variable. The segmentation methods 
 that are usually used 
@@ -91,15 +85,15 @@ on worm images are thresholding, morphological closing,
 hole filling, and their combinations.
 It is stated in \cite{automated} that among those programs that track 
 multiple worms, few attempt to resolve the problem that arise when 
-worms interact or when individual worms coil up on themselves, that can
-affect severely the individual worm identification. \cite{huang} indicates
+worms interact or when individual worms coil up on themselves, which may
+severely affect the individual worm identification. In \cite{huang} is indicated
 that programs and algorithms are being developed to address this problem.\\
 
 The  numerical description of a worm shape or worm parameterization 
 determines the range of possible shapes a worm may adopt. Diverse 
-representations have been used from one approach to another, being the 
-most common: reproduction of an abstract shape normalized for position, 
-orientation, scale or any geometrical parameter and parameterization of the 
+representations have been used from one approach to another. The 
+most common is the reproduction of an abstract shape, normalized for position, 
+orientation, scale and parameterization of the 
 worm skeleton.\\
 
 There are many studies in computer vision dealing with the automated
@@ -110,7 +104,7 @@ than just one. There is a standard general strategy followed for an initial
 worm identification step consisting in segmentation, skeleton reduction and
 shape parameterization, while the matching strategies depend on the approach
 and normally involves image sets and not individual images, as explained.
-Though some automated worm tracking programs are able to identify and track
+Although some automated worm tracking programs are able to identify and track
 individual worms and group of worms, few of them attempt to overcome the 
 problem of worm interaction and none solves it successfully.
 
@@ -125,14 +119,13 @@ This document is divided the following way:
   The theory related to the problem and the solution is explained. Each topic is described,
   and the different studied approaches are addressed.
 \item \textbf{Chapter 3: Methodology}\\
-  The proposed solution is reasoned and presented as a methodology. Then, each step 
+  The proposed solution is discussed and presented as a methodology. Then, each step 
   involving the methodology is explained thoroughly, comprising a description of the 
   approach and some implementation details.
 \item \textbf{Chapter 4: Experiments and Results}\\
   A series of experiments to test the performance of the solution are presented. 
-  The purpose and characteristics of each experiments are described. Then, the results
-  of carrying out the experiments are shown and discussed.
+  The purpose and characteristics of the experiments are described. Then, the results are shown and discussed.
 \item \textbf{Chapter 5: Conclusions and Future Work}\\
-  The conclusions obtained from the discussion of the results are presented. Future
-  work suggestions are made in order to improve the proposed solution.
+  The conclusions obtained from the discussion of the results are presented. 
+Suggestions for future work are given.
 \end{itemize}

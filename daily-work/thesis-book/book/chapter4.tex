@@ -9,10 +9,10 @@
 %processing, automatic shape matching and manual fixing. The results are 
 %presented and discussed.
 
-In this chapter the different experiments carried out to test the performance
+In this chapter, the different experiments carried out to test the performance
 of the shape matching solution are 
 presented, explaining the reason for their choice and the test objectives.
-Then the results are presented and discussed, pointing out the advantages and drawbacks of the suggested
+Then, the results are presented and discussed, pointing out the advantages and drawbacks of the suggested
 shape matching model that are inferred from the first ones.
 
 \section{Experiments}
@@ -21,23 +21,23 @@ shape matching model that are inferred from the first ones.
 In order to test the implemented solution, three digital images of worms in liquid
 media were provided by Johan Henriksson at the \emph{Department of Bioscience and Nutrition, Karolinska Institutet}.
 Each image corresponds to a different difficulty level, 
-following the criteria of number of worms and degree of overlap. Thus the greater the number 
+following the criteria of number of worms and degree of overlap. Thus, the greater the number 
 of worms in the image and the greater the number of worms that are connected by overlapping,
 the greater the difficulty level. The overlapping degree is determined by the number
 of worms that belong to the different \emph{worm clusters} (first defined in Sec. \ref{sec:reasoning})
 and the number of \emph{worm clusters} in the image.
 The selected images are named \emph{test image 1}, \emph{test image 2} and \emph{test image 3}
 and are displayed in an increasing difficulty level order, from the easiest to the hardest. 
-The characteristics of the test set are presented in table \ref{tab:testset}.
+The characteristics of the test set are presented in Table \ref{tab:testset}.
 
 
 \begin{table}[h]
-  \caption{Test set images characteristics}
+  \caption{Characteristics of the test set images}
 \begin{center}
 \begin{tabular}[h]{|>{\columncolor[gray]{0.9}} p{2cm} |p{3cm} | p{2.8cm} | p{3cm}| p{2.8cm} |}
     \hline
     \rowcolor[gray]{.9}
-    Test Image & Number of Isolated Worms & Number of Worm Clusters & Number of Worms per Clusters  & Total Number of Worms\\
+    Test Image & Number of Isolated Worms & Number of Worm Clusters & Number of Worms in Clusters  & Total Number of Worms\\
     \hline
     Test 1 & 11/19 (57.8\%) & 3 & 8/19 (42.1\%) & 19 \\
     \hline
@@ -58,14 +58,14 @@ main fitting steps. These are: \emph{Initial Processing}, \emph{Automatic Shape 
 \emph{Matching Manual Fixing}.\\
 
 The \emph{Initial Processing} involves all the image processing steps that are performed 
-before the shape matching optimization process, as explained in Sec.\ref{sec:solmet},
+before the shape matching optimization process, as explained in Sec. \ref{sec:solmet},
 such as: thresholding, distance transformation, skeletonization, 
 clustering, endpoint detection and worm profiling. Among these, the distance transformation
-and skeletonization follow already implemented and tested algorithms (covered in Sec.\ref{sec:metdt}
-and Sec.\ref{sec:metsk}) and produce straight-forward results, so there is no need to further analyse them.
+and skeletonization follow already implemented and tested algorithms (covered in Sec. \ref{sec:metdt}
+and Sec. \ref{sec:metsk}) and produce straight-forward results, so there is no need to analyze them further.
 The clustering process follows the skeletonization process and is straight-forward as well.
 On the other hand the thresholding, endpoint detection and worm profiling processes vary 
-from image to image, so different experiments are carried out in order to test these subprocesses
+from image to image, so different experiments are carried out in order to test these sub processes
 for the test set.\\
 
 The \emph{Automatic Shape Matching} stage consists of experiments dealing with the automatic
@@ -76,7 +76,7 @@ matching algorithm, in order to make a conclusion about properties of the algori
 of the automatic solution.\\
 The third stage, \emph{Matching Manual Fixing}, attempts to measure the type and number of 
 manual adjustments that must be performed by the user in order to correct the 
-wrongly assigned automatic matchings. The experiment is also 
+wrongly assigned matches. The experiment is also 
 aimed at determining how much the efficacy of the automatic solution can be improved, in
 order to get a better matching. Once the best possible matching is found through manual fixing,
 the stability of the best match is studied by comparing the energy to the second and third best
@@ -91,7 +91,7 @@ on Linux Operating System, Ubuntu Distribution.
 
 In this section the results obtained for the test set are presented and discussed.
 The results are distributed in the three main stages: \emph{Initial Processing}, \emph{Automatic Shape Matching} and
-\emph{Matching Manual Fixing}. In the section \emph{Initial Processing} the results for the three different 
+\emph{Matching Manual Fixing}. In the section \emph{Initial Processing}, the results for the three different 
 images in the test set are presented. On the other hand the section \emph{Shape fitting} presents the different
 results for the stages \emph{Automatic Shape Matching} and \emph{Matching Manual Fixing} for every test image
 individually.
@@ -101,18 +101,18 @@ individually.
 
 This section presents the results for the experiments carried out over the test set for the 
 processes: thresholding and endpoint finding. Then a brief discussion about
-the result for the worm profiling process is also presented.
+the result for the worm profiling process is presented.
 
 \subsubsection*{Thresholding}
 
-As explained in Sec.\ref{sec:thresimp} \emph{Endrov} has implementations for the 
+As explained in Sec. \ref{sec:thresimp}, \emph{Endrov} has implementations for the 
 thresholding filters \emph{Fukunaga}, \emph{Max entropy}, \emph{Otsu} and \emph{Percentile}.
 In order to select an appropriate thresholding
 filter, the four previously mentioned were tried on every test image, tweaking the
-input parameters until the best possible binary image was obtained from every one.
+input parameters until the best possible binary image was obtained for every one.
 From visual inspection, the \emph{Percentile} filter generated the
 best binary images for the three tests. 
-The best percentile values for every test image are shown in table \ref{tab:threshold}.
+The best percentile values for every test image are shown in Table \ref{tab:threshold}.
 The second closest method was \emph{Fukunaga}
 that produced acceptable solutions after the combination of binary images
 generated from different number of classes, however the results were not as good as
@@ -140,7 +140,7 @@ simple to determine using \emph{Endrov}.
 
 This section presents the results for the detection of worm endpoints.
 Table \ref{table:endtable} shows the number of worm endpoints that are
-automatically detected and those that have to be manually added in order
+automatically detected and those that have to be manually added, in order
 to cover all the endpoints for the worms in the image.
 
 \begin{table}[h]
@@ -185,7 +185,7 @@ the subsections named \emph{Automatic Shape Matching} for every test image resul
 
 \subsection{Shape Matching}
 
-In this section the results for the second and third stage in the 
+In this section, the results for the second and third stage in the 
 solution methodology are presented, as described above in Sec. \ref{sec:experiments}, which consist
 in \emph{Automatic Shape Matching} and \emph{Matching Manual Adjustment}. 
 For the \emph{Automatic Shape Matching} subsection the results for a series of four 
@@ -205,7 +205,7 @@ and selects two endpoints to obtain the best optimized shape that connects them,
 explained in Sec. \ref{sec:matchfix}. An operation (as used in the tables for this section) 
 is considered to be the process of selecting two endpoints and generate a new shape.\\
 
-Then a subsection \emph{Matching Energy} is presented in which the distribution of
+Then a subsection \emph{Matching Energy} is presented, in which the distribution of
 the energy values for the different conformations is discussed. This section presents
 a graph showing the different energy values (objective function) for the correct conformation
 and the next two best conformations for every endpoint (of those having three or more conformations). 
@@ -218,7 +218,7 @@ selected endpoint and end in a wrong one.
 
 Since for the test image 1 all the endpoints are found automatically, as shown in 
 Table \ref{table:auto1}, the results presented here show the matching efficiency and
-runtime just for the variations Every Path and Path Guessing, that include all the
+runtime just for the variations Every Path and Path Guessing, which include all the
 worm endpoints. Table \ref{table:auto1} presents the obtained results.
 
 \begin{table}[h!]
@@ -243,7 +243,7 @@ worm endpoints. Table \ref{table:auto1} presents the obtained results.
 It can be observed that in both variations of the algorithm the 
 \emph{isolated worms} were all matched. For the Every Path variation 
 three quarters of the worms in clusters were matched correctly.
-On the other hand the Path Guessing variation managed to match automatically 
+On the other hand, the Path Guessing variation managed to match automatically 
 all the worms in the image. The execution time is slightly higher for the
 Path Guessing Variation, as expected because of the extra calculations that
 must be performed to calculate the best paths departing from each endpoint.\\
@@ -252,7 +252,7 @@ For this image, the Path Guessing variant represented an improvement in
 the solution, by inducing the shape produced from guessed paths to be more
 likely to be selected. On the other hand, at first glance, the isolated
 worms seem to be matched regardless of the algorithm variant, as expected.\\
-The best matching for test image 1, corresponding to the Path Guessing variation, is shown in Fig.\ref{fig:best1}.
+The best matching for test image 1, corresponding to the Path Guessing variation, is shown in Fig. \ref{fig:best1}.
 
 
 \begin{figure}[h!]
@@ -286,12 +286,12 @@ The results for automatic matching on test image 2 are shown in table \ref{tab:t
     \hline
   \end{tabular}
   \label{tab:tab2}
-  \caption{Results of automatic worm shape matching on test image 2, without and with missing endpoints (me)}
+  \caption[Results of automatic worm shape matching on test image 2, with and without missing endpoints]{Results of automatic worm shape matching on test image 2, with and without missing endpoints (me)}
 \end{table}
 
-It can be observed that for every variation the Isolated Worms were matched
-totally. For the two variations that have missing endpoints just around
-the half of the total worms could be matched. Though the execution time is
+It can be observed that for every variation the \emph{isolated worms} were matched
+totally. For the two variations that have missing endpoints, just around
+the half of the total worms could be matched. Although the execution time is
 slower, which is expected given the decrease of feasible paths, not having an
 endpoint of a worm makes impossible to find a shape that matches it correctly.
 For the variations that include endpoints the results are considerably better.
@@ -308,7 +308,7 @@ less than a minute.
 \subsubsection*{Matching Manual Adjustment (Test Image 2)}
 
 Path Guessing with no missing endpoints gave the best result,
-with just $4$ worms wrongly matched among $33$. Fig.\ref{fig:best2} shows the matchings.
+with just $4$ worms wrongly matched among $33$. Fig. \ref{fig:best2} shows the matches.
 
 \begin{figure}[h]
   \centering
@@ -320,7 +320,7 @@ with just $4$ worms wrongly matched among $33$. Fig.\ref{fig:best2} shows the ma
 \qquad
   \subfloat[Manually Adjusted Match over original image]{\label{bestbg1}\includegraphics[scale=0.45]{results/test2/frame2-all}}
 
-\caption{Best automatic shape matching and Manual match fixing on test image 2. Colored shapes and outlines in images
+\caption[Best automatic shape matching and manual match fixing on test image 2]{Best automatic shape matching and manual match fixing on test image 2. Colored shapes and outlines in images
     \ref{test2:best2} and \ref{test2:bestbg2} indicate incorrectly detected worms}
 \label{fig:best2}
 \end{figure}
@@ -353,7 +353,7 @@ The results for automatic matching on test image
     \hline
   \end{tabular}
   \label{tab:tab3}
-  \caption{Results of automatic worm shape matching on test image, without and with missing endpoints (me)}
+  \caption[Results of automatic worm shape matching on test image 3, with and without missing endpoints]{Results of automatic worm shape matching on test image 3, with and without missing endpoints (me)}
 \end{table}
 
 The isolated worms were always matched successfully.
@@ -369,8 +369,7 @@ whole image.
 \subsubsection*{Matching Manual Adjustment (Test Image 3)}
 
 The Path Guessing without missing endpoints turned out to be the best one, with $9$ worms wrongly matched among $38$.
-Fig.\ref{fig:best3} presents four images for this algorithm.
-
+Fig. \ref{fig:best3} presents four images for this algorithm.
 \begin{figure}[h!]
   \centering
   \subfloat[Best Automatic Match]{\label{test3:best3}\includegraphics[scale=0.35]{results/test3/guess-nobg}}
@@ -381,7 +380,7 @@ Fig.\ref{fig:best3} presents four images for this algorithm.
   \label{best3:c}
 \qquad
   \subfloat[Manually Adjusted Match over original image]{\label{bestbg1}\includegraphics[scale=0.35]{results/test3/all-bg}}
-  \caption{Best automatic shape matching and Manual match fixing on test image 3. Colored shapes and outlines in images
+  \caption[Best automatic shape matching and manual match fixing on test image 3]{Best automatic shape matching and manual match fixing on test image 3. Colored shapes and outlines in images
     \ref{test3:best3} and \ref{test3:bestbg3} indicate incorrectly detected worms}
   \label{fig:best3}
 \end{figure}
@@ -392,7 +391,7 @@ All the worms in the image could then be matched and fitted.
 
 \subsection{Matching Energy}
 
-The energy for the best three conformations in each endpoint is shown in Fig.\ref{fig:energy123}.
+The energy for the best three conformations in each endpoint is shown in Fig. \ref{fig:energy123}.
 The first is correct and matches the worm, the other two match wrong endpoints.\\
 Recall that the energy function, covered
 in Sec.\ref{sec:clusterfit}, evaluates the distance between a matching shape
@@ -410,8 +409,9 @@ from one to three decimals close to $0$.
     \subfloat[Image 2]{\label{fig:energy2b}\includegraphics[scale=0.54]{results/test2/energy-graph}}\\
     \subfloat[Image 3]{\label{fig:energy3b}\includegraphics[scale=0.54]{results/test3/energy-graph}}
   \end{center}
-  \caption{Energy value for the best three conformations by endpoint ID on test
-images. The right conformation is red. The selected endpoints correspond to worms in worm clusters that
+  \caption[Energy value for the best three conformations by endpoint ID on test
+images]{Energy value for the best three conformations by endpoint ID on test
+images. The correct conformation is red. The selected endpoints correspond to worms in worm clusters that
 have more than two possible conformations.}
   \label{fig:energy123}
 \end{figure}
@@ -456,12 +456,9 @@ correct solution is either the best or the second best.\\
 
 Given that for this image the amount of worms that belong to clusters
 is high (25), the number of possible paths starting
-from every endpoint is high and so is the number of wrong conformations.
+from every endpoint is also high and so is the number of wrong conformations.
 Since so many correct conformations did not have the lowest energy value,
 the energy formulation must not be sensitive enough. However
 the differences between the correct and selected conformations for
 these cases are close (just as for test image 2), so a more sophisticated objective function could lead
 to better results.\\
-
-
-

@@ -3,7 +3,7 @@
 \cleardoublepage
 \chapter{Conclusions and Future Work}
 
-In this chapter the conclusions obtained from the experiment results of the 
+In this chapter, the conclusions obtained from the experiment results of the 
 worm shape fitting methodology developed in this work are addressed.
 Then some future work suggestions are presented, pointing out the modifications
 that can be performed to improve the solution methodology.
@@ -23,25 +23,25 @@ The solution is said to be semi-automatic because of the need of manual
 tweaking in two steps of the process: endpoint identification and
 final matching. Once the endpoints are completely identified, the automatic
 solution provides a high matching percentage (more than three quarters of 
-the total in the worst case), that can be even be optimal in \emph{easy} 
+the total, in the worst case), that can be even be optimal in \emph{easy} 
 images. The final matching process allows the user to re-arrange the 
 automatic solution, providing an optimal match for the image.\\
 The \emph{Initial Processing} step is quickly executed, less than
 $1\%$ of the total execution time. On the other hand The \emph{Shape Matching}
-step is the most time consuming process, taking the $99\%$ of the total
-time excluding the time taken for manual adjustments (though normally fast).
+step is the most time consuming process, consuming the $99\%$ of the total
+time excluding the time taken for manual adjustments (normally fast).
 
 \subsection*{Isolated Worms and Worm Cluster matching}
 
 The \emph{isolated worms} are fully identified in every image following
-an automatic process, without the need of manual addition of endpoints
+an automatic process, without requiring manual addition of endpoints
 or match fixing. An accurate image worm profile can be successfully 
 calculated from the \emph{isolated worms}.\\
 The identification of worms in \emph{worm clusters} represented the most 
 challenging process of the worm fitting methodology. A high density
-of worms leads to multiple overlaps and clusters where endpoints can fail
+of worms leads to multiple overlaps and clustering, where endpoints can fail
 to be detected. Worms will not be identified correctly if endpoints are
-missing so manual adjustments are required.\\
+missing, so manual adjustments are required.\\
 The shape of \emph{isolated worms} can be traced accurately in all the cases.
 For worms in clusters the shape is initially matched through the perturbation
 of a descriptor that is built from a worm profile. Once the optimal shape
@@ -77,18 +77,18 @@ The energy formulation is sensitive enough to position the optimal solution
 among the two best possible conformations for every worm. For the vast majority
 of the cases the optimal solution is considered to have the lowest 
 energy value, hence
-leading to a correct match. However the top two conformations tend to be
+leading to a correct match. However, the top two conformations tend to be
 very close to each other, which leads to matching errors, thus making
 the objective function not sensitive enough to provide an automatic perfect
-match in difficult images. A more sophisticated energy formulation that
-takes more advantage of the information in the image could
+match in difficult images. A more sophisticated energy formulation, which
+takes more advantage of the information in the image, could
 differentiate better between conformations and possibly
 lead to perfect automatic matches for difficult images.
 
 
 \section{Future Work}
 
-Below a set of suggestions are given to improve the presented solution
+Below, a set of suggestions are given to improve the presented solution
 methodology and to solve new problems based in this formulation.
 
 
@@ -104,7 +104,7 @@ worms in the image, and avoid to stabilize in worm intersections.\\
 A possible better formulation could make use of the previously calculated
 distance map, where there is a value assigned to every pixel
 indicating the distance to the nearest background point. 
-Then in order to reduce the energy the shape will tend to reach border pixels.
+Then, in order to reduce the energy, the shape will tend to reach border pixels.
 Since the distance map assigned distance value $0$ to background pixels, the 
 presence of these would have to be penalized in some way.
 
@@ -115,7 +115,7 @@ process, a more sophisticated detection technique would improve the
 efficiency of the automatic solution, and reduce the time spent in
 manual endpoint addition. A suggested way of finding missing endpoints is
 to use the path guessing algorithm to trace the more likely worm paths 
-from endpoints, after a number of pixels have been covered (\emph{e.g} the
+from endpoints, after a number of pixels have been covered (\emph{e.g.} the
 estimated worm length calculated for profiling). Once this point is reached
 a neighborhood analysis can be performed to look for pre-existing 
 worm endpoints and then place a new one at this point in case no endpoint 

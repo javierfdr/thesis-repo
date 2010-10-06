@@ -3,13 +3,12 @@
 \cleardoublepage
 \chapter{Theoretical Framework}
 \label{sec:dev}
-
 \section{Endrov}
 \label{sec:endrov}
 
 \emph{Endrov} is an open source plugin architecture aimed for image analysis and data processing.
 Being based on \emph{Java}, it is portable and can both be run locally and as an applet, as mentioned
-in \cite{web:endrov}. It grew out of the need for an advanced open source software 
+in \cite{web:endrov}. It grew out of the need for advanced open source software 
 that can cope complex spatio-temporal image data, mainly obtained from microscopes in 
 biological research. \emph{Endrov} aims to improve the features of the standard 
 open source image analysis program, \emph{ImageJ}, by providing a more modern design.\\
@@ -21,11 +20,11 @@ image format and the difficulty to store complex data in the existing open forma
 The development group created the OST format in order
 to handle the large image sets. OST is now a tree based object file format and it can store any 
 type of data, but is optimized for images. 
-Reading and writing single image panes is fast (independent of images et size) 
+Reading and writing single image panes is fast 
 and there is no need to read everything into memory, \cite{web:endrovhome}.\\
 
 Endrov is both a library and an imaging program. The design has made strong emphasis on 
-separating GUI code from data types, filters and other data processing plugins. 
+separating GUI code from data types, filters and other data processing plug-ins. 
 The idea is that the program can be used for most daily use or prototyping, and for 
 bigger batch processing or integration, \cite{web:endrov}.\\
 
@@ -52,7 +51,7 @@ pixel is labeled "object" if its value is between two thresholds; and \emph{thre
 the opposite of \emph{threshold inside} \cite{shapiro}.
 
 In image processing applications where the study is focused on particular objects contained
-in an image, thresholding becomes an simple tool to separate these objects from
+in an image, thresholding becomes a simple tool to separate these objects from
 the background, but not always accurate. Commonly, the gray levels belonging to the object are substantially
 different from the gray levels of the background pixels. In \cite[p.146]{thres} many thresholding
 applications in image processing are mentioned such as: document image analysis, where the goal
@@ -81,7 +80,7 @@ correlation between pixels
 to the local image characteristics.
 \end{itemize}
 
-In fig.\ref{fig:thres1}, two images are shown that correspond to a gray-scale image
+In fig. \ref{fig:thres1}, two images are shown that correspond to a gray-scale image
 and binary image obtained by thresholding.
 
 \begin{figure}[h t b p ! H]
@@ -89,7 +88,7 @@ and binary image obtained by thresholding.
   \subfloat[Gray-scale Image]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
 \qquad
   \subfloat[Binary image obtained through thresholding]{\label{fig:thres1}\includegraphics[width=0.45\textwidth]{thres/winter_thres}}
-  \caption{Gray-scale Image before and after a thresholding effect is applied. Images taken from \cite{web:thresholding}}
+  \caption[Gray-scale Image before and after a thresholding effect is applied]{Gray-scale Image before and after a thresholding effect is applied. Images taken from \cite{web:thresholding}}
   \label{fig:thres1}
 \end{figure}
 
@@ -97,9 +96,9 @@ and binary image obtained by thresholding.
 \label{sec:dt}
 
 A distance transform or distance map is a representation of a digital image
-that is obtained by converting a digital binary image, consisting in object
-and non-object pixels, to another image in which each pixel has a value
-corresponding to the distance to the nearest non-object pixel. The object 
+in which each pixel has a value corresponding to the distance to the 
+nearest non-object pixel. It is calculated from a digital binary image, 
+consisting in object and non-object pixels. The object 
 pixels can be considered as foreground and the non-object pixels as
 background. The obtained image is then a sort of gray-scale representation
 of the foreground pixels in the binary image.\\
@@ -108,15 +107,15 @@ measurement method of distance between image pixels. Different metrics have been
 studied to find distance maps such as 
 \emph{City Block or Manhattan},
 \emph{Chessboard}, \emph{Euclidean}, \emph{Chamfer 3-4}, \emph{Octagonal}, among
-others.\cite[p.363]{dtresearch}. There exist a great amount of
-distance metric of other kinds that are useful for different purposes.
+others.\cite[p.363]{dtresearch}. There exist great amounts of
+distance metrics of other kinds that are useful for different purposes.
 These are commonly derived from the previous.
-Fig.\ref{fig:dtexamples} shows the images obtained by applying different distance metrics.
+Fig. \ref{fig:dtexamples} shows the images obtained by applying different distance metrics.
 
 \begin{figure}[h t b p ! H]
  \centering
    \includegraphics[scale=0.4]{dt/dtref}
- \caption{The distances from a point for the six distance transformations.
+ \caption[The distances from a point for the six distance transformations]{The distances from a point for the six distance transformations.
  The lighter the color the larger the distance \cite[p.365]{dtresearch}}
  \label{fig:dtexamples}
 \end{figure}
@@ -151,8 +150,9 @@ from a horse shape and the original binary image.\\
   \centering
   \subfloat[Binary Image]{\includegraphics[scale=0.8]{skeleton/horsebinary}}
 \qquad
-  \subfloat[Skeleton obtained using the ssm of the distance transform\cite{ssm}]{\includegraphics[scale=0.8]{skeleton/horseskeleton}}
-  \caption{Horse binary shape and skeleton obtained using the ssm of the distance transform. Images taken from \cite{ssm}}
+  \subfloat[Image Skeleton]{\includegraphics[scale=0.8]{skeleton/horseskeleton}}
+  \caption[Horse binary shape and skeleton]{Horse binary shape and skeleton. 
+Images taken from \cite{ssm}}
   \label{fig:genskeleton}
 \end{figure}
 
@@ -169,7 +169,8 @@ The \emph{Geometric Methods} compute the Voronoi diagram of a discrete polyline-
 sampling of the boundary. A Voronoi diagram is the boundary's medial axis. ``Such 
 methods produce an accurate connected skeleton, but are fairly complex to implement,
 require a robust boundary discretization, and are computationally expensive''
-\cite[p.251]{augmented}. The third defined method computes \emph{the distance transform}
+\cite[p.251]{augmented}.\\
+Another method computes \emph{the distance transform}
 (see Sec. \ref{sec:dt}) of the objects boundary. The common approach consists in
 finding the ridge points and connecting them \cite{maxima,euclideancentre,ridgedt}.
  Usually they can ensure the accurate localization of skeleton points 
@@ -189,7 +190,7 @@ computer vision, pattern recognition and robotics \cite{matchingbook}.
 It consists of identifying the area or contour of a specific
 shape or class of shapes in an image, and plays a fundamental
 role in content extraction from images and content-based image
-retrieval. In \cite{matching2} Veltkamp explains that shape 
+retrieval. In \cite{matching2}, Veltkamp explains that shape 
 matching deals with transforming a shape and measuring the 
 resemblance with another one, using some similarity measure, that 
 normally correspond to the notion of distance between shapes.\\
@@ -197,14 +198,14 @@ The concept of shape is abstract, but most approaches in
 shape matching represent a shape as a geometrical object.
 This can be both a set of points, curves, surfaces, solids etc.
 and a geometrical pattern modulo some transformation group,
-in particular similarity transformations (translations, rotations 
-and scalings), as is stated in \cite{matching2}. Usually a
+in particular similarity transformations (translation, rotation 
+and scaling), as is stated in \cite{matching2}. Usually a
 geometrical pattern of a shape called shape descriptor
 is used to represent the class of the matching object. There are
 different types of shape descriptors depending on the information
 they supply and the nature of the problem (see Sec.\ref{sec:shapedesc}) \\
 
-There are different studied ways to approach the shape matching 
+There are different studied approaches to the shape matching 
 problem. The emphasis on this section will be on the Computational
 Geometry based approaches for shape matching, since is the most related with
 the approach followed in this thesis work. Computational
@@ -225,11 +226,11 @@ domain to color variation in the frequency domain''.
 These approaches do not represent the shape explicitly for 
 matching, instead they represent color or intensity transitions 
 in the image. This makes it impossible to measure the difference of 
-two images in terms of shape as well as match a shape with a 
+two images in terms of shape as well as to match a shape with a 
 specific part of an image.\\
 On the other hand the \emph{global object methods} work with a complete
 object area or contour and can analyze specific areas in the 
-image instead of requiring to process the whole image as in 
+image instead of requiring processing the whole image as in 
 the global image transforms. In order to perform a proper
 matching, the objects in the image have to be completely and
 clearly segmented. Some of these methods are: \emph{moments}, where an
@@ -239,19 +240,23 @@ with Fourier descriptors and \emph{curvature scale space}, where a
 scale space and parameterized representation of the contour of the 
 objects is used.\\
 
-Veltkamp describes in \cite{matching2} four different forms in
+Veltkamp describes in \cite{matching2} various forms in
 which shape matching is studied, given two shape patterns
 and a dissimilarity measure. These are:
 
 \begin{itemize}
 \item \textbf{Computation Problem: }Compute the dissimilarity
   between the two patterns
-\item \textbf{Decision Problem: }For a given threshold, decide
-  whether the dissimilarity is smaller than the threshold
-\item \textbf{Decision Problem: }For a given threshold, decide
-  whether there exists a transformation such that the
-dissimilarity between the transformed pattern and the other 
-pattern is smaller than the threshold
+\item \textbf{Decision Problem: }
+  \begin{itemize}
+  \item  For a given threshold, decide
+  whether the dissimilarity is smaller than the threshold.
+  \item For a given threshold, decide
+    whether there exists a transformation such that the
+    dissimilarity between the transformed pattern and the other 
+    pattern is smaller than the threshold
+  \end{itemize}
+ 
 \item \textbf{Optimization Problem: }Find the transformation
 that minimizes the dissimilarity between the transformed
 pattern and the other pattern.
@@ -273,7 +278,7 @@ the objects resistance to be pushed by the external force into directions not co
 with the prior knowledge \cite{deformable}. In this case, the internal energy  imposes 
 a ``piecewise smoothness constraint'' \cite{snakes}. This means that a contour is
 pushed to an image feature by the external force while the contour itself exhibits resistance
-to be deformed into a non-smooth curve. As is explained in \cite{deformable} the image forces push the snake toward
+to be deformed into a non-smooth curve. As explained in \cite{deformable} the image forces push the snake toward
 salient image features like line, edges and subjective contours, while the external constraint forces
 are responsible for putting the snake near the desired local minimum.\\
 
@@ -300,8 +305,8 @@ Shape models have been used widely to achieve robust interpretation of complex
 images \cite{wormparam}. They allow image evidence to be organized into plausible interpretations
 which can then be verified.\\
 
-Latecki et al divide shape descriptors into three
-main categories: \cite{shapenonrigid}
+Latecki et al \cite{shapenonrigid}, divide shape descriptors into three
+main categories: 
 \begin{itemize}
 \item \textbf{Contour based descriptors: }The contour of a given object is 
 mapped to some representation from which a shape descriptor is derived
@@ -318,29 +323,30 @@ Considering that basically shape descriptors are ``attempts to quantify shape in
 ways that agree with human intuition''\cite[p.1]{desclecture}, any kind of 
 geometrical interpretation that covers the contents or properties that want 
 to be described on a shape, can be used as a shape descriptor.
-In \cite{desclecture} region-based shape descriptors are covered which are such
+In \cite{desclecture} region-based shape descriptors. These are such descriptors
 that attempt to describe a shape based on the geometrical and numerical properties
 of the region of the shape. Some simple descriptors are mentioned such as:
 area, perimeter, (Non-)Compactness or (Non-)Circularity, Eccentricity, Elongation,
 Rectangularity and Orientation. Any combination of these properties of a shape are
 useful to describe them in a basic and general way.
 Other more complex properties are mentioned to improve the accuracy of the 
-descriptor: \emph{convex hull}, \emph{extremal points}, \emph{profiles},
+descriptor: \emph{convex hull}, \emph{extremal points}, \emph{profiles}, 
 \emph{ moments} and \emph{profile moments}. \emph{Convex hull or bays} 
 describes the shape by measuring the number or size of concavities in the 
 shape. \emph{Extremal points} is based on finding the points that
 are at the extreme of the shape. This can be a simple representation as the 
 \emph{bounding box} or a more powerful one as it is finding the eight extremal
 points defined by: top left, top right, left top, left bottom, bottom right,
-bottom left,right top and right bottom. The \emph{Profiles} shape descriptor 
+bottom left, right top and right bottom. The \emph{Profiles} shape descriptor 
 is based on the number of pixels that the shape has in a given direction:
  either vertical, horizontal or diagonal. \emph{Moments} refer to the
  calculation of \emph{moment} statistical properties and 
 \emph{profile moments}, or a combination of the last two.\\
-\cite{web:wikishape} classifies shape descriptors by their
+In \cite{web:wikishape}, shape descriptors are classified by their
 invariance with respect to the transformations allowed in the associated
 shape definition. The main classes are descriptors invariant with respect 
-to congruence and invariance with respect to isometry. The congruence class
+to congruence and descriptors invariant with respect to isometry. 
+The congruence class
 comprehends identical shape descriptors for congruent shapes 
 (shapes obtained from
 translation, rotation or mirroring). The intrinsic shape descriptor refer
@@ -348,7 +354,7 @@ to those that do not change with different isometric embedding of the shape,
 and thus can be applied accurately to deformable objects.
 
 Depending on the properties that are controlled and measured, the descriptor
-may or may not allow to reconstruct a shape of the class. In \cite{wormparam} 
+may or may not allow reconstructing a shape of the class. In \cite{wormparam}, 
 a trainable method of shape representation is described which can
 automatically capture the invariant properties of a class of shapes and 
 provide a compact parametric description of variability. The method was
@@ -359,8 +365,8 @@ bending worm shapes by modifying the values of the parameters.\\
 \label{sec:splines}
 
 The term spline, as it is used in this work, refers to a piecewise polynomial curve. Splines
-are wide used in computer science subfields because of the simplicity of their constructions,
-their easy and accuracy of evaluation, and their capacity to approximate complex shapes
+are widely used in computer science subfields because of the simplicity of their constructions,
+their ease and accuracy of evaluation, and their capacity to approximate complex shapes
 through curve fitting and interactive curve design, as mentioned in \cite{web:splines}.
 The continuous signal representation is particularly apposite for 
 problems such as: edge detection, surface fitting and multi-resolution
@@ -369,19 +375,17 @@ vision such as: optical flow, surface reconstruction, the recovery
 of lightness and color, shape from shading and stereo matching,
 \cite[821]{splinespap}.
 
-Special types of splines receive different names, depending of different conditions.\\
-A commonly used type of spline in object recognition is the Hermite spline.This is
-is a third-degree spline, expressed using Hermite polynomials to represent each of the 
+Special types of splines receive different names, depending on different conditions.\\
+A commonly used type of spline in object recognition is the Hermite spline. This is a third-degree spline, expressed using Hermite polynomials to represent each of the 
 individual polynomial pieces. 
 Several methods have been invented to fit such splines to given data points such
-as \emph{Cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow to
-construct smooth curves that go through every point in a given data set. Thus, \emph{e.g.} 
+as \emph{Cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow constructing smooth curves that go through every point in a given data set. Thus, \emph{e.g.} 
 given a series of points belonging to the contour of an object, a smooth shape can be 
 calculated that models the shape of the defined object.  
 Such as B-splines, Hermit splines have a number of advantages for image processing, as
 mentioned in \cite{splinespap}.
-First, they are usually smooth and well behaved, therefore the do not tend to oscillate
+First, they are usually smooth and well behaved, therefore they do not tend to oscillate
 as higher order polynomials do. Second, the juxtaposition of local polynomial approximations
-may produce strong discontinuities in the connecting regions, B-spline
+may produce strong discontinuities in the connecting regions. B-spline
 surfaces, by contrast, are continuous everywhere. 
 Finally, they can be evaluated efficiently.
