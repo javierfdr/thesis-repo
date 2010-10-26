@@ -23,7 +23,7 @@ type of data, but is optimized for images.
 Reading and writing single image panes is fast 
 and there is no need to read everything into memory, \cite{web:endrovhome}.\\
 
-Endrov is both a library and an imaging program. The design has made strong emphasis on 
+\emph{Endrov} is both a library and an imaging program. The design has made strong emphasis on 
 separating GUI code from data types, filters and other data processing plug-ins. 
 The idea is that the program can be used for most daily use or prototyping, and for 
 bigger batch processing or integration, \cite{web:endrov}.\\
@@ -85,10 +85,10 @@ and binary image obtained by thresholding.
 
 \begin{figure}[h t b p ! H]
   \centering
-  \subfloat[Gray-scale Image]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
+  \subfloat[Gray-scale image]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
 \qquad
   \subfloat[Binary image obtained through thresholding]{\label{fig:thres1}\includegraphics[width=0.45\textwidth]{thres/winter_thres}}
-  \caption[Gray-scale Image before and after a thresholding effect is applied]{Gray-scale Image before and after a thresholding effect is applied. Images taken from \cite{web:thresholding}}
+  \caption[Gray-scale image before and after a thresholding effect is applied]{Gray-scale image before and after a thresholding effect is applied. Images taken from \cite{web:thresholding}}
   \label{fig:thres1}
 \end{figure}
 
@@ -115,7 +115,7 @@ Fig. \ref{fig:dtexamples} shows the images obtained by applying different distan
 \begin{figure}[h t b p ! H]
  \centering
    \includegraphics[scale=0.4]{dt/dtref}
- \caption[The distances from a point for the six distance transformations]{The distances from a point for the six distance transformations.
+ \caption[The distances from a point for the six distance transforms]{The distances from a point for the six distance transforms.
  The lighter the color the larger the distance \cite[p.365]{dtresearch}}
  \label{fig:dtexamples}
 \end{figure}
@@ -131,7 +131,7 @@ the detection of ridges and peaks which is a straightforward way to find the
 skeleton of an object.\cite[237]{ridgedt}. The nature of distance transforms
 in which the objects are represented as contour layers of different depth
 makes them also a useful tool for edge analysis and to improve efficiency of 
-morphology algorithms such as \emph{Thinning} and \emph{Thickening}.\\
+morphology algorithms such as \emph{thinning} and \emph{thickening}.\\
 
 \section{Skeletonization}
 \label{sec:skeletonization}
@@ -158,14 +158,14 @@ Images taken from \cite{ssm}}
 
 
 Depending on the way they are produced, skeletons can be categorized in different types.
-Telea et al describe three types in \cite{augmented}, such as: \emph{Morphological Thinning},
-\emph{Geometric Methods} and \emph{Distance transform}. The \emph{Morphological Thinning} methods iteratively peel off (or reduce) the boundary, layer by layer, identifying
+Telea et al describe three types in \cite{augmented}, such as: \emph{morphological thinning},
+\emph{geometric methods} and \emph{distance transform}. The \emph{morphological thinning} methods iteratively peel off (or reduce) the boundary, layer by layer, identifying
 points whose removal does not affect the object's topology. These are usually 
 straightforward and normally require intricate heuristics to ensure the skeletal
 connectivity, as mentioned in \cite{augmented}. Two fast parallel approaches that
-ensure connectivity using the \emph{Morphological thinning} method are described
+ensure connectivity using the \emph{morphological thinning} method are described
 in \cite{onepass} and \cite{thinning}.\\
-The \emph{Geometric Methods} compute the Voronoi diagram of a discrete polyline-like
+The \emph{geometric methods} compute the Voronoi diagram of a discrete polyline-like
 sampling of the boundary. A Voronoi diagram is the boundary's medial axis. ``Such 
 methods produce an accurate connected skeleton, but are fairly complex to implement,
 require a robust boundary discretization, and are computationally expensive''
@@ -206,10 +206,10 @@ different types of shape descriptors depending on the information
 they supply and the nature of the problem (see Sec.\ref{sec:shapedesc}) \\
 
 There are different studied approaches to the shape matching 
-problem. The emphasis on this section will be on the Computational
-Geometry based approaches for shape matching, since is the most related with
+problem. The emphasis on this section will be on the computational
+geometry based approaches for shape matching, since is the most related with
 the approach followed in this thesis work. Computational
-Geometry studies algorithms that can be declared in terms of 
+geometry studies algorithms that can be declared in terms of 
 geometry.\\
 
 In \cite{matchingbook} Veltkamp and Hagedoorn mention different 
@@ -293,7 +293,7 @@ Having this, the optimization algorithm consists of minimizing the objective
 function until the best solution is found.
 
 
-\section{Shape descriptor}
+\section{Shape Descriptor}
 \label{sec:shapedesc}
 
 A shape descriptor is a structured abstraction of a class
@@ -326,8 +326,8 @@ to be described on a shape, can be used as a shape descriptor.
 In \cite{desclecture} region-based shape descriptors. These are such descriptors
 that attempt to describe a shape based on the geometrical and numerical properties
 of the region of the shape. Some simple descriptors are mentioned such as:
-area, perimeter, (Non-)Compactness or (Non-)Circularity, Eccentricity, Elongation,
-Rectangularity and Orientation. Any combination of these properties of a shape are
+area, perimeter, (non-)compactness or (non-)circularity, eccentricity, elongation,
+rectangularity and orientation. Any combination of these properties of a shape are
 useful to describe them in a basic and general way.
 Other more complex properties are mentioned to improve the accuracy of the 
 descriptor: \emph{convex hull}, \emph{extremal points}, \emph{profiles}, 
@@ -337,7 +337,7 @@ shape. \emph{Extremal points} is based on finding the points that
 are at the extreme of the shape. This can be a simple representation as the 
 \emph{bounding box} or a more powerful one as it is finding the eight extremal
 points defined by: top left, top right, left top, left bottom, bottom right,
-bottom left, right top and right bottom. The \emph{Profiles} shape descriptor 
+bottom left, right top and right bottom. The \emph{profiles} shape descriptor 
 is based on the number of pixels that the shape has in a given direction:
  either vertical, horizontal or diagonal. \emph{Moments} refer to the
  calculation of \emph{moment} statistical properties and 
@@ -379,7 +379,7 @@ Special types of splines receive different names, depending on different conditi
 A commonly used type of spline in object recognition is the Hermite spline. This is a third-degree spline, expressed using Hermite polynomials to represent each of the 
 individual polynomial pieces. 
 Several methods have been invented to fit such splines to given data points such
-as \emph{Cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow constructing smooth curves that go through every point in a given data set. Thus, \emph{e.g.} 
+as \emph{cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow constructing smooth curves that go through every point in a given data set. Thus, \emph{e.g.} 
 given a series of points belonging to the contour of an object, a smooth shape can be 
 calculated that models the shape of the defined object.  
 Such as B-splines, Hermit splines have a number of advantages for image processing, as

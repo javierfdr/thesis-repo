@@ -9,13 +9,13 @@
 
 This section presents the solution methodology which consists in the different
 steps in image processing that must be performed in order to successfully fit the shape of 
-\emph{C.elegans} worms present in digital images. First, a general description
+C. elegans worms present in digital images. First, a general description
 of the solution is presented, where the shape fitting approach is explained, indicating
 the different processes involved in the solution design. Then, for each process 
 a reasoning of its requirement and usefulness is given, as well as 
 the corresponding implementation approach.
 
-\subsection{Previous reasoning}
+\subsection{Previous Reasoning}
 \label{sec:reasoning}
 
 As covered in
@@ -35,7 +35,7 @@ class and thus can be represented or described in terms
 of geometry, \emph{i.e.} a shape descriptor.\\
 
 The problem of study aims the detection of worms,
-particularly those belonging to the \emph{C.elegans} species. Given
+particularly those belonging to the C. elegans species. Given
 the vermiform (worm shape) property of these individuals,
 the objects to detect can be defined as part of a 
 \emph{worm} class,
@@ -81,7 +81,7 @@ The worms that are clustered can be matched through an energy minimization
 process, based on the manipulation of the shape descriptor and its distance
 to the matching image, in order to obtain the best possible match.
 
-\subsection{Methodology description}
+\subsection{Methodology Description}
 \label{met:description}
 
 Following the previous reasoning, a methodology was designed taking into account
@@ -98,7 +98,7 @@ presented.\\
  \centering
    \includegraphics[scale=0.9,angle=270]{diagrams/design.pdf}
  \caption{Graphical description of the solution methodology for the shape detection
- of \emph{C.elegans} worms in digital images}
+ of C. elegans worms in digital images}
 \label{fig:methsol}
 \end{figure}
 
@@ -108,7 +108,7 @@ obtain a binary image that separates worm pixels from background pixels. Usually
 noise is obtained after the thresholding process, but it is ignored in further processing.
 This corresponds to an initial segmentation of the input. Once one have a binary image, a
 distance map can be obtained in which each pixel represents the distance to the 
-nearest background pixel, as explained in \cite{dtresearch}. The distance transformation
+nearest background pixel, as explained in \cite{dtresearch}. The distance transform
 makes possible to identify the contour pixels in the binary image, which makes it a fundamental
 tool for the automatic generation of a shape descriptor, contour tracing on isolated worms 
 and optimization of the skeletonization algorithm, among others. Having the image 
@@ -176,7 +176,7 @@ well as the followed implementation approach.
 \subsection{Thresholding}
 \label{sec:metthres}
 
-Since the main purpose of this study is to fit the shape of \emph{C.elegans} worms on digital
+Since the main purpose of this study is to fit the shape of C. elegans worms on digital
 images, it is useful to differentiate these from the rest of the image in order to perform a more 
 accurate analysis. The shape of the worms
 can be characterized as objects and the rest of the image as background. More precisely
@@ -187,38 +187,38 @@ Given this theoretical characterization, a thresholding filter would come to be 
 to locate the objects of study in the digital representation and to discard unnecessary 
 information, obtaining a binary image from the original one. A binary image would then provide
 an initial segmentation of the processed image, being as well a key element to obtain
-a distance transformation, as explained in Sec. \ref{sec:metdt}.
+a distance transform, as explained in Sec. \ref{sec:metdt}.
 
 \subsubsection{Implementation}
 \label{sec:thresimp}
 There are four thresholding filters for 2D images implemented on \emph{Endrov}, these are: 
-\emph{Fukunaga}, \emph{Max entropy}, \emph{Otsu} and \emph{Percentile}, which cover the 
+\emph{Fukunaga}, \emph{max entropy}, \emph{Otsu} and \emph{percentile}, which cover the 
 histogram and entropy-based thresholding methods categories as defined in Sec.\ref{sec:thresholding}.
 Considering that the implemented methods are sufficiently different and given the transparency
-of \emph{C.elegans} worms, it is hard to determine theoretically which would be the most appropriate 
+of C. elegans worms, it is hard to determine theoretically which would be the most appropriate 
 thresholding method to obtain an accurate binary image from the study data-set. In order 
 to select a thresholding method, a series of experiments where performed that consisted on 
 tweaking the parameters for the different mentioned methods. 
-The selected method was \emph{Percentile Threshold 2D}, as proved to be the easiest to tune manually and the 
+The selected method was \emph{percentile threshold 2D}, as proved to be the easiest to tune manually and the 
 one that calculated the best binary counterpart, for the images in the data-set.
 
 Figure \ref{fig:wormthres} shows a binary image obtained after applying
-the \emph{Percentile Threshold 2D} method with a percentile value of $0.074$
+the \emph{percentile threshold 2D} method with a percentile value of $0.074$
 
 \begin{figure}[h t b p ! H]
   \centering
   \subfloat[Original image]{\includegraphics[width=0.45\textwidth]{original.png}}
 \qquad
-  \subfloat[Percentile Threshold. Value=0.074]{\includegraphics[width=0.45\textwidth]{thres/worms}}
+  \subfloat[Percentile threshold. Value=0.074]{\includegraphics[width=0.45\textwidth]{thres/worms}}
 \caption{Worms in liquid media. Original image and binary image obtained through
-Percentile Thresholding with a percentile value of 0.074}
+percentile thresholding with a percentile value of 0.074}
   \label{fig:wormthres}
 \end{figure}
 
-\subsection{Distance transformation}
+\subsection{Distance Transform}
 \label{sec:metdt}
 
-In this shape fitting approach, the distance transformation
+In this shape fitting approach, the distance transform
 of the input image is used thoroughly for contour detection and different kinds of image 
 segmentation procedures. Specifically the distance map allows detecting and following
 the exact contour of isolated worms (Sec. \ref{sec:metiso}), 
@@ -231,21 +231,21 @@ It also improves the performance of the iterative thinning algorithm designed by
 \subsubsection{Implementation}
 \label{sec:dtimp}
 
- As stated in \cite[p.196]{fastdt} the algorithms of distance transformation can be categorized into two classes: one is the iterative 
+ As stated in \cite[p.196]{fastdt} the algorithms of distance transform can be categorized into two classes: one is the iterative 
  method which is efficient in a cellular array computer since all the pixels at each iteration can be processed in parallel, and the other 
 is sequential (or recursive) method which is suited for a conventional computer by
  avoiding iterations to be independent of object size. 
 Using the machines that most people working in digital image processing
  have access to, sequential algorithms are often much more efficient than
  iterative ones. For this reason a sequential approach was chosen to calculate the
-distance transformation of the input images. Particularly the two-scan transformation
+distance transform of the input images. Particularly the two-scan transformation
 using 3x3 neighborhoods \cite{fastdt}, which is both efficient and easy to implement.\\
 
 In the mentioned paper a distance map calculation algorithm is described which consist
 of only two scans of the image bitmap, one left to right - top to bottom, and another
 right to left - bottom to top, with one operation per pixel. This makes the complexity
 of the algorithm $\mathcal{O}(N)$ where $N$ is the size of the image array.
-In \cite[p.197]{fastdt} a pseudo-code for \emph{Chessboard} and 
+In \cite[p.197]{fastdt} a pseudo-code for \emph{chessboard} and 
 \emph{Manhattan or city-block} distances is given, while in \cite[p.198]{fastdt} the 
 definition is extended to improve the efficiency of the calculations needed to 
 generate a distance map using \emph{Euclidean} distances.
@@ -269,7 +269,7 @@ from a single worm image.
   \subfloat[Chessboard metric]{\label{fig:chess}\includegraphics[width=0.45\textwidth]{dt/chessboarddt}}
 \qquad
   \subfloat[Euclidean metric]{\label{fig:mouse}\includegraphics[width=0.45\textwidth]{dt/euclideandt}}
-  \caption{Binary Image and three distance transformation metrics from a single worm image}
+  \caption{Binary Image and three distance transform metrics from a single worm image}
   \label{fig:distance}
 \end{figure}
 
@@ -456,7 +456,7 @@ The expanding algorithm can be summarized in the following steps:
 \begin{itemize}
 \item Select an endpoint
 \item Find the previous skeleton point and calculate the directional neighborhood
-\item Select the directional neighbor with the lowest distance transformation pixel,
+\item Select the directional neighbor with the lowest distance map pixel,
   and mark it as skeleton pixel.
 \item If the neighbor is not a contour point repeat the process.
 \end{itemize}
@@ -566,7 +566,7 @@ followed next, thus dividing the path in two or more different paths.\\
 In order to make the path tracing tend to reach path bifurcations and then decide the best
 path to take, a heuristic function was designed. This function basically 
 consists of the value of the neighbor pixel
-in distance transformation multiplied by a variable factor.
+in the distance transform multiplied by a variable factor.
 Then, the selection of the next pixel to follow is based on two main values:
 the amount of times that the direction of neighbor pixel has been taken in the last $S$ steps and
 the value of the heuristic function for that pixel. This can be expressed as below:
@@ -630,7 +630,7 @@ guessing approach.
 \label{sec:metshapedescriptor}
 
 As first mentioned on Sec.\ref{met:description} the chosen methodology approach 
-to match \emph{C.elegans} worms is based on the manipulation of 
+to match C. elegans worms is based on the manipulation of 
 worm shapes generated from a shape descriptor.
 Worm shapes can be described in geometrical terms as long, thin and cylindrical 
 objects. Given that the process of skeletonization and image segmentation 
@@ -705,7 +705,7 @@ control point bisector in both opposite directions. The Euclidean distance from 
 point to each found pixel is calculated, and its average is recorded. Repeating this process
 with every \emph{isolated worm} generates a set of \emph{thickness profiles}, one for each
 \emph{isolated worm}. Then a general worm profile is calculated by finding the mean between
-the thickness values for every control point in each \emph{thickness profile}. In order 
+the \emph{thickness} values for every control point in each \emph{thickness profile}. In order 
 to generate an accurate profile, that avoids oversized (or downsized) worms and wrongly
 detected \emph{isolated worms}, the $20\%$ higher and lower values are discarded when 
 calculating the average. The \emph{thickness} value for
@@ -715,15 +715,15 @@ Having done this, a \emph{thickness profile} is obtained that represents the ave
 radius distance for every control point to its closest contour pixel, making possible
 to generate a generic worm shape around any skeleton. 
 
-\subsection{Shape rasterization}
+\subsection{Shape Rasterization}
 \label{sec:metrast}
 
 The proposed matching approach is focused on minimizing the difference between generated
-shapes and the shapes in the image. In order to do so the area covered by the matching shape
+shapes and the shapes in the image. In order to do so, the area covered by the matching shape
 must be calculated.\\ 
 Given a shape descriptor, a worm shape can be
 constructed following a worm profile consisting of a worm silhouette defined by 
-a b-spline curve. Given the contour of the worm shape, the area can be calculated and 
+a B-spline curve. Given the contour of the worm shape, the area can be calculated and 
 then rasterized in order to express it in image data terms.\\
 
 The approach followed to achieve this consists of triangulating the space defined by the
@@ -746,7 +746,7 @@ This process calculates a set of pixels that constitute the area of the shape. T
 the area and contour of the shape can be stored as manageable and displayable data.
 
 
-\subsection{Profile-driven shape fitting}
+\subsection{Profile-Driven Shape Fitting}
 \label{sec:metfit}
 
 Once the initial processing of segmentation and worm skeletonization is performed, where 
