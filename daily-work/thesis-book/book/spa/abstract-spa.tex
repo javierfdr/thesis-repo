@@ -1,0 +1,57 @@
+\begin{abstract}
+
+   % What is C. elegans and why is it so important.
+   % The problem: manual assays are to intensive, need
+   % for automated solutions.
+   % What do we provide: a image processing methodology that
+   % provides semi-automatic solution, for Endrov (open source
+   % image analysis software)
+   % Few methods attempt to resolve cluttering. Individual
+   % images are not usually addressed (large datasets).
+   % Automated solutions fit 85 percent of the image. We 
+   % fit 100% 
+
+El nematodo C. elegans es un organismo ampliamente
+utilizado. Posee muchas c\'elulas con equivalentes humanos y otras
+condiciones especialmente favorables, que lo han convertido en modelo
+de estudio para la biolog\'ia, especialmente la g\'enetica del
+desarrollo. As\'i mismo, al ser peque\~no y transparente se presta bien
+a una gran variedad de t\'ecnicas de cribado de alto rendimiento
+(HTS). \\ 
+
+La identificaci\'on de gusanos deber\'ia automatizarse lo mas
+posible dado que es muy trabajoso efectuarla manualmente.
+En este trabajo se presenta una metodolog\'ia de procesamiento de im\'agenes
+para detectar C. elegans en im\'agenes obtenidas por microscop\'ia de 
+alto rendimiento. La soluci\'on semi-autom\'atica que aqu\'i se provee, permite identificar
+eficazmente gusanos particulares en agrupaciones de gusanos. En
+t\'erminos generales, el proceso  consta de lo siguiente:
+una imagen dada es segmentada, separando as\'i grupos de gusanos del
+fondo de la imagen. Se detectan gusanos particulares de manera autom\'atica, siguiendo un
+proceso de comparaci\'on y ajuste de siluetas de gusanos. Este proceso
+se basa en encontrar siluetas factibles dentro de una agrupaci\'on, 
+minimizando la distancia que existe entre dicha agrupaci\'on y 
+siluetas gen\'ericas que son deformadas para ajustarse a ella.
+Las conformaciones de gusanos ajustadas incorrectamente 
+pueden ser corregidas f\'acilmente de manera manual.\\
+
+La metodolog\'ia provista presenta un enfoque innovador para
+detectar exitosamente gusanos C. elegans particulares en 
+im\'agenes de microscopio. Los resultados muestran que esta soluci\'on
+semi-autom\'atica permite detectar, correctamente, la silueta del 100\% de 
+los gusanos presentes en una imagen determinada, a diferencia de otros m\'etodos
+automatizados que alcanzan a detectar, en promedio, menos del 90\% ,
+para conjuntos de pruebas similares.
+Por lo general, el proceso es completado en menos de minuto y medio
+para im\'agenes dif\'iciles. Para im\'agenes mas sencillas, los gusanos
+puede ser identificados en su totalidad de manera enteramente 
+autom\'atica. La precisi\'on de la detecci\'on y el tiempo requerido 
+para calcularla son mejorados notablemente con respecto a la
+idenficaci\'on manual.\\
+
+La soluci\'on fue implementada en \emph{Java} e integrada a
+\emph{Endrov}, una arquitectura de extensiones de c\'odigo abierto para
+an\'alisis de imagenes, y ser\'a utilizada en el \emph{Departamento de
+  Biociencias y Nutrici\'on, Instituto Karolinksa, Suecia}
+
+\end{abstract}

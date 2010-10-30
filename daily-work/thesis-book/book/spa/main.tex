@@ -1,0 +1,139 @@
+\documentclass[12pt,letterpaper,twoside,openright]{report}
+%\usepackage{geometry} 
+\RequirePackage{amsmath}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc} %help babel
+%\usepackage{listings}
+
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{longtable}
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[table]{xcolor}
+\usepackage{caption}
+
+% to include pdf cover page
+\usepackage{pdfpages}
+
+\numberwithin{algorithm}{section}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\usepackage{hyperref}
+\hypersetup{
+  pdfborder={0,0,0}
+}
+
+%Margins:
+
+%% Commented to accept double sided 
+
+\hoffset=-0.41in %1.5cm left margin: 1in - 0.41in
+\marginparwidth = 3cm %3.0cm margin notes as left margin
+\oddsidemargin = 1.6cm
+\marginparsep = 0.1cm
+\textwidth = 16.5cm %to make right margin 2cm and not margin notes
+\voffset=-0.22in %2cm upper margin: 1in - 0.22in
+\topmargin = 0.5cm %after upper margin before chapter 2cm+topmargin(3cm)
+\headheight = 12pt
+\footskip = 0.5cm
+\headsep = 25pt
+\textheight = 21.11cm %
+
+%Equation numeration
+\usepackage{amsmath}
+%\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
+
+%Operators:
+%Single operator:
+% \[
+%   \operatorname{arg\,max}_a f(a) 
+%   = \operatorname*{arg\,max}_b f(b)
+% \]
+%
+% Common operator:
+% \DeclareMathOperator*{\argmax}{arg\,max}
+%\[
+%  \argmax_c f(c)
+% \]
+
+%Linespacing 1.5
+\usepackage{setspace}
+\onehalfspacing  
+
+%Graphic manipulation
+\usepackage{graphicx}
+\graphicspath{{./images/}} %images path
+\usepackage{float}
+%\begin{figure}[h t b p ! H]
+% \centering
+%   \includegraphics[scale=0.5]{graph}
+% \caption{A simple graph image}
+%\end{figure}
+
+%For figure wrapping
+\usepackage{wrapfig}
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%  \begin{center}
+%    \includegraphics[width=0.48\textwidth]{graph}
+%  \end{center}
+%  \caption{A gull}
+%\end{wrapfigure}
+
+
+%For subfloats
+\usepackage{subfig}
+ 
+%\begin{figure}
+%  \centering
+%  \subfloat[A gull]{\label{fig:gull}\includegraphics[width=0.3\textwidth]{gull}}                
+%  \subfloat[A tiger]{\label{fig:tiger}\includegraphics[width=0.3\textwidth]{tiger}}
+%  \subfloat[A mouse]{\label{fig:mouse}\includegraphics[width=0.3\textwidth]{mouse}}
+%  \caption{Pictures of animals}
+%  \label{fig:animals}
+%\end{figure}
+
+%enumeration depth
+\setcounter{secnumdepth}{3}
+
+%compile just these 'include' tags
+%\includeonly{chapter1,chapter2,chapter3,chapter4,chapter5} 
+\includeonly{abstract-spa,chapter1-spa}
+
+\title{Image processing to detect worms}
+\author{Javier Fern\'andez}
+
+\begin{document}
+
+\maketitle
+
+%\includepdf[pages=1]{cover/cover}
+%\thispagestyle{empty}
+%\cleardoublepage
+%\includepdf[pages=1]{cover/abstract}
+%\thispagestyle{empty}
+%\cleardoublepage
+
+%\include{abstract-spa}
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+\tableofcontents
+\listoffigures
+\listoftables
+%must be below \tableofcontents: paragraph indentation
+\setlength{\parindent}{10pt} %look for 3-spaces in late
+\include{abstract-spa}
+\include{chapter1-spa}
+%\include{chapter2}
+%\include{chapter3}
+%\include{chapter4}
+%\include{chapter5}
+
+\bibliographystyle{plain}
+\bibliography{lst}
+\end{document}
+
