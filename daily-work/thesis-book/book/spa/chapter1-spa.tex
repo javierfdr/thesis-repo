@@ -1,6 +1,6 @@
 %\cleardoublepage
 \thispagestyle{empty}
-\chapter{Introduction}
+\chapter{Introducci\'on}
 \pagenumbering{arabic}
 
 \section{Motivaci\'on y Prop\'osito}
@@ -9,10 +9,10 @@
 El nematodo C. elegans es un organismo ampliamente utilizado
 y se ha convertido en un importante modelo de estudio para la
 biología, especialmente la genética del desarrollo.
-Presentan la ventaja de que todos los individuos son exactamente
+Presenta la ventaja de que todos los individuos son exactamente
 iguales a nivel celular, poseen cortos ciclos de vidas y una rápida
-genética. Por esta razón, tipos salvajes de este organismo pueden ser 
-detectados y los experimentos son menos costosos en comparación 
+genética. Por esta razón, se pueden detectar tipos salvajes de este organismo 
+y los experimentos son menos costosos, en comparación 
 con organismos más complejos. Es el único animal del que se conoce
 cada división celular, desde la fertilización del huevo hasta la etapa
 adulta, así como el diagrama completo de las conexiones de esas
@@ -44,7 +44,7 @@ ha visto tambi\'en limitado por la necesidad de ensayos manuales
 muy trabajosos.\\
 
 Esto conlleva a la necesidad de m\'etodos mas r\'apidos y consistentes.
-Por esta raz\'on, un programa que permita detectar individuos 
+Por esta raz\'on, un programa de computadora que permita detectar individuos 
 C. elegans en im\'agenes digitales, proveer\'ia una soluci\'on autom\'atica
 para el problema de reconocimiento. Esto mejorar\'ia tanto la precisi\'on como 
 el tiempo requerido para la identificaci\'on de los individuos, con respecto
@@ -55,7 +55,7 @@ El presente estudio, se centra en el dise\~no e implementaci\'on de un
 algoritmo de procesamiento de im\'agenes para detectar 
 la forma de gusanos C. elegans en im\'agenes de microscopio. 
 Las caracter\'istica mas relevante para la 
-mayor\'ia de los experimentos con C. elegans es la forma o silueta del 
+mayor\'ia de los experimentos con C. elegans es la forma del 
 gusano, y en ocasiones tambi\'en la rotaci\'on y direcci\'on de la misma.
 El enfoque que aqu\'i se presenta, busca identificar, exclusivamente, 
 la forma de los gusanos. Se estudia, entonces, si es posible detectar 
@@ -83,9 +83,9 @@ se desarrolla este proyecto.
 \item Objetivos Espec\'ificos
   \begin{itemize}
   \item Dise\~nar un algoritmo de detecci\'on de gusanos que reciba como 
-entrada im\'agenes de gusanos en cultivo l\'iquido y retorne la silueta 
+entrada im\'agenes de gusanos en cultivo l\'iquido y retorne la forma 
 de los gusanos presentes.
-  \item 
+   
     \begin{itemize}
     \item Revisar los antecedentes relevantes en t\'ecnicas de segmentaci\'on de im\'agenes
     \item Dise\~nar un descriptor de forma y un m\'etodo de rasterizaci\'on para representar gusanos en t\'erminos n\'umericos.
@@ -156,24 +156,28 @@ Although some automated worm detection approaches are able to identify
 individual worms and group of worms, few of them attempt to overcome the 
 problem of worm interaction and none solves it successfully.
 
-\section{Structure of Thesis}
-This document is divided the following way:
+\section{Estructura del documento}
+El presente documento esta divido de la siguiente forma:
 \begin{itemize}
-\item \textbf{Chapter 1: Introduction}\\
-  The motivation and purpose of the thesis is discussed. Then, earlier work
-  on worms detection is presented, pointing out different approaches, achievements
-  and current problems.
-\item \textbf{Chapter 2: Theoretical Framework}\\
-  The theory related to the problem and the solution is explained. Each topic is described,
-  and the different studied approaches are addressed.
-\item \textbf{Chapter 3: Methodology}\\
-  The proposed solution is discussed and presented as a methodology. Then, each step 
-  involving the methodology is explained thoroughly, comprising a description of the 
-  approach and some implementation details.
-\item \textbf{Chapter 4: Experiments and Results}\\
-  A series of experiments to test the performance of the solution are presented. 
-  The purpose and characteristics of the experiments are described. Then, the results are shown and discussed.
-\item \textbf{Chapter 5: Conclusions and Future Work}\\
-  The conclusions obtained from the discussion of the results are presented. 
-Suggestions for future work are given.
+\item \textbf{Cap\'itulo 1: Introducci\'on}\\
+  Se desarrolla la motivaci\'on y el prop\'osito de este estudio. Luego, se
+  presentan los antecedentes en detecci\'on de gusanos, indicando los 
+  diferentes enfoques, logros y dificultades persistentes.
+\item \textbf{Cap\'itulo 2: Marco Te\'orico}\\
+  Se abarca la teor\'ia relacionada con el problema y la soluci\'on
+  planteada, destacando por t\'opico, los diferentes enfoques que han sido
+  previamente estudiados.
+\item \textbf{Cap\'itulo 3: Metodolog\'ia}\\
+  La soluci\'on propuesta es razonada y presentada
+  por etapas, como una metodolog\'ia. Luego, cada etapa es explicada, 
+  desarrollando el enfoque particular y presentando los detalles de
+  implementaci\'on relevantes.
+\item \textbf{Cap\'itulo 4: Experimentos y Resultados}\\
+  Se presentan los experimentos llevados a cabo para evaluar el rendimiento
+  de la soluci\'on propuesta. El prop\'osito y caracter\'isticas de cada
+  experimento son descritos. Luego, se presentan y discuten los resultados
+  obtenidos.
+\item \textbf{Cap\'itulo 5: Conclusiones y Observaciones Futuras}\\
+  Las conclusiones del trabajo son presentadas, as\'i como algunas
+  observaciones futuras.
 \end{itemize}
