@@ -25,11 +25,12 @@ envejecimiento, disfunción de ciertas proteínas, etc.
 Así mismo, al ser pequeño y transparente, se presta bien
 a una gran variedad de técnicas de cribado de alto rendimiento
 (HTS). El HTS es un método de experimentación científica que permite
-conducir millones de pruebas genéticas, bioquímicas o farmacológicas.
+conducir millones de pruebas genéticas, bioquímicas o farmacológicas,
+a trav\'es de la rob\'otica, softwares de control y procesamiento de datos,
+dispositivos para el manejo de l\'iquidos y detectores sensitivos.
 A través de este proceso se pueden identificar rápidamente componentes
 activos, anticuerpos o genes que modelan procesos biomoleculares
-particulares. [COLOCAR CITA Wikipedia High Throughput Screening]\\
-
+particulares, tal como se indica en \cite{highthroughput}. \\
 Diversos ganadores del premio Nobel de Medicina o Fisiología
 han centrado sus estudios en gusanos, y en particular C. elegans, 
 tales como Brenner, Sulston y Horvitz (2002), Fire y Mello (2008),
@@ -98,66 +99,97 @@ de los gusanos presentes.
 \end{itemize}
 
 
-\section{Earlier Work}
+\section{Antecedentes}
 
-C. elegans has been deployed quickly in genetic screens and chemical
-screens, as mentioned in \cite{automated}. In the previously mentioned paper,
-the strategies for automated analysis of C. elegans locomotion are
-divided in three groups according to their methodological approach:
-Tracking overall behavior, detection and measurement of distinct behaviors and
-measuring the complete behavioral repertoire using large parameters sets.
-All of these strategies are based on an initial processing step that performs the detection of the worm shapes in the images. This usually involves the extraction of the worms from the background (segmentation), reduction to a skeleton and parameterization of worm outlines.
+La utilizaci\'on del C. elegans en experimentos que involucran 
+cribado gen\'etico y qu\'imico se ha incrementado r\'apida y notablemente. 
+Esto ha dado pie al desarrollo de
+m\'etodos automatizados para an\'alizar su comportamiento, en experimentos 
+conducidos sobre grupos de estos organismos, tal como se indica en \cite{automated}.
+En el estudio mencionado, se dividen las estrategias existentes para an\'alisis automatizado 
+del C. elegans en tres grandes grupos, de acuerdo a su
+enfoque metodol\'ogico. Estos son: seguimiento del comportamiento general,
+detecci\'on y medici\'on de comportamientos distintos, y medici\'on completa
+del comportamiento utilizando grandes conjuntos de datos. Todas estas
+estrategias incluyen una etapa fundamental, que se centra
+en la detecci\'on de los gusanos en el conjunto de im\'agenes que se utilizan.
+El enfoque de detecci\'on varia de una estrategia a otra, pero, por lo general,
+comprende los procesos siguientes: extracci\'on de los gusanos del fondo de la im\'agen (segmentaci\'on), 
+esqueletizaci\'on de las formas extra\'idas y parametrizaci\'on 
+del contorno de los gusanos.\\ 
 
-Reduction to skeleton and subsequent parameterization have become a standard method. 
-However, since the image properties such as lighting, noise and clutters 
-(e.g. worm tracks and eggs), can vary strongly from one image to another and 
-the segmentation depends directly on the visual context, the  
-parameters for this process are highly variable. The segmentation methods 
-that are usually used 
-on worm images are thresholding, morphological closing, 
-hole filling, and their combinations.
-It is stated in \cite{automated} that among those programs that track 
-multiple worms, few attempt to resolve the problem that arise when 
-worms interact or when individual worms coil up on themselves, which may
-severely affect the individual worm identification. In \cite{huang} is indicated
-that programs and algorithms are being developed to address this problem.\\
+La esqueletizaci\'on y subsecuente parametrizaci\'on, se han convertido en un 
+m\'etodo est\'andar. Sin embargo, dado que las propiedades de la imagen tales como
+iluminaci\'on, ruido y desorden (e.g. huevos y rastros de gusanos) pueden variar
+fuertemente de una imagen a otra y debido a que la segmentaci\'on depende directamente del
+contexto visual, los par\'ametros de este \'ultimo proceso resultan altamente variables.
+Los m\'etodos de segmentaci\'on m\'as utilizados en im\'agenes de gusanos comprenden:
+cerrado morfol\'ogico, llenado de agujeros, m\'etodo del valor umbral y sus 
+combinaciones.\\
 
-The  numerical description of a worm shape or worm parameterization 
-determines the range of possible shapes a worm may adopt. Diverse 
-representations have been used from one approach to another. The 
-most common is the reproduction of an abstract shape, normalized for position, 
-orientation, scale and parameterization of the 
-worm skeleton.\\
+La parametrizaci\'on de gusanos, que consiste en la descripci\'on de formas de gusanos
+en t\'erminos n\'umericos, determina la variedad de formas que pueden ser
+obtenidas a trav\'es de la asignaci\'on de diferentes valores a los par\'ametros.
+El enfoque mas com\'un se centra en definir par\'ametros que permitan
+la reproducci\'on de una forma de gusano gen\'erica, normalizada para la 
+posici\'on, orientaci\'on y escala de un esqueleto de gusano.\\
 
-Very recent studies present new approaches for detecting individual worms
-in cluttered clusters. Riklin Raviv et al. \cite{individual1} present an approach for
- extracting cluttered objects based on their morphological properties. This study addresses
-the problem of untangling C. elegans clusters in high-throughput screening experiments.
-The method is based on concepts from machine learning and graph theory. The worm
-skeleton is used as shape descriptor. 
-The clustered worm segments are represented
-as graph vertices and then a search for more likely worm paths in the graph 
-is carried out. The detection of the most likely worm descriptors within the graph
-search is guided by a probability distribution, defined by a low dimensional feature 
-space that captures the worms' variability. This probabilistic shape model and a 
-similar worm detection approach was first
-presented by W\"{a}hlby et al. in \cite{individual2}.
+En \cite{automated}, se sostiene que de aquellos programas que 
+hacen seguimiento de m\'ultiples gusanos, muy pocos intentan resolver
+el problema de solapamiento, que surge cuando dos o m\'as gusanos
+se cruzan entre s\'i, o bien cuando gusanos individuales se enrollan,
+lo que suele llevar a detecciones incorrectas o faltantes. 
+Pese a que hay algoritmos que estan siendo desarrollados para resolver
+este problema, tal como se indica en \cite{huang}, se sigue careciendo
+de soluciones que permitan detectar la totalidad de los individuos
+de forma autom\'atica.\\
+
+Estudios muy recientes presentan nuevos enfoques para detectar gusanos 
+individuales en agrupaciones enredadadas (aquellos donde ocurre solapamiento).
+Riklin Raviv et al. \cite{individual1} presentan un enfoque para extraer
+objetos enredados, basado en sus propiedades morfol\'ogicas. Este estudio
+aborda el problema de desenredar agrupaciones de C. elegans en experimentos
+de cribado de alto rendimiento. Este m\'etodo se basa en conceptos de 
+aprendizaje de m\'aquina y teor\'ia de grafos, y utiliza el esqueleto 
+del gusano como descriptor de forma. Los segmentos de agrupaciones de gusanos
+son representados como vertices de grafo y se lleva a cabo una b\'usqueda
+de los caminos de gusanos mas prometedores en el grafo. La detecci\'on
+de los descriptores de forma mas prometedores dentro de la b\'usqueda
+es guiada por una distribuci\'on de probabilidad, basada en el modelo
+probabilistico presentado en \cite{individual2}.\\ 
+Los enfoques presentados en \cite{individual1,individual2} corresponden
+a estudios consecutivos y complementarios centrados en la detecci\'on de
+gusanos individuales en im\'agenes digitales.
+ Los resultados presentados indican un porcentage de detecci\'on acertada 
+de 89\% del total de la muestra, en promedio.
+Es importante destacar que los dos estudios previamente mencionados fueron
+desarrollados al mismo tiempo que el presente trabajo y con similares
+fechas de finalizaci\'on, por lo que hab\'ia desconocimiento de su existencia. 
+No obstante, el enfoque de detecci\'on y la metodolog\'ia presentada en este
+trabajo, dista bastante de los estudios mencionados.\\
 
 
-There are many studies in computer vision dealing with the automated
-analysis of C. elegans and nematodes in general. Most studies are
-based on worm locomotion, so the process of identification and 
-tracking is performed by the simultaneous analysis of a set of images, rather
-than just one. There is a standard general strategy followed for an initial
-worm identification step consisting in segmentation, skeleton reduction and
-shape parameterization, while the matching strategies depend on the approach
-and normally involves image sets and not individual images, as explained.
-Although some automated worm detection approaches are able to identify
-individual worms and group of worms, few of them attempt to overcome the 
-problem of worm interaction and none solves it successfully.
+Existen entonces, diversos estudios en procesamiento de im\'agenes
+y visi\'on artificial que tratan el an\'alisis automatizado del 
+C. elegans y de nematodos en general. La mayor\'ia de estos 
+estudios se basan en la locomoci\'on de gusanos, donde el proceso
+de identificaci\'on y seguimiento es realizado a trav\'es del procesamiento
+simult\'aneo de un conjunto de im\'agenes y n\'o solo una. 
+Se evidencian tres procesos fundamentales en las estrategias de 
+detecci\'on como lo son: segmentaci\'on de la imag\'en, esqueletonizaci\'on y 
+parametrizaci\'on de forma. El resto de los procesos involucrados en la
+detecci\'on var\'ian dependiendo del enfoque, e involucran, en casi todos los casos,
+el procesamiento de conjuntos de im\'agenes y no de im\'agenes individuales, 
+como fue antes mencionado.\\
+
+A pesar de que algunos m\'etodos automatizados de detecci\'on de gusanos
+son capaces de detectar correctamente una gran parte de la muestra, pocos intentan
+resolver el problema del solapamiento de gusanos y ninguno lo
+soluciona exit\'osamente.
+
 
 \section{Estructura del documento}
-El presente documento esta divido de la siguiente forma:
+El presente documento est\'a divido de la siguiente forma:
 \begin{itemize}
 \item \textbf{Cap\'itulo 1: Introducci\'on}\\
   Se desarrolla la motivaci\'on y el prop\'osito de este estudio. Luego, se
@@ -167,11 +199,12 @@ El presente documento esta divido de la siguiente forma:
   Se abarca la teor\'ia relacionada con el problema y la soluci\'on
   planteada, destacando por t\'opico, los diferentes enfoques que han sido
   previamente estudiados.
-\item \textbf{Cap\'itulo 3: Metodolog\'ia}\\
-  La soluci\'on propuesta es razonada y presentada
-  por etapas, como una metodolog\'ia. Luego, cada etapa es explicada, 
-  desarrollando el enfoque particular y presentando los detalles de
-  implementaci\'on relevantes.
+\item \textbf{Cap\'itulo 3: Dise\~no Metodol\'ogico}\\
+  Se desarrolla el razonamiento que sustenta la soluci\'on propuesta.
+  Seguidamente, la soluci\'on es presentada a manera de metodolog\'ia. Cada
+  etapa incluida en la metodolog\'ia es explicada, justificando el enfoque
+  escogido. Por etapa, se presentan los detalles de implementaci\'on 
+  m\'as relevantes.
 \item \textbf{Cap\'itulo 4: Experimentos y Resultados}\\
   Se presentan los experimentos llevados a cabo para evaluar el rendimiento
   de la soluci\'on propuesta. El prop\'osito y caracter\'isticas de cada
