@@ -21,13 +21,14 @@ a una gran variedad de t\'ecnicas de cribado de alto rendimiento
 
 La identificaci\'on de gusanos deber\'ia automatizarse lo mas
 posible dado que es muy trabajoso efectuarla manualmente.
-En este trabajo se presenta una metodolog\'ia de procesamiento de im\'agenes
+En este trabajo se presenta un algoritmo de procesamiento de im\'agenes
 para detectar C. elegans en im\'agenes obtenidas por microscop\'ia de 
-alto rendimiento. La soluci\'on semi-autom\'atica que aqu\'i se provee, permite identificar
-eficazmente gusanos particulares en agrupaciones de gusanos. En
+alto rendimiento. As\'i mismo, se provee una metodolog\'ia general 
+de detecci\'on de gusanos. La soluci\'on semi-autom\'atica que aqu\'i se presenta, 
+permite identificar eficazmente gusanos individuales en agrupaciones de gusanos. En
 t\'erminos generales, el proceso  consta de lo siguiente:
 una imagen dada es segmentada, separando as\'i grupos de gusanos del
-fondo de la imagen. Se detectan gusanos particulares de manera autom\'atica, siguiendo un
+fondo de la imagen. Se detectan gusanos individuales de manera autom\'atica, siguiendo un
 proceso de comparaci\'on y ajuste de siluetas de gusanos. Este proceso
 se basa en encontrar siluetas factibles dentro de una agrupaci\'on, 
 minimizando la distancia que existe entre dicha agrupaci\'on y 
@@ -35,10 +36,10 @@ siluetas gen\'ericas que son deformadas para ajustarse a ella.
 Las conformaciones de gusanos ajustadas incorrectamente 
 pueden ser corregidas f\'acilmente de manera manual.\\
 
-La metodolog\'ia provista presenta un enfoque innovador para
-detectar exitosamente gusanos C. elegans particulares en 
-im\'agenes de microscopio. Los resultados muestran que esta soluci\'on
-semi-autom\'atica permite detectar, correctamente, la silueta del 100\% de 
+La soluci\'on provista presenta un enfoque innovador para
+detectar exitosamente gusanos C. elegans individuales en 
+im\'agenes de microscopio. Los resultados muestran que este algoritmo
+semi-autom\'atico permite detectar, correctamente, la forma del 100\% de 
 los gusanos presentes en una imagen determinada, a diferencia de otros m\'etodos
 automatizados que alcanzan a detectar, en promedio, menos del 90\% ,
 para conjuntos de pruebas similares.
