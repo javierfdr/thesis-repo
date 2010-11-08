@@ -38,7 +38,7 @@ manipulan im\'agenes diariamente, \cite{web:endrov}.\\
 fue liberado oficialmetnte el 17 de Junio de 2009, bajo la licensia BSD.
 
 
-\section{M\'etodo del valor umbral}
+\section{M\'etodo del Valor Umbral}
 \label{sec:thresholding}
 
 Los m\'etodos del valor umbral (MVU), mejor conocidos por su nombre en ingles: \emph{thresholding},
@@ -93,7 +93,7 @@ otra, la imagen binaria obtenida a trav\'es de un m\'etodo del valor umbral.
   \label{fig:thres1}
 \end{figure}
 
-\section{Transformada de distancia}
+\section{Transformada de Distancia}
 \label{sec:dt}
 
 Una transformada de distancia o mapa de distancias es una representaci\'on de
@@ -192,7 +192,7 @@ visual, reconocimiento de patrones, compresi\'on de im\'agenes binarias y plegam
 de proteinas, \cite{skprotein}.
 
 
-\section{Ajuste de formas}
+\section{Ajuste de Formas}
 \label{sec:shapefitting}
 
 El ajuste de formas (en ingl\'es \emph{shape matching}), es un problema
@@ -232,175 +232,175 @@ de Hough generalizada, el m\'etodo de alineaci\'on, estad\'isticas,
 modelos deformables, relajaci\'on de etiquetas, descriptores de Fourier,
 transformada \'ondula y redes neurales. As\'i mismo, categorizan las 
 t\'ecnicas de ajuste de forma en dos grupos principales:
-\emph{transformadas de imagen global} y \emph{m\'etodos de objetos globales}.
+\emph{transformadas de imagen global} y \emph{m\'etodos de objetos globales}.\\
+
 El grupo de \emph{transformadas de imagen global} se refiere a las 
 t\'ecnicas que ``transforman la imagen de informaci\'on de color en
-el dominio espacial a variaci\'on de color en el dominio frecuencial''.
-Estos enfoques no representan la forma expl\'icitamente para el ajuste,
+el dominio espacial a variaci\'on de color en el dominio frecuencial'', 
+\cite{matchingbook}. Estos enfoques no representan la forma expl\'icitamente 
+para el ajuste,
 sino que representan las transiciones de color o intensidad en
 la imagen. Esto hace imposible medir las diferencias entre dos
 imagenes en t\'erminos de formas, as\'i como comparar y ajustar
 una forma a una parte espec\'ifica de la imagen.\\
+Por otro lado, los \emph{m\'etodos de objetos globales} trabajan 
+con \'areas completas de los objetos o con los contornos, y pueden
+analizan secciones espec\'ificas de la im\'agen, en vez de requerir
+el procesamiento de la imagen como un todo, tal como en las 
+\emph{transformadas de imagen global}. En estos m\'etodos se requiere
+que los objetos de la imagen esten completamente segmentados. Algunos
+de estos m\'etodos son: \emph{m\'etodo de momentos}, donde los
+objetos son descrito como un conjunto de momentos (posici\'on, area,
+orientaci\'on, y otros par\'ametros) y se detecta la invariancia de 
+momentos en los objetos; \emph{m\'etodo de ajuste modal}, donde 
+se utilizan los bordes descritos con descriptores de Fourier; y
+\emph{m\'etodo de curvatura de espacio escalado}, donde se utiliza 
+un espacio escalado y una parametrizaci\'on del contorno de los objetos.\\
 
+Veltkamp describe en \cite{matching2} diversas formas de las cuales
+puede ser estudiado el problema de ajuste de formas, dados
+dos patrones de forma y una medida de similitud. Estos son:
 
-On the other hand the \emph{global object methods} work with a complete
-object area or contour and can analyze specific areas in the 
-image instead of requiring processing the whole image as in 
-the global image transforms. In order to perform a proper
-matching, the objects in the image have to be completely and
-clearly segmented. Some of these methods are: \emph{moments}, where an
-object is described as a set of moments, \emph{modal matching},
-where the boundary is used instead of the area and is described 
-with Fourier descriptors and \emph{curvature scale space}, where a
-scale space and parameterized representation of the contour of the 
-objects is used.\\
-
-Veltkamp describes in \cite{matching2} various forms in
-which shape matching is studied, given two shape patterns
-and a dissimilarity measure. These are:
 
 \begin{itemize}
-\item \textbf{Computation Problem: }Compute the dissimilarity
-  between the two patterns
-\item \textbf{Decision Problem: }
+\item \textbf{Problema computacional:} Computa la disimilitud entre
+dos patrones de formas.
+\item \textbf{Problema de decisi\'on: }
   \begin{itemize}
-  \item  For a given threshold, decide
-  whether the dissimilarity is smaller than the threshold.
-  \item For a given threshold, decide
-    whether there exists a transformation such that the
-    dissimilarity between the transformed pattern and the other 
-    pattern is smaller than the threshold
+  \item  Para un umbral determinado, decidir si la disimilitud es 
+    mas peque\~na que el umbral
+  \item Para un umbral determinado, decidir si existe una transformaci\'on
+    tal que la disimilitud entre el patr\'on transformado y el otro
+    patr\'on es menor que el umbral
   \end{itemize}
  
-\item \textbf{Optimization Problem: }Find the transformation
-that minimizes the dissimilarity between the transformed
-pattern and the other pattern.
+\item \textbf{Problema de optimizaci\'on: } Encuentra la transformaci\'on
+que minimiza las disimilitud entre el patr\'on transformado y otro patr\'on.
 \end{itemize}
 
-A well studied optimization approach for shape matching is
-Active Contour Models (\emph{Snakes}),  which inspired much 
-of the shape fitting approach of this work 
-(see Sec \ref{sec:metfit}). In \cite{snakes} a snake is defined 
-as an energy-minimizing spline guided by external constraint
-forces and influenced by image forces that pull it toward 
-features such as lines and edges. The \emph{snakes} are said to
-be active contour models because they lock onto nearby edges,
-localizing them accurately.\\
-The \emph{snakes} model is defined as a controlled continuous spline that is bound
-by internal and external image forces, called energies. The external energy models how well
-the deformed model matches the data. The internal energy models
-the objects resistance to be pushed by the external force into directions not coherent
-with the prior knowledge \cite{deformable}. In this case, the internal energy  imposes 
-a ``piecewise smoothness constraint'' \cite{snakes}. This means that a contour is
-pushed to an image feature by the external force while the contour itself exhibits resistance
-to be deformed into a non-smooth curve. As explained in \cite{deformable} the image forces push the snake toward
-salient image features like line, edges and subjective contours, while the external constraint forces
-are responsible for putting the snake near the desired local minimum.\\
+Existe un enfoque de ajuste de formas muy estudiado, basado en optimizaci\'on,
+que se conoce como Modelos de Contornos Activos, en particular el modelo de \emph{snakes}, 
+el cual inspir\'o gran parte del enfoque de ajuste de formas presentado en este trabajo, (Ver
+Sec. \ref{sec:metfit}). En \cite{snakes}, un \emph{snake} es definido como
+un spline minimizador de energ\'ia, que es guiado por fuerzas de restricciones
+externas e influenciado por fuerzas internas de la im\'agen que lo empujan
+hacia elementos caracter\'isticos de la imagen tales como: l\'ineas y contornos.
+Se dice que los \emph{snakes} son modelos de contornos activos, debido a que
+se pliegan a contornos cercanos y los localizan con precisi\'on.\\
+El modelo de \emph{snakes} se define como un spline cont\'inuo y controlado que 
+es restringido por fuerzas internas y externas de la im\'agen, llamadas energ\'ias.
+La energ\'ia interna modela la resistencia del objeto a ser empujado por fuerzas externas
+hacia direcciones inconsistentes, de acuerdo a la informaci\'on previa que se tiene sobre 
+el objeto y la im\'agen, \cite{deformable}. En este caso, la energ\'ia interna impone una
+restricci\'on de suavidad a trozos (``\emph{piecewise smoothness constraint}'', \cite{snakes}).
+Esto significa que el contorno es empujado hacia elementos resaltantes de la imagen por las
+fuerzas externas, mientras que el contorno en si mismo exhibe resistencia a ser deformado
+en un curva no-suave. Como se explica en \cite{deformable}, las fuerzas de la imagen
+empujan al \emph{snake} hacia salientes o caracter\'isticas resaltantes de la im\'agen como l\'ineas,
+bordes y contornos subjetivos, mientras que las fuerzas externas de restricci\'on son responsables
+por ubicar al \emph{snake} cerca del m\'inimo local deseado.\\
 
-Given these definitions, let $M$ be the model and $D$ a data set, 
-the total energy $E$ can be defined as:
+Dado estas definiciones, sea $M$ el modelo a deformar y $D$ el conjunto de datos, 
+la energ\'ia total $E$ puede ser definida como:
 
 $$E(M) = E_{ext}(M,D) + E_{int}(M)$$
 
-where $E_{ext}$ is the external energy function and $E_{int}$ the 
-internal energy function. 
-Having this, the optimization algorithm consists of minimizing the objective
-function until the best solution is found.
+donde $E_{ext}$ es la funci\'on de energ\'ia externa y $E_{int}$ la funci\'on
+de energia interna. De esta manera, la t\'ecnica de optimizaci\'on se centra
+en minimizar la funci\'on objetivo definida por la energ\'ia total.
 
-
-\section{Shape Descriptor}
+\section{Descriptores de Forma}
 \label{sec:shapedesc}
 
-A shape descriptor is a structured abstraction of a class
-of shapes that describes them in geometrical terms.
-Shape descriptors can have either fixed or variable
-geometrical shapes. Variable descriptors depend on the different values assigned to its
-parameters, different shapes are generated but still belong to the same type or class of shapes.
-Shape models have been used widely to achieve robust interpretation of complex
-images \cite{wormparam}. They allow image evidence to be organized into plausible interpretations
-which can then be verified.\\
+Un descriptor de forma es una abstracci\'on estructurada 
+de una clase de formas, que las describe de manera 
+geom\'etrica. Los descriptores de forma pueden ser tanto
+fijos como variables. Los descriptores fijos son aquellos
+que representan un conjunto previamente definido de formas, 
+a manera de plantillas. Los descriptores variables definen
+una serie de par\'ametros para representar la forma. Dependiendo
+de los valores asignados a los diferentes par\'ametros, se obtienen
+diferentes variaciones de formas, que igualmente pertenecen al tipo
+o clase de formas representadas por el descriptor. 
+Los descriptores o modelos de formas han sido ampliamente utilizados para
+interpretar de manera robusta objetos complejos, \cite{wormparam}. 
 
-Latecki et al \cite{shapenonrigid}, divide shape descriptors into three
-main categories: 
+Latecki et al \cite{shapenonrigid}, separan los descriptores en tres
+categor\'ias principales:
+
 \begin{itemize}
-\item \textbf{Contour based descriptors: }The contour of a given object is 
-mapped to some representation from which a shape descriptor is derived
-\item \textbf{Image based descriptors: }The computation of a shape descriptor
-is based on summing up pixel values in a digital image containing the silhouette
-of a given object; the shape descriptor is a vector of a certain number of
-parameters derived this way
-\item \textbf{Skeleton based descriptors: }After a skeleton is computed, it is
-mapped to a tree structure that forms the shape descriptor; the shape similarity
-is computed by some tree-matching algorithm 
+\item \textbf{Descriptores basados en contornos: } El contorno de un
+objeto determinado es mapeado a alg\'un tipo de representaci\'on, a partir de la cual
+se deriva un descriptor de forma.
+\item \textbf{Descriptores basados en im\'agenes: } El c\'alculo del descriptor
+de forma se basa en agrupar el valor de los p\'ixeles de una imagen digital
+que contiene la silueta del objeto, a partir de los cuales se construye un vector
+descriptivo de par\'ametros variables.
+\item \textbf{Descriptores basados en el esqueleto topol\'ogico: } Luego de que
+el esqueleto de la imagen es calculado, este es mapeado a una estructura 
+de arbol que conforma el descriptor de forma. La disimilitud entre formas
+es calculado a trav\'es de algun algoritmo de grafos.
 \end{itemize}
 
-Considering that basically shape descriptors are ``attempts to quantify shape in 
-ways that agree with human intuition''\cite[p.1]{desclecture}, any kind of 
-geometrical interpretation that covers the contents or properties that want 
-to be described on a shape, can be used as a shape descriptor.
-In \cite{desclecture} region-based shape descriptors. These are such descriptors
-that attempt to describe a shape based on the geometrical and numerical properties
-of the region of the shape. Some simple descriptors are mentioned such as:
-area, perimeter, (non-)compactness or (non-)circularity, eccentricity, elongation,
-rectangularity and orientation. Any combination of these properties of a shape are
-useful to describe them in a basic and general way.
-Other more complex properties are mentioned to improve the accuracy of the 
-descriptor: \emph{convex hull}, \emph{extremal points}, \emph{profiles}, 
-\emph{ moments} and \emph{profile moments}. \emph{Convex hull or bays} 
-describes the shape by measuring the number or size of concavities in the 
-shape. \emph{Extremal points} is based on finding the points that
-are at the extreme of the shape. This can be a simple representation as the 
-\emph{bounding box} or a more powerful one as it is finding the eight extremal
-points defined by: top left, top right, left top, left bottom, bottom right,
-bottom left, right top and right bottom. The \emph{profiles} shape descriptor 
-is based on the number of pixels that the shape has in a given direction:
- either vertical, horizontal or diagonal. \emph{Moments} refer to the
- calculation of \emph{moment} statistical properties and 
-\emph{profile moments}, or a combination of the last two.\\
-In \cite{web:wikishape}, shape descriptors are classified by their
-invariance with respect to the transformations allowed in the associated
-shape definition. The main classes are descriptors invariant with respect 
-to congruence and descriptors invariant with respect to isometry. 
-The congruence class
-comprehends identical shape descriptors for congruent shapes 
-(shapes obtained from
-translation, rotation or mirroring). The intrinsic shape descriptor refer
-to those that do not change with different isometric embedding of the shape,
-and thus can be applied accurately to deformable objects.
+Considerando que, b\'asicamente, los descriptores de forma son intentos de cuantificar
+una forma en t\'erminos f\'acilmente abstraibles por la mente humana, \cite[p.1]{desclecture},
+cualquier tipo de representaci\'on geom\'etrica que cubra los elementos o propiedades que
+quieren ser descritos en una forma, puede ser usado como descriptor. En \cite{desclecture},
+se cubren los descriptores de forma basados en regiones. Estos son todos aquellos que describen
+una forma en base a las propiedades geom\'etricas y num\'ericas de la regi\'on que esta cubre.
+Algunos descriptores simples son mencionados, tales como: el \'area, el per\'imetro,
+compacidad (no-compacidad), circularidad (no-circularidad), eccentricidad, elongaci\'on,
+rectangularidad y orientaci\'on. Cualquier combinaci\'on de estas propiedades de una forma
+son \'utiles para describirla de manera b\'asica. Se mencionan tambi\'ien otras propiedades
+mas complejas para mejorar la precisi\'on del descriptor, como lo son: la envoltura conexa, 
+puntos extremos, perfiles, momentos y perfil de momentos.\\
+La envoltura convexa mide la cantidad de concavidades que presenta la forma.
+El descriptor de puntos extremos se centra en encontrar los puntos l\'imite de una forma. Esto puede ser, 
+tanto una representaci\'on simple como el \emph{rectangulo delimitador}, como una
+representaci\'on mas poderosa, como lo es el encontrar los ocho puntos extremos de la figura
+como lo son: norte, nor-oeste, oeste, sur-oeste, y asi sucesivamente. El descriptor por
+perfiles, se basa en el n\'umero de pixeles que la forma presenta en un direcci\'on determinada,
+ya sea vertical, horizontal o diagonal. El descriptor por momentos, se basa en el c\'alculo
+de momentos estad\'isticos, y el descriptor de perfil de momentos, es una combinaci\'on de
+los \'ultimos dos.\\
 
-Depending on the properties that are controlled and measured, the descriptor
-may or may not allow reconstructing a shape of the class. In \cite{wormparam}, 
-a trainable method of shape representation is described which can
-automatically capture the invariant properties of a class of shapes and 
-provide a compact parametric description of variability. The method was
-applied on worms, obtaining a shape descriptor that reconstruct different
-bending worm shapes by modifying the values of the parameters.\\
 
-\section{Splines}
+Un descriptor puede o no permitir la reconstrucci\'on de la forma original que
+describen, dependiendo de las propiedades que controlan y miden.
+En \cite{wormparam}, se presenta un m\'etodo entrenable para representaci\'on
+de formas, que permite capturar autom\'aticamente las propiedades invariables
+de una clase de formas y proveer un descripci\'on param\'etrica compacta. Este
+m\'etodo fue aplicado en gusanos, obteniendo un descriptor de reconstruye
+formas de gusanos con diferentes flexiones, dependiendo de los valores
+asignados a los par\'ametros que la definen.
+
+\section{\emph{Splines}}
 \label{sec:splines}
 
-The term spline, as it is used in this work, refers to a piecewise polynomial curve. Splines
-are widely used in computer science subfields because of the simplicity of their constructions,
-their ease and accuracy of evaluation, and their capacity to approximate complex shapes
-through curve fitting and interactive curve design, as mentioned in \cite{web:splines}.
-The continuous signal representation is particularly apposite for 
-problems such as: edge detection, surface fitting and multi-resolution
-techniques. It is useful for many other problems in computer
-vision such as: optical flow, surface reconstruction, the recovery
-of lightness and color, shape from shading and stereo matching,
-\cite[821]{splinespap}.
+El t\'ermino \emph{spline}, de la forma en que se utiliza en este trabajo, se refiere en general 
+a una curva definida a trozos mediante polinomios. Los \emph{splines} han sido ampliamente
+utilizados en los subcampos de las ciencias de la computaci\'on, por la simplicidad de su 
+construcci\'on, la facilidad y precisi\'on de su evaluaci\'on, y su capacidad para aproximar
+formas o figuras complejas, como se explica en: \cite{web:splines}. 
+La representaci\'on de una curva continua es particularmente apropiada para poblemas
+como: detecci\'on de contornos, ajuste de superficies y t\'ecnicas de multi-resoluci\'on.
+Es igualmente \'util para muchos otros problemas en visi\'on artificial como: flujo \'optico,
+reconstrucci\'on de superficies y recobramiento de iluminaci\'on y color, \cite[821]{splinespap}.\\
 
-Special types of splines receive different names, depending on different conditions.\\
-A commonly used type of spline in object recognition is the Hermite spline. This is a third-degree spline, expressed using Hermite polynomials to represent each of the 
-individual polynomial pieces. 
-Several methods have been invented to fit such splines to given data points such
-as \emph{cardinal Splines, Catmull-Rom splines, Kochanek-Bartels splines}. They allow constructing smooth curves that go through every point in a given data set. Thus, \emph{e.g.} 
-given a series of points belonging to the contour of an object, a smooth shape can be 
-calculated that models the shape of the defined object.  
-Such as B-splines, Hermit splines have a number of advantages for image processing, as
-mentioned in \cite{splinespap}.
-First, they are usually smooth and well behaved, therefore they do not tend to oscillate
-as higher order polynomials do. Second, the juxtaposition of local polynomial approximations
-may produce strong discontinuities in the connecting regions. B-spline
-surfaces, by contrast, are continuous everywhere. 
-Finally, they can be evaluated efficiently.
+Los \emph{splines} reciben nombres diferentes dependiendo de diversas condiciones.\\
+Un tipo de \emph{spline}, muy com\'unmente utilizado en reconocimiento de objetos, es
+el \emph{spline de Hermite}. Este, es un \emph{spline} de tercer grado, que se expresa
+ utilizando polinomios de Hermite, para representar cada una de las porciones individuales
+del polinomio.
+Diversos m\'etodos han sido desarrollados para ajustar estos \emph{splines} a un conjunto
+de puntos tales como: \emph{spline} cardinal, \emph{splines} de Catmull-Rom y \emph{splines} de
+Kochanek-Bartels. Todos estos permiten construir una curva suave que pasa por cada punto
+del conjunto. De esta manera, dados una serie de puntos que pertenecen, digamos, al contorno de 
+un objeto, una f\'igura suave puede ser calculada, que modele la forma definida por el objeto.
+Los \emph{splines} de Hermite proveen una cantidad de ventajas que lo hacen \'utiles 
+en el procesamiento de im\'agenes, como se menciona en \cite{splinespap}. Primero,
+los \emph{splines} de Hermite son, por lo general, curvas suaves y que tienden muy poco
+a oscilar, al contrario de los polinomios de orden superior. Adem\'as, estos \emph{splines} son
+continuos en todas partes, en contraste a los polinomios encontrados por aproximaciones locales.
+que puede producir discontinuidades fuertes en la 
+conexi\'on de regiones. Finalmente, tienen la ventaja de poder ser evaluados f\'acilmente.
