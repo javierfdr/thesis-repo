@@ -1,30 +1,27 @@
 %avoid page number on blank pages when cleared
 \thispagestyle{empty}
 \cleardoublepage  
-\chapter{Metodolog\'ia de la Soluci\'on}
+\chapter{METODOLOG\'IA DE LA SOLUCI\'ON}
 \label{chap:methodology}
 
-\section{Dise\~no de la Metodolog\'ia de la Soluci\'on}
-\label{sec:solmet}
-
-En esta secci\'on se presenta la metodolog\'ia general de la soluci\'on,
+En este cap\'itulo se presenta la metodolog\'ia general de la soluci\'on,
 que consiste en las diferentes etapas de procesamiento de im\'agenes que deben ser
-llevadas a cabo para detectar y ajustar eficazmente la forma de gusanos C. elegans presentes
+llevadas a cabo para detectar eficazmente la forma de gusanos C. elegans presentes
 en im\'agenes digitales. Primero, se presenta una descripci\'on general de la 
 metodolog\'ia, donde se justifica el dise\~no de la soluci\'on y se presentan los 
-diferentes procesos involucrados, as\'i como el enfoque de ajuste de formas desarrollado.
-Luego, se explica la utilidad y necesidad de cada proceso de manera individual, y se 
-presenta el enfoque de implementaci\'on seguido en cada caso, lo que da origen al 
-algoritmo que se provee en este trabajo.
+diferentes procesos involucrados.
+Luego, se explica cada proceso de manera individual, aclarando su respectiva utilidad y necesidad.
+Por cada proceso se presenta, adem\'as, las caracter\'isticas de su implementaci\'on en este trabajo,
+lo que da origen al algoritmo que aqui se provee.
 
-\subsection{Razonamiento Previo}
+\section{Dise\~no de la Metodolog\'ia: Razonamiento Previo}
 \label{sec:reasoning}
 
 Como se explica en \cite{binaryshape,deformable,matching2,matchingbook},
-el enfoque mas com\'un para el ajuste de formas consiste en adoptar
+uno de los enfoques mas comunes para el ajuste de formas consiste en adoptar
 un descriptor de forma, construir una silueta a partir del descriptor,
-y posicionar la silueta lo suficientemente cerca de la forma a ajustar en
-la imagen. Seguidamente, se varian los valores de los par\'ametros 
+y posicionar dicha silueta lo suficientemente cerca del objeto a ajustar en
+la imagen. Seguidamente, variar los valores de los par\'ametros 
 del descriptor, deformando la silueta inicial, hasta que se logre una 
 coincidencia aceptable entre la silueta generada y el objeto en la imagen.\\
  
@@ -43,71 +40,69 @@ Siguiendo esta idea, se puede definir un descriptor que
 permita generar siluetas de gusanos. Este descriptor podr\'ia
 estar representado por dos puntos extremos (los extremos del gusano)
 y un conjunto de valores de grosor a lo largo del eje medio que
-conecta que conecta dichos extremos. Luego, el problema quedar\'ia
+conecta dichos extremos. Luego, el problema quedar\'ia
 reducido a encontrar cada par de puntos extremos de gusanos en la
 imagen, ubicar una silueta aproximada (constru\'ida a trav\'es
 del descriptor de forma) cerca del gusano a ajustar, y deformar 
-la silueta hasta encontrar una coincidencia
-factible.
+la silueta hasta encontrar una coincidencia factible.\\
 
+Para este estudio, las im\'agenes de entrada consisten, b\'asicamente, en
+tomas de microscopio de un conjunto de gusanos agrupados en medio 
+l\'iquido. Las im\'agenes pueden contener algo de ruido tal como: 
+sombras, burbujas de aguas o peque\~nos restos que no pertenecen a
+los gusanos, y que por tanto deben ser separados del resto de la imagen. La
+posici\'on de cada gusano individual en la imagen es variable y puede
+ser distinguida en dos grandes grupos: grupo de gusanos y gusanos aislados.
+Un grupo de gusanos corresponde a un conjunto de gusanos que aparecen en la
+imagen solap\'andose entre si. De esta manera, cada gusano que pertenece
+al grupo esta conectado con el resto de manera directa o indirecta,
+ a trav\'es de solapamiento. O lo que es lo mismo, desde cada gusano en el grupo,
+se puede trazar un camino hacia otro gusano sin pasar por p\'ixeles de fondo.  
+Por otro lado, los gusanos aislados, son aquellos que estan rodeados por
+p\'ixeles de fondo y que no se solapan con ning\'un otro gusano.\\
 
-This could be represented as two endpoints (the ends of a worm) and a 
-set of thickness values along a medial axis that connects the
-endpoints.
-Then the problem would be reduced to find every pair of
-endpoints belonging to each worm in the image, place an approximated
-shape (built through the shape descriptor) near the matching worm,
-and adjust the values of the parameters of the shape descriptor until
-an acceptable match is found.\\
+Los diferentes grupos de gusanos y gusanos aislados podr\'ian ser
+separados f\'acilmente del resto de la imagen, permitiendo as\'i, 
+procesar cada uno individualmente. El contorno de los gusanos aislados
+puede ser trazado f\'acilmente siguiendo los pixeles del objeto que
+estan mas cercanos a los p\'ixeles de fondo. Habiendo ajustado las formas
+de gusanos aislados, estas podr\'ian utilizarse para generar un perfil
+de gusano, que definir\'ia los valores generales para un descriptor de forma
+g\'enerico. Esto permitir\'ia describir la silueta que mejor se ajusta a todos
+los gusanos de la imagen, en general.
+Los gusanos que pertenecen a grupos de gusanos, se podr\'ian detectar
+individualmente, a trav\'es de un proceso de ajuste de siluetas como
+el mencionado al comienzo de esta secci\'on.
 
-To design a methodology for the solution of the problem the following
-points must be taken into consideration: the nature of the input
-images, the positional identification of worms in the global image,
-the gathering and loss of information and the efficacy and efficiency
-of each of the involved processes (and their respective algorithms).\\
-For this study the input images consist of a number of worms that
-are put together in liquid media. The image can contain some noise such as
-shadows, water bubbles or little remains that do not belong to the worms, so
-these last, as objects of study, must be separated from the rest of 
-the information in the image. The position of each individual
-worm in the image is variable and can be distinguished into two 
-groups: \emph{worm clusters} and \emph{isolated worms}. A 
-\emph{worm cluster} corresponds to a group of worms in which 
-each worm is connected to any other directly or indirectly
-through overlapping. It can also be described as a group of worms in which a 
-path can be traced from every worm to another without passing over 
-background pixels. On the other hand, an \emph{isolated worm} is such
-that it is surrounded by background pixels and does not overlap
-with any other worm. The image can be segmented by separating the different 
-\emph{worm clusters} and \emph{isolated worms}, so each segment
-can be processed individually. The contour of \emph{isolated worms} can be
-traced automatically following the pixels that are closest to background pixels.
-These can also be used to generate a profile that will set the general values
-for the shape descriptor that best represents the shape of the worms in the image.
-The worms that are clustered can be matched through an energy minimization
-process, based on the manipulation of the shape descriptor and its distance
-to the matching image, in order to obtain the best possible match.
-
-\subsection{Methodology Description}
+\section{Descripci\'on de la Metodolog\'ia e Implementaci\'on}
 \label{met:description}
 
-Following the previous reasoning, a methodology was designed taking into account
-the main components of the matching process, as reasoned before, such as: 
-determination of the objects 
-of study, objects segmentation, worm shape descriptor and shape matching based on 
-energy minimization.
-Below the solution methodology is described, pointing out the sequential steps
-that are followed to match and fit the shape of every worm in the input image.
-In Fig. \ref{fig:methsol} a graphical description of the solution methodology is
-presented.\\
+\subsection{Descripci\'on General}
+
+La metodolog\'ia presenta un dise\~no general por etapas, 
+independiente de la implementaci\'on particular de cada una de estas. De esta
+manera, se presenta una visi\'on general de la soluci\'on, y as\'i diferentes
+algoritmos pueden ser desarrollados que se ajusten a esta metodolog\'ia.
+Aqu\'i se provee, adem\'as, un enfoque espec\'ifico de implementaci\'on por etapa, que da
+origen al algoritmo que fue implementado y probado en este trabajo.\\
+
+Siguiendo el razonamiento de la secci\'on anterior, se dise\~no una metodolog\'ia tomando en cuenta
+los aspectos principales del proceso de detecci\'on y ajuste de forma estudiado, como lo son:
+identificaci\'on general de gusanos en la imagen, segmentaci\'on de gusanos, 
+descriptor de forma de gusanos y optimizaci\'on del ajuste de formas.
+
+A continuaci\'on, se describe la metodolog\'ia de la soluci\'on de forma general,  y
+seguidamente se explica cada etapa de forma detallada.
+En la Figura \ref{fig:methsol} se presenta una descripci\'on gr\'afica de la metodolog\'ia.\\
 
 \begin{figure}[h t b p ! H]
  \centering
    \includegraphics[scale=0.9,angle=270]{diagrams/design.pdf}
- \caption{Graphical description of the solution methodology for the shape detection
- of C. elegans worms in digital images}
+ \caption{Descripci\'on gr\'afica de la metodolog\'ia para detectar gusanos C. elegans
+   en im\'agenes digitales}
 \label{fig:methsol}
 \end{figure}
+
 
 Given the input image, the first step is to separate the pixels belonging to the object
 of study from the rest of the image pixels. A thresholding algorithm is then used to
