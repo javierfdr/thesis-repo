@@ -52,16 +52,16 @@ l\'iquido. Las im\'agenes pueden contener algo de ruido tal como:
 sombras, burbujas de aguas o peque\~nos restos que no pertenecen a
 los gusanos, y que por tanto deben ser separados del resto de la imagen. La
 posici\'on de cada gusano individual en la imagen es variable y puede
-ser distinguida en dos grandes grupos: grupo de gusanos y gusanos aislados.
-Un grupo de gusanos corresponde a un conjunto de gusanos que aparecen en la
+ser distinguida en dos grandes grupos: agrupaciones de gusanos y gusanos aislados.
+Una agrupaci\'on de gusanos corresponde a un conjunto de gusanos que aparecen en la
 imagen solap\'andose entre si. De esta manera, cada gusano que pertenece
-al grupo esta conectado con el resto de manera directa o indirecta,
- a trav\'es de solapamiento. O lo que es lo mismo, desde cada gusano en el grupo,
+a la agrupaci\'on esta conectado con el resto de manera directa o indirecta,
+ a trav\'es de solapamiento. O lo que es lo mismo, desde cada gusano en la agrupaci\'on,
 se puede trazar un camino hacia otro gusano sin pasar por p\'ixeles de fondo.  
 Por otro lado, los gusanos aislados, son aquellos que estan rodeados por
 p\'ixeles de fondo y que no se solapan con ning\'un otro gusano.\\
 
-Los diferentes grupos de gusanos y gusanos aislados podr\'ian ser
+Los diferentes gusanos aislados y agruaciones de gusanos podr\'ian ser
 separados f\'acilmente del resto de la imagen, permitiendo as\'i, 
 procesar cada uno individualmente. El contorno de los gusanos aislados
 puede ser trazado f\'acilmente siguiendo los pixeles del objeto que
@@ -70,7 +70,7 @@ de gusanos aislados, estas podr\'ian utilizarse para generar un perfil
 de gusano, que definir\'ia los valores generales para un descriptor de forma
 g\'enerico. Esto permitir\'ia describir la silueta que mejor se ajusta a todos
 los gusanos de la imagen, en general.
-Los gusanos que pertenecen a grupos de gusanos, se podr\'ian detectar
+Los gusanos que pertenecen a agrupaciones de gusanos, se podr\'ian detectar
 individualmente, a trav\'es de un proceso de ajuste de siluetas como
 el mencionado al comienzo de esta secci\'on.
 
@@ -86,8 +86,8 @@ algoritmos pueden ser desarrollados que se ajusten a esta metodolog\'ia.
 Aqu\'i se provee, adem\'as, un enfoque espec\'ifico de implementaci\'on por etapa, que da
 origen al algoritmo que fue implementado y probado en este trabajo.\\
 
-Siguiendo el razonamiento de la secci\'on anterior, se dise\~no una metodolog\'ia tomando en cuenta
-los aspectos principales del proceso de detecci\'on y ajuste de forma estudiado, como lo son:
+Siguiendo el razonamiento de la secci\'on anterior, se dise\~n\'o una metodolog\'ia tomando en cuenta
+los aspectos principales del proceso de detecci\'on y ajuste de formas estudiado, como lo son:
 identificaci\'on general de gusanos en la imagen, segmentaci\'on de gusanos, 
 descriptor de forma de gusanos y optimizaci\'on del ajuste de formas.
 
@@ -103,233 +103,269 @@ En la Figura \ref{fig:methsol} se presenta una descripci\'on gr\'afica de la met
 \label{fig:methsol}
 \end{figure}
 
+Dada la im\'agen de entrada, el primer paso consiste en separar los p\'ixeles que
+pertenecen a los objetos de estudio (gusanos) del resto de la imagen. Para esto,
+se utiliza alg\'un m\'etodo del valor umbral (MVU) que permita calcular una imagen
+binaria que separe p\'ixeles de gusanos de los p\'ixeles del fondo. Por lo general,
+este proceso no es completamente eficaz, y se obtiene algo de ruido en la imagen, el
+cual debe ser eliminado en procesamientos posteriores. Esta primera etapa corresponde
+a una segmentaci\'on inicial de la imagen de entrada.
+Seguidamente, a partir de la imagen binaria, se puede calcular una transformada de
+distancia o mapa de distancias, en la cual se almacena la distancia de cada p\'ixel
+al p\'ixel de fondo mas cercano. La transformada de distancia hace posible identificar
+f\'acilmente los p\'ixeles de contorno en la imagen binaria, lo que la convierte en
+una herramienta fundamental para la generaci\'on autom\'atica de perfiles de gusanos,
+el trazado de contornos en gusanos aislados y para la optimizaci\'on del proceso
+de \emph{esqueletizaci\'on}, entre otros. \\
 
-Given the input image, the first step is to separate the pixels belonging to the object
-of study from the rest of the image pixels. A thresholding algorithm is then used to
-obtain a binary image that separates worm pixels from background pixels. Usually some
-noise is obtained after the thresholding process, but it is ignored in further processing.
-This corresponds to an initial segmentation of the input. Once one have a binary image, a
-distance map can be obtained in which each pixel represents the distance to the 
-nearest background pixel, as explained in \cite{dtresearch}. The distance transform
-makes possible to identify the contour pixels in the binary image, which makes it a fundamental
-tool for the automatic generation of a shape descriptor, contour tracing on isolated worms 
-and optimization of the skeletonization algorithm, among others. Having the image 
-separated in object pixels and background pixels, the image is segmented to separate
-the worms. \\
+Habiendo determinado los p\'ixeles que pertenecen a gusanos en la imagen, se pueden separar
+los grupos de p\'ixeles que estan conectados y rodeados por p\'ixeles de contorno. Esta
+segmentaci\'on provee diversos grupos de p\'ixeles objetos. Cada uno de estos grupos
+podr\'ia ser tanto un gusano aislado como una agrupaci\'on de gusanos, de acuerdo a la diferenciaci\'on
+expuesta en la Sec. \ref{sec:reasoning}.
+Una manera de diferenciar los diferentes grupos es contando el n\'umero de extremos y de intersecciones. 
+Un grupo que contiene extactamente dos puntos extremos y que
+no presenta intersecciones corresponder\'a a un gusano aislado. Por otro lado, si el grupo presenta
+mas de dos puntos extremos, o al menos una intersecci\'on, esto indicar\'a la presencia de 
+solapamiento de gusanos, por tanto correspondar\'a a una agrupaci\'on de gusanos.\\
 
-The image worms have been distinguished into two groups: \emph{isolated worms}
-and \emph{worm clusters} (see Sec.\ref{sec:reasoning}). A way to differentiate the image worms
-is to count the number of endpoints of every object (as defined after the binary transform).
-An object with exactly two endpoints would correspond to an \emph{isolated worm} while
-more than two points indicate the presence of overlapping worms, thus a \emph{worm cluster}.
-At the same time a path from one endpoint of a worm to another is needed to match
-the shape, due to the need of placing the matcher shape near to the matching shape, which
-is a usual approach for shape matching, as covered in Sec. \ref{sec:shapefitting} and
-Sec. \ref{sec:reasoning}. Having said this, the topological skeleton of the image 
-would provide a simple way to recognize many endpoints as well as an approximated 
-connected medial path between the endpoints of the image objects. 
-Therefore, the skeleton is calculated. Then, the image is segmented into 
-different subareas corresponding to either clusters or \emph{isolated
-worms}. Each type of worm group is processed in a different way.
+El enfoque de ajuste de formas se centra en ubicar incialmente una silueta de gusano gen\'erica 
+cerca de un posible gusano en la imagen. De esta manera, es necesario poder determinar, con cierto grado
+de precisi\'on y factibilidad, \'areas que pertenezcan a gusanos individuales en la imagen. Para este prop\'osito,
+el esqueleto topol\'ogico de la imagen, proveer\'ia un camino continuo a trav\'es del eje medio
+de los objetos inicialmente segmentados, conectando puntos extremos de gusanos. Al mismo tiempo, permitir\'ia
+detectar gran cantidad de puntos extremos.\\
 
-\subsubsection*{Isolated Worms}
-The \emph{isolated worms} shape contour can be traced easily by selecting a border pixel
-(indicated in the distance map) and following the neighboring contour pixels until the
-initial pixel is reached back again. Then the whole shape can be rasterized by 
-triangulating it through the \emph{ear clipping triangulation method} and then rasterizing
-each triangle separately. This provides all the pixels belonging to the shape, 
-\emph{i.e.} a match.
-The nearly perfect match that can be obtained from the \emph{isolated worms} makes 
-possible to calculate a worm profile from the currently analyzed worms in order to
-generate an accurate shape descriptor (this is explained thoroughly in 
-Sec. \ref{sec:metshapedescriptor}).
+Seguidamente, los diferentes grupos segmentados son procesados para detectar 
+y ajustar la forma de los gusanos individuales que los conforman.
+Los dos tipos de grupos definidos (agrupaciones de gusanos y gusanos aislados),
+son procesados de formas diferentes. 
 
-\subsubsection*{Worm Clusters}
-To match the shape of the worms present in a \emph{worm cluster}, first the number of 
-worms in the cluster is determined (follows from the number of
-endpoints), then the best match between pairs of endpoints is found. Given a pair of 
-endpoints, the path between them is calculated. Then a matcher worm shape is generated
-from the shape descriptor, selecting a given number of control points in the path.
-Afterwards an energy minimization process is performed that varies the angles between the 
-straight lines that connect the control points (generating different shape representations),
-until the best match is found. Finally the contour of the shape descriptor is slightly 
-modified by finding the closest contour segments (or a lower value in the distance map)
-to the contour points, in order to adapt the generic shape silhouette to 
-the matching object. 
+\subsubsection*{Gusanos Aislados}
+El contorno de la silueta de los gusanos aislados puede ser trazada f\'acilmente de 
+la siguiente forma: se selecciona un pixel de contorno (indicado en el mapa de distancias)
+y se construye un camino siguiendo el pixel de contorno vecino en cada paso, hasta que
+se cierre el contorno. Luego, la silueta puede ser \emph{rasterizada} construyendo 
+una maya triangulada y, seguidamente, rasterizando cada triangulo por separado. Esto
+proveer\'ia el conjunto de los p\'ixeles que pertenecen a la forma del gusano, por lo que
+la forma quedar\'ia ajustada.\\
+El ajuste casi perfecto que se puede obtener de los gusanos aislados, hace posible
+calcular un perfil de gusano que represente a los individuos de la muestra, de forma
+general. De esta manera, se puede construir un descriptor de forma preciso (esto 
+es explicado a fondo en la secci\'on \ref{sec:metshapedescriptor}).
 
-This process is repeated for every feasible worm path that can be found starting from
-every endpoint, thus obtaining all the different worm conformations in the image.
-Then an assignation algorithm would select the best set of conformations that maximizes
-the number of covered endpoints and minimizes the total energy value. 
-Since the total energy is the sum of energies of each worm, speed can be improved further 
-by branch and bound.\\
-A path guessing algorithm can be used to find the most likely path 
-starting from a given endpoint. The conformation resulting from 
-optimizing this path could be favored over the others in order to make
-it more probable to be selected.\\
+\subsubsection*{Agrupaciones de Gusanos}
+Para detectar los gusanos individuales presentes en una agrupaci\'on de gusanos, 
+se calculan las formas de gusanos factibles entre par de puntos extremos y luego 
+se determina cuales de aquellas tienen m\'as probabilidades de pertenecer a gusanos 
+en la imagen. \\
 
-In the following sections, each of the sub-processes involved in the solution
-methodology are explained, covering their need and usefulness as
-well as the followed implementation approach.
+El proceso en general es como sigue: dado un par de puntos extremos, se selecciona
+alg\'un camino entre ellos. Luego, se escogen un conjunto de puntos control y
+apartir de estos puntos y del descriptor de forma, 
+se genera una silueta de gusano alrededor del camino. Dicho camino constituye el 
+eje medio de la silueta generada. Despu\'es de esto, se lleva a cabo un proceso de 
+ajuste de formas, que consiste en minimizar la distancia que existe entre la silueta
+generada y el gusano que presumiblemente se encuentra dispuesto en un espacio 
+cercano al camino escogido, hasta que el mejor ajuste es encontrado. Una forma ajustada,
+despues del proceso de minimizaci\'on, se denomina conformaci\'on. Una conformaci\'on 
+corresponde a la mejor silueta de gusano que se puede construir a partir de un camino
+entre dos extremos determinados, y que presumiblemente representa a un gusano real
+de la imagen. \\
 
-% ADD THE MANUAL MODIFICATION OF THE RESULTS
+Este proceso es repetido para cada camino de gusanos factible que puede ser encontrado
+a partir de cada punto extremo. De esta manera, se obtienen todas las conformaciones
+posibles en el imagen. Luego, un algoritmo de asignaci\'on permitir\'a seleccionar
+el mejor conjunto de conformaciones, que maximice el n\'umero de puntos extremos cubiertos
+y minimice el valor acumulado de energ\'ia. Las conformaciones escogidas incorrectamente
+a trav\'es de la asignaci\'on automaticamente, podran ser corregidas siguiendo
+un sencillo proceso manual.\\
+
+Un algoritmo de predicci\'on de caminos puede ser utilizado para encontrar
+los caminos de gusano mas probables, que parten de un punto extremo dado.
+Las conformaciones resultantes de los caminos predichos por el algoritmo podr\'ian
+ser beneficiados sobre otras conformaciones, para aumentar la probabilidad de que
+sean escogidos.\\
+
+En las secciones siguientes se cubren detalladamente los diferentes procesos
+involucrados en la metodolog\'ia presentada, y se presenta el enfoque particular
+de implementaci\'on seguido en este trabajo, para cada uno de ellos.
   
 
-\subsection{Thresholding}
+\subsection{Segmentaci\'on Inicial (M\'etodo del Valor Umbral)}
 \label{sec:metthres}
 
-Since the main purpose of this study is to fit the shape of C. elegans worms on digital
-images, it is useful to differentiate these from the rest of the image in order to perform a more 
-accurate analysis. The shape of the worms
-can be characterized as objects and the rest of the image as background. More precisely
-the image pixels can be separated into two groups: object pixels, which are all of those
-that belong to a worm shape and background pixels, which are all the remaining ones.\\
+Dado que el prop\'osito principal de este estudio es detectar y ajustar la forma de 
+gusanos C. elegans en im\'agenes digitales, un paso inicial fundamental es el de separar
+las formas de gusanos lo mas posible del resto de la im\'agen, para asi poder llevar a
+cabo un anal\'isis mas preciso.\\
 
-Given this theoretical characterization, a thresholding filter would come to be a useful tool 
-to locate the objects of study in the digital representation and to discard unnecessary 
-information, obtaining a binary image from the original one. A binary image would then provide
-an initial segmentation of the processed image, being as well a key element to obtain
-a distance transform, as explained in Sec. \ref{sec:metdt}.
+Sean los gusanos en la imagen los objetos a separar y considerando el resto de la imagen
+como fondo o segundo plano, los p\'ixeles de la imagen puede ser separados en dos grupos: 
+p\'ixeles de objeto y p\'ixeles de fondo. Dada esta caracterizaci\'on, un m\'etodo del valor
+umbral permitir\'ia separar los objetos en la imagen digital y descartar la informaci\'on
+innecesaria, representando esto a trav\'es de una imagen binaria. La imagen binaria proveer\'ia
+entonces una segmentaci\'on inicial de la imagen original, siendo ademas clave para el
+calculo del mapa de distancias de la imagen, como se explica en la Sec. \ref{sec:metdt}.
+En general, para esta etapa de la metodolog\'ia, cualquier MVU que permita obtener una imagen
+binaria que identifique satisfactoriamente los p\'ixeles que pertenecen a los gusanos de la
+imagen, ser\'a suficiente para continuar el proceso normalmente, sin importar la existencia
+de ruido leve en la im\'agen.
 
-\subsubsection{Implementation}
+
+\subsubsection*{Implementaci\'on}
 \label{sec:thresimp}
-There are four thresholding filters for 2D images implemented on \emph{Endrov}, these are: 
-\emph{Fukunaga}, \emph{max entropy}, \emph{Otsu} and \emph{percentile}, which cover the 
-histogram and entropy-based thresholding methods categories as defined in Sec.\ref{sec:thresholding}.
-Considering that the implemented methods are sufficiently different and given the transparency
-of C. elegans worms, it is hard to determine theoretically which would be the most appropriate 
-thresholding method to obtain an accurate binary image from the study data-set. In order 
-to select a thresholding method, a series of experiments where performed that consisted on 
-tweaking the parameters for the different mentioned methods. 
-The selected method was \emph{percentile threshold 2D}, as proved to be the easiest to tune manually and the 
-one that calculated the best binary counterpart, for the images in the data-set.
 
-Figure \ref{fig:wormthres} shows a binary image obtained after applying
-the \emph{percentile threshold 2D} method with a percentile value of $0.074$
+Existen cuatro MVU para im\'agenes en 2D implementados en \emph{Endrov},
+estos son: \emph{Fukunaga}, \emph{entrop\'ia m\'axima}, \emph{Otsu} y \emph{percentil},
+que cubren las categor\'ias de MVU basados en histogramas y MVU basados en entrop\'ia 
+(ver Sec. \ref{sec:thresholding}). Dada la condici\'on de transparencia de los gusanos
+C. elegans, es dificil determinar teoricamente cual vendr\'ia a ser el m\'etodo mas apropiado 
+para obtener una imagen binaria precisa. \\
+Por esta raz\'on, se realizaron una serie de experimentos
+para seleccionar el m\'etodo mas apropiado. Estos experimentos consistieron en el ajuste manual
+de los diferentes par\'ametros de cada uno de los m\'etodos mencionados, que fueron aplicados
+sobre un conjunto de imagenes de prueba. La precisi\'on de segmentaci\'on de las im\'agenes binarias
+obtenidas en cada caso, se midi\'o a trav\'es de una comparaci\'on visual con la imagen original.\\
+El m\'etodo que mejor se comport\'o en estos experimentos resulto ser el 
+\emph{m\'etodo del valor umbral por percentil}, 
+al ser el mas f\'acil de ajustar manualmente y aquel que retorn\'o el equivalente binario mas preciso, 
+en cada caso. Un an\'alisis mas detallado sobre la escogencia del m\'etodo de valor umbral para esta metodolog\'ia
+se presenta en la secci\'on de experimentos del cap\'itulo cuatro (ver Sec. \ref{chap:experiments}).\\
+
+En la figura \ref{fig:wormthres} se presenta una imagen binaria, obtenida al
+aplicar el \emph{m\'etodo del valor umbral por percentil}.
 
 \begin{figure}[h t b p ! H]
   \centering
-  \subfloat[Original image]{\includegraphics[width=0.45\textwidth]{original.png}}
+  \subfloat[Imagen original]{\includegraphics[width=0.45\textwidth]{original.png}}
 \qquad
-  \subfloat[Percentile threshold. Value=0.074]{\includegraphics[width=0.45\textwidth]{thres/worms}}
-\caption{Worms in liquid media. Original image and binary image obtained through
-percentile thresholding with a percentile value of 0.074}
+  \subfloat[M\'etodo del valor umbral por percentil. Valor=0.074]{\includegraphics[width=0.45\textwidth]{thres/worms}}
+\caption{Gusanos en medio l\'quido. Imagen original e imagen binaria obtenida a trav\'es
+del m\'etodo del valor umbral por percentil, con un percentil de 0.074}
   \label{fig:wormthres}
 \end{figure}
 
-\subsection{Distance Transform}
+\subsection{Transformada de Distancia}
 \label{sec:metdt}
 
-In this shape fitting approach, the distance transform
-of the input image is used thoroughly for contour detection and different kinds of image 
-segmentation procedures. Specifically the distance map allows detecting and following
-the exact contour of isolated worms (Sec. \ref{sec:metiso}), 
-is useful in the shape profile generation (Sec. \ref{sec:metwormprof}), and essential in the heuristic
-guessing of the more likely worm-paths in \emph{worm clusters} 
-(Sec. \ref{sec:pathguessing}).
-It also improves the performance of the iterative thinning algorithm designed by 
-\emph{Zhang and Suen} \cite{thinning} as it is described on Sec. \ref{sec:metsk}
+La transformada de distancia de la imagen binaria es utilizada a fondo en el
+seguimiento de contorno y en diferentes tipos de procedimientos de segmentaci\'on.
+Espec\'ificamente, el mapa de distancias permite detectar y delinear el contorno
+exacto de gusanos aislados (Sec. \ref{sec:metiso}), es \'util en la generaci\'on
+automatica de perfiles de gusanos (Sec. \ref{sec:metwormprof}), y es esencial en 
+la predicci\'on heur\'istica de caminos de gusanos mas probables (Sec. \ref{sec:pathguessing}). 
+As\'i mismo, permite mejorar el rendimiento de algoritmo iterativo de reducci\'on de capas
+dise\~nado por \emph{Zhang y Suen}, \cite{thinning}, como se describe en 
+la Sec. \ref{sec:metsk}
 
-\subsubsection{Implementation}
+\subsubsection*{Implementaci\'on}
 \label{sec:dtimp}
 
- As stated in \cite[p.196]{fastdt} the algorithms of distance transform can be categorized into two classes: one is the iterative 
- method which is efficient in a cellular array computer since all the pixels at each iteration can be processed in parallel, and the other 
-is sequential (or recursive) method which is suited for a conventional computer by
- avoiding iterations to be independent of object size. 
-Using the machines that most people working in digital image processing
- have access to, sequential algorithms are often much more efficient than
- iterative ones. For this reason a sequential approach was chosen to calculate the
-distance transform of the input images. Particularly the two-scan transformation
-using 3x3 neighborhoods \cite{fastdt}, which is both efficient and easy to implement.\\
+Tal como se describe en \cite[p.196]{fastdt}, los algoritmos para calcular transformadas de distancia pueden ser
+categorizados en dos grandes clases: m\'etodos iterativos y metodos secuenciales o recursivos. 
+Los m\'etodos iterativos son particularmente eficientes en computadoras de arreglos celulares
+dado que se pueden procesar todos los p\'ixeles en paralelo en cada iteraci\'on. Por otro lado, los m\'etodos secuenciales
+se ajustan mejor a computadoras convencionales, al evitar iteraciones por ser independientes del tama\~no de los objetos.
+Tomando en cuenta los tipos de computadoras a la que tienen acceso la mayor\'ia de las personas que trabajan
+en el procesamiento de im\'agenes digitales, los algoritmos secuenciales ofrecen un rendimiento mucho mas
+eficiente que los iterativos. Por esta raz\'on, se escogi\'o un enfoque secuencial para calcular la 
+transformada de distancia de las im\'agenes de entrada. Particularmente se utiliz\'o el algoritmo de
+transformaci\'on de dos recorridos con vecindarios de 3x3, presentado en \cite{fastdt}, que es
+tanto eficiente como sencillo de implementar.\\
 
-In the mentioned paper a distance map calculation algorithm is described which consist
-of only two scans of the image bitmap, one left to right - top to bottom, and another
-right to left - bottom to top, with one operation per pixel. This makes the complexity
-of the algorithm $\mathcal{O}(N)$ where $N$ is the size of the image array.
-In \cite[p.197]{fastdt} a pseudo-code for \emph{chessboard} and 
-\emph{Manhattan or city-block} distances is given, while in \cite[p.198]{fastdt} the 
-definition is extended to improve the efficiency of the calculations needed to 
-generate a distance map using \emph{Euclidean} distances.
-The two-scans algorithm was implemented using the three different distance metrics
-mentioned before. This allows a wider analysis on the behavior and accuracy of the shape 
-fitting process from one metric to another, ``The city block or chessboard distance
-measures are sensitive to the rotations of an object, but the Euclidean distance
-measure is rotation invariant. However, its square root operation is costly...''
-\cite[p.332]{eucskeleton}. Given the straight-like shape of worms and the different levels
-of accuracy of the distance metrics it is hard to tell at first sight which would be 
-the most adequate to use, so it had to be determined experimentally.
-The figure \ref{fig:distance} shows the binary image and three distance maps obtained 
-from a single worm image.
+En el trabajo antes mencionado, se describe un algoritmo para calcular el mapa 
+de distancias de una imagen en formato de mapa de bits, que consite en dos recorridos y
+una operaci\'on por p\'ixel. La complejidad del algoritmo es $\mathcal{O}(N)$, donde $N$ 
+es el tama\~no del arreglo que contiene la imagen.
+En dicho trabajo se presenta, inicialmente, un pseudo-c\'odigo para las m\'etricas 
+de distancia de \emph{Manhattan} y \emph{tablero de ajedrez}, \cite[p.197]{fastdt}.
+Luego, la definici\'on es extendidad para mejorar la eficiencia de los c\'alculos 
+requeridos para generar un mapa de distancias a trav\'es de la metrica de distancias
+\emph{Euclideanas}, \cite[p.198]{fastdt}.
+Este algoritmo de dos recorridos, fue implementado utilizando las tres m\'etricas de
+distancia mencionadas anteriormente. Esto permite realizar una an\'alisis mas amplio
+del comportamiento y precisi\'on del proceso de ajuste de formas, al cambiar de
+una metrica a la otra. Esto es debido a que los mapas de distancia generados por 
+diferentes m\'etricas, representan a los objetos de maneras diferentes, y tienden
+a ser sensible a cambios posicionales u otras propiedades. En \cite[p.332]{eucskeleton}
+se asegura que las m\'etricas de \emph{tablero de ajedrez} y \emph{Manhattan} son
+sensibles a las rotaciones de los objetos, mientras que la m\'etrica \emph{Euclideana}
+permanece invariable ante estas rotaciones; sin embargo, es mucho mas costosa de calcular.\\
+
+Dada la forma alargada y estrecha de los gusanos C. elegans, y los diferentes niveles
+de precisi\'on que proveen dichas m\'etricas de distancia, es dif\'icil decidir
+cual se ajusta mejor al problema de estudio, por lo que debe ser determinado
+experimentalmente. La Figura \ref{fig:distance} muestra una im\'agen binaria y tres
+mapas de distancia obtenidos a partir de una imagen que contiene, \'unicamente, un
+gusano aislado.
 
 \begin{figure}[h t b p ! H]
   \centering
-  \subfloat[Binary Image]{\label{fig:manh}\includegraphics[width=0.45\textwidth]{dt/binary}}
+  \subfloat[Imagen Binaria]{\label{fig:manh}\includegraphics[width=0.35\textwidth]{dt/binary}}
 \qquad
-  \subfloat[Manhattan metric]{\label{fig:manh}\includegraphics[width=0.45\textwidth]{dt/manhattandt}}
+  \subfloat[Distancia de Manhattan]{\label{fig:manh}\includegraphics[width=0.35\textwidth]{dt/manhattandt}}
 \qquad                
-  \subfloat[Chessboard metric]{\label{fig:chess}\includegraphics[width=0.45\textwidth]{dt/chessboarddt}}
+  \subfloat[Distancia de tablero de ajedrez]{\label{fig:chess}\includegraphics[width=0.35\textwidth]{dt/chessboarddt}}
 \qquad
-  \subfloat[Euclidean metric]{\label{fig:mouse}\includegraphics[width=0.45\textwidth]{dt/euclideandt}}
-  \caption{Binary Image and three distance transform metrics from a single worm image}
+  \subfloat[Distancia Euclideana]{\label{fig:mouse}\includegraphics[width=0.35\textwidth]{dt/euclideandt}}
+  \caption{ Imagen binaria y tres mapas de distancia utilizando diferentes m\'etricas,
+    a partir de la imagen de un gusano}
   \label{fig:distance}
 \end{figure}
 
-
-\subsection{Worm Skeletonization}
+\subsection{\emph{Esqueletizaci\'on}}
 \label{sec:metsk}
 
-The skeletonization of the image corresponds to the process of obtaining a 
-connected and thin (1-pixel width) medial axis that represents the worms in the 
-image. This is a key process on the shape matching
-approach followed in this work, as first mentioned on Sec. \ref{met:description}.
-It makes possible to identify the amount of worms in the input image, to separate them 
-distinguishing between \emph{isolated worms} and \emph{worm clusters}, and to
-obtain paths between endpoints 
-of worms (that tend to the medial axis), which plays a fundamental role in the 
-shape matching process (see Sec.\ref{sec:metsegmentation}). The skeleton
-image would then be fundamental to determine the area of the image in which
-the worms are located and give estimated paths along which the different
-worms would be disposed. \\
+La \emph{esqueletizaci\'on} de la imagen corresponde al proceso de obtener un 
+camino de p\'ixeles conectado y delgado, que tienda
+al eje central o eje medio de los gusanos en la imagen. A este camino se le
+denomina esqueleto. Este es un proceso
+clave en el enfoque de detecci\'on presentado en este trabajo, tal como
+se enuncia incialmente en la Sec \ref{met:description}. El esqueleto de la
+imagen hace posible identificar la cantidad de gusanos presentes, permite
+diferenciar y separar las agrupaciones de gusanos de los gusanos aislados, 
+y mas importante, provee caminos entre extremos de gusanos (que tienden
+al eje medio). Estos caminos son fundamentales en el proceso de ajuste
+de formas (ver Sec \ref{sec:metsegmentation}), pues proveen informaci\'on
+acerca de la localizaci\'on de los gusanos en la imagen, al constituir trayectorias
+a lo largo de las cuales podr\'ian estar dispuestos gusanos en la imagen.
 
-\subsubsection{Implementation}
+\subsubsection*{Implementaci\'on}
 \label{sec:skeletonimp}
 
-For the purpose of this work the skeletonization algorithm to be selected must
-ensure the connectivity of the skeleton points, \emph{i.e.} every skeleton point
-must be connected to at least another skeleton point belonging to the same
-skeleton. Also, the skeleton must be as thin as possible to simplify the 
-path processing and analysis.\\
 
-Different methods that consist of finding ridge points on the distance
-maps and then connecting them, have been covered in \cite{maxima,euclideancentre,ridgedt}.
-The approach in \cite{maxima} was followed as a first attempt to calculate a thin
-skeleton with a low time cost. This algorithm defines the ridge points as such pixels
-that have the greatest numerical value among its 3x3 neighborhood (bitmap image) in the 
-distance map. After finding the ridge points an \emph{up-hill} reconnection is performed, 
-followed by a \emph{down-hill} connection for missing points. The study covered in \cite{maxima}
-states that this approach makes possible to find successfully a connected 1-pixel-thin skeleton,
-which was actually the case for \emph{isolated worms} or those which do not
-overlap with other worms. Nevertheless for \emph{worm clusters} the obtained skeletons
-were usually disconnected, thicker than 1-pixel and not accurate. Although the approach
-seemed appropriate in theory, the costly reconnecting operations and the inaccurate
-skeletons obtained for \emph{worm clusters} gave rise to the need for a different
-approach.\\
+Para los efectos de este trabajo, el algoritmo de \emph{esqueletizaci\'on} a ser
+seleccionado debe garantizar la conectividad de los puntos del esqueleto, \emph{i.e.}
+cada punto del esqueleto debe estar conectado con al menos otro punto del mismo
+esqueleto. As\'i mismo, el esqueleto debe ser tan delgado como sea posible 
+(hasta un 1 p\'ixel de grosor) para simplificar el procesamiento y an\'alisis de caminos.\\
 
-Given the long, thin and cylindrical shape of the worms in general, a thinning algorithm
-approach that reduces the different layers by removing pixels that should not 
-belong to the skeleton was then taken into account. In \cite{thinning} an iterative and 
-parallel thinning algorithm is presented, which consist in two sub-iterations per main 
-iteration aimed at deleting the south-east boundary points and north-west boundary points 
-respectively. The study is aimed at parallel computers so the different operations
-in each pixel can be performed at the same time, improving the performance. In order
-to avoid the requirement of using a parallel computer without losing the time performance 
-improvement, the distance map was used to discard unnecessary pixel checking (those
-belonging to inner layers). Thus in each iteration only the pixels belonging to the
-currently selected shape layer are taken into account. The layers are defined by the
-distance map value of its pixels. The first layer corresponds to a distance value
-of one ($1$), the next to a distance value of two ($2$) and so on. This is presented in
-algorithm \ref{thinninalg}.\\
+Existen diferentes m\'etodos que consisten en encontrar los puntos cresta en el
+mapa de distancias y conectarlos, como se explica en \cite{maxima,euclideancentre,ridgedt}. 
+El enfoque presentado en \cite{maxima} fue seguido inicialmente para calcular un esqueleto
+de imagen delgado en un tiempo de ejecuci\'on muy corto. Pese a que el estudio garantiza
+que el algoritmo permite calcular, satisfactoriamente, esqueletos conectados de un pixel
+de grosor, este result\'o ser eficaz \'unicamente para los gusanos aislados. Los esqueletos
+obtenidos para agrupaciones de gusanos resultaron generalmente desconectados, 
+de mas de un p\'ixel de grosor y poco precisos. Estos llevo a la utilizaci\'on
+de un enfoque diferente.\\
+
+En \cite{thinning} se presenta un algoritmo iterativo para calcular el esqueleto de
+una imagen binaria. El algoritmo consiste, b\'asicamente, en la remoci\'on por capas
+de aquellos pixeles que, de acuerdo a determinados criterios, no pertenecen al esqueleto
+del objeto. El dise\~no del algoritmo esta dirigido a computadoras con procesadores 
+paralelos, de manera que se puedan ejecutar varias operaciones de pixel al mismo tiempo,
+y mejorar as\'i el rendimiento. Para evitar el requerimiento de utilizar computadores
+con procesadores paralelos, sin desmejorar el rendimiento significativamente,
+el algoritmo fue ligeramente modificado. Dicha modificaci\'on consiste en utilizar
+el mapa de distancias para descartar chequeo de p\'ixeles que pertenecen a capas
+mas profundas que la capa que esta siendo reducida en un momento determinado.
+Esto toma ventaja de la naturaleza de los mapas de distancia, quienes, por definici\'on,
+establecen capas de distancia entre los p\'ixeles del objeto y el fondo de la imagen.\\
+De esta manera, las capas se definen por el valor que tiene cada p\'ixel en el mapa 
+de distancias. La primera capa corresponde a un valor de distancia de uno ($1$), la segunda
+un valor de dos ($2$) y as\'i sucesivamente. El algoritmo es presentado en \ref{thinninalg}.
 
 \begin{algorithm}                     
 \caption{Calculate shape skeleton}         
@@ -377,52 +413,55 @@ corner point}
 \end{algorithmic}
 \end{algorithm}
 
-The algorithm deals well with overlapping worms by constructing a path that is very close
-from the shapes medial axis, and results in a totally connected 1-pixel width skeleton.
-In fig. \ref{fig:skeleton} the skeleton of a sample image is shown.
-The worms in the image are successfully \emph{skeletonized}.
+El algoritmo se ocupa bien de los gusanos que se solapan, al construir un camino que 
+se aproxima bien al eje central de las figura, y resulta en un esqueleto totalmente
+conectado y delgado (mayoritariamente 1-pixel de grosor).
+En la Figura \ref{fig:skeleton} se presenta el esqueleto de un conjunto de gusanos.
 
 \begin{figure}[h t b p ! H]
  \centering
    \includegraphics[scale=0.75]{skeleton/skeleton.png}
- \caption{Skeleton obtained through iterative thinning over a worm binary image}
+ \caption{Esqueleto obtenido a trav\'es de reducci\'on por capas iterativa
+   de un conjunto de gusanos}
 \label{fig:skeleton}
 \end{figure} 
 
-
-\subsection{Worm Segmentation}
+\subsection{Segmentaci\'on de Gusanos}
 \label{sec:metsegmentation}
 
-Since the goal is to match the shape of individual worms,
-it is necessary to locate them in the image and then separate them 
-as much as possible, \emph{i.e.} to segment the image.
-This allows improving the efficiency and accuracy of the 
-shape fitting process, while reducing the matching area and thus the amount of 
-different combinations that must be taken into account. After the process of 
-\emph{skeletonization}, a set of paths are obtained 
-between endpoints of worms (the objects of study), in some cases overlapping. 
-By identifying the worm endpoints and tracing the paths that connect them together,
-the different groups of paths can be separated, thus segmenting the image.
-As explained in Sec. \ref{sec:metsk} and Sec. \ref{sec:reasoning}, the different groups
-of paths can be distinguished, in correspondence to the objects they represent,
-by \emph{isolated worms} and \emph{worm clusters}. Then the shape fitting process
-of the whole image would consist of matching and fitting the worms present in each of
-the obtained sub-images separately.\\
+Dado que el objetivo es ajustar las formas de gusanos individuales, es 
+necesario localizarlos en la imagen y separarlos lo m\'as posible, 
+\emph{i.e. }segmentar la imagen. La segmentaci\'on de los objetos 
+de estudio permite mejorar la eficiencia y precisi\'on del proceso
+de ajuste de formas, al reducir el area a analizar, disminiyuendo as\'i
+la cantidad de combinaciones diferentes que deben ser tomadas en cuenta.
+Una vez que se han identificado los puntos extremos, se pueden calcular
+los diferentes caminos que existen entre ellos, a partir del esqueleto.
+A trav\'es del conjunto puntos extremos y de la cantidad caminos e 
+interesecciones, se pueden determinar el tipo de grupo de gusanos al que
+pertenece cada grupo de objetos segmentados, ya sean gusanos aislados
+o agrupaciones de gusanos. De esta manera, el proceso de ajuste de formas
+se puede llevar a cabo en cada grupo por separado.\\
 
-Another process of segmentation that is performed is the identification of single
-worms paths, in both \emph{isolated} and \emph{cluster} worms. For \emph{isolated worms},
-the path that determines its medial axis is used for two different processes. 
-First to find the surrounding contour to
-fit its shape (see Sec. \ref{sec:metiso}). And second, to generate a profile that 
-would define a general representation of the worms in the image through a shape
-descriptor, as explained in Sec. \ref{sec:metwormprof}.
-On the other hand, for \emph{worm clusters}, feasible worm paths must be found between endpoints. 
-If a path exist between a pair of endpoints then a valid worm conformation between them will
-be generated through the optimization process.
-These paths are chosen among all the technically possible paths between endpoints, and by
-a more sophisticated path guessing algorithm that will be described below in the
-implementation section.
+Otro proceso de segmentaci\'on que debe ser llevado a cabo es la identificaci\'on
+de caminos de gusanos individuales, tanto para gusanos aislados como para agrupaciones
+de gusanos. Estos son caminos que no tiene bifurcaciones y que comienzan y terminan
+en puntos extremos.\\
+El esqueleto de un gusano aislado determinado corresponde a un camino de este tipo, y es
+utilizado para dos procesos diferentes: encontrar el contorno del gusano aislado 
+(ver Sec. \ref{sec:metiso}) y generar un perfil de gusanos (ver Sec. \ref{sec:metwormprof}).
+El perfil de gusanos permite definir una representaci\'on general de los gusanos en 
+la imagen. De esta manera, a trav\'es del perfil y un camino entre dos extremos, se puede
+construir una silueta de gusano, que tiene como eje central al camino escogido. \\
 
+Con respecto a las agrupaciones de gusanos, se deben encontrar caminos de gusanos factibles entre
+pares de puntos extremos. Si un camino existe entre un par de puntos extremos, ser\'a posible
+generar un conformaci\'on de gusano valida a trav\'es del proceso de optimizaci\'on. 
+Estos caminos pueden ser escogidos tanto calculando todas las combinaciones de caminos posibles
+entre par de puntos extremos, como a trav\'es de un algoritmo de predicci\'on de caminos probables,
+como el que se describe mas adelante en esta secci\'on.
+
+\subsubsection{Implementaci\'on}
 
 \subsubsection*{Worm Endpoints}
 \label{sec:wend}
@@ -472,7 +511,6 @@ It must also be considered that some worm endpoints cannot be detected following
 process, particularly in crowded images where there is a big chance that the
 overlaps ``hide'' the endpoints. Nonetheless, a manual process can 
 be carried out to add the missing endpoints, as explained in Sec. \ref{sec:manualproc}.
-
 
 
 \subsubsection*{Group segmentation}
