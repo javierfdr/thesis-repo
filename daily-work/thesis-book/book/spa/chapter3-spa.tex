@@ -83,7 +83,7 @@ La metodolog\'ia presenta un dise\~no general por etapas,
 independiente de la implementaci\'on particular de cada una de estas. De esta
 manera, se presenta una visi\'on general de la soluci\'on, y as\'i diferentes
 algoritmos pueden ser desarrollados que se ajusten a esta metodolog\'ia.
-Aqu\'i se provee, adem\'as, un enfoque espec\'ifico de implementaci\'on por etapa, que da
+Se provee, adem\'as, un enfoque espec\'ifico de implementaci\'on por etapa, que da
 origen al algoritmo que fue implementado y probado en este trabajo.\\
 
 Siguiendo el razonamiento de la secci\'on anterior, se dise\~n\'o una metodolog\'ia tomando en cuenta
@@ -436,9 +436,9 @@ de estudio permite mejorar la eficiencia y precisi\'on del proceso
 de ajuste de formas, al reducir el area a analizar, disminiyuendo as\'i
 la cantidad de combinaciones diferentes que deben ser tomadas en cuenta.
 Una vez que se han identificado los puntos extremos, se pueden calcular
-los diferentes caminos que existen entre ellos, a partir del esqueleto.
-A trav\'es del conjunto puntos extremos y de la cantidad caminos e 
-interesecciones, se pueden determinar el tipo de grupo de gusanos al que
+los diferentes caminos que existen entre ellos a partir del esqueleto.
+A trav\'es del conjunto de puntos extremos y de la cantidad de caminos e 
+interesecciones, se puede determinar el tipo de grupo de gusanos al que
 pertenece cada grupo de objetos segmentados, ya sean gusanos aislados
 o agrupaciones de gusanos. De esta manera, el proceso de ajuste de formas
 se puede llevar a cabo en cada grupo por separado.\\
@@ -463,74 +463,91 @@ como el que se describe mas adelante en esta secci\'on.
 
 \subsubsection{Implementaci\'on}
 
-\subsubsection*{Worm Endpoints}
+\subsubsection*{Puntos Extremos de Gusanos}
 \label{sec:wend}
-The skeleton calculation returns an image 
-containing groups of curves or paths.
-The pixels that are connected with 
-two or more other pixels (neighbors) are \emph{body-pixels}, which belong 
-to the path and are not endpoints. On the other hand those that are connected with 
-only one other pixel are endpoints, thus each one could belong to the extreme of a
-worm. It is important to consider that since the thinning algorithm used obtaining the skeleton (covered in Sec. \ref{sec:skeletonimp}) consists in removing the shape
-layers until finding pixels that are not surrounded, the endpoints found in the
-skeleton will not necessarily correspond to worm endpoints.\\
 
-In order to find the pixels that are actually worm endpoints a skeleton expanding process
-is performed that aims to stretch the skeleton path up to a contour point that 
-would come to be the worm endpoint. The skeleton expanding algorithm uses the definition
-of \emph{directional neighborhood} stated in \cite[p.334]{maxima}, where given 
-a pixel $P$ in the bitmap, a \emph{directional neighborhood} $D$ of $P$ is 
-composed by those pixels that belong to the \emph{8-neighborhood} of $P$ and that
-are located within $\pm$ $45^{\circ}$ slope changes from the current medial axis 
-orientation of $P$. In fig. \ref{fig:directional} three examples of directional
-neighbors are presented. The algorithm consist in following the best directional path
-starting in every endpoint and expanding the skeleton until a contour pixel is found.
+A partir del esqueleto calculado se pueden detectar puntos extremos 
+de gusanos. Aquellos p\'ixeles del esqueleto que estan conectados
+(son vecinos) de dos o m\'as p\'ixeles se denominan p\'ixeles de cuerpo.
+Estos p\'ixeles de cuerpo pertenecen al esqueleto pero no son extremos.
+Por otro lado, los puntos extremos del esqueleto son aquellos que estan conectados con
+un solo p\'ixel y pueden corresponder al extremo de un gusano, aunque no
+necesariamente.\\
+
+Dado que el algoritmo de \emph{esqueletizaci\'on} de reducci\'on por capas
+no permite asegurar que los extremos identificados pertenezcan a extremos
+de gusanos en la imagen, se debe llevar a cabo un proceso de expansi\'on
+del esqueleto, para alcanzar los puntos extremos reales.
+El algoritmo se fundamenta en estirar los extremos del esqueleto, siguiendo
+una direcci\'on coherente, hasta alcanzar puntos de contorno que vendr\'ian a 
+representar los extremos de los gusanos. El algoritmo de expansi\'on utiliza
+la definici\'on de \emph{vecino direccional}, que se presenta en \cite[p.334]{maxima}.
+Un p\'ixel $D$ es \emph{vecino direccional} de otro p\'ixel $P$, si pertenece a
+la vecindad de $P$ (\emph{8-vecindad}) y est\'a localizado dentro de un rango de 
+$\pm$ $45^{\circ}$  de cambio de pendiente, con respecto a la orientaci\'on actual
+del camino recorrido hasta $P$. En la Figura \ref{fig:directional} se presentan 
+tres ejemplos de vecindades direccionales.\\
+El algoritmo consiste en seguir el mejor camino direccional, partiendo de cada
+punto extremo y expandiendo el esqueleto, hasta que un punto de contorno es
+encontrado.
  
 \begin{figure}[h t b p ! H]
  \centering
    \includegraphics[scale=1]{skeleton/directional.pdf}
- \caption{Three different directional neighborhoods}
+ \caption{Tres vecindades direccionales}
  \label{fig:directional}
 \end{figure}
 
-The expanding algorithm can be summarized in the following steps:
+El algoritmo de expansi\'on de esqueleto puede ser resumido en 
+los siguientes pasos:
+
 \begin{itemize}
-\item Select an endpoint
-\item Find the previous skeleton point and calculate the directional neighborhood
-\item Select the directional neighbor with the lowest distance map pixel,
-  and mark it as skeleton pixel.
-\item If the neighbor is not a contour point repeat the process.
+\item Seleccionar un punto extremo.
+\item Encontrar el p\'ixel de esqueleto anterior y calcular la
+  vecindad direccional.
+\item Seleccionar el vecino direccional con el menor valor en el
+  mapa de distancia y marcarlo como p\'ixel de esqueleto.
+\item Si el vecino seleccionado no es un punto de contorno, repetir
+  el proceso.
 \end{itemize}
 
-A filtering process is done removing incorrect object pixels, which consists in
-removing skeletons that have a size (number of pixels) lower than a small 
-threshold. This allows to remove some slightly noisy regions and incorrect endpoints.
-Once the skeleton is successfully expanded, the endpoints of the skeleton are considered
-worm endpoints. 
-It must also be considered that some worm endpoints cannot be detected following this 
-process, particularly in crowded images where there is a big chance that the
-overlaps ``hide'' the endpoints. Nonetheless, a manual process can 
-be carried out to add the missing endpoints, as explained in Sec. \ref{sec:manualproc}.
+Seguidamente se lleva a cabo un proceso de remoci\'on de p\'ixeles de objeto 
+incorrectos, que consiste en eliminar aquellos esqueletos cuyo tama\~no (en 
+cantidad de p\'ixeles) sea menor que un umbral determinado. Esto permite remover
+regiones ligeramente ruidosas, as\'i como punto extremos incorrectos.
+Una vez que el esqueleto ha sido expandido satisfactoriamente, los puntos
+extremos del esqueleto son marcados como puntos extremos de gusanos.\\
+
+Es importante considerar que, en algunos casos, hay puntos extremos de gusanos
+que no puede ser detectados a trav\'es del proceso previamente descrito. 
+Particularmente en imagenes con gran cantidad de gusanos, donde existe
+una alta posibilidad de que los solapamientos entre gusanos oculten
+puntos extremos. Para solucionar esto, se puede llevar a cabo un proceso
+manual de adici\'on de puntos extremos faltantes, como se explica en 
+la Sec. \ref{sec:manualproc}.
 
 
-\subsubsection*{Group segmentation}
+\subsubsection*{Segmentaci\'on en Grupos}
 
-Having detected every worm endpoint, the image can be segmented by determining
-the endpoints that are bound together through a skeleton path, \emph{i.e.} finding 
-the different \emph{isolated worms} and \emph{worm clusters}.
-As previously explained, the overlapping worms in the image are bound together
-as one object in the binary image, so then, in the skeletonization
-process, the endpoints belonging to \emph{worm clusters} are bound together as well through a skeleton path.
-Based on the previous reasoning an algorithm was designed that detects the endpoints 
-that are bound together through the path that links them, separating the 
-linked paths into different groups. Those paths that link together exactly two
-endpoints represent \emph{isolated worms} while a different number of endpoints
-correspond to \emph{worm clusters}.
-This method is described in algorithm \ref{groupsegment}. The algorithm basically consists of following every
-possible path starting from an endpoint until all the endpoints of a 
-group have been reached. 
 
-\begin{algorithm}                     
+Habiendo detectados los puntos extremos de los diferentes grupos de esqueletos
+en la imagen, se puede identificar a que tipo de grupo de gusano corresponde cada uno:
+ya sea agrupaciones de gusanos o gusanos aislados. Esto se hace identificando
+los extremos de gusanos que estan unidos a trav\'es de un camino del esqueleto.
+Como se explic\'o previamente, los gusanos que se superponen son considerados 
+parte de un objeto en com\'un en la imagen binaria, por lo que los puntos
+extremos que pertenecen a los esqueletos de agrupaciones de gusanos se encuentran
+conectados a trav\'es de un camino del esqueleto.\\
+
+Basado en este razonamiento, se dise\~n\'o un algoritmo que detecta la cantidad de
+puntos extremos que son conectados a trav\'es de caminos de un determinado esqueleto,
+y determina el tipo de grupo de gusanos al que pertenece. Aquellos esqueletos donde
+se conectan exactamente dos puntos extremos a trav\'es de uno y solo un camino, corresponde
+a gusanos aislados. Mientras que los esqueletos en donde mas de dos puntos extremos son
+conectados corresponden a agrupaciones de gusanos.
+Este procedimiento es descrito en el Algoritmo \ref{groupsegment}. 
+
+\begin{algorithm}[h]                     
 \caption{Calculate shape skeleton}         
 \label{groupsegment}                    
 \begin{algorithmic}                   
@@ -548,7 +565,7 @@ group have been reached.
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}                     
+\begin{algorithm}[h]                     
 \caption{Follow Path algorithm ( $followPath(currentPoint,clusterCount)$ )}         
 \begin{algorithmic}                   
 
@@ -574,59 +591,73 @@ group have been reached.
 \end{algorithm}
 
 
-\subsubsection*{Path guessing}
+\subsubsection*{Predicci\'on de Caminos}
 \label{sec:pathguessing}
 
-The \emph{worm clusters} found through segmentation are defined by a set of endpoints
-that are all connected through \emph{skeleton} paths. However, the pair of 
-endpoints belonging to each worm in the image and an accurate skeleton 
-path that
-connects them is still unknown. The optimization algorithm, covered in \ref{sec:metfit},
-performs a shape manipulation process to match the worms in the image given two endpoints
-and the path that connects them. To calculate the most accurate match for a 
-given endpoint, the algorithm would have to try every possible path starting
-from that endpoint. This could be costly in time, depending on the size of
-the worm clusters. In order to improve the time efficiency of the 
-shape fitting algorithm as well as the accuracy of the matches 
-(particularly avoiding incorrect endpoints bounding), 
-a path guessing algorithm was designed that performs a heuristic
-guessing of the most-likely worm paths.\\
+Una agrupaci\'on de gusano es definida por un esqueleto
+que conectan puntos extremos a trav\'es de caminos. Sin embargo, hasta esta etapa,
+se desconoce el par de puntos extremos que pertenecen a cada gusano en la imagen, y 
+el mejor camino en el esqueleto
+que conecte a cada par, y que mejor represente el eje central de cada gusano 
+respectivo.\\
 
-The algorithm is based on the idea of avoiding paths that tend to describe 
-unnatural worm conformations. So, given $S$ last steps in the skeleton tracing, 
-the next step $S+1$ will tend to follow the direction that was being followed
-lately (previous $S$ steps), 
-thus avoiding unnatural bendings or abrupt changes in the shape. 
-An important issue when following the most common direction in the 
-last $S$ steps is that in some cases
-the path tracing will tend to avoid \emph{path bifurcations}. 
-A \emph{path bifurcation} occurs when there is more than one neighbor pixel that can be 
-followed next, thus dividing the path in two or more different paths.\\
+El algoritmo de optimizaci\'on, cubierto en la Sec. \ref{sec:metfit}, lleva a cabo un
+proceso de manipulaci\'on de siluetas para ajustar formas de gusanos en la imagen, dados
+dos puntos extremos y un camino que los conecte. Para calcular la forma de gusano mas probable
+que parte de un punto extremo determinado, el algoritmo tendr\'ia que probar cada camino posible
+que parte de dicho punto extremo y seleccionar el que mejor se ajuste, lo que tiende a traducirse  
+en un alto costo en tiempo de ejecuci\'on.\\
+Con el fin de reducir el tiempo de ejecuci\'on del algoritmo de ajuste de
+formas, y as\'i mismo proveer un par\'ametro adicional para determinar la
+factibilidad de los caminos analizados, se desarroll\'o un algoritmo de
+predicci\'on de caminos. En s\'intesis, el agoritmo lleva a cabo una b\'usqueda
+heur\'istica para determinar aquellos caminos que tienen mayor probabilidad
+de representar a un gusano de la imagen.\\
 
-In order to make the path tracing tend to reach path bifurcations and then decide the best
-path to take, a heuristic function was designed. This function basically 
-consists of the value of the neighbor pixel
-in the distance transform multiplied by a variable factor.
-Then, the selection of the next pixel to follow is based on two main values:
-the amount of times that the direction of neighbor pixel has been taken in the last $S$ steps and
-the value of the heuristic function for that pixel. This can be expressed as below:
+El algoritmo de predicci\'on se basa en la idea de evitar caminos que
+tienden a describir conformaciones no-naturales de gusanos. Para esto
+es necesario identificar cambios abruptos en el camino y doblamientos
+poco com\'unes o imposibles en gusanos. La idea desarrollada para lograr
+esto se centra en que cada paso siguiente que sea seleccionado, corresponda
+a la direcci\'on mas coherente con respecto al camino que ha sido
+trazado hasta ese momento. 
+Mas espec\'ificamente, se escoge el conjunto $S$ de los \'ultimos $N$ 
+pasos trazados, y a partir de este, se calcula la direcci\'on mas com\'unmente
+seguida en esa porci\'on del recorrido.\\
 
-$$Next(p) = \max_{n \in neighbors(p)} (dirValue(direction(p,n),S) + dt(n)*hfactor)$$
+Una dificultad considerable que surge de este
+enfoque, es que el seguimiento del camino tiende a evitar \emph{centros de bifurcaciones}.
+Una bifurcaci\'on ocurre cuando mas de un camino diferente puede ser seguido a partir
+de un punto determinado. Dado que estas bifurcaciones son originadas por solapamiento 
+de gusanos, el \'area de la bifurcaci\'on suele ser grande, y por tanto hay mayor 
+cantidad de p\'ixeles posibles a escoger como siguiente paso. Los \emph{centros de bifurcaciones}
+son aquellos puntos que se ubican en la zona mas c\'entrica de estas \'areas, y por tanto
+se encuentran a una distancia normalmente similar de todos los caminos que se bifurcan.
+Para poder determinar con mayor precisi\'on el camino mas adecuado a seguir, el trazado del camino 
+debe tender a los \emph{centros de bifurcaciones}. Sin embargo, siguiendo el enfoque presentado, estos
+centros se tienden a bordear. Por esta raz\'on se desarroll\'o una heur\'istica, que permita
+al recorrido tender hacia los \emph{centros de bifuraciones} y llevar as\'i a una 
+decisi\'on mejor informada.\\
 
-where $p$ is the current path pixel, $dirValue$ returns the amount of times that the 
-direction of the neighbor pixel $p$ have been taken in the last $S$ steps, $dt$ is the 
-distance map and $hfactor$ is a heuristic factor that controls the influence of the
-distance map.
+La heur\'istica consiste b\'asicamente en considerar el valor en el mapa de distancias
+del p\'ixel elegible, multiplicado por un factor de equilibrio. De esta manera, la 
+selecci\'on del p\'ixel siguiente se basa en dos valores fundamentales: la cantidad
+de veces que ha sido escogida la direcci\'on en la que se encuentra dicho p\'ixel, 
+en los \'ultimos $N$ pasos, y el valor de la heur\'istica para ese p\'ixel. Esto
+puede expresarse de la siguiente forma:
 
-In order to cover the issue mentioned in Sec.\ref{sec:wend}, that some endpoints could
-be hidden because of the overlapping and thus they are not detected, an extra endpoint is created after $wormLength$ steps.
-The $wormLength$ is an estimated value that is calculated
-as the mean of the length of the \emph{isolated worms} in the image. This process
-attempts to identify worms that otherwise would be discarded because of the absence
-of endpoints. Algorithm \ref{guess} presents a pseudo-code for the path
-guessing approach.
+$$Siguiente(p) = \max_{s \in vecindad(p)} (valorDir(direccion(p,s),N) + td(n)*factorH)$$
 
-\begin{algorithm}                     
+donde $p$ es el \'ultimo p\'ixel marcado, $valorDir$ es una funci\'on que calcula
+la cantidad de veces que la direcci\'on del p\'ixel vecino $s$ ha sido escogida, $td$ es el 
+mapa de distancia y $factorH$ es el factor heur\'istico que controla la influencia 
+del mapa de distancia.\\
+
+
+El Algoritmo \ref{guess} presenta un pseudo-c\'odigo para este enfoque de predicci\'on
+de caminos de gusanos.
+
+\begin{algorithm}[h]                    
 \caption{Pseudo-code algorithm for path guessing between endpoints}         
 \label{guess}                    
 \begin{algorithmic}                   
