@@ -616,7 +616,7 @@ de representar a un gusano de la imagen.\\
 
 El algoritmo de predicci\'on se basa en la idea de evitar caminos que
 tienden a describir conformaciones no-naturales de gusanos. Para esto
-es necesario identificar cambios abruptos en el camino y doblamientos
+es necesario identificar cambios abruptos en el camino y flexiones
 poco com\'unes o imposibles en gusanos. La idea desarrollada para lograr
 esto se centra en que cada paso siguiente que sea seleccionado, corresponda
 a la direcci\'on mas coherente con respecto al camino que ha sido
@@ -697,155 +697,168 @@ de caminos de gusanos.
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Worm Shape Descriptor}
+\subsection{Descriptor de Forma}
 \label{sec:metshapedescriptor}
 
-As first mentioned on Sec.\ref{met:description} the chosen methodology approach 
-to match C. elegans worms is based on the manipulation of 
-worm shapes generated from a shape descriptor.
-Worm shapes can be described in geometrical terms as long, thin and cylindrical 
-objects. Given that the process of skeletonization and image segmentation 
-make possible to obtain \emph{thin} paths between pairs of worm endpoints, 
-a shape descriptor would allow to construct a worm shape around this
-medial axis, which would work as input for the 
-optimization algorithm. \\
+Como se mencion\'o inicialmente en la Sec. \ref{met:description}, 
+el enfoque metodol\'ogico dise\~nado se basa en la manipulaci\'on de 
+siluetas de gusanos que se generan a partir de un descriptor de forma.
+La forma de un gusano puede ser descrita en t\'erminos geom\'etricos
+como objetos alargados, delgados y cil\'indricos. Dado que el proceso
+de esqueletizaci\'on y la posterior segmentaci\'on de la imagen, hacen
+posible obtener caminos entre pares de extremos de gusanos, un descriptor
+de forma permitir\'ia construir siluetas de gusanos a lo largo del
+eje central definido por el camino, lo que servir\'ia como par\'ametro
+de entrada para el algoritmo de ajuste de formas.\\
 
-A shape descriptor was then designed based on the idea of generating a representative
-worm shape around the medial axis. The descriptor consists of two 
-elements: a set of control points and a shape profile (worm profile). 
-The set of control points is comprised of $N$ equidistant points 
-along the worm medial axis, both endpoints included.
-Each control point has associated a \emph{thickness} value that represents the
-radius of the circumference that has the control point as center. Then by selecting two points
-in opposite directions of the thickness circumference for every control point, and joining
-these points together through a smooth curve, a contour line is obtained that traces
-the silhouette of a worm shape, as shown in fig. \ref{fig:descriptor}. 
-The set of \emph{thickness} values that are associated to each control point
-is called a shape profile (worm profile for this study).
 
-\begin{figure}[h t b p ! H]
+El descriptor fue dise\~nado bas\'andose en la idea de generar una silueta
+de gusano representativa alrededor del eje central. El descriptor consiste en
+dos elementos principales: un conjunto de puntos control y un perfil de gusano.
+El conjunto de puntos control esta conformado por $N$ puntos equidistantes a lo
+largo del eje central del gusano definido por el esqueleto, incluyendo los
+dos puntos extremos. Por su parte, el perfil de gusano define $N$ valores de 
+grosor que son asociados a cada punto control, respectivamente. El grosor de
+un punto control determinado representa el radio de la circunferencia que tiene
+como centro a dicho punto. De esta manera, seleccionando dos puntos en posiciones
+opuestas de la circunferencia de grosor de capa punto control, y uniendo luego estos
+puntos a trav\'es de una curva suave, se obtiene una contorno
+que modela la silueta del gusano, como se muestra en la Figura 
+\ref{fig:descriptor}. 
+
+\begin{figure}
  \centering
    \includegraphics[scale=1]{descriptor/descriptor-vector.pdf}
  \caption{Construction of a worm shape based on shape descriptor}
  \label{fig:descriptor}
 \end{figure}
 
-In order to obtain a contour that accurately represents the worm shape along the 
-medial axis, the choice of the opposite points in the \emph{thickness} circumferences 
-must take into account the \emph{skeleton} bendings.
-Since the shape is constructed following the \emph{thickness} of control points,
-the bendings in the generated shape occur at each of these ones, and can then 
-be calculated as the angle between the straight lines that connect
-the control points. 
-The bisection of any angle provides a straight line that divides it
-into two equal portions, measuring the bending variation at each control point.
-Then, selecting the two points at respective \emph{thickness} distance 
-from the corresponding control point, and following the bisection line in opposite directions, provides a set of contour points. Joining 
-together these points with a smooth curve, will provide a worm shape contour.\\
+Para obtener un contorno que represente una forma de gusano de manera precisa,
+la escogencia de los puntos opuestos en las circunferencias de grosor
+debe tomar en cuenta las flexiones del esqueleto. Dado que el contorno se
+construye de acuerdo al grosor de los puntos control, las flexiones del gusano
+a representar ocurren en cada uno de los puntos control. El grado de flexi\'on
+de cada punto control se calcula como el \'angulo que existe entre las rectas
+que conectan dicho punto con el punto anterior y posterior, respectivamente.\\
 
-Generating a smooth curve around the control points improves the accuracy of the shape
-description, compared to tracing straight lines
-between the contour points. It provides a good representation
-of the shape with considerably fewest control points. The smooth curve
-is obtained by calculating the cardinal spline (covered in Sec. \ref{sec:splines}) given the
-contour points. A cardinal spline is a function that describes a smooth curve
-which passes over all the points of a set, given a starting and ending point. 
-In this case
-the starting and ending points are the same, so the described contour is closed.\\
+Por cada punto control, se calcula la bisectriz del \'angulo de flexi\'on y luego
+se marcan los dos puntos opuestos donde se intersecan la bisectriz y la circunferencia
+de grosor. Al calcular una curva que pasa por todos estos puntos, se obtiene un
+contorno suave que modela una forma de gusano.\\
 
-The worm profile for a set of control points can be both manually set or automatically
-calculated from the \emph{isolated worms} as explained in the section below.
+Generar una curva suave alrededor de los puntos control mejora la precisi\'on
+de la forma descrita, en comparaci\'on con trazar l\'ineas rectas que
+conecten los puntos de contorno. Esta representaci\'on permite modelar el 
+contorno con m\'as detalle, utilizando un cantidad considerablemente menor
+de puntos. La curva suave es obtenida calculando un \emph{spline} cardinal
+(ver Sec. \ref{sec:splines}) dados los puntos contorno.\\
 
-\subsubsection{Automatic Profile generation}
+El perfil de gusanos para un conjunto de puntos control de tama\~no determinado 
+puede ser, tanto definido manualmente, como calculado autom\'aticamente a partir
+de los gusanos aislados, como se explica en el siguiente punto.
+
+
+\subsubsection{Generaci\'on Autom\'atica de Perfiles}
 \label{sec:metwormprof}
 
-The shape of \emph{isolated worms}  can be accurately matched
-by following the contour points in their respective distance map, as explained 
-in Sec. \ref{sec:metiso}. Given a set of matched shapes for \emph{isolated worms}, and
-the initially detected skeleton, a worm profile (as described previously) can be 
-generated by measuring the \emph{thickness} of every control point and finding the mean
-among these.\\
+La forma de los gusanos aislados puede ser ajustada con precisi\'on, siguiendo
+los puntos de contorno en el mapa de distancia, como se explica en la Sec. \ref{sec:metiso}.
+Dado un conjunto de formas ajustadas de gusanos aislados y sus esqueletos respectivos, se 
+puede generar un perfil de gusanos, midiendo el grosor de los puntos control y calculando
+la media aritmetica de cada uno.\\
 
-In order to measure the thickness for every control point, a set of
-$N$ equidistant points is generated that cover the skeleton of the \emph{isolated worm}.
-Then, as described in the previous section, the bisectors of the angles between the 
-straight lines connecting the control points are calculated. Starting from every control
-point, the bisector line is ``walked'' until the pixel with the lowest distance map
-value is found, a contour point in most of the cases. The operation is repeated for every 
-control point bisector in both opposite directions. The Euclidean distance from a control
-point to each found pixel is calculated, and its average is recorded. Repeating this process
-with every \emph{isolated worm} generates a set of \emph{thickness profiles}, one for each
-\emph{isolated worm}. Then a general worm profile is calculated by finding the mean between
-the \emph{thickness} values for every control point in each \emph{thickness profile}. In order 
-to generate an accurate profile, that avoids oversized (or downsized) worms and wrongly
-detected \emph{isolated worms}, the $20\%$ higher and lower values are discarded when 
-calculating the average. The \emph{thickness} value for
-the endpoints, \emph{i.e.} the first and last point in the set of length $N$, is zero,
-so only one contour point is generated in the ends instead of two.
-Having done this, a \emph{thickness profile} is obtained that represents the average 
-radius distance for every control point to its closest contour pixel, making possible
-to generate a generic worm shape around any skeleton. 
+Para medir el grosor de cada punto control, se selecciona inicialmente un conjunto
+de $N$ puntos equidistantes que cubren el esqueleto de un gusano aislado determinado.
+Seguidamente, como se describe en la secci\'on previa, se calculan las bisectrices de los angulos
+que existen entre las rectas que conectan los puntos control. A partir de cada punto control, 
+se recorren los p\'ixeles de la bisectriz hasta que un punto de contorno es encontrado. Este
+recorrido se hace en los dos sentidos, por lo que el proceso devuelve dos puntos de contorno.
+A continuaci\'on, se calcula la distancia euclideana que existe desde cada punto control hasta
+sus dos puntos opuestos respectivos, y se almacena el promedio de distancia.\\
 
-\subsection{Shape Rasterization}
+Al repetir este proceso para cada gusano aislado se generan un conjunto de perfiles de gusanos
+aislados, uno por cada gusano. A partir de este conjunto de perfiles, se calcula un perfil
+general encontrando la media aritm\'etica de los valores de grosor por cada punto control.\\
+Para que el perfil sea lo mas representativo posible, se descartan el $20\%$ de los gusanos
+mas grandes y mas peque\~nos. El valor de grosor para los puntos extremos, \emph{i.e.} el
+primer y \'ultimo punto en el conjunto de tama\~no $N$, es cero, por lo que en los extremos
+solo se genera un punto de contorno, en vez de dos como en el resto de los puntos control.\\
+
+Este proceso permite calcular entonces un perfil de grosor que define la distancia 
+promedio de cada punto control a su punto de contorno mas cercano, haciendo posible
+la generaci\'on de siluetas gen\'ericas de gusano alrededor de cualquier esqueleto.
+
+\subsection{\emph{Rasterizaci\'on} de Siluetas}
 \label{sec:metrast}
 
-The proposed matching approach is focused on minimizing the difference between generated
-shapes and the shapes in the image. In order to do so, the area covered by the matching shape
-must be calculated.\\ 
-Given a shape descriptor, a worm shape can be
-constructed following a worm profile consisting of a worm silhouette defined by 
-a B-spline curve. Given the contour of the worm shape, the area can be calculated and 
-then rasterized in order to express it in image data terms.\\
+El enfoque de ajuste de formas se centra en minimizar la distancia entre siluetas
+generadas y las formas de gusanos en la imagen. Para medir esta distancia se debe 
+conocer el \'area de la silueta que es deformada.\\
+El \'area de la silueta puede ser calculada a partir de su contorno. En t\'erminos
+del tipo de datos que aqu\'i se manejan, el \'area consiste en el conjunto de p\'ixeles
+que son cubiertos por la silueta, incluyendo los p\'ixeles de contorno.\\
 
-The approach followed to achieve this consists of triangulating the space defined by the
-closed contour of the shape and then rasterizing every triangle by separate. The
-decomposition of a polygon into simple triangles whose vertices are only those of
-the simple polygon is a classic problem in computer graphics. So, many solutions
-has been proposed such as: Delaunay triangulation, minimun-weight triangulation and
-the ear clipping method, among others. The ear clipping method was chosen because
-of its capacity to triangulate concave polygons and its ease of implementation.
-In order to convert the worm outline into a polygon, the spline curve that defines it 
-is transformed into a discrete set of points. Each successive point is connected
-by a straight line, defining the closed polygon. Then, this polygon-like worm shape
-is triangulated.\\
+El enfoque seguido para calcular el \'area consiste en dividir
+en tri\'angulos el espacio definido por el contorno cerrado de la silueta y luego
+\emph{rasterizar} cada tri\'angulo por separado. El t\'ermino \emph{rasterizar} se
+refiere al proceso de transformar una im\'agen descrita en t\'erminos vectoriales
+en un conjunto de p\'ixeles, de manera que pueda ser visualizada.\\
 
-Every triangle defining the area is rasterized following the \emph{scan conversion algorithm}
-explained in \cite{scanconversion}. The algorithm consists in tracing horizontal lines 
-between the edges of the triangle until the area is totally covered.\\
+La descomposici\'on de un pol\'igono en tri\'angulos simples, es un problema
+cl\'asico de computaci\'on gr\'afica. Diversas soluciones se han propuesto
+como lo son: triangulaci\'on de Delaunay, triangulaci\'on de costo m\'inimo y
+m\'etodo de \emph{ear clipping}, entre otros.
+ 
+\subsubsection{Implementaci\'on}
 
-This process calculates a set of pixels that constitute the area of the shape. Thus, 
-the area and contour of the shape can be stored as manageable and displayable data.
+El m\'etodo de \emph{ear clipping} fue escogido por su capacidad para triangular pol\'igonos
+concavos y su sencillez de implementaci\'on. Para convertir el contorno del gusano en un 
+pol\'igono, se transforma el \emph{spline} que lo define en un conjunto d\'iscreto de puntos.
+Cada punto sucesivo es conectado a trav\'es de rectas, definiendo un pol\'igono cerrado. 
+Para que la representaci\'on poligonal no afecte la suavidad del contorno definido por el
+\emph{spline}, se escogen los puntos discretos (p\'ixeles) lo mas cerca posible uno de otros.
+Seguidamente el contorno poligonal es triangulado.\\
 
+Cada tri\'angulo es \emph{rasterizado} siguiendo el algoritmo de rasterizaci\'on por barrido
+explicado en \cite{scanconversion}. El algoritmo consiste en \emph{rasterizar} 
+l\'ineas horizontales entre los lados del triangulo hasta que el \'area es cubierta por completo.\\
 
-\subsection{Profile-Driven Shape Fitting}
+Una vez \emph{rasterizados}, se pueden almacenar el \'area y el contorno de la silueta en
+forma de datos manejables y visualizable. 
+
+\subsection{Detecci\'on y Ajuste de Formas}
 \label{sec:metfit}
 
-Once the initial processing of segmentation and worm skeletonization is performed, where 
-information about the worms in the image is gathered, a shape matching process has to be 
-carried out in order to detect the shape that corresponds to each worm.
- The matching process is different for
-\emph{isolated worms} and \emph{worm clusters}  
-due to their nature. In this sections each process is explained and some 
-implementations details are given.
+Una vez que la imagen ha sido segmentada en diferentes grupos de gusanos, que se tiene
+el esqueleto que representa el eje central de dichos grupos; y que se ha calculado un
+perfil general de los gusanos en la imagen, se puede llevar a cabo el proceso de ajuste
+de formas. Este proceso permite detectar los gusanos individuales que componen los 
+diferentes grupos y almacenar sus formas respectivas en forma datos manejables y visualizables.\\
 
+El proceso de detecci\'on y ajuste es diferente para cada tipo de grupos de gusanos: 
+gusanos aislados y agrupaciones de gusanos. En esta secci\'on se explican las 
+caracter\'isticas de este proceso en cada caso.
 
-\subsubsection{Isolated Worms shape fitting}
+\subsubsection{Ajuste de Forma en Gusanos Aislados}
 \label{sec:metiso}
 
-At this point, the information gathered about each \emph{isolated worm} 
-consists of a 1-pixel skeleton path between exactly two endpoints. 
-Since this process is carried
-out after each endpoint is identified correctly, the area conformed by the object pixels
-surrounding the skeleton will correspond to the exact shape of the \emph{isolated worm}.\\
+En esta etapa de la metodolog\'ia, se conocen los diferentes gusanos aislados
+y se tiene, por cada uno, un esqueleto delgado que conecta dos puntos
+extremos de gusano a trav\'es de un camino.
+Dado a que este proceso es llevado acabo despu\'es de que cada punto extremo
+ha sido identificado correctamente y se conoce que el esqueleto no tiene
+bifurcaciones, el \'area conformada por los p\'ixeles objeto del grupo
+segmentado corresponder\'an a la forma exacta del gusano aislado en la
+imagen.\\
 
-In order to optimize the calculation of the worm area, the contour of the shape is first
-traced and then the internal area is triangulated and rasterized following the process
-explained in \ref{sec:metfit}. The contour is traced by finding the closest border-pixel
-to any endpoint and then following the neighbor that is also a border-pixel. A
-border-pixel is such that has a value of one (1) in the image distance map.
-This makes possible to obtain the contour and area of the worm shape corresponding to each 
-\emph{isolated worm} accurately.
+Con el prop\'osito de tener una informaci\'on mas amplia acerca de los gusanos
+detectados, se calcula tambi\'en el contorno a partir del \'area previamente identificada.
+El contorno es trazado encontrando el p\'ixel de borde mas cercano a alg\'un punto extremo
+del gusano y recorriendo cada p\'ixel de contorno vecino hasta cerrar el camino. 
+Un p\'ixel de contorno es aquel que tiene el valor de uno (1) en el mapa de distancias.\\
 
+Este proceso permite, entonces, obtener el contorno y el \'area de cada
+gusano aislado en la imagen, de manera precisa.
 
 \subsubsection{Worm Cluster shape fitting}
 \label{sec:clusterfit}
