@@ -839,13 +839,13 @@ El proceso de detecci\'on y ajuste es diferente para cada tipo de grupos de gusa
 gusanos aislados y agrupaciones de gusanos. En esta secci\'on se explican las 
 caracter\'isticas de este proceso en cada caso.
 
-\subsubsection{Ajuste de Forma en Gusanos Aislados}
+\subsubsection{Ajuste de Formas en Gusanos Aislados}
 \label{sec:metiso}
 
 En esta etapa de la metodolog\'ia, se conocen los diferentes gusanos aislados
 y se tiene, por cada uno, un esqueleto delgado que conecta dos puntos
 extremos de gusano a trav\'es de un camino.
-Dado a que este proceso es llevado acabo despu\'es de que cada punto extremo
+Dado que este proceso es llevado acabo despu\'es de que cada punto extremo
 ha sido identificado correctamente y se conoce que el esqueleto no tiene
 bifurcaciones, el \'area conformada por los p\'ixeles objeto del grupo
 segmentado corresponder\'an a la forma exacta del gusano aislado en la
@@ -860,190 +860,238 @@ Un p\'ixel de contorno es aquel que tiene el valor de uno (1) en el mapa de dist
 Este proceso permite, entonces, obtener el contorno y el \'area de cada
 gusano aislado en la imagen, de manera precisa.
 
-\subsubsection{Worm Cluster shape fitting}
+\subsubsection{Ajuste de Formas en Agrupaciones de Gusanos}
 \label{sec:clusterfit}
 
-The \emph{worm clusters} represent a more complicated shape matching scenario due to their
-variable number of worms and the many different possible conformations that can be detected
-on them. 
-The  overlaps in \emph{worm clusters} makes difficult to differentiate the group of pixels
-that belong to the area of one worm or another. A matching process must then be 
-carried out that calculates the most likely worm conformation starting from every
-endpoint in order to obtain the set of conformations that best fit the whole 
-\emph{worm cluster}.\\
+Las agrupaciones de gusanos representan un escenario de detecci\'on m\'as complicado, 
+debido a la cantidad variable de gusanos que los conforman y el solapamiento entre estos.
+El solapamiento entre gusanos hace dif\'icil diferenciar el conjunto de p\'ixeles que pertenecen
+al \'area de un gusano u otro. Por esta raz\'on, se dise\~n\'o un proceso de ajuste de formas
+que se encarga de calcular las conformaciones o formas de gusanos factibles que parten
+de cada punto extremo, para luego determinar el conjunto de conformaciones que mejor
+ajustan la agrupaci\'on de gusanos como un todo.\\
 
-A shape optimization matching approach was followed that consists of calculating all the 
-worm conformations starting from any endpoint. A worm conformation is obtained by generating
-a generic worm shape from a skeleton path and deforming that shape until the dissimilarity
-between the generated shape and the binary image is minimized. Below, the main steps and 
-features of the algorithm are described:
+El ajuste de formas sigue un enfoque de optimizaci\'on basado en la minimizaci\'on
+de distancias entre gusanos de la agrupaci\'on y siluetas gen\'ericas, que son deformadas
+para ajustarse a ella. Por lo tanto, una conformaci\'on de gusano es obtenida cuando
+la disimilitud entre una silueta deformada y un \'area determinada de la agrupaci\'on, 
+es la m\'inima posible.\\
+
+A continuaci\'on, se describen los pasos y caracter\'isticas principales de este proceso:
+
 
 \begin{itemize}
-\item For every endpoint the set of feasible skeleton paths starting from that pixel
-  are calculated.
-\item Given a skeleton path, a generic worm shape is constructed by generating a shape
-descriptor following the worm profile of the image.
-\item An optimization process deforms the generic worm shape until the dissimilarity
-between the shape and the corresponding binary image is minimized. The optimized
-shape corresponds to a feasible worm conformation.
-\item Once all the possible conformations from every endpoint are calculated, a set of
-conformations is selected that maximizes the number of endpoints covered and minimizes
-the sum of the energy values. The selected conformations are the best automatic matches.
+\item Por cada punto extremo se calcula el conjunto de caminos del esqueleto factibles
+que comienzan en ese extremo.
+\item Dado un camino del esqueleto, se construye una silueta gen\'erica a trav\'es
+del descriptor de forma y el perfil de gusanos en la imagen. La silueta es dispuesta
+a lo largo del camino.
+\item Un proceso de optimizaci\'on se encarga de deformar la silueta hasta que la
+disimilitud (distancia) entre dicha silueta y la imagen binaria es minimizada. Una
+vez optimizada, la silueta corresponder\'a a una conformaci\'on de gusano factible.
+\item Una vez que se han calculado todas las posibles conformaciones que parten 
+de cada punto extremo, se selecciona el conjunto de conformaciones que maximiza
+el n\'umero de puntos extremos cubiertos y minimiza el valor de distancia acumulado.
+Las conformaciones seleccionadas corresponden a los mejores ajustes que se pueden
+obtener de forma autom\'atica.
+\item Las conformaciones escogidas que no representan a un gusano real en la imagen
+(conformaciones incorrectas) pueden ser corregidas a trav\'es de un sencillo proceso
+manual.
 \end{itemize}
 
-\subsubsection*{Shape deformation}
+\subsubsection*{Deformaci\'on de Siluetas}
+\label{sec:defsil}
 
-The calculated skeleton paths, starting from a given endpoint, are guesses of possible
-worm skeletons. Since the deformed model is constructed over a skeleton path 
-(that is close to the medial axis of the \emph{worm cluster}) the initially generated 
-shape will always be close to a worm shape. Given this, just slight perturbations of
-the generated shape would deform the model sufficiently to correct the deviation of the
-skeleton from the actual medial axis, obtaining thus the most likely worm shape
-over the given path.\\
+Los caminos del esqueleto que son calculados (que van de un punto extremo a otro), 
+corresponden a aproximaciones de posibles esqueletos de gusanos en la imagen. 
+Dado que el modelo a deformar se construye sobre un camino del esqueleto
+(que tiende al eje medio de un \'area de la agrupaci\'on de gusanos), la 
+silueta generada inicialmente se encontrar\'a siempre cerca de una forma
+de gusano real. Dado esto, a trav\'es de perturbaciones simples y l\'igeras de la silueta generada, 
+se podr\'a deformar el modelo lo suficiente como para corregir la desviaci\'on del
+esqueleto con respecto al eje central real del gusano a ajustar. De esta manera, se permite obtener  
+la forma de gusano mejor aproximada que se puede calcular a partir del camino dado.\\
 
-The deformations are made over a shape descriptor, which is defined by a series of 
-control points and is constructed following a worm profile. In order to provide feasible
-shapes and to limit the number of possible deformations, a deformation will consist
-in the repositioning of a given control point. The number of different positions that a 
-given control point can take is fixed and set along the bisection of the angle between
-the lines that connect the previous, current and next control point. 
-Following this, the set of deformations that can be performed from an initial shape 
-can be calculated quickly and provides a great number of possible different conformations.\\
+La deformaci\'on de la silueta se hace a trav\'es del descriptor de forma, que se 
+encuentra definido por un conjunto de puntos control. Con el objetivo de proveer
+formas de gusano factibles y para limitar la cantidad de deformaciones posibles,
+una deformaci\'on consistir\'a en el reposicionamiento de un punto control.
+La cantidad de posiciones diferentes que un punto control puede tomar es fija,
+y son dispuestas a lo largo de la bisectriz del \'angulo del punto control. 
+Este \'angulo depende, a su vez, de la posici\'on de los otros puntos control.\\
+Siguiendo esto, se puede obtener un gran conjunto de deformaciones posibles
+de forma r\'apida.
 
-\subsubsection*{Energy Formulation}
- 
-The distance function must provide a measure of how far the deforming shape is from a worm in the image, 
-\emph{i.e.} how well
-the deforming shape fits. To measure the dissimilarity between a given worm shape and the
-matching image, an energy formulation was followed, based on Active Contour Models,
-\cite{snakes}, that consists of an external energy and an internal energy.\\
+\subsubsection*{Funcional de Energ\'ia}
+\label{sec:energyformulation} 
 
-The external energy models how well the deformed model matches the data. Since the more
-background pixels are covered the farther the model is from a worm in the \emph{worm cluster}, a good measure for the external energy would be the proportion of background pixels in the 
-area covered by the deformed model. Then, the more object pixels are covered the lower the 
-external energy is. So, given a model $M$ and the functions $bg$ and $fg$  that measure
-the amount of background and foreground pixels respectively, the external energy
-can be defined as:
+La funci\'on de distancia debe proveer una medida de que tan bien se aproxima la silueta que se
+deforma a un gusano en la imagen, \emph{i.e.} que tan bien se ajusta la forma deformada.
+Para esto se utiliz\'o el concepto de funcional de energ\'ia, tal como se define
+en el modelo de contornos activos, \cite{snakes}.\\
+
+El funcional de energ\'ia describe la distancia entre el modelo que se deforma 
+y la imagen, y gu\'ia el proceso de ajuste de contornos. De esta manera, mientras menor
+sea el valor devuelto por el funcional de energ\'ia, menor es la distancia y por tanto
+mejor se ajusta el modelo. El funcional es formulado en base a dos 
+conceptos: la energ\'ia externa y la energ\'ia interna. La suma de los valores
+de la energ\'ia externa e interna relativas a un modelo, constituye el valor
+de energ\'ia para ese modelo espec\'ifico.\\
+
+La energ\'ia externa describe que tan bien se ajusta el modelo deformado a la 
+imagen. Conociendo que, mientras mayor es la cantidad de p\'ixeles de fondo que son cubiertos 
+por el modelo mas alejado se encuentra el modelo de un gusano en una agrupaci\'on, 
+una medida apropiada para la energ\'ia interna ser\'ia 
+la proporci\'on de p\'ixeles de fondo que son cubiertos por el modelo deformado.
+De esta manera, mientras mayor es la cantidad de p\'ixeles de objeto 
+que son cubiertos, menor es el valor de la energ\'ia externa.
+Por lo tanto, dado un modelo $M$ y la funciones $bg$ y $fg$ que miden la cantidad
+de p\'ixeles de fondo y de objeto que cubre el modelo, respectivamente, se puede
+definir la energ\'ia externa para este problema de la siguiente forma:
 
 $$E_{ext}(M) = \frac{bg(M)}{bg(M)+fg(M)}$$
 
-The measure is not considered just as the sum of background pixels
-because the energy value will be vary too much, given the variability of the amount
-of pixels covered by a worm shape.\\
+Otra posibilidad consistir\'ia en tomar en cuenta, \'unicamente, la cantidad
+de p\'ixeles de fondo. Sin embargo, dado la variabilidad de la cantidad de p\'ixeles
+que puede cubrir una silueta de gusano, esta medida causar\'ia a la energ\'ia externa
+ser muy variable de una silueta a otra.\\
 
-The internal energy is the one that models the objects resistance to be deformed into
-a shape that do not corresponds to the modeling class, \emph{e.g.} the worm class. 
-This means that the internal energy resists to obtain not feasible worm
-shapes after deformation. The internal energy for
-snakes, as explained in \cite{snakes}, works as a smoothness constraint and is explicitly
-formulated (usually in terms of first and second derivatives). As stated in \cite{bspline}, 
-many problems arising from this formulation have been recognized in literature such as:
-slow convergence speed, difficulty in determining the weights associated with the 
-smoothness constraint and possible inaccuracy in noisy environment of high order derivatives on discrete curves.\\
-However, in the approach proposed in this work, every shape is generated from a worm 
-profile following a shape descriptor, so every deformed shape will still belong to the 
-worm class. Thus it is not necessary to include the internal energy in the 
-formulation.
+La energ\'ia interna modela la resistencia de la silueta (modelo) a perder, a trav\'es
+de la deformaci\'on, las caracter\'isticas que la hacen representar a la clase que
+modela, \emph{e.g.} la clase de gusanos. Esto significa que, para el problema que aqu\'i
+se aborda, la energ\'ia interna modelar\'ia la resistencia de la silueta de gusano
+a ser deformada de manera tal que dejase de ser representativa de un gusano.
+Como se explica en \cite{snakes}, la energ\'ia interna funciona como una restricci\'on de 
+suavidad de los contornos del modelo y se formula de forma expl\'icita (normalmente en
+t\'erminos diferenciales). Sin embargo, en el enfoque propuesto en este trabajo,
+cada silueta a deformar se genera a partir de un perfil de gusano ajustado a un
+descriptor de forma, por lo que cada silueta generada pertenece inequ\'ivocamente
+a la clase de siluetas de gusano. Por esta raz\'on no es necesario incluir la
+energ\'ia interna en el funcional de energ\'ia.
 
-\subsubsection*{Matching Optimization}
+\subsubsection*{Optimizaci\'on}
 
-The optimization process consists in obtaining the most likely worm shape that can be
-obtained by deforming a shape constructed over a skeleton path, known as a 
-worm conformation. Given how quickly a wide range of deformations can 
-be computed, local-search is chosen as a metaheuristic for the optimization.
-The process consists in obtaining the
-best individual in the neighborhood that improves the energy function, until is 
-minimized.
-The neighborhood is calculated in the following way:
-for a given shape, four (4) different deformations are calculated for control point.
-The possible deformations or new positions are the
-next and second next position in north and south direction, \emph{i.e. }the two opposites
-directions of the bisection of the control point.
-There are $N*4$ different possible deformations (neighbors) for a given shape,
-where $N$ is the number of control points.\\ 
-Then a neighborhood consists of mild and slightly stronger deformations of a given
-worm shape for any control point.\\ Since the focus is to obtain the most accurate worm 
-shape for a given skeleton, the
-first and last control points, which correspond to the worm endpoints, are fixed.\\
+A trav\'es del  proceso de optimizaci\'on se desea obtener las conformaciones de gusanos factibles
+dentro de una agrupaci\'on de gusano. El enfoque general se basa en producir siluetas gen\'ericas
+a partir de los caminos del esqueleto que conectan puntos extremos de gusanos, y deformarlas
+levemente de manera que se ajusten a la imagen lo mejor posible. 
+Una vez que se tiene un descriptor de formas basado en el esqueleto 
+(Sec. \ref{sec:metshapedescriptor}), un m\'etodo de deformaci\'on de siluetas 
+(Sec. \ref{sec:defsil}) y una funci\'on objetivo que modele la distancia
+entre las siluetas y la agrupaci\'on a ajustar (Sec. \ref{sec:energyformulation}), 
+s\'olo basta escoger un m\'etodo de optimizaci\'on.\\
 
-Once the best shape is obtained, a contour fixing process is carried out. This
-process consists in the expansion or contraction of areas of the shape contour, 
-in order to adapt to the actual worm in the image. 
-This is required since the optimized shape is built 
-following a worm profile, which just represents the shape of 
-the worms in the image generically. In this process, the extremes constructed from the control points are pushed
-to contour points following the distance map, either expanding or contracting. While
-expanding or contracting, every considered new possible position must have either the 
-same or lower distance map value. A better point must be found after a fixed number
-of steps, otherwise is discarded. This is done to avoid too big and strange deformations.
+De acuerdo al enfoque que aqu\'i se presenta, se puede utilizar cualquier m\'etodo de 
+optimizaci\'on que permita minimizar la funci\'on objetivo que define la distancia entre 
+formas de gusanos, a partir de una soluci\'on factible inicial, que, a su vez, permite 
+generar otras soluciones factibles a trav\'es de un m\'etodo de deformaci\'on.\\
 
-\subsubsection*{Conformations Assignment}
+Dado lo r\'apido que pueden ser calculados grandes conjuntos de deformaciones,
+de acuerdo al enfoque presentado en la Sec. \ref{sec:defsil}, se escogi\'o
+la metaheur\'istica de b\'usqueda local como m\'etodo de optimizaci\'on.
+El proceso en general consiste en obtener el mejor individuo de la vecindad
+que mejore el valor del funcional de energ\'ia, hasta que la funci\'on sea
+minimizada.\\
+La vecindad es calculada de la siguiente manera:
+Para una silueta determinada, se efect\'uan cuatro deformaciones diferentes por cada punto
+control. Particularmente, dos en cada una de las dos direcciones opuesta de la bisectriz
+del punto control. Existen entonces $(N-2)*4$  
+deformaciones posibles (vecinos) por cada silueta \footnote{Los puntos control que corresponden 
+a los extremos permanecen fijos. Por eso el n\'umero de puntos control tomados en cuenta es $N-2$}, 
+donde $N$ es el n\'umero de puntos control. De esta manera, una vecindad consiste en deformaciones
+leves y ligeramente mas fuertes de una silueta de gusano para cada punto control.\\ 
+Los puntos control que corresponden a los extremos del esqueleto permanecen fijos.\\
 
-After the optimization process is performed, a subset of all the possible calculated 
-conformations for \emph{worm clusters} must be selected, thus obtaining the image
-worms match. The selected subset must maximize the number of endpoints covered and 
-minimize the sum of energies of the conformations.\\
-Any given endpoint may belong to at most one conformation. So, to any endpoint,
- there corresponds one and only one other endpoint. Therefore, the optimal subset of
-conformations would be the minimal assignment between the sets of endpoints.\\
-This can be obtained by solving the non-bipartite graph assignation problem. However,
-given the implementation complexity (and possible performance overhead) of this algorithm,
-a different algorithm  was designed. The implemented algorithm consists in a iterative 
-greedy solution. The algorithm is applied for the sub clusters of \emph{worm clusters}. 
-These sub clusters comprehend just the endpoints that are connected 
-by feasible paths. The endpoints belonging to a given subcluster will be called 
-conflicting endpoints.\\
+Una vez que la mejor silueta es obtenida, se lleva a cabo un proceso de correcci\'on
+de contornos. Este proceso consiste en la expansi\'on o contracci\'on de determinadas 
+secciones del contorno de la silueta, para adaptarla al gusano real de la imagen.
+Esto es requerido dado que la silueta optimizada es generada inicialmente siguiendo un 
+perfil de gusano, el cual representa la forma de los gusanos de una manera g\'enerica, y
+por tanto no describe las formas exactas de los gusanos en la imagen.\\
+En este proceso, los puntos de contorno construidos a partir de los puntos control son
+empujados hacia puntos de contorno de la imagen, de acuerdo al mapa de distancias, ya
+sea expandi\'endolos o contray\'endolos. Cada posici\'on nueva considerable para el punto
+contorno debe poseer un valor en el mapa de distancia similar o menor al que pose\'ia
+originalmente.
 
-The algorithm consists in the following:
-Given $N$ conflicting endpoints a $NxN$ table is constructed indicating the cost
-of the best conformation that connects an endpoint with another. Then, for a given starting row endpoint, the lowest value is selected and an assignment is made
-between the row endpoint and the column endpoint (row and column are always different).
-All the conformations starting from the row and column point are deleted.
-Then, among the remaining rows, the one with the lowest value among the possible matches
-is selected. The process is repeated after all the possible endpoints are assigned, thus
-finding a solution. Once a solution is found, it is stored, the table is reconstructed and
-the process is repeated starting from a different row, until all the rows have been taken
-as starters. From all the gathered solutions, the one with the higher number of endpoints
-covered and minimum total energy value is selected as the subcluster assignment.
+\subsubsection*{Selecci\'on de Conformaciones}
 
-\subsection{Manual Adjustment}
+Despu\'es que el proceso de optimizaci\'on es llevado a cabo, se debe seleccionar
+un subconjunto de conformaciones por cada agrupaci\'on de gusano, que representar\'a
+la asignaci\'on final de conformaciones y por tanto la soluci\'on encontrada al final
+del proceso. El subconjunto seleccionado debe maximizar la cantidad
+de puntos extremos cubiertos y minimizar la suma de las energ\'ias finales de
+cada conformaci\'on (valor minimizado de la funci\'on objetivo).\\
+
+Cada punto extremo debe corresponder como m\'aximo a una conformaci\'on. De esta
+manera, a cada punto extremo le corresponde uno y s\'olo uno de los otros puntos extremos.
+Por consiguiente, el subconjunto \'optimo de conformaciones corresponder\'a a la
+asignaci\'on de costo m\'inimo (energ\'ia de cada conformaci\'on) entre el 
+conjunto de puntos extremos, por cada agrupaci\'on de gusano.\\
+
+Esta asignaci\'on puede ser resuelta resolviendo el problema de asignaci\'on de
+costo m\'inimo de un grafo no-bipartito. Sin embargo, dado la complejidad de
+su implementaci\'on (y posible sobrecarga en rendimiento) de este algoritmo,
+se dise\~n\'o una soluci\'on diferente, consistiendo en un algoritmo \emph{greedy}
+iterativo. El algoritmo es aplicado a subgrupos de agrupaciones de gusanos.
+Estos sub grupos estas comprendidos, \'unicamente, por puntos extremos que estan
+conectados por caminos factibles. Los puntos extremos que pertenecen a subgrupos
+ser\'an llamados puntos conflictivos.\\
+
+El algoritmo consiste en lo siguiente: Dado $N$ puntos extremos conflictivos, se
+construye una tabla de $NxN$ indicando el costo de la mejor conformaci\'on que 
+conecta cada punto extremo con otro. Luego, para una fila inicial de puntos,
+se selecciona el m\'inimo valor y se realiza una asignaci\'on entre el punto
+de la fila y correspondiente punto de la columna (siempre puntos diferentes).
+A partir de aqu\'i, se elimina el resto de las conformaciones asociadas
+a estos puntos extremos. Seguidamente, se repite el proceso entre las filas
+restantes hasta encontrar una soluci\'on. Esta soluci\'on es almacenada, 
+se reconstruye la tabla previa, y se repite el proceso nuevamente a partir
+de una fila diferente, hasta que todas las filas han sido tomadas como
+filas iniciales. De todas las soluciones encontradas en cada iteraci\'on,
+se escoge aquella que cubre el mayor n\'umero de puntos extremos y que
+posee el menor valor acumulado de energ\'ia.
+
+\subsection{Correcci\'on Manual}
 \label{sec:manualproc}
 
-A process of manual adjustment can be performed by the user to improve the shape fitting
-accuracy, such as adding missing endpoints or fixing wrong conformations. 
-Below, both manual processes are explained. 
+Un proceso de correcci\'on manual puede ser llevado a cabo para mejorar la efectividad
+de la detecci\'on y ajuste de formas, permitiendo tanto agregar puntos extremos 
+no identificados como corregir conformaciones incorrectas.
 
-\subsubsection{Endpoint operations}
+\subsubsection{Correcci\'on de Puntos Extremos}
 \label{sec:endpointop}
 
-Worm endpoints are detected by first identifying extremes in the worm
-skeleton. However, when the extreme of a given worm in the image overlaps with 
-another worm shape, the shapes become continuous, so the shape skeleton will be generated 
-as a continuous path. Thus, the extreme point will be missing and the endpoint will not be 
-detected. Since the solution methodology is centered on finding paths between endpoints and 
-then determining the most likely worm paths, having missing endpoints could affect 
-the matching accuracy.\\
+Los puntos extremos de gusanos son detectados inicialmente a trav\'es de la
+identificaci\'on de extremos del esqueleto de la imagen. Sin embargo, cuando
+el extremo de un gusano determinado se superpone con otra forma de gusano, la
+figura que describen se vuelve cont\'inua en la imagen binaria, por lo que ser\'a
+descrito como un camino continuo en el esqueleto. De ser as\'i, el punto 
+extremo no podr\'a ser detectado. Dado que el proceso de ajuste de formas est\'a 
+fundamentado en los caminos encontrados entre puntos extremos de gusanos, el hecho de obviar
+puntos extremos podr\'ia afectar la efectividad de detecci\'on.\\
 
-Worm endpoints are simple to detect for a human being, once had the skeleton of the 
-a worm cluster, therefore the missing endpoints could be added quickly by following a manual
-process. This process consists in looking at the extreme of worms and adding an 
-extreme point when missing. Since by definition an endpoint is the extreme of a worm path,
-it must have one and only one neighbor belonging to the skeleton. When an added extreme
-point has more than one skeleton neighbor, the user would have to select the extra
-neighbor pixel for deletion.
-In summary the user can add the missing endpoints by selecting the missing pixel
-and perhaps selecting some neighbors as well if it is necessary to disconnect. 
+Los puntos extremos de gusanos pueden ser detectados f\'acilmente por el ojo humano, 
+especialmente teniendo el esqueleto del grupo de gusanos. Por esta raz\'on, los puntos
+obviados pueden ser agregados r\'apidamente, a trav\'es de un proceso manual. El proceso
+consiste b\'asicamente en observar los puntos que han sido agregados, inferir los
+puntos faltantes y agregarlos manualmente, \emph{e.g.} \emph{clickeando} el p\'ixel
+en \emph{Endrov}. Cuando un punto a\~nadido posee mas de un esqueleto vecino, el
+usuario tendr\'a que remover el p\'ixel adicional, para cumplir con la
+definici\'on de punto extremo.\\
 
-\subsubsection{Match Fixing}
+En resumen, el usuario puede agregar los puntos extremos faltantes, seleccionando
+dicho p\'ixel. En algunos casos, tendr\'a que seleccionar un p\'ixel vecino para
+desconectarlo de caminos incorrectos.
+
+\subsubsection{Correcci\'on de Conformaciones}
 \label{sec:matchfix}
 
-After the optimization process is completed for the whole image, a set of 
-worm conformations is given that corresponds to the best match assignation.
-For some images there are worms that are not matched correctly, so 
-conformations are given between incorrect pair of endpoints. 
-Since in the optimization process all the possible conformations are calculated
-between pair of endpoints, the wrong assignation could be fixed manually. A user
-can recognize easily which conformations are incorrect, as well as quickly 
-identify the endpoint that corresponds to any other endpoint. Then, by selecting 
-the correct pair of endpoints, the corresponding
-conformation will be modified, thus obtaining a correct fitting.
+En caso de que algunas de las conformaciones asignadas no sean correctas,
+la soluci\'on puede corregirse de manera manual. Dado que en el proceso de
+optimizaci\'on son calculadas todas las posibles conformaciones entre
+pares de puntos extremos, la correcci\'on de asignaciones incorrectas
+se reduce a seleccionar el par de puntos extremos correctos. 
+Un usuario no experimentado es capaz de reconocer las asignaciones incorrectas
+con facilidad, as\'i como los puntos extremos que estas conectan, por lo que
+el proceso tender\'a a ser r\'apido.
