@@ -15,7 +15,7 @@ los complejos datos espacio-temporales presentes en im\'agenes de microscopios,
 utilizadas en la investigaci\'on biol\'ogica.\\
 
 \emph{Endrov}, tiene como objetivo mejorar las funcionalidades del software c\'odigo abierto
-de an\'alisis de im\'agenes \emph{ImageJ}, proveyendo un dise\~no mas moderno. 
+de an\'alisis de im\'agenes \emph{ImageJ}, proveyendo un dise\~no m\'as moderno. 
 Las deficiencias principales de \emph{ImageJ} son: falta de soporte de metadatos,
 no existe soporte real de 5D, la arquitectura de extensiones es confusa, las vistas
 no pueden ser extendidas fácilmente, y el procesamiento de lotes es complicado, 
@@ -43,13 +43,13 @@ fue liberado oficialmetnte el 17 de Junio de 2009, bajo la licensia BSD.
 
 Los m\'etodos del valor umbral (MVU), mejor conocidos por su nombre en ingles: \emph{thresholding},
 son un conjunto de algoritmos para segmentar gr\'aficos rasterizados, que permiten separar
-objetos presentes en una im\'agen del resto. Esta segmentaci\'on es usualmente representada
-a trav\'es de una im\'agen binaria, que se obtiene despu\'es de procesar la im\'agen original 
+objetos presentes en una imagen del resto. Esta segmentaci\'on es usualmente representada
+a trav\'es de una imagen binaria, que se obtiene despu\'es de procesar la imagen original 
 en escala de grises.\\
 
 Una imagen binaria es un tipo de imagen discreta, en la cual cada pixel tiene asignado uno de
 dos valores posibles (tipicamente $1$ o $0$). Cada valor indica si el pixel
-pertenece al primer o segundo plano (fondo) de la im\'agen original, respectivamente.
+pertenece al primer o segundo plano (fondo) de la imagen original, respectivamente.
 Como se indica en \cite{web:thresholding}, durante la ejecuci\'on de un m\'etodo del valor
 umbral, se marcan pixeles individuales como p\'ixeles objeto o pixeles de fondo, seg\'un
 corresponda. Asumiendo que los objetos en las im\'agenes son mas brillantes que el fondo,
@@ -88,7 +88,7 @@ otra, la imagen binaria obtenida a trav\'es de un m\'etodo del valor umbral.
   \subfloat[Imagen en escala de grises]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
 \qquad
   \subfloat[Imagen binaria obtenida a trav\'es de un m\'etodo del valor umbral]{\label{fig:thres1}\includegraphics[width=0.45\textwidth]{thres/winter_thres}}
-  \caption[Im\'agen en escala de grises antes y desp\'ues de aplicar un m\'etodo del valor umbral ]{Im\'agen en escala de grises antes y desp\'ues de 
+  \caption[Imagen en escala de grises antes y desp\'ues de aplicar un m\'etodo del valor umbral ]{Imagen en escala de grises antes y desp\'ues de 
     aplicar un m\'etodo del valor umbral. Las im\'agenes fueron tomadas de \cite{web:thresholding}}
   \label{fig:thres1}
 \end{figure}
@@ -97,11 +97,11 @@ otra, la imagen binaria obtenida a trav\'es de un m\'etodo del valor umbral.
 \label{sec:dt}
 
 Una transformada de distancia o mapa de distancias es una representaci\'on de
-una imagen digital, en la cual a cada pixel de la im\'agen le corresponde
-un valor que indica la distancia entre ese pixel y el pixel mas cercano que pertenezca
-al fondo de la imagen. Se calcula a partir de una im\'agen binaria, que consista
+una imagen digital, en la cual a cada pixel de la imagen le corresponde
+un valor que indica la distancia entre ese pixel y el pixel m\'as cercano que pertenezca
+al fondo de la imagen. Se calcula a partir de una imagen binaria, que consista
 en pixeles de objeto y pixeles de fondo. La imagen que se obtiene corresponde a
-una especie de representaci\'on en escala de grises del primer plano de la im\'agen
+una especie de representaci\'on en escala de grises del primer plano de la imagen
 binaria (conformado por los objetos).\\
 El valor mapeado para cada pixel, depende directamente de la funci\'on de distancia,
 que define el patron de medici\'on de distancia entre pixeles de la imagen. Existen
@@ -118,7 +118,7 @@ rodeado por un fondo blanco.
    \includegraphics[scale=0.4]{dt/dtref}
  \caption[Distancias a partir de un punto para seis transformadas de distancia]{ 
    Distancias a partir de un punto para seis transformadas de distancia. Mientras 
-   mas claro es el color, mas larga es la distancia \cite[p.365]{dtresearch}}
+   m\'as claro es el color, m\'as larga es la distancia \cite[p.365]{dtresearch}}
  \label{fig:dtexamples}
 \end{figure}
 
@@ -156,7 +156,7 @@ imagen binaria a partir de la cual fue calculado el esqueleto.
   \subfloat[Imagen Binaria]{\includegraphics[scale=0.8]{skeleton/horsebinary}}
 \qquad
   \subfloat[Esqueleto topol\'ogico]{\includegraphics[scale=0.8]{skeleton/horseskeleton}}
-  \caption[Imagen binaria de una figura de caballo y su esqueleto]{Imagen binaria de una figura de
+  \caption[Imagen binaria y esqueleto topol\'ogico de una figura de caballo]{Imagen binaria de una figura de
 caballo y su esqueleto. Im\'agenes tomadas de \cite{ssm}}
   \label{fig:genskeleton}
 \end{figure}
@@ -199,7 +199,7 @@ El ajuste de formas (en ingl\'es \emph{shape matching}), es un problema
 central en los sistemas de informaci\'on visual, visi\'on artificial, 
 reconocimiento de patrones y rob\'otica, \cite{matchingbook}. Consiste
 en identificar el area o contorno de una forma en espec\'ifico o de determinadas 
-clases de formas en una im\'agen, y tiene un rol fundamental en la extracci\'on
+clases de formas en una imagen, y tiene un rol fundamental en la extracci\'on
 de contenido en im\'agenes y en la recuperaci\'on de im\'agenes basada en contenido.
 Tal como explica Veltkamp en \cite{matching2}, el ajuste de formas 
 se ocupa de la transformaci\'on de una forma determinada y de la
@@ -223,7 +223,7 @@ Sec. \ref{sec:shapedesc}).\\
 
 Se han desarrollado diferentes enfoques para el problema de ajuste de formas.
 Esta secci\'on se centra en aquellos enfoques basados en geometr\'ia
-computacional, dado que son los mas relacionados con el enfoque
+computacional, dado que son los m\'as relacionados con el enfoque
 seguido en este trabajo. La geometr\'ia computacional consiste en buscar y 
 analizar algoritmos eficientes para resolver problemas geom\'etricos.
 En \cite{matchingbook}, Veltkamp y Hagedoorn mencionan diferentes
@@ -245,7 +245,7 @@ imagenes en t\'erminos de formas, as\'i como comparar y ajustar
 una forma a una parte espec\'ifica de la imagen.\\
 Por otro lado, los \emph{m\'etodos de objetos globales} trabajan 
 con \'areas completas de los objetos o con los contornos, y pueden
-analizan secciones espec\'ificas de la im\'agen, en vez de requerir
+analizan secciones espec\'ificas de la imagen, en vez de requerir
 el procesamiento de la imagen como un todo, tal como en las 
 \emph{transformadas de imagen global}. En estos m\'etodos se requiere
 que los objetos de la imagen esten completamente segmentados. Algunos
@@ -268,7 +268,7 @@ dos patrones de formas.
 \item \textbf{Problema de decisi\'on: }
   \begin{itemize}
   \item  Para un umbral determinado, decidir si la disimilitud es 
-    mas peque\~na que el umbral
+    m\'as peque\~na que el umbral
   \item Para un umbral determinado, decidir si existe una transformaci\'on
     tal que la disimilitud entre el patr\'on transformado y el otro
     patr\'on es menor que el umbral
@@ -283,20 +283,20 @@ que se conoce como Modelos de Contornos Activos, en particular el modelo de \emp
 el cual inspir\'o gran parte del enfoque de ajuste de formas presentado en este trabajo, (Ver
 Sec. \ref{sec:metfit}). En \cite{snakes}, un \emph{snake} es definido como
 un spline minimizador de energ\'ia, que es guiado por fuerzas de restricciones
-externas e influenciado por fuerzas internas de la im\'agen que lo empujan
+externas e influenciado por fuerzas internas de la imagen que lo empujan
 hacia elementos caracter\'isticos de la imagen tales como: l\'ineas y contornos.
 Se dice que los \emph{snakes} son modelos de contornos activos, debido a que
 se pliegan a contornos cercanos y los localizan con precisi\'on.\\
 El modelo de \emph{snakes} se define como un spline cont\'inuo y controlado que 
-es restringido por fuerzas internas y externas de la im\'agen, llamadas energ\'ias.
+es restringido por fuerzas internas y externas de la imagen, llamadas energ\'ias.
 La energ\'ia interna modela la resistencia del objeto a ser empujado por fuerzas externas
 hacia direcciones inconsistentes, de acuerdo a la informaci\'on previa que se tiene sobre 
-el objeto y la im\'agen, \cite{deformable}. En este caso, la energ\'ia interna impone una
+el objeto y la imagen, \cite{deformable}. En este caso, la energ\'ia interna impone una
 restricci\'on de suavidad a trozos (``\emph{piecewise smoothness constraint}'', \cite{snakes}).
 Esto significa que el contorno es empujado hacia elementos resaltantes de la imagen por las
 fuerzas externas, mientras que el contorno en si mismo exhibe resistencia a ser deformado
 en un curva no-suave. Como se explica en \cite{deformable}, las fuerzas de la imagen
-empujan al \emph{snake} hacia salientes o caracter\'isticas resaltantes de la im\'agen como l\'ineas,
+empujan al \emph{snake} hacia salientes o caracter\'isticas resaltantes de la imagen como l\'ineas,
 bordes y contornos subjetivos, mientras que las fuerzas externas de restricci\'on son responsables
 por ubicar al \emph{snake} cerca del m\'inimo local deseado.\\
 
@@ -352,12 +352,12 @@ Algunos descriptores simples son mencionados, tales como: el \'area, el per\'ime
 compacidad (no-compacidad), circularidad (no-circularidad), eccentricidad, elongaci\'on,
 rectangularidad y orientaci\'on. Cualquier combinaci\'on de estas propiedades de una forma
 son \'utiles para describirla de manera b\'asica. Se mencionan tambi\'ien otras propiedades
-mas complejas para mejorar la precisi\'on del descriptor, como lo son: la envoltura conexa, 
+m\'as complejas para mejorar la precisi\'on del descriptor, como lo son: la envoltura conexa, 
 puntos extremos, perfiles, momentos y perfil de momentos.\\
 La envoltura convexa mide la cantidad de concavidades que presenta la forma.
 El descriptor de puntos extremos se centra en encontrar los puntos l\'imite de una forma. Esto puede ser, 
 tanto una representaci\'on simple como el \emph{rectangulo delimitador}, como una
-representaci\'on mas poderosa, como lo es el encontrar los ocho puntos extremos de la figura
+representaci\'on m\'as poderosa, como lo es el encontrar los ocho puntos extremos de la figura
 como lo son: norte, nor-oeste, oeste, sur-oeste, y asi sucesivamente. El descriptor por
 perfiles, se basa en el n\'umero de pixeles que la forma presenta en un direcci\'on determinada,
 ya sea vertical, horizontal o diagonal. El descriptor por momentos, se basa en el c\'alculo

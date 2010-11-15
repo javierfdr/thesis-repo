@@ -18,7 +18,7 @@ lo que da origen al algoritmo que aqui se provee.
 \label{sec:reasoning}
 
 Como se explica en \cite{binaryshape,deformable,matching2,matchingbook},
-uno de los enfoques mas comunes para el ajuste de formas consiste en adoptar
+uno de los enfoques m\'as comunes para el ajuste de formas consiste en adoptar
 un descriptor de forma, construir una silueta a partir del descriptor,
 y posicionar dicha silueta lo suficientemente cerca del objeto a ajustar en
 la imagen. Seguidamente, variar los valores de los par\'ametros 
@@ -65,7 +65,7 @@ Los diferentes gusanos aislados y agruaciones de gusanos podr\'ian ser
 separados f\'acilmente del resto de la imagen, permitiendo as\'i, 
 procesar cada uno individualmente. El contorno de los gusanos aislados
 puede ser trazado f\'acilmente siguiendo los pixeles del objeto que
-estan mas cercanos a los p\'ixeles de fondo. Habiendo ajustado las formas
+estan m\'as cercanos a los p\'ixeles de fondo. Habiendo ajustado las formas
 de gusanos aislados, estas podr\'ian utilizarse para generar un perfil
 de gusano, que definir\'ia los valores generales para un descriptor de forma
 g\'enerico. Esto permitir\'ia describir la silueta que mejor se ajusta a todos
@@ -112,7 +112,7 @@ cual debe ser eliminado en procesamientos posteriores. Esta primera etapa corres
 a una segmentaci\'on inicial de la imagen de entrada.
 Seguidamente, a partir de la imagen binaria, se puede calcular una transformada de
 distancia o mapa de distancias, en la cual se almacena la distancia de cada p\'ixel
-al p\'ixel de fondo mas cercano. La transformada de distancia hace posible identificar
+al p\'ixel de fondo m\'as cercano. La transformada de distancia hace posible identificar
 f\'acilmente los p\'ixeles de contorno en la imagen binaria, lo que la convierte en
 una herramienta fundamental para la generaci\'on autom\'atica de perfiles de gusanos,
 el trazado de contornos en gusanos aislados y para la optimizaci\'on del proceso
@@ -126,7 +126,7 @@ expuesta en la Sec. \ref{sec:reasoning}.
 Una manera de diferenciar los diferentes grupos es contando el n\'umero de extremos y de intersecciones. 
 Un grupo que contiene extactamente dos puntos extremos y que
 no presenta intersecciones corresponder\'a a un gusano aislado. Por otro lado, si el grupo presenta
-mas de dos puntos extremos, o al menos una intersecci\'on, esto indicar\'a la presencia de 
+m\'as de dos puntos extremos, o al menos una intersecci\'on, esto indicar\'a la presencia de 
 solapamiento de gusanos, por tanto correspondar\'a a una agrupaci\'on de gusanos.\\
 
 El enfoque de ajuste de formas se centra en ubicar incialmente una silueta de gusano gen\'erica 
@@ -197,8 +197,8 @@ de implementaci\'on seguido en este trabajo, para cada uno de ellos.
 
 Dado que el prop\'osito principal de este estudio es detectar y ajustar la forma de 
 gusanos C. elegans en im\'agenes digitales, un paso inicial fundamental es el de separar
-las formas de gusanos lo mas posible del resto de la im\'agen, para asi poder llevar a
-cabo un anal\'isis mas preciso.\\
+las formas de gusanos lo m\'as posible del resto de la im\'agen, para asi poder llevar a
+cabo un anal\'isis m\'as preciso.\\
 
 Sean los gusanos en la imagen los objetos a separar y considerando el resto de la imagen
 como fondo o segundo plano, los p\'ixeles de la imagen puede ser separados en dos grupos: 
@@ -217,20 +217,20 @@ de ruido leve en la im\'agen.
 \label{sec:thresimp}
 
 Existen cuatro MVU para im\'agenes en 2D implementados en \emph{Endrov},
-estos son: \emph{Fukunaga}, \emph{entrop\'ia m\'axima}, \emph{Otsu} y \emph{percentil},
+estos son: \emph{Fukunaga}, \emph{m\'axima entrop\'ia}, \emph{Otsu} y \emph{percentil},
 que cubren las categor\'ias de MVU basados en histogramas y MVU basados en entrop\'ia 
 (ver Sec. \ref{sec:thresholding}). Dada la condici\'on de transparencia de los gusanos
-C. elegans, es dificil determinar teoricamente cual vendr\'ia a ser el m\'etodo mas apropiado 
+C. elegans, es dificil determinar teoricamente cual vendr\'ia a ser el m\'etodo m\'as apropiado 
 para obtener una imagen binaria precisa. \\
 Por esta raz\'on, se realizaron una serie de experimentos
-para seleccionar el m\'etodo mas apropiado. Estos experimentos consistieron en el ajuste manual
+para seleccionar el m\'etodo m\'as apropiado. Estos experimentos consistieron en el ajuste manual
 de los diferentes par\'ametros de cada uno de los m\'etodos mencionados, que fueron aplicados
 sobre un conjunto de imagenes de prueba. La precisi\'on de segmentaci\'on de las im\'agenes binarias
 obtenidas en cada caso, se midi\'o a trav\'es de una comparaci\'on visual con la imagen original.\\
 El m\'etodo que mejor se comport\'o en estos experimentos resulto ser el 
 \emph{m\'etodo del valor umbral por percentil}, 
-al ser el mas f\'acil de ajustar manualmente y aquel que retorn\'o el equivalente binario mas preciso, 
-en cada caso. Un an\'alisis mas detallado sobre la escogencia del m\'etodo de valor umbral para esta metodolog\'ia
+al ser el m\'as f\'acil de ajustar manualmente y aquel que retorn\'o el equivalente binario m\'as preciso, 
+en cada caso. Un an\'alisis m\'as detallado sobre la escogencia del m\'etodo de valor umbral para esta metodolog\'ia
 se presenta en la secci\'on de experimentos del cap\'itulo cuatro (ver Sec. \ref{chap:experiments}).\\
 
 En la figura \ref{fig:wormthres} se presenta una imagen binaria, obtenida al
@@ -254,7 +254,7 @@ seguimiento de contorno y en diferentes tipos de procedimientos de segmentaci\'o
 Espec\'ificamente, el mapa de distancias permite detectar y delinear el contorno
 exacto de gusanos aislados (Sec. \ref{sec:metiso}), es \'util en la generaci\'on
 automatica de perfiles de gusanos (Sec. \ref{sec:metwormprof}), y es esencial en 
-la predicci\'on heur\'istica de caminos de gusanos mas probables (Sec. \ref{sec:pathguessing}). 
+la predicci\'on heur\'istica de caminos de gusanos m\'as probables (Sec. \ref{sec:pathguessing}). 
 As\'i mismo, permite mejorar el rendimiento de algoritmo iterativo de reducci\'on de capas
 dise\~nado por \emph{Zhang y Suen}, \cite{thinning}, como se describe en 
 la Sec. \ref{sec:metsk}
@@ -268,7 +268,7 @@ Los m\'etodos iterativos son particularmente eficientes en computadoras de arreg
 dado que se pueden procesar todos los p\'ixeles en paralelo en cada iteraci\'on. Por otro lado, los m\'etodos secuenciales
 se ajustan mejor a computadoras convencionales, al evitar iteraciones por ser independientes del tama\~no de los objetos.
 Tomando en cuenta los tipos de computadoras a la que tienen acceso la mayor\'ia de las personas que trabajan
-en el procesamiento de im\'agenes digitales, los algoritmos secuenciales ofrecen un rendimiento mucho mas
+en el procesamiento de im\'agenes digitales, los algoritmos secuenciales ofrecen un rendimiento mucho m\'as
 eficiente que los iterativos. Por esta raz\'on, se escogi\'o un enfoque secuencial para calcular la 
 transformada de distancia de las im\'agenes de entrada. Particularmente se utiliz\'o el algoritmo de
 transformaci\'on de dos recorridos con vecindarios de 3x3, presentado en \cite{fastdt}, que es
@@ -284,14 +284,14 @@ Luego, la definici\'on es extendidad para mejorar la eficiencia de los c\'alculo
 requeridos para generar un mapa de distancias a trav\'es de la metrica de distancias
 \emph{Euclideanas}, \cite[p.198]{fastdt}.
 Este algoritmo de dos recorridos, fue implementado utilizando las tres m\'etricas de
-distancia mencionadas anteriormente. Esto permite realizar una an\'alisis mas amplio
+distancia mencionadas anteriormente. Esto permite realizar una an\'alisis m\'as amplio
 del comportamiento y precisi\'on del proceso de ajuste de formas, al cambiar de
 una metrica a la otra. Esto es debido a que los mapas de distancia generados por 
 diferentes m\'etricas, representan a los objetos de maneras diferentes, y tienden
 a ser sensible a cambios posicionales u otras propiedades. En \cite[p.332]{eucskeleton}
 se asegura que las m\'etricas de \emph{tablero de ajedrez} y \emph{Manhattan} son
 sensibles a las rotaciones de los objetos, mientras que la m\'etrica \emph{Euclideana}
-permanece invariable ante estas rotaciones; sin embargo, es mucho mas costosa de calcular.\\
+permanece invariable ante estas rotaciones; sin embargo, es mucho m\'as costosa de calcular.\\
 
 Dada la forma alargada y estrecha de los gusanos C. elegans, y los diferentes niveles
 de precisi\'on que proveen dichas m\'etricas de distancia, es dif\'icil decidir
@@ -325,7 +325,7 @@ clave en el enfoque de detecci\'on presentado en este trabajo, tal como
 se enuncia incialmente en la Sec \ref{met:description}. El esqueleto de la
 imagen hace posible identificar la cantidad de gusanos presentes, permite
 diferenciar y separar las agrupaciones de gusanos de los gusanos aislados, 
-y mas importante, provee caminos entre extremos de gusanos (que tienden
+y m\'as importante, provee caminos entre extremos de gusanos (que tienden
 al eje medio). Estos caminos son fundamentales en el proceso de ajuste
 de formas (ver Sec \ref{sec:metsegmentation}), pues proveen informaci\'on
 acerca de la localizaci\'on de los gusanos en la imagen, al constituir trayectorias
@@ -348,7 +348,7 @@ de imagen delgado en un tiempo de ejecuci\'on muy corto. Pese a que el estudio g
 que el algoritmo permite calcular, satisfactoriamente, esqueletos conectados de un pixel
 de grosor, este result\'o ser eficaz \'unicamente para los gusanos aislados. Los esqueletos
 obtenidos para agrupaciones de gusanos resultaron generalmente desconectados, 
-de mas de un p\'ixel de grosor y poco precisos. Estos llevo a la utilizaci\'on
+de m\'as de un p\'ixel de grosor y poco precisos. Estos llevo a la utilizaci\'on
 de un enfoque diferente.\\
 
 En \cite{thinning} se presenta un algoritmo iterativo para calcular el esqueleto de
@@ -360,7 +360,7 @@ y mejorar as\'i el rendimiento. Para evitar el requerimiento de utilizar computa
 con procesadores paralelos, sin desmejorar el rendimiento significativamente,
 el algoritmo fue ligeramente modificado. Dicha modificaci\'on consiste en utilizar
 el mapa de distancias para descartar chequeo de p\'ixeles que pertenecen a capas
-mas profundas que la capa que esta siendo reducida en un momento determinado.
+m\'as profundas que la capa que esta siendo reducida en un momento determinado.
 Esto toma ventaja de la naturaleza de los mapas de distancia, quienes, por definici\'on,
 establecen capas de distancia entre los p\'ixeles del objeto y el fondo de la imagen.\\
 De esta manera, las capas se definen por el valor que tiene cada p\'ixel en el mapa 
@@ -459,7 +459,7 @@ pares de puntos extremos. Si un camino existe entre un par de puntos extremos, s
 generar un conformaci\'on de gusano valida a trav\'es del proceso de optimizaci\'on. 
 Estos caminos pueden ser escogidos tanto calculando todas las combinaciones de caminos posibles
 entre par de puntos extremos, como a trav\'es de un algoritmo de predicci\'on de caminos probables,
-como el que se describe mas adelante en esta secci\'on.
+como el que se describe m\'as adelante en esta secci\'on.
 
 \subsubsection{Implementaci\'on}
 
@@ -543,7 +543,7 @@ Basado en este razonamiento, se dise\~n\'o un algoritmo que detecta la cantidad 
 puntos extremos que son conectados a trav\'es de caminos de un determinado esqueleto,
 y determina el tipo de grupo de gusanos al que pertenece. Aquellos esqueletos donde
 se conectan exactamente dos puntos extremos a trav\'es de uno y solo un camino, corresponde
-a gusanos aislados. Mientras que los esqueletos en donde mas de dos puntos extremos son
+a gusanos aislados. Mientras que los esqueletos en donde m\'as de dos puntos extremos son
 conectados corresponden a agrupaciones de gusanos.
 Este procedimiento es descrito en el Algoritmo \ref{groupsegment}. 
 
@@ -603,7 +603,7 @@ respectivo.\\
 
 El algoritmo de optimizaci\'on, cubierto en la Sec. \ref{sec:metfit}, lleva a cabo un
 proceso de manipulaci\'on de siluetas para ajustar formas de gusanos en la imagen, dados
-dos puntos extremos y un camino que los conecte. Para calcular la forma de gusano mas probable
+dos puntos extremos y un camino que los conecte. Para calcular la forma de gusano m\'as probable
 que parte de un punto extremo determinado, el algoritmo tendr\'ia que probar cada camino posible
 que parte de dicho punto extremo y seleccionar el que mejor se ajuste, lo que tiende a traducirse  
 en un alto costo en tiempo de ejecuci\'on.\\
@@ -619,21 +619,21 @@ tienden a describir conformaciones no-naturales de gusanos. Para esto
 es necesario identificar cambios abruptos en el camino y flexiones
 poco com\'unes o imposibles en gusanos. La idea desarrollada para lograr
 esto se centra en que cada paso siguiente que sea seleccionado, corresponda
-a la direcci\'on mas coherente con respecto al camino que ha sido
+a la direcci\'on m\'as coherente con respecto al camino que ha sido
 trazado hasta ese momento. 
-Mas espec\'ificamente, se escoge el conjunto $S$ de los \'ultimos $N$ 
-pasos trazados, y a partir de este, se calcula la direcci\'on mas com\'unmente
+M\'as espec\'ificamente, se escoge el conjunto $S$ de los \'ultimos $N$ 
+pasos trazados, y a partir de este, se calcula la direcci\'on m\'as com\'unmente
 seguida en esa porci\'on del recorrido.\\
 
 Una dificultad considerable que surge de este
 enfoque, es que el seguimiento del camino tiende a evitar \emph{centros de bifurcaciones}.
-Una bifurcaci\'on ocurre cuando mas de un camino diferente puede ser seguido a partir
+Una bifurcaci\'on ocurre cuando m\'as de un camino diferente puede ser seguido a partir
 de un punto determinado. Dado que estas bifurcaciones son originadas por solapamiento 
 de gusanos, el \'area de la bifurcaci\'on suele ser grande, y por tanto hay mayor 
 cantidad de p\'ixeles posibles a escoger como siguiente paso. Los \emph{centros de bifurcaciones}
-son aquellos puntos que se ubican en la zona mas c\'entrica de estas \'areas, y por tanto
+son aquellos puntos que se ubican en la zona m\'as c\'entrica de estas \'areas, y por tanto
 se encuentran a una distancia normalmente similar de todos los caminos que se bifurcan.
-Para poder determinar con mayor precisi\'on el camino mas adecuado a seguir, el trazado del camino 
+Para poder determinar con mayor precisi\'on el camino m\'as adecuado a seguir, el trazado del camino 
 debe tender a los \emph{centros de bifurcaciones}. Sin embargo, siguiendo el enfoque presentado, estos
 centros se tienden a bordear. Por esta raz\'on se desarroll\'o una heur\'istica, que permita
 al recorrido tender hacia los \emph{centros de bifuraciones} y llevar as\'i a una 
@@ -729,7 +729,7 @@ que modela la silueta del gusano, como se muestra en la Figura
 \begin{figure}
  \centering
    \includegraphics[scale=1]{descriptor/descriptor-vector.pdf}
- \caption{Construction of a worm shape based on shape descriptor}
+ \caption{Construcci\'on de una forma de gusano basada en un descriptor de forma}
  \label{fig:descriptor}
 \end{figure}
 
@@ -779,13 +779,13 @@ sus dos puntos opuestos respectivos, y se almacena el promedio de distancia.\\
 Al repetir este proceso para cada gusano aislado se generan un conjunto de perfiles de gusanos
 aislados, uno por cada gusano. A partir de este conjunto de perfiles, se calcula un perfil
 general encontrando la media aritm\'etica de los valores de grosor por cada punto control.\\
-Para que el perfil sea lo mas representativo posible, se descartan el $20\%$ de los gusanos
-mas grandes y mas peque\~nos. El valor de grosor para los puntos extremos, \emph{i.e.} el
+Para que el perfil sea lo m\'as representativo posible, se descartan el $20\%$ de los gusanos
+m\'as grandes y m\'as peque\~nos. El valor de grosor para los puntos extremos, \emph{i.e.} el
 primer y \'ultimo punto en el conjunto de tama\~no $N$, es cero, por lo que en los extremos
 solo se genera un punto de contorno, en vez de dos como en el resto de los puntos control.\\
 
 Este proceso permite calcular entonces un perfil de grosor que define la distancia 
-promedio de cada punto control a su punto de contorno mas cercano, haciendo posible
+promedio de cada punto control a su punto de contorno m\'as cercano, haciendo posible
 la generaci\'on de siluetas gen\'ericas de gusano alrededor de cualquier esqueleto.
 
 \subsection{\emph{Rasterizaci\'on} de Siluetas}
@@ -816,7 +816,7 @@ concavos y su sencillez de implementaci\'on. Para convertir el contorno del gusa
 pol\'igono, se transforma el \emph{spline} que lo define en un conjunto d\'iscreto de puntos.
 Cada punto sucesivo es conectado a trav\'es de rectas, definiendo un pol\'igono cerrado. 
 Para que la representaci\'on poligonal no afecte la suavidad del contorno definido por el
-\emph{spline}, se escogen los puntos discretos (p\'ixeles) lo mas cerca posible uno de otros.
+\emph{spline}, se escogen los puntos discretos (p\'ixeles) lo m\'as cerca posible uno de otros.
 Seguidamente el contorno poligonal es triangulado.\\
 
 Cada tri\'angulo es \emph{rasterizado} siguiendo el algoritmo de rasterizaci\'on por barrido
@@ -851,16 +851,16 @@ bifurcaciones, el \'area conformada por los p\'ixeles objeto del grupo
 segmentado corresponder\'an a la forma exacta del gusano aislado en la
 imagen.\\
 
-Con el prop\'osito de tener una informaci\'on mas amplia acerca de los gusanos
+Con el prop\'osito de tener una informaci\'on m\'as amplia acerca de los gusanos
 detectados, se calcula tambi\'en el contorno a partir del \'area previamente identificada.
-El contorno es trazado encontrando el p\'ixel de borde mas cercano a alg\'un punto extremo
+El contorno es trazado encontrando el p\'ixel de borde m\'as cercano a alg\'un punto extremo
 del gusano y recorriendo cada p\'ixel de contorno vecino hasta cerrar el camino. 
 Un p\'ixel de contorno es aquel que tiene el valor de uno (1) en el mapa de distancias.\\
 
 Este proceso permite, entonces, obtener el contorno y el \'area de cada
 gusano aislado en la imagen, de manera precisa.
 
-\subsubsection{Ajuste de Formas en Agrupaciones de Gusanos}
+\subsubsection{Ajuste de Form\'as en Agrupaciones de Gusanos}
 \label{sec:clusterfit}
 
 Las agrupaciones de gusanos representan un escenario de detecci\'on m\'as complicado, 
@@ -940,7 +940,7 @@ de energ\'ia para ese modelo espec\'ifico.\\
 
 La energ\'ia externa describe que tan bien se ajusta el modelo deformado a la 
 imagen. Conociendo que, mientras mayor es la cantidad de p\'ixeles de fondo que son cubiertos 
-por el modelo mas alejado se encuentra el modelo de un gusano en una agrupaci\'on, 
+por el modelo m\'as alejado se encuentra el modelo de un gusano en una agrupaci\'on, 
 una medida apropiada para la energ\'ia interna ser\'ia 
 la proporci\'on de p\'ixeles de fondo que son cubiertos por el modelo deformado.
 De esta manera, mientras mayor es la cantidad de p\'ixeles de objeto 
@@ -999,7 +999,7 @@ del punto control. Existen entonces $(N-2)*4$
 deformaciones posibles (vecinos) por cada silueta \footnote{Los puntos control que corresponden 
 a los extremos permanecen fijos. Por eso el n\'umero de puntos control tomados en cuenta es $N-2$}, 
 donde $N$ es el n\'umero de puntos control. De esta manera, una vecindad consiste en deformaciones
-leves y ligeramente mas fuertes de una silueta de gusano para cada punto control.\\ 
+leves y ligeramente m\'as fuertes de una silueta de gusano para cada punto control.\\ 
 Los puntos control que corresponden a los extremos del esqueleto permanecen fijos.\\
 
 Una vez que la mejor silueta es obtenida, se lleva a cabo un proceso de correcci\'on
@@ -1076,7 +1076,7 @@ especialmente teniendo el esqueleto del grupo de gusanos. Por esta raz\'on, los 
 obviados pueden ser agregados r\'apidamente, a trav\'es de un proceso manual. El proceso
 consiste b\'asicamente en observar los puntos que han sido agregados, inferir los
 puntos faltantes y agregarlos manualmente, \emph{e.g.} \emph{clickeando} el p\'ixel
-en \emph{Endrov}. Cuando un punto a\~nadido posee mas de un esqueleto vecino, el
+en \emph{Endrov}. Cuando un punto a\~nadido posee m\'as de un esqueleto vecino, el
 usuario tendr\'a que remover el p\'ixel adicional, para cumplir con la
 definici\'on de punto extremo.\\
 
