@@ -368,47 +368,48 @@ de distancias. La primera capa corresponde a un valor de distancia de uno ($1$),
 un valor de dos ($2$) y as\'i sucesivamente. El algoritmo es presentado en \ref{thinninalg}.
 
 \begin{algorithm}                     
-\caption{Calculate shape skeleton}         
+\caption{\emph{Esqueletizaci\'on} por reducci\'on por capas}         
 \label{thinninalg}                    
 \begin{algorithmic}                   
-\STATE $shapePts \leftarrow getBinaryObjectPixels()$
-\STATE $dtImage \leftarrow getImageDistanceMap()$
-\STATE $contourIndex \leftarrow 1$
-\STATE $makeThinner = True$
+\STATE $pixelesObjeto \leftarrow obtenerPixelesObjetoBinario()$
+\STATE $imagenTD \leftarrow calcularTransformadaDistancia()$
+\STATE $indiceContorno \leftarrow 1$
+\STATE $reducir = True$
 
-\WHILE{$makeThinner$}
+\WHILE{$reducir$}
 
-\STATE \COMMENT{remove south-east boundary points and the north-west 
-corner point}
-\FOR{$pixel$ in $shapePts$}
-\IF{$dtImage(pixel) > contourIndex$}
-\STATE \COMMENT{skip iteration}
+\STATE \COMMENT{eliminar p\'ixeles del borde sur-este y p\'ixel de
+esquina nor-oeste}
+\FOR{$pixel$ in $pixelesObjeto$}
+\IF{$ImagenDT(pixel) > indiceContorno$}
+\STATE \COMMENT{saltar iteraci\'on}
 \ELSE
-\STATE $pixelRemove \leftarrow southEastCondition(pixel)$
-\IF{$pixelRemove$}
-\STATE $shapePts.remove(pixel)$
-\STATE $makeThinner \leftarrow True$
+\STATE $eliminarPixel \leftarrow condicionSurEste(pixel)$
+\IF{$eliminarPixel$}
+\STATE $pixelesObjeto.eliminar(pixel)$
+\STATE $reducir \leftarrow True$
 \ENDIF
 
 \ENDIF
 \ENDFOR
 
-\STATE \COMMENT{remove the north-west boundary points and the
-		south-east corner points}
-\FOR{$pixel$ in $shapePts$}
-\IF{$dtImage(pixel) > contourIndex$}
+
+\STATE \COMMENT{eliminar p\'ixeles del borde nor-oeste y p\'ixel
+esquina sur-este}
+\FOR{$pixel$ in $pixelesObjeto$}
+\IF{$imagenTD(pixel) > indiceContorno$}
 \STATE \COMMENT{skip iteration}
 \ELSE
-\STATE $pixelRemove \leftarrow northWestCondition(pixel)$
-\IF{$pixelRemove$}
-\STATE $shapePts.remove(pixel)$
-\STATE $makeThinner \leftarrow True$
+\STATE $eliminarPixel \leftarrow condicionNorEste(pixel)$
+\IF{$eliminarPixel$}
+\STATE $pixelesObjeto.eliminar(pixel)$
+\STATE $reducir \leftarrow True$
 \ENDIF
 \ENDIF
 \ENDFOR
 \ENDWHILE
 \STATE 
-\RETURN{$shapePts$}
+\RETURN{$pixelesObjeto$}
 
 \end{algorithmic}
 \end{algorithm}
@@ -548,43 +549,43 @@ conectados corresponden a agrupaciones de gusanos.
 Este procedimiento es descrito en el Algoritmo \ref{groupsegment}. 
 
 \begin{algorithm}[h]                     
-\caption{Calculate shape skeleton}         
+\caption{Segmentaci\'on en grupos de gusanos}         
 \label{groupsegment}                    
 \begin{algorithmic}                   
 
-\STATE $endPtList \leftarrow$ list of endpoints
-\STATE $clusterIndex \leftarrow$ 0
-\FOR{$endpoint$ in $endPtList$}
-\IF{$endpoint.wasVisited()$}
-\STATE \COMMENT{skip iteration}
+\STATE $listaPtsExt \leftarrow$ lista de puntos extremos
+\STATE $indiceAgrupacion \leftarrow$ 0
+\FOR{$ptExtremo$ in $listaPtsExt$}
+\IF{$ptExtremo.visitado()$}
+\STATE \COMMENT{saltar iteraci\'on}
 \ELSE
-\STATE $clusterIndex +=1$
-\STATE $followPath(endpoint,clusterIndex)$
+\STATE $indiceAgrupacion +=1$
+\STATE $segmentarPorCaminos(ptExtremo,indiceAgrupacion)$
 \ENDIF
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[h]                     
-\caption{Follow Path algorithm ( $followPath(currentPoint,clusterCount)$ )}         
+\caption{Seguimiento de caminos para segmentaci\'on ($segmentarPorCaminos(ptActual,clusterCount)$ )}         
 \begin{algorithmic}                   
 
-\REQUIRE $currentPoint$
-\REQUIRE $clusterCounter$
+\REQUIRE $ptActual$
+\REQUIRE $indiceAgrupacion$
 
-\IF{not $currentPoint.isSkeletonPoint()$}
+\IF{not $ptActual.esPuntoEsqueleto()$}
 \RETURN 
 \ELSE
-\STATE $addToCluster(endpoint,clusterIndex)$
+\STATE $agregar(ptExtremo,indiceAgrupacion)$
 \ENDIF
 
-\STATE \COMMENT{continue tracing path}
-\IF{$currentPoint.isEndPoint()$}
-\STATE $markEndPointAsVisited(currentPoint)$
+\STATE \COMMENT{continuar siguimiento de camino}
+\IF{$ptActual.isPtExtremo()$}
+\STATE $marcarPtExtremoVisitado(ptActual)$
 \ENDIF
-\STATE $neighbors \leftarrow getNeighborhood()$
-\FOR{$n$ in $neighbors$}
-\STATE $followPath(endPoint,clusterCounter)$
+\STATE $vecinos \leftarrow obtenerVecindad()$
+\FOR{$v$ in $vecinos$}
+\STATE $followPath(v,indiceAgrupacion)$
 \ENDFOR
 
 \end{algorithmic}
