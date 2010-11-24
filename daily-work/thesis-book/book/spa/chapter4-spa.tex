@@ -23,7 +23,7 @@ Con el objetivo de poner a prueba la soluci\'on implementada, se utilizaron tres
 digitales de gusanos en medio l\'iquido, provistas por Johan Henriksson, investigador del
 Departamento de Biociencias y Nutrici\'on del Instituto Karolinska en Suecia.\\
 
-A cada imagen le corresponde un nivel de dificultad diferente, asignado de acuerdo a los
+A cada imagen le corresponde un nivel de dificultad diferente, as\'ignado de acuerdo a los
 al n\'umero de gusanos y grado de solapamiento. As\'i, mientras mayor es la cantidad
 de gusanos en la imagen, y mientras mayor es la cantidad de gusanos que se superponen, 
 mayor es el nivel de dificultad. El grado de solapamiento se determina por el n\'umero
@@ -57,15 +57,15 @@ las diferentes pruebas aparecen en orden creciente de dificultad.
 Por cada imagen de prueba se llev\'o a cabo una serie de experimentos, para analizar
 el rendimiento de los diferentes procesos involucrados en la metodolog\'ia
 de la soluci\'on, en base a la implementaci\'on desarrollada. 
-El proceso global fu\'e dividido en tres etapas que representan
+El proceso global fue dividido en tres etapas que representan
 los pasos fundamentales de la metodolog\'ia: \emph{procesamiento inicial}, 
 \emph{detecci\'on y ajuste autom\'atico de formas} y \emph{correci\'on manual}.\\
 
 La etapa de \emph{procesamiento inicial} involucra todos los pasos de procesamiento
 de im\'agenes que son realizados antes del proceso de optimizaci\'on, tales como:
-segmentaci\'on inicial, transformaci\'on por distancia, \emph{esqueletizaci\'on}, 
+segmentaci\'on inicial, transformaci\'on por distancia, \emph{skeletonization}, 
 agrupamiento de gusanos, detecci\'on de puntos extremos y creaci\'on del perfil de
-gusanos. Entre estos, la transformaci\'on por distancia y la \emph{esqueletizaci\'on}
+gusanos. Entre estos, la transformaci\'on por distancia y la \emph{skeletonization}
 siguen algoritmos previamente analizados y probados, (ver Sec. \ref{sec:metdt} y Sec. \ref{sec:metsk})
 y producen resultados sencillos de probar, por lo que no hay necesidad de ahondar en ellos.
 El proceso de segmentaci\'on y agrupamiento de gusanos, que se deriva del esqueleto de la
@@ -89,7 +89,7 @@ conformaciones incorrectas, en cada imagen de prueba. Se analiza,
 punto extremo, para permitir conclusiones acerca de la sensibilidad del funcional
 de energ\'ia.\\
 
-Los experiementos fueron ejecutados en una computadora personal de 2.00 Ghz AMD Turion,
+Los experimentos fueron ejecutados en una computadora personal de 2.00 Ghz AMD Turion,
 Procesador Mobile Dual-Core, 1MB cache y 3Gb de memoria RAM, bajo Linux, distribuci\'on
 Ubuntu.
 
@@ -106,7 +106,7 @@ llevados a cabo: \emph{procesamiento inicial}, \emph{detecci\'on y ajuste de for
 
 En esta secci\'on se presentan los resultados de los experimentos llevados a cabo sobre
 el conjunto de prueba para los siguientes procesos: segmentaci\'on inicial y detecci\'on
-de puntos extremos. Seguidamente, se presenta una breve discusion sobre la generaci\'on
+de puntos extremos. Seguidamente, se presenta una breve discusi\'on sobre la generaci\'on
 de perfiles de gusanos.
 
 \subsubsection*{Segmentaci\'on Inicial (M\'etodo del Valor Umbral)}
@@ -115,18 +115,18 @@ Como se explica en la Sec. \ref{sec:thresimp}, \emph{Endrov} provee implementaci
 para los siguientes MVU: \emph{Fukunaga}, \emph{m\'axima entrop\'ia}, 
 \emph{Otsu} y \emph{percentil}. Con la intenci\'on de determinar el m\'etodo m\'as
 apropiado, se probaron los diferentes m\'etodos con el conjunto de prueba. La prueba
-por m\'etodo consisti\'o, b\'asicamente, en ajustar los par\'ametros 
+por m\'etodo consisti\'o, b\'as\'icamente, en ajustar los par\'ametros 
 de entrada hasta encontrar la mejor imagen binaria posible, a partir de cada imagen
 del conjunto de prueba.
-La determinaci\'on de la calidad de cada imagen binaria se llevo a cab\'o a trav\'es de
+La determinaci\'on de la calidad de cada imagen binaria se llevo a cabo a trav\'es de
 inspecci\'on visual.\\
 
 El m\'etodo del valor umbral por percentil result\'o ser el mejor para las tres
 im\'agenes del conjunto de prueba, con gran diferencia sobre el resto de los 
-m\'etodos. Adem\'as, los mejores valores de percentil por im\'agen resultaron bastante
+m\'etodos. Adem\'as, los mejores valores de percentil por imagen resultaron bastante
 cercanos entre s\'i, lo que indica la posible factibilidad de ajustar un m\'etodo de valor
-umbral autom\'atico para im\'agenes del mismo tipo, que es suceptible de ser desarrollado 
-en trabajos futuros. Los mejores valores de percentil por im\'agen son mostrados 
+umbral autom\'atico para im\'agenes del mismo tipo, que es susceptible de ser desarrollado 
+en trabajos futuros. Los mejores valores de percentil por imagen son mostrados 
 en la Tabla. \ref{tab:threshold}.\\
 El m\'etodo de \emph{Fukunaga} produjo resultados aceptables a partir de la combinaci\'on
 de im\'agenes binarias generadas con diferentes n\'umero de clases 
@@ -191,12 +191,12 @@ suficientemente baja, siendo as\'i factible agregarlos a mano.
 
 Para generar autom\'aticamente un perfil de gusano preciso y representativo 
 de los gusanos de la imagen que se procesa, es necesario que haya presencia
-de gusanos aislados. El porcentaje de gusanos aisalados para cada imagen del
+de gusanos aislados. El porcentaje de gusanos aislados para cada imagen del
 conjunto de prueba fueron $57.8\%$, $24.2\%$ y $34.2\%$, respectivamente, 
 oscilando entre $8$ y $13$ gusanos por imagen, como se muestra en la tabla
 \ref{tab:testset}.\\
 Los perfiles de gusanos generados en cada imagen del conjunto de prueba, 
-resultaron lo suficientemente representativos como para conducir exit\'osamente
+resultaron lo suficientemente representativos como para conducir exitosamente
 el proceso de optimizaci\'on de ajuste de formas, cuyos resultados son
 presentados en las subsecciones de nombre \emph{ajuste autom\'atico de formas},
 mostradas m\'as adelante.
@@ -211,17 +211,17 @@ de \emph{correcci\'on manual}, tal como fueron descritas en la Sec. \ref{sec:exp
 En la secci\'on de \emph{detecci\'on y ajuste autom\'atico de formas} se presentan los resultados
 para cuatro variantes del algoritmo de detecci\'on y ajuste de formas, diferenciando
 la precisi\'on del ajuste y el rendimiento en tiempo. Las dos variantes principales
-son denominanadas: \emph{predicci\'on} y \emph{multicamino}.\\
+son denominadas: \emph{predicci\'on} y \emph{multicamino}.\\
 \emph{Predicci\'on}, es una versi\'on del algoritmo en la cual se toman en cuenta 
 los caminos calculados a trav\'es del algoritmo de predicci\'on de caminos, presentado
 en la Sec. \ref{sec:pathguessing}. Los caminos m\'as probables que parten de cada punto
 extremo son favorecidos, disminuyendo por un factor el valor de distancia de las
 conformaciones encontradas a partir de estos caminos, de manera que aumente la 
-probabilidad de ser escogidos en la asignaci\'on final. Por su parte, la variante 
+probabilidad de ser escogidos en la as\'ignaci\'on final. Por su parte, la variante 
 \emph{multicamino} no favorece a los caminos inducidos por predicci\'on, y toma 
 en cuenta todos los caminos posibles.\\
 Cada variante es probada agregando y sin agregar los puntos extremos faltantes, lo
-que consituye las cuatro variantes mencionadas inicialmente.\\
+que constituye las cuatro variantes mencionadas inicialmente.\\
 
 La secci\'on de \emph{correcci\'on manual} presenta los resultados obtenidos 
 al llevar a cabo la modificaci\'on manual de las conformaciones incorrectas.
@@ -279,7 +279,7 @@ de caminos.\\
 Para esta imagen, la variante \emph{predicci\'on} present\'o una mejora considerable
 a la soluci\'on, al inducir la selecci\'on de caminos m\'as probables. Por otro lado,
 los gusanos aislados fueron detectados en su totalidad, independientemente
-de la variante seguida. La asignaci\'on de conformaciones de la variante \emph{predicci\'on}, 
+de la variante seguida. La as\'ignaci\'on de conformaciones de la variante \emph{predicci\'on}, 
 para la \emph{imagen 1}, es mostrada en la Fig. \ref{fig:best1}.
 
 \begin{figure}[h!]
@@ -339,7 +339,7 @@ gusanos que pertenecen a agrupaciones ($87.8\%$), en menos de un minuto.
 
 La variante de \emph{predicci\'on} sin puntos faltantes dio los mejores
 resultados con solo cuatro gusanos aislados ajustados incorrectamente, sobre
-un total de treinta y tres. La F\'igura \ref{fig:best2} muestra una comparaci\'on de 
+un total de treinta y tres. La figura \ref{fig:best2} muestra una comparaci\'on de 
 las conformaciones encontradas de manera autom\'atica y 
 las conformaciones corregidas de forma manual.
 
@@ -358,7 +358,7 @@ Las formas y contornos en color en im\'agenes \ref{test2:best2} y \ref{test2:bes
 \label{fig:best2}
 \end{figure}
 
-A trav\'es del proceso manual se pudieron corregir todas las conformaciones asignadas incorrectamente.
+A trav\'es del proceso manual se pudieron corregir todas las conformaciones as\'ignadas incorrectamente.
 De esta manera se pudo detectar y ajustar la forma de todos los gusanos de la imagen.
 
 \subsubsection*{Correcci\'on Manual (Imagen de Prueba 3)}
@@ -367,7 +367,7 @@ Los resultados del proceso de detecci\'on y ajuste autom\'atico de formas en
 la \emph{imagen 3} son presentados en la Tabla \ref{tab:tab3}. 
 
 
-\begin{table}[h!]
+\begin{table}[h]
  \caption[Resultados del ajuste autom\'atico de gusanos en la imagen 3]{Resultados del ajuste autom\'atico de gusanos en la imagen 3, agregando y sin agregar puntos extremos faltantes (pf)}
 \begin{tabular}{|>{\columncolor[gray]{0.9}} p{3.2cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|c|}
     \hline
@@ -427,7 +427,7 @@ y ajustados.
 \subsection{Optimizaci\'on de Energ\'ia}
 
 El valor de energ\'ia de una conformaci\'on determina su grado de precisi\'on
-con respecto a la f\'igura. Tal como se describe en la Sec. \ref{sec:energyformulation},
+con respecto a la figura. Tal como se describe en la Sec. \ref{sec:energyformulation},
 la funci\'on de energ\'ia eval\'ua la distancia entre formas como el porcentaje
 de p\'ixeles de fondo que estan contenidos en la silueta que se ajusta, por lo que
 todos los posibles valores de energ\'ia estan contenidos en el intervalo $[0,1]$.\\
@@ -436,7 +436,7 @@ En la Figura \ref{fig:energy123} se muestran los valores de energ\'ia para las m
 tres conformaciones por cada punto extremo de gusano. La primera corresponde a la 
 conformaci\'on correcta y ajusta el gusano de la imagen. Las siguientes dos
 corresponden a las mejores conformaciones entre puntos extremos incorrectos. 
-Estas \'ultimas dos seran denominadas primera conformaci\'on incorrecta y 
+Estas \'ultimas dos ser\'an denominadas primera conformaci\'on incorrecta y 
 segunda conformaci\'on incorrecta, respectivamente.
 
 \captionsetup[subfloat]{farskip=-0.8cm,captionskip=-0.2cm}
@@ -484,11 +484,11 @@ de manera autom\'atica.
  
 \subsubsection*{Image de Prueba 3}
 
-Solo para nueve de los veintidos puntos extremos, la primera conformaci\'on
+Solo para nueve de los veintid\'os puntos extremos, la primera conformaci\'on
 incorrecta result\'o tener un mejor valor que la conformaci\'on correcta.
 Esto coincide con los resultados presentados en la Tabla \ref{tab:tab3},
 donde, para la mejor variante, la cantidad de gusanos detectados incorrectamente
-fue tambien de nueve, an\'alogamente al caso anterior.\\
+fue tambi\'en de nueve, an\'alogamente al caso anterior.\\
 Para cada punto extremo, con la excepci\'on de uno, la segunda conformaci\'on
 incorrecta presenta un valor de energ\'ia menor a la conformaci\'on correcta.
 Por lo que la conformaci\'on correcta se encuentra siempre

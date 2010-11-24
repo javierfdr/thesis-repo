@@ -1,9 +1,14 @@
-\documentclass[12pt,letterpaper,twoside,openright]{report}
+\documentclass[12pt,letterpaper,oneside,openright]{report}
 %\usepackage{geometry} 
 \RequirePackage{amsmath}
 \usepackage[spanish]{babel}
 \usepackage[latin1]{inputenc} %help babel
 %\usepackage{listings}
+
+%Agregando el fancy stuff
+\usepackage{fancyhdr} % Necesario para los encabezados
+\usepackage{fancyvrb}
+\usepackage{makeidx} % En caso de necesitar indices.
 
 
 \usepackage{amssymb}
@@ -35,7 +40,8 @@
 \chapterfont{\Large\centering\thispagestyle{empty}}
 
 %Margins:
-\usepackage[left=3cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\setlength{\headheight}{15pt}
 
 %% Commented to accept double sided 
 
@@ -73,11 +79,11 @@
 \usepackage{subfig}
 
 %enumeration depth
-\setcounter{secnumdepth}{3}
+%\setcounter{secnumdepth}{3}
 
 %compile just these 'include' tags
 %\includeonly{chapter1,chapter2,chapter3,chapter4,chapter5} 
-\includeonly{abstract-spa,chapter1-spa,chapter2-spa,chapter3-spa}
+\includeonly{abstract-spa,chapter1-spa,chapter2-spa,chapter3-spa,chapter4-spa,chapter5-spa}
 
 %\title{Algoritmo de detecci\'on de gusanos en im\'agenes de microscopio}
 \title{Procesamiento de im\'agenes para detectar \\
@@ -85,9 +91,15 @@ gusanos C. elegans}
 \author{Javier Fern\'andez}
 
 \begin{document}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{\'Indice de tablas}
 \renewcommand{\chaptername}{CAP\'ITULO}
+
+%Rename Algorithmic commands
+\input{spanishAlgorithmic-short.tex}
+
 %\setlength{\parskip}{0pt}
-\maketitle
+%\maketitle
 
 %\includepdf[pages=1]{cover/cover}
 %\thispagestyle{empty}
@@ -96,21 +108,53 @@ gusanos C. elegans}
 %\thispagestyle{empty}
 %\cleardoublepage
 
-%\include{abstract-spa}
+% Pagina de titulo
+\input{title.tex}
 
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{4}
+
+
+% Define encabezado numeros romanos y como se separan los captiulos y las
+% secciones
+\addtolength{\headheight}{15pt}
 \pagenumbering{roman}
-\setcounter{page}{1}
+\pagestyle{fancyplain}
+
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\,\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\,\ #1}}
+
+
+\lhead{}
+\chead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0.5pt}
+\lfoot{}
+\cfoot{\fancyplain{}{\thepage}}
+\rfoot{}
+
+\input{abstract-spa.tex}
 \tableofcontents
-\listoffigures
 \listoftables
+\listoffigures
+
+\fancyhf{} % Redefine el encabezado 
+\lhead{}
+\chead{}
+\rhead{\fancyplain{}{\thepage}}
+\renewcommand{\headrulewidth}{0.5pt}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
 %must be below \tableofcontents: paragraph indentation
 \setlength{\parindent}{10pt} %look for 3-spaces in late
-\include{abstract-spa}
 \include{chapter1-spa}
 \include{chapter2-spa}
 \include{chapter3-spa}
-%\include{chapter4}
-%\include{chapter5}
+\include{chapter4-spa}
+\include{chapter5-spa}
 
 \bibliographystyle{plain}
 \bibliography{lst}

@@ -18,24 +18,25 @@ utilizadas en la investigaci\'on biol\'ogica.\\
 de an\'alisis de im\'agenes \emph{ImageJ}, proveyendo un dise\~no m\'as moderno. 
 Las deficiencias principales de \emph{ImageJ} son: falta de soporte de metadatos,
 no existe soporte real de 5D, la arquitectura de extensiones es confusa, las vistas
-no pueden ser extendidas fácilmente, y el procesamiento de lotes es complicado, 
+no pueden ser extendidas f\'acilmente, y el procesamiento de lotes es complicado, 
 tal como se indica en \cite{web:endrovhome}.
-Otros problemas que inspiraron la creaci\'on de \emph{Endrov} fueron: la ausencia de un 
-formato de im\'agen estandarizado, y la dificultad
+Otros problem\'as que inspiraron la creaci\'on de \emph{Endrov} fueron: la ausencia de un 
+formato de imagen estandarizado, y la dificultad
 de almacenar datos complejos en los formatos abiertos que existen actualmente.
 El grupo de desarrollo cre\'o el formato OST para manejar grandes conjuntos de im\'agenes.
-Puede almacenar todo tipo de informaci\'on, pero se encuentra optimizado para im\'agenes.\\
+Este formato puede almacenar todo tipo de informaci\'on, pero se 
+encuentra optimizado para im\'agenes.\\
 
-\emph{Endrov}, es tanto una liber\'ia como un programa de an\'alisis y procesamiento de 
-im\'agenes. El dise\~no se realiz\'o haciendo fuerte enf\'asis en separar el c\'odigo
+\emph{Endrov}, es tanto una librer\'ia como un programa de an\'alisis y procesamiento de 
+im\'agenes. El dise\~no se realiz\'o haciendo fuerte enf\'as\'is en separar el c\'odigo
 de la interfaz gr\'afica de los tipos de datos, filtros y otras extensiones para 
 procesamiento de datos. La idea del programa es proveer una herramienta robusta para
 an\'alisis y procesamiento de im\'agenes que pueda cubrir las necesidades de aquellos
-laboratorios, grupos de investigacion y cualesquiera otros tipos de usuario, que 
+laboratorios, grupos de investigaci\'on y cualesquiera otros tipos de usuario, que 
 manipulan im\'agenes diariamente, \cite{web:endrov}.\\
 
 \emph{Endrov} fue desarrollado por el \emph{TBU Group} del Instituto Karolinska en Suecia, y 
-fue liberado oficialmetnte el 17 de Junio de 2009, bajo la licensia BSD.
+fue liberado oficialmente el 17 de Junio de 2009, bajo la licencia BSD.
 
 
 \section{M\'etodo del Valor Umbral}
@@ -47,15 +48,15 @@ objetos presentes en una imagen del resto. Esta segmentaci\'on es usualmente rep
 a trav\'es de una imagen binaria, que se obtiene despu\'es de procesar la imagen original 
 en escala de grises.\\
 
-Una imagen binaria es un tipo de imagen discreta, en la cual cada pixel tiene asignado uno de
-dos valores posibles (tipicamente $1$ o $0$). Cada valor indica si el pixel
+Una imagen binaria es un tipo de imagen discreta, en la cual cada pixel tiene as\'ignado uno de
+dos valores posibles (t\'ipicamente $1$ o $0$). Cada valor indica si el pixel
 pertenece al primer o segundo plano (fondo) de la imagen original, respectivamente.
 Como se indica en \cite{web:thresholding}, durante la ejecuci\'on de un m\'etodo del valor
-umbral, se marcan pixeles individuales como p\'ixeles objeto o pixeles de fondo, seg\'un
-corresponda. Asumiendo que los objetos en las im\'agenes son mas brillantes que el fondo,
+umbral, se marcan p\'ixeles individuales como p\'ixeles objeto o p\'ixeles de fondo, seg\'un
+corresponda. Asumiendo que los objetos en las im\'agenes son m\'as brillantes que el fondo,
 un pixel se marca como pixel objeto si su valor de luminosidad (u otro valor unidimensional) 
 es mayor que un valor umbral determinado, de otro modo se marca como pixel de fondo.
-Esta conveci\'on se denomina \emph{umbral por encima}. Diferentes variantes incluyen:
+Esta convenci\'on se denomina \emph{umbral por encima}. Diferentes variantes incluyen:
 \emph{umbral por debajo}, que es el opuesto al anterior; \emph{umbral por dentro}, donde un
 pixel es marcado como objeto si su valor de comparaci\'on se encuentra entre dos 
 umbrales; y \emph{umbral por fuera}, que es el opuesto a \emph{umbral por dentro}, seg\'un
@@ -74,9 +75,9 @@ defectuosas, entre muchos otros.\\
 
 El par\'ametro clave para los MVU es el valor umbral (o valores umbrales para los enfoques de
 \emph{umbral por dentro} y \emph{umbral por fuera}). El valor puede ser tanto calculado
-automaticamente, como establecido o ajustado manualmente. Los diferentes MVU pueden ser categorizados 
+autom\'aticamente, como establecido o ajustado manualmente. Los diferentes MVU pueden ser categorizados 
 de acuerdo de la informaci\'on que explotan. En \cite[p.147]{thres}, Sezgin y Sankur
-categorizan los MVU en seis gr\'upos principales: m\'etodos basados en histograma de formas,  
+categorizan los MVU en seis grupos principales: m\'etodos basados en histograma de formas,  
 m\'etodos basados en agrupamiento, m\'etodos basados en entrop\'ia, m\'etodos espaciales y
 m\'etodos locales.\\
 
@@ -88,7 +89,7 @@ otra, la imagen binaria obtenida a trav\'es de un m\'etodo del valor umbral.
   \subfloat[Imagen en escala de grises]{\label{fig:threso}\includegraphics[width=0.45\textwidth]{thres/winter_o}}
 \qquad
   \subfloat[Imagen binaria obtenida a trav\'es de un m\'etodo del valor umbral]{\label{fig:thres1}\includegraphics[width=0.45\textwidth]{thres/winter_thres}}
-  \caption[Imagen en escala de grises antes y desp\'ues de aplicar un m\'etodo del valor umbral ]{Imagen en escala de grises antes y desp\'ues de 
+  \caption[Imagen en escala de grises antes y despu\'es de aplicar un m\'etodo del valor umbral ]{Imagen en escala de grises antes y despu\'es de 
     aplicar un m\'etodo del valor umbral. Las im\'agenes fueron tomadas de \cite{web:thresholding}}
   \label{fig:thres1}
 \end{figure}
@@ -100,13 +101,13 @@ Una transformada de distancia o mapa de distancias es una representaci\'on de
 una imagen digital, en la cual a cada pixel de la imagen le corresponde
 un valor que indica la distancia entre ese pixel y el pixel m\'as cercano que pertenezca
 al fondo de la imagen. Se calcula a partir de una imagen binaria, que consista
-en pixeles de objeto y pixeles de fondo. La imagen que se obtiene corresponde a
+en p\'ixeles de objeto y p\'ixeles de fondo. La imagen que se obtiene corresponde a
 una especie de representaci\'on en escala de grises del primer plano de la imagen
 binaria (conformado por los objetos).\\
 El valor mapeado para cada pixel, depende directamente de la funci\'on de distancia,
-que define el patron de medici\'on de distancia entre pixeles de la imagen. Existen
+que define el patr\'on de medici\'on de distancia entre p\'ixeles de la imagen. Existen
 diversas funciones de distancia tales como: \emph{Manhattan},
-\emph{tablero de ajedrez}, \emph{Euclideana}, \emph{Chamfer 3-4} y \emph{Octogonal}, 
+\emph{tablero de ajedrez}, \emph{Euclidiana}, \emph{Chamfer 3-4} y \emph{Octogonal}, 
 \cite[p.363]{dtresearch}. As\'i mismo, existen muchas otras funciones de
 distancia, normalmente derivadas de las anteriormente mencionadas.
 En la Figura \ref{fig:dtexamples}, se muestra el resultado de aplicar 
@@ -130,17 +131,17 @@ Las transformadas de distancia pueden ser interpretadas, tambi\'en, como
 topograf\'ias de islas, donde la etiqueta o valor de cada pixel indica la altura o 
 profundidad de la regi\'on. De esta forma, se pueden detectar crestas y picos, 
 que constituyen la base principal de met\'odos sencillos para encontrar el 
-esqueleto topol\'ogico de objetos en im\'agenes, tal como se explica en \cite[237]{ridgedt}.
+esqueleto topol\'ogico de objetos en im\'agenes, tal como se explica en \cite[p.237]{ridgedt}.
 Las transformadas de distancias son tambi\'en herramientas muy \'utiles para el 
 mejoramiento de la eficiencia de algoritmos de morfolog\'ia, tales como: 
-\emph{reducci\'on de contornos} and \emph{expansi\'on de contornos}.\\
+\emph{reducci\'on de contornos} y \emph{expansi\'on de contornos}.\\
 
-\section{\emph{Esqueletizaci\'on}}
+\section{\emph{Skeletonization}}
 \label{sec:skeletonization}
 
 Un esqueleto topol\'ogico es una representaci\'on compacta y simple de un objeto, que
 consiste en una versi\'on reducida o delgada del mismo, que es equidistante a sus bordes, 
-y que preserva muchas de las caracter\'isticas topologicas y geom\'etricas de la
+y que preserva muchas de las caracter\'isticas topol\'ogicas y geom\'etricas de la
 imagen original, tal como se explica en \cite{wikipedia:skeleton,ssm,augmented}. 
 Por lo general, el esqueleto se define como el conjunto de los centros de los discos m\'aximos
 contenidos en la imagen original, \cite{ssm,augmented}. Existen muchas otras definiciones diferentes,
@@ -174,31 +175,31 @@ heur\'isticas complejas para asegurar la conectividad del esqueleto, como se ind
 eficientes para garantizar la conectividad de esqueletos producidos a trav\'es 
 \emph{reducci\'on morfol\'ogica}.\\
 Los \emph{m\'etodos geom\'etricos} se centran en calcular el diagrama de Voronoi de una
-representaci\'on pol\'igonal de los bordes del objeto. El diagrama de Voronoi representa
+representaci\'on poligonal de los bordes del objeto. El diagrama de Voronoi representa
 el eje medio de los bordes. Tal como se asegura en \cite[p.251]{augmented}, estos m\'etodos
 producen un esqueleto conectado y preciso, pero son muy complejos de implementar, requieren
 una robusta discretizaci\'on de los bordes, y son computacionalmente costosos.\\
 El tercer tipo comprende los m\'etodos que calculan el esqueleto a partir de 
 la transformada de distancia. El enfoque com\'un consiste en encontrar los puntos cresta
 y conectarlos, \cite{maxima, euclideancentre, ridgedt}. Por lo general, estos m\'etodos
-pueden garantizar que los puntos esqueletos encontrados son precisos y acertados, 
+pueden garantizar que los puntos esqueletos encontrados sean precisos y acertados, 
 pero no la conectividad del esqueleto, ni su completitud.\\
 
 El esqueleto topol\'ogico es una herramienta importante para la representaci\'on
-y reconocimiento de objetos, en diferentes areas, tales como: visi\'on artificial,
+y reconocimiento de objetos, en diferentes \'areas, tales como: visi\'on artificial,
 an\'alisis de im\'agenes, y procesamiento de im\'agenes digitales, incluyendo 
 reconocimiento \'optico de caracteres, reconocimiento de huellas digitales, inspecci\'on
 visual, reconocimiento de patrones, compresi\'on de im\'agenes binarias y plegamiento
-de proteinas, \cite{skprotein}.
+de prote\'inas, \cite{skprotein}.
 
 
-\section{Ajuste de Formas}
+\section{Ajuste de formas}
 \label{sec:shapefitting}
 
 El ajuste de formas (en ingl\'es \emph{shape matching}), es un problema
 central en los sistemas de informaci\'on visual, visi\'on artificial, 
 reconocimiento de patrones y rob\'otica, \cite{matchingbook}. Consiste
-en identificar el area o contorno de una forma en espec\'ifico o de determinadas 
+en identificar el \'area o contorno de una forma en espec\'ifico o de determinadas 
 clases de formas en una imagen, y tiene un rol fundamental en la extracci\'on
 de contenido en im\'agenes y en la recuperaci\'on de im\'agenes basada en contenido.
 Tal como explica Veltkamp en \cite{matching2}, el ajuste de formas 
@@ -210,8 +211,8 @@ El concepto de forma es abstracto. La mayor\'ia de los
 enfoques en ajuste de formas definen las formas de manera 
 geom\'etrica. Esta descripci\'on geom\'etrica puede 
 consistir tanto en un conjunto de puntos, curvas, superficies,
-solidos, etc, como en un patr\'on geom\'etrico dispuesto de acuerdo
-a algun grupo de transformaciones geometr\'icas, en particular transformaciones
+s\'olidos, etc, como en un patr\'on geom\'etrico dispuesto de acuerdo
+a alg\'un grupo de transformaciones geom\'etricas, en particular transformaciones
 de semejanza (traslaci\'on, rotaci\'on y escala), tal como se indica en
 \cite{matching2}. 
 
@@ -225,7 +226,7 @@ Se han desarrollado diferentes enfoques para el problema de ajuste de formas.
 Esta secci\'on se centra en aquellos enfoques basados en geometr\'ia
 computacional, dado que son los m\'as relacionados con el enfoque
 seguido en este trabajo. La geometr\'ia computacional consiste en buscar y 
-analizar algoritmos eficientes para resolver problemas geom\'etricos.
+analizar algoritmos eficientes para resolver problem\'as geom\'etricos.
 En \cite{matchingbook}, Veltkamp y Hagedoorn mencionan diferentes
 enfoques de ajuste de formas tales como: poda de \'arboles, la transformada
 de Hough generalizada, el m\'etodo de alineaci\'on, estad\'isticas,
@@ -241,16 +242,16 @@ el dominio espacial a variaci\'on de color en el dominio frecuencial'',
 para el ajuste,
 sino que representan las transiciones de color o intensidad en
 la imagen. Esto hace imposible medir las diferencias entre dos
-imagenes en t\'erminos de formas, as\'i como comparar y ajustar
+im\'agenes en t\'erminos de formas, as\'i como comparar y ajustar
 una forma a una parte espec\'ifica de la imagen.\\
 Por otro lado, los \emph{m\'etodos de objetos globales} trabajan 
 con \'areas completas de los objetos o con los contornos, y pueden
-analizan secciones espec\'ificas de la imagen, en vez de requerir
+analizar secciones espec\'ificas de la imagen, en vez de requerir
 el procesamiento de la imagen como un todo, tal como en las 
 \emph{transformadas de imagen global}. En estos m\'etodos se requiere
-que los objetos de la imagen esten completamente segmentados. Algunos
+que los objetos de la imagen est\'en completamente segmentados. Algunos
 de estos m\'etodos son: \emph{m\'etodo de momentos}, donde los
-objetos son descrito como un conjunto de momentos (posici\'on, area,
+objetos son descrito como un conjunto de momentos (posici\'on, \'area,
 orientaci\'on, y otros par\'ametros) y se detecta la invariancia de 
 momentos en los objetos; \emph{m\'etodo de ajuste modal}, donde 
 se utilizan los bordes descritos con descriptores de Fourier; y
@@ -282,12 +283,12 @@ Existe un enfoque de ajuste de formas muy estudiado, basado en optimizaci\'on,
 que se conoce como Modelos de Contornos Activos, en particular el modelo de \emph{snakes}, 
 el cual inspir\'o gran parte del enfoque de ajuste de formas presentado en este trabajo, (Ver
 Sec. \ref{sec:metfit}). En \cite{snakes}, un \emph{snake} es definido como
-un spline minimizador de energ\'ia, que es guiado por fuerzas de restricciones
+un \emph{spline} minimizador de energ\'ia, que es guiado por fuerzas de restricciones
 externas e influenciado por fuerzas internas de la imagen que lo empujan
-hacia elementos caracter\'isticos de la imagen tales como: l\'ineas y contornos.
+hacia elementos caracter\'isticos tales como: l\'ineas y contornos.
 Se dice que los \emph{snakes} son modelos de contornos activos, debido a que
 se pliegan a contornos cercanos y los localizan con precisi\'on.\\
-El modelo de \emph{snakes} se define como un spline cont\'inuo y controlado que 
+El modelo de \emph{snakes} se define como un \emph{spline} continuo y controlado que 
 es restringido por fuerzas internas y externas de la imagen, llamadas energ\'ias.
 La energ\'ia interna modela la resistencia del objeto a ser empujado por fuerzas externas
 hacia direcciones inconsistentes, de acuerdo a la informaci\'on previa que se tiene sobre 
@@ -303,10 +304,10 @@ por ubicar al \emph{snake} cerca del m\'inimo local deseado.\\
 Dado estas definiciones, sea $M$ el modelo a deformar y $D$ el conjunto de datos, 
 la energ\'ia total $E$ puede ser definida como:
 
-$$E(M) = E_{ext}(M,D) + E_{int}(M)$$
+$$E(M,D) = E_{ext}(M,D) + E_{int}(M,D)$$
 
 donde $E_{ext}$ es la funci\'on de energ\'ia externa y $E_{int}$ la funci\'on
-de energia interna. De esta manera, la t\'ecnica de optimizaci\'on se centra
+de energ\'ia interna. De esta manera, la t\'ecnica de optimizaci\'on se centra
 en minimizar la funci\'on objetivo definida por la energ\'ia total.
 
 \section{Descriptores de Forma}
@@ -319,7 +320,7 @@ fijos como variables. Los descriptores fijos son aquellos
 que representan un conjunto previamente definido de formas, 
 a manera de plantillas. Los descriptores variables definen
 una serie de par\'ametros para representar la forma. Dependiendo
-de los valores asignados a los diferentes par\'ametros, se obtienen
+de los valores as\'ignados a los diferentes par\'ametros, se obtienen
 diferentes variaciones de formas, que igualmente pertenecen al tipo
 o clase de formas representadas por el descriptor. 
 Los descriptores o modelos de formas han sido ampliamente utilizados para
@@ -338,28 +339,28 @@ que contiene la silueta del objeto, a partir de los cuales se construye un vecto
 descriptivo de par\'ametros variables.
 \item \textbf{Descriptores basados en el esqueleto topol\'ogico: } Luego de que
 el esqueleto de la imagen es calculado, este es mapeado a una estructura 
-de arbol que conforma el descriptor de forma. La disimilitud entre formas
-es calculado a trav\'es de algun algoritmo de grafos.
+de \'arbol que conforma el descriptor de forma. La disimilitud entre formas
+es calculado a trav\'es de alg\'un algoritmo de grafos.
 \end{itemize}
 
-Considerando que, b\'asicamente, los descriptores de forma son intentos de cuantificar
+Considerando que, b\'as\'icamente, los descriptores de forma son intentos de cuantificar
 una forma en t\'erminos f\'acilmente abstraibles por la mente humana, \cite[p.1]{desclecture},
 cualquier tipo de representaci\'on geom\'etrica que cubra los elementos o propiedades que
 quieren ser descritos en una forma, puede ser usado como descriptor. En \cite{desclecture},
 se cubren los descriptores de forma basados en regiones. Estos son todos aquellos que describen
 una forma en base a las propiedades geom\'etricas y num\'ericas de la regi\'on que esta cubre.
 Algunos descriptores simples son mencionados, tales como: el \'area, el per\'imetro,
-compacidad (no-compacidad), circularidad (no-circularidad), eccentricidad, elongaci\'on,
-rectangularidad y orientaci\'on. Cualquier combinaci\'on de estas propiedades de una forma
-son \'utiles para describirla de manera b\'asica. Se mencionan tambi\'ien otras propiedades
+compacidad (no-compacidad), circularidad (no-circularidad), excentricidad, elongaci\'on,
+rectangularidad y orientaci\'on. Cualesquiera combinaciones de estas propiedades de una forma
+son \'utiles para describirla de manera b\'as\'ica. Se mencionan tamb\'ien otras propiedades
 m\'as complejas para mejorar la precisi\'on del descriptor, como lo son: la envoltura conexa, 
 puntos extremos, perfiles, momentos y perfil de momentos.\\
 La envoltura convexa mide la cantidad de concavidades que presenta la forma.
 El descriptor de puntos extremos se centra en encontrar los puntos l\'imite de una forma. Esto puede ser, 
-tanto una representaci\'on simple como el \emph{rectangulo delimitador}, como una
+tanto una representaci\'on simple como el \emph{rect\'angulo delimitador}, como una
 representaci\'on m\'as poderosa, como lo es el encontrar los ocho puntos extremos de la figura
-como lo son: norte, nor-oeste, oeste, sur-oeste, y asi sucesivamente. El descriptor por
-perfiles, se basa en el n\'umero de pixeles que la forma presenta en un direcci\'on determinada,
+como lo son: norte, nor-oeste, oeste, sur-oeste, y as\'i sucesivamente. El descriptor por
+perfiles, se basa en el n\'umero de p\'ixeles que la forma presenta en un direcci\'on determinada,
 ya sea vertical, horizontal o diagonal. El descriptor por momentos, se basa en el c\'alculo
 de momentos estad\'isticos, y el descriptor de perfil de momentos, es una combinaci\'on de
 los \'ultimos dos.\\
@@ -370,9 +371,9 @@ describen, dependiendo de las propiedades que controlan y miden.
 En \cite{wormparam}, se presenta un m\'etodo entrenable para representaci\'on
 de formas, que permite capturar autom\'aticamente las propiedades invariables
 de una clase de formas y proveer un descripci\'on param\'etrica compacta. Este
-m\'etodo fue aplicado en gusanos, obteniendo un descriptor de reconstruye
+m\'etodo fue aplicado en gusanos, obteniendo un descriptor que reconstruye
 formas de gusanos con diferentes flexiones, dependiendo de los valores
-asignados a los par\'ametros que la definen.
+as\'ignados a los par\'ametros que la definen.
 
 \section{\emph{Splines}}
 \label{sec:splines}
@@ -381,10 +382,10 @@ El t\'ermino \emph{spline}, de la forma en que se utiliza en este trabajo, se re
 a una curva definida a trozos mediante polinomios. Los \emph{splines} han sido ampliamente
 utilizados en los subcampos de las ciencias de la computaci\'on, por la simplicidad de su 
 construcci\'on, la facilidad y precisi\'on de su evaluaci\'on, y su capacidad para aproximar
-formas o figuras complejas, como se explica en: \cite{web:splines}. 
-La representaci\'on de una curva continua es particularmente apropiada para poblemas
+formas o figuras complejas, como se explica en \cite{web:splines}. 
+La representaci\'on de una curva continua es particularmente apropiada para problem\'as
 como: detecci\'on de contornos, ajuste de superficies y t\'ecnicas de multi-resoluci\'on.
-Es igualmente \'util para muchos otros problemas en visi\'on artificial como: flujo \'optico,
+Es igualmente \'util para muchos otros problem\'as en visi\'on artificial como: flujo \'optico,
 reconstrucci\'on de superficies y recobramiento de iluminaci\'on y color, \cite[821]{splinespap}.\\
 
 Los \emph{splines} reciben nombres diferentes dependiendo de diversas condiciones.\\
@@ -396,7 +397,7 @@ Diversos m\'etodos han sido desarrollados para ajustar estos \emph{splines} a un
 de puntos tales como: \emph{spline} cardinal, \emph{splines} de Catmull-Rom y \emph{splines} de
 Kochanek-Bartels. Todos estos permiten construir una curva suave que pasa por cada punto
 del conjunto. De esta manera, dados una serie de puntos que pertenecen, digamos, al contorno de 
-un objeto, una f\'igura suave puede ser calculada, que modele la forma definida por el objeto.
+un objeto, una figura suave puede ser calculada, que modele la forma definida por el objeto.
 Los \emph{splines} de Hermite proveen una cantidad de ventajas que lo hacen \'utiles 
 en el procesamiento de im\'agenes, como se menciona en \cite{splinespap}. Primero,
 los \emph{splines} de Hermite son, por lo general, curvas suaves y que tienden muy poco

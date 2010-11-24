@@ -9,7 +9,7 @@
 El nematodo C. elegans es un organismo ampliamente utilizado
 y se ha convertido en un importante modelo de estudio para la
 biología, especialmente la genética del desarrollo.
-Presenta la ventaja de que todos los individuos son exactamente
+Este organismo presenta la ventaja de que todos los individuos son exactamente
 iguales a nivel celular, poseen cortos ciclos de vidas y una rápida
 genética. Por esta razón, se pueden detectar tipos salvajes de este organismo 
 y los experimentos son menos costosos, en comparación 
@@ -20,13 +20,13 @@ células.\\
 
 El C. elegans tiene muchas células con equivalentes humanos, lo que 
 hace posible estudiar y comprender como se manifiestan ciertas
-enfermedades y condiciones relacionadas, e.g. addicción a las drogas,
+enfermedades y condiciones relacionadas, e.g. adicción a las drogas,
 envejecimiento, disfunción de ciertas proteínas, etc.
 Así mismo, al ser pequeño y transparente, se presta bien
 a una gran variedad de técnicas de cribado de alto rendimiento
 (HTS). El HTS es un método de experimentación científica que permite
 conducir millones de pruebas genéticas, bioquímicas o farmacológicas,
-a trav\'es de la rob\'otica, softwares de control y procesamiento de datos,
+a trav\'es de la rob\'otica, software de control y procesamiento de datos,
 dispositivos para el manejo de l\'iquidos y detectores sensitivos.
 A través de este proceso se pueden identificar rápidamente componentes
 activos, anticuerpos o genes que modelan procesos biomoleculares
@@ -62,7 +62,7 @@ gusano, y en ocasiones tambi\'en la rotaci\'on y direcci\'on de la misma.
 El enfoque que aqu\'i se presenta, busca identificar, exclusivamente, 
 la forma de los gusanos. Se estudia, entonces, si es posible detectar 
 y ajustar estas formas de manera automatizada, y si esto puede
-alcanzarse m\'as rapidamente que a trav\'es de la identificaci\'on manual.\\
+alcanzarse m\'as r\'apidamente que a trav\'es de la identificaci\'on manual.\\
 
 Se utilizan gusanos, en estado de larva, en placas de microtitulaci\'on. Las
 larvas se cultivan en medio l\'iquido, lo que causa que el fondo de las im\'agenes
@@ -89,7 +89,7 @@ entrada im\'agenes de gusanos en cultivo l\'iquido y retorne la forma
 de los gusanos presentes.
     \begin{itemize}
     \item Revisar los antecedentes relevantes en t\'ecnicas de segmentaci\'on de im\'agenes
-    \item Dise\~nar un descriptor de forma y un m\'etodo de rasterizaci\'on para representar gusanos en t\'erminos n\'umericos.
+    \item Dise\~nar un descriptor de forma y un m\'etodo de rasterizaci\'on para representar gusanos en t\'erminos num\'ericos.
     \item Revisar los antecedentes en ajuste de formas y reconocimiento
       de objetos, y proponer un enfoque de detecci\'on.
     \end{itemize}
@@ -104,7 +104,7 @@ de los gusanos presentes.
 La utilizaci\'on del C. elegans en experimentos que involucran 
 cribado gen\'etico y qu\'imico se ha incrementado r\'apida y notablemente. 
 Esto ha dado pie al desarrollo de
-m\'etodos automatizados para an\'alizar su comportamiento, en experimentos 
+m\'etodos automatizados para analizar su comportamiento, en experimentos 
 conducidos sobre grupos de estos organismos, tal como se indica en \cite{automated}.
 En el estudio mencionado, se dividen las estrategias existentes para an\'alisis automatizado 
 del C. elegans en tres grandes grupos, de acuerdo a su
@@ -113,12 +113,12 @@ detecci\'on y medici\'on de comportamientos distintos, y medici\'on completa
 del comportamiento utilizando grandes conjuntos de datos. Todas estas
 estrategias incluyen una etapa fundamental, que se centra
 en la detecci\'on de los gusanos en el conjunto de im\'agenes que se utilizan.
-El enfoque de detecci\'on varia de una estrategia a otra, pero, por lo general,
-comprende los procesos siguientes: extracci\'on de los gusanos del fondo de la im\'agen (segmentaci\'on), 
-\emph{esqueletizaci\'on} de las formas extra\'idas y parametrizaci\'on 
+El enfoque de detecci\'on var\'ia de una estrategia a otra, pero, por lo general,
+comprende los procesos siguientes: extracci\'on de los gusanos del fondo de la imagen (segmentaci\'on), 
+\emph{skeletonization} de las formas extra\'idas y parametrizaci\'on 
 del contorno de los gusanos.\\ 
 
-La \emph{esqueletizaci\'on} y subsecuente parametrizaci\'on, se han convertido en un 
+La \emph{skeletonization} y subsecuente parametrizaci\'on, se han convertido en un 
 m\'etodo est\'andar. Sin embargo, dado que las propiedades de la imagen tales como
 iluminaci\'on, ruido y desorden (e.g. huevos y rastros de gusanos) pueden variar
 fuertemente de una imagen a otra y debido a que la segmentaci\'on depende directamente del
@@ -128,39 +128,39 @@ cerrado morfol\'ogico, llenado de agujeros, m\'etodo del valor umbral y sus
 combinaciones.\\
 
 La parametrizaci\'on de gusanos, que consiste en la descripci\'on de formas de gusanos
-en t\'erminos n\'umericos, determina la variedad de formas que pueden ser
+en t\'erminos num\'ericos, determina la variedad de formas que pueden ser
 obtenidas a trav\'es de la asignaci\'on de diferentes valores a los par\'ametros.
 El enfoque m\'as com\'un se centra en definir par\'ametros que permitan
 la reproducci\'on de una forma de gusano gen\'erica, normalizada para la 
 posici\'on, orientaci\'on y escala de un esqueleto de gusano.\\
 
-En \cite{automated}, se sostiene que de aquellos programas que 
+En \cite{automated}, se sostiene que entre aquellos programas que 
 hacen seguimiento de m\'ultiples gusanos, muy pocos intentan resolver
 el problema de solapamiento, que surge cuando dos o m\'as gusanos
 se cruzan entre s\'i, o bien cuando gusanos individuales se enrollan,
 lo que suele llevar a detecciones incorrectas o faltantes. 
-Pese a que hay algoritmos que estan siendo desarrollados para resolver
+Pese a que hay algoritmos que est\'an siendo desarrollados para resolver
 este problema, tal como se indica en \cite{huang}, se sigue careciendo
 de soluciones que permitan detectar la totalidad de los individuos
 de forma autom\'atica.\\
 
 Estudios muy recientes presentan nuevos enfoques para detectar gusanos 
-individuales en agrupaciones enredadadas (aquellos donde ocurre solapamiento).
+individuales en agrupaciones enredadas (aquellos donde ocurre solapamiento).
 Riklin Raviv et al. \cite{individual1} presentan un enfoque para extraer
 objetos enredados, basado en sus propiedades morfol\'ogicas. Este estudio
 aborda el problema de desenredar agrupaciones de C. elegans en experimentos
 de cribado de alto rendimiento. Este m\'etodo se basa en conceptos de 
 aprendizaje de m\'aquina y teor\'ia de grafos, y utiliza el esqueleto 
 del gusano como descriptor de forma. Los segmentos de agrupaciones de gusanos
-son representados como vertices de grafo y se lleva a cabo una b\'usqueda
+son representados como v\'ertices de grafo y se lleva a cabo una b\'usqueda
 de los caminos de gusanos m\'as prometedores en el grafo. La detecci\'on
 de los descriptores de forma m\'as prometedores dentro de la b\'usqueda
 es guiada por una distribuci\'on de probabilidad, basada en el modelo
-probabilistico presentado en \cite{individual2}.\\ 
+probabil\'istico presentado en \cite{individual2}.\\ 
 Los enfoques presentados en \cite{individual1,individual2} corresponden
 a estudios consecutivos y complementarios centrados en la detecci\'on de
 gusanos individuales en im\'agenes digitales.
- Los resultados presentados indican un porcentage de detecci\'on acertada 
+ Los resultados presentados indican un porcentaje de detecci\'on acertada 
 de 89\% del total de la muestra, en promedio.
 Es importante destacar que los dos estudios previamente mencionados fueron
 desarrollados al mismo tiempo que el presente trabajo y con similares
@@ -172,11 +172,11 @@ trabajo, dista bastante de los estudios mencionados.\\
 Existen entonces, diversos estudios en procesamiento de im\'agenes
 y visi\'on artificial que tratan el an\'alisis automatizado del 
 C. elegans y de nematodos en general. La mayor\'ia de estos 
-estudios se basan en la locomoci\'on de gusanos, donde el proceso
+estudios se centran en la locomoci\'on de gusanos, donde el proceso
 de identificaci\'on y seguimiento es realizado a trav\'es del procesamiento
-simult\'aneo de un conjunto de im\'agenes y n\'o solo una. 
+simult\'aneo de un conjunto de im\'agenes y no solo una. 
 Se evidencian tres procesos fundamentales en las estrategias de 
-detecci\'on como lo son: segmentaci\'on de la imag\'en, esqueletonizaci\'on y 
+detecci\'on como lo son: segmentaci\'on de la imagen, esqueletonizaci\'on y 
 parametrizaci\'on de forma. El resto de los procesos involucrados en la
 detecci\'on var\'ian dependiendo del enfoque, e involucran, en casi todos los casos,
 el procesamiento de conjuntos de im\'agenes y no de im\'agenes individuales, 
@@ -185,7 +185,7 @@ como fue antes mencionado.\\
 A pesar de que algunos m\'etodos automatizados de detecci\'on de gusanos
 son capaces de detectar correctamente una gran parte de la muestra, pocos intentan
 resolver el problema del solapamiento de gusanos y ninguno lo
-soluciona exit\'osamente.
+soluciona exitosamente.
 
 
 \section{Estructura del documento}

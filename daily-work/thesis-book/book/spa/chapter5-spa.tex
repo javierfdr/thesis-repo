@@ -37,20 +37,20 @@ puntos extremos y ajuste final de formas. Una vez que los puntos extremos
 son completamente identificados, la parte autom\'atica de la soluci\'on
 provee un alto porcentaje de acierto (m\'as de tres cuartas partes
 del total de los gusanos, en el peor caso), que puede incluso ser 
-\'optimo en imagenes \emph{f\'aciles}. El proceso de ajuste manual
+\'optimo en im\'agenes \emph{f\'aciles}. El proceso de ajuste manual
 de conformaciones permite al usuario corregir las fallas de detecci\'on de la
 soluci\'on autom\'atica, proveyendo as\'i un ajuste \'optimo o total.\\
 
 La etapa de \emph{procesamiento inicial} es ejecutada muy r\'apidamente,
 constituyendo menos del $1\%$ del tiempo total de ejecuci\'on. Por otro
 lado, la etapa de optimizaci\'on de ajuste de formas corresponde al
-proceso mas demandante, consumiendo mas del $99\%$ del tiempo total de
+proceso m\'as demandante, consumiendo m\'as del $99\%$ del tiempo total de
 ejecuci\'on, excluyendo el tiempo requerido para correcciones manuales.\\
 
 La soluci\'on implementada fue integrada con \'exito a \emph{Endrov} como
-extensi\'on, y esta siendo utilizada en este momento en los laboratorios
+extensi\'on, y est\'a siendo utilizada en este momento en los laboratorios
 del Departamento de Biociencias y Nutrici\'on del Instituto Karolinska, en
-Fleminsberg, Suecia.
+Flemingsberg, Suecia.
 
 
 
@@ -63,7 +63,7 @@ de ajuste. A partir de los gusanos aislados se puede calcular
 exitosamente un perfil de los gusanos en la imagen.\\
 
 La detecci\'on y ajuste de formas de gusanos en agrupaciones represent\'o
-el proceso mas desafiante de la metodolog\'ia. Una alta densidad
+el proceso m\'as desafiante de la metodolog\'ia. Una alta densidad
 de gusanos lleva a m\'ultiples solapamientos y a la creaci\'on
 de agrupaciones, donde algunos los puntos extremos pueden no
 ser detectados. Algunos gusanos no se pueden detectar correctamente
@@ -82,7 +82,7 @@ posibles entre pares de puntos extremos, la predicci\'on de caminos se
 convierte en una herramienta \'util para determinar los caminos m\'as
 probables que parten de cada punto extremo. Sin embargo, dada la naturaleza
 altamente deformable de las formas de gusanos, la heur\'istica falla
-en ocasiones en determinar el camino correcto para algunos puntos
+en ocas\'iones en determinar el camino correcto para algunos puntos
 extremos.
 
 \subsection*{Optimizaci\'on y Funci\'on de Energ\'ia}
@@ -99,7 +99,7 @@ estar situada cerca de un gusano real en la imagen.\\
 
 La funci\'on objetivo, formulada en t\'erminos de energ\'ia, es lo 
 suficientemente expresiva para posicionar la conformaci\'on correcta
-entre las dos mejores conformaciones posbiles por punto extremo. En
+entre las dos mejores conformaciones posibles por punto extremo. En
 la gran mayor\'ia de los casos la conformaci\'on correcta resulta
 tener el menor valor de energ\'ia, conduciendo por lo tanto a un ajuste correcto.
 Sin embargo, las dos mejores conformaciones tienden a estar muy cerca la una de la otra,
@@ -114,9 +114,9 @@ futuros para mejorar la soluci\'on provista en este estudio.
 
 \subsection*{Funci\'on de Energ\'ia}
 
-Una funci\'on de energ\'ia mas sofisticada podr\'ia permitir obtener diferencias
-mas grandes entre las conformaciones optimizadas, conduciendo a un porcentaje
-de detecci\'on mas alto. Una posible formulaci\'on podr\'ia consistir en utilizar
+Una funci\'on de energ\'ia m\'as sofisticada podr\'ia permitir obtener diferencias
+m\'as grandes entre las conformaciones optimizadas, conduciendo a un porcentaje
+de detecci\'on m\'as alto. Una posible formulaci\'on podr\'ia consistir en utilizar
 el mapa de distancias para evaluar la cercan\'ia de la silueta que se deforma
 a contornos en la imagen, y empujarla hacia ellos. Los p\'ixeles de fondo
 (de valor $0$ en el mapa de distancia) tendr\'ian que ser penalizados de cierta
@@ -143,7 +143,7 @@ a cabo un b\'usqueda de puntos extremos posibles en las \'areas de la imagen
 que no fueron cubiertas.\\
 
 Otra soluci\'on es la de considerar las intersecciones entre los caminos
-del esqueleto como posibles puntos extremos, y realizar un an\'alisis mas
+del esqueleto como posibles puntos extremos, y realizar un an\'alisis m\'as
 profundo sobre la factibilidad de estos puntos y de las conformaciones 
 obtenibles a partir de estos.
 
@@ -162,7 +162,7 @@ de grandes conjuntos de datos (tales como aquellos que son cubiertos en
 Actualmente, el autor de este trabajo y el estudiante de Doctorado Johan Henriksson,
 est\'an trabajando en la automatizaci\'on de la soluci\'on provista, as\'i como
 en el refinamiento de la implementaci\'on.\\
-Recientemente se consigui\'o reducir el tiempo de detecci\'on autom\'atica en mas
+Recientemente se consigui\'o reducir el tiempo de detecci\'on autom\'atica en m\'as
 del triple, al refinar el algoritmo de predicci\'on de caminos y reducir la cantidad
 de conformaciones generadas.\\
 

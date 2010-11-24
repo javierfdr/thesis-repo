@@ -1,0 +1,174 @@
+%\cleardoublepage
+\thispagestyle{empty}
+\chapter{Introduction}
+\pagenumbering{arabic}
+
+\section{Motivation and Purpose}
+\label{sec:motivation}
+
+El nematodo C. elegans es un organismo ampliamente utilizado
+y se ha convertido en un importante modelo de estudio para la
+biología, en especial la genética del desarrollo.
+Presentan la ventaja de que todos los individuos son exactamente
+iguales a nivel celular, poseen cortos ciclos de vidas y una rápida
+genética. Por esta razón, tipos salvajes de este organismo pueden ser 
+detectados y los experimentos son menos costosos en comparación 
+con organismos más complejos. Es el único animal del que se conoce
+cada división celular, desde la fertilización del huevo hasta la etapa
+adulta, así como el diagrama completo de las conexiones de esas
+células.
+
+El C. elegans tiene muchas células con equivalentes humanos lo que 
+hace posible estudiar y comprender como se manifiestan ciertas
+enfermedades y condiciones relacionadas, e.g. addicción a las drogas,
+envejecimiento, disfunción de ciertas proteínas, etc.
+Así mismo, al ser pequeño y transparente se presta bien
+a una gran variedad de técnicas de cribado de alto rendimiento
+(HTS). El HTS es un método de experimentación científica que permite
+conducir millones de pruebas genéticas, bioquímicas o farmacológicas.
+A través de este proceso se pueden identificar rápidamente componentes
+activos, anticuerpos o genes que modelan procesos biomoleculares
+particulares. [COLOCAR CITA Wikipedia High Throughput Screening]
+
+Diversos ganadores del premio Nobel de Medicina o Fisiología
+han centrado sus estudios en gusanos, y en particular C. elegans, 
+tales como Brenner, Sulston y Horvitz (2002), Fire y Mello (2008),
+así como el ganador del Nobel de Química, Martin Chalfie (2008). 
+
+Antes de ser cuantificados, los gusanos deben ser identificados. Este
+proceso debería ser automático debido a que es muy trabajoso para
+ser efectuado manualmente en un tiempo factible.
+A pesar de la utilidad del C. elegans para manipulaciones genéticas,
+su utilización en procesos de cribado de alto rendimiento se
+ha visto limitado por prueba manuales muy trabajosas para 
+para puntuar fenotipos. 
+ 
+Before quantification, the worms have to be identified; this should be 
+automatic since there are too many worms to feasibly do this manually.
+Despite the utility of C. elegans models for genetic 
+manipulations, the deployment in high-throughput screens has been limited by 
+labor-intensive manual assays used to score phenotypes. This urges the need for more rapid and more 
+consistent methods.
+Hereby, a computer
+program that identifies C. elegans individuals in digital images would 
+provide an automated solution for the recognition task, thus vastly 
+improving the time-cost and accuracy with respect to manual identification 
+and converting the images into manageable data.\\
+
+The focus of this work is to design and implement an image processing
+methodology to detect C. elegans worms shapes in microscope images.
+It is easy for a human to find the worm conformation, rotation and direction. In this project we will only 
+try to find the conformation. We will investigate if is possible to detect and fit the conformations of worms 
+in an automated way and if this can be achieved faster than manual identification.\\
+
+In this project we consider larval worms in microtiter plates. The larvae are 
+grown in liquid culture, which causes the microscope image background to be 
+very clear. However, worms overlap frequently. Ordinary bright-field images are 
+used for the morphology. The implementation is adjusted to \emph{Endrov},
+an open-source plug-in architecture aimed for image analysis and data processing, developed and used at the 
+\emph{Department of Bioscience and Nutrition, Karolinska Institute},
+where this project is carried out.
+
+\begin{itemize}
+\item General Objective
+  \begin{itemize}
+  \item To design and implement an image processing methodology to detect
+    and fit the shape of worms in digital images.    
+  \end{itemize}
+\end{itemize}
+\begin{itemize}
+\item Specific Objectives
+  \begin{itemize}
+  \item To design an algorithm based on image processing techniques that
+    receives images of worms in liquid culture as input, and outputs
+    fitted shapes of these worms.
+    \begin{itemize}
+    \item To review the background on image segmentation techniques.    
+    \item To design a shape descriptor and a rasterization method to
+      represent worms in numerical terms.
+    \item To review the background on shape matching and object recognition and
+      propose a matching approach.    
+    \end{itemize}
+  \item To implement the designed algorithm as a plug-in for \emph{Endrov}
+  \end{itemize}
+\end{itemize}
+
+\section{Earlier Work}
+
+C. elegans has been deployed quickly in genetic screens and chemical
+screens, as mentioned in \cite{automated}. In the previously mentioned paper,
+the strategies for automated analysis of C. elegans locomotion are
+divided in three groups according to their methodological approach:
+Tracking overall behavior, detection and measurement of distinct behaviors and
+measuring the complete behavioral repertoire using large parameters sets.
+All of these strategies are based on an initial processing step that performs the detection of the worm shapes in the images. This usually involves the extraction of the worms from the background (segmentation), reduction to a skeleton and parameterization of worm outlines.
+
+Reduction to skeleton and subsequent parameterization have become a standard method. 
+However, since the image properties such as lighting, noise and clutters 
+(e.g. worm tracks and eggs), can vary strongly from one image to another and 
+the segmentation depends directly on the visual context, the  
+parameters for this process are highly variable. The segmentation methods 
+that are usually used 
+on worm images are thresholding, morphological closing, 
+hole filling, and their combinations.
+It is stated in \cite{automated} that among those programs that track 
+multiple worms, few attempt to resolve the problem that arise when 
+worms interact or when individual worms coil up on themselves, which may
+severely affect the individual worm identification. In \cite{huang} is indicated
+that programs and algorithms are being developed to address this problem.\\
+
+The  numerical description of a worm shape or worm parameterization 
+determines the range of possible shapes a worm may adopt. Diverse 
+representations have been used from one approach to another. The 
+most common is the reproduction of an abstract shape, normalized for position, 
+orientation, scale and parameterization of the 
+worm skeleton.\\
+
+Very recent studies present new approaches for detecting individual worms
+in cluttered clusters. Riklin Raviv et al. \cite{individual1} present an approach for
+ extracting cluttered objects based on their morphological properties. This study addresses
+the problem of untangling C. elegans clusters in high-throughput screening experiments.
+The method is based on concepts from machine learning and graph theory. The worm
+skeleton is used as shape descriptor. 
+The clustered worm segments are represented
+as graph vertices and then a search for more likely worm paths in the graph 
+is carried out. The detection of the most likely worm descriptors within the graph
+search is guided by a probability distribution, defined by a low dimensional feature 
+space that captures the worms' variability. This probabilistic shape model and a 
+similar worm detection approach was first
+presented by W\"{a}hlby et al. in \cite{individual2}.
+
+
+There are many studies in computer vision dealing with the automated
+analysis of C. elegans and nematodes in general. Most studies are
+based on worm locomotion, so the process of identification and 
+tracking is performed by the simultaneous analysis of a set of images, rather
+than just one. There is a standard general strategy followed for an initial
+worm identification step consisting in segmentation, skeleton reduction and
+shape parameterization, while the matching strategies depend on the approach
+and normally involves image sets and not individual images, as explained.
+Although some automated worm detection approaches are able to identify
+individual worms and group of worms, few of them attempt to overcome the 
+problem of worm interaction and none solves it successfully.
+
+\section{Structure of Thesis}
+This document is divided the following way:
+\begin{itemize}
+\item \textbf{Chapter 1: Introduction}\\
+  The motivation and purpose of the thesis is discussed. Then, earlier work
+  on worms detection is presented, pointing out different approaches, achievements
+  and current problems.
+\item \textbf{Chapter 2: Theoretical Framework}\\
+  The theory related to the problem and the solution is explained. Each topic is described,
+  and the different studied approaches are addressed.
+\item \textbf{Chapter 3: Methodology}\\
+  The proposed solution is discussed and presented as a methodology. Then, each step 
+  involving the methodology is explained thoroughly, comprising a description of the 
+  approach and some implementation details.
+\item \textbf{Chapter 4: Experiments and Results}\\
+  A series of experiments to test the performance of the solution are presented. 
+  The purpose and characteristics of the experiments are described. Then, the results are shown and discussed.
+\item \textbf{Chapter 5: Conclusions and Future Work}\\
+  The conclusions obtained from the discussion of the results are presented. 
+Suggestions for future work are given.
+\end{itemize}
